@@ -54,7 +54,7 @@ namespace MinecraftBotManager.Behaviors
             try
             {
                 JObject json = JObject.Parse(Json);
-                ChatParser.ParseText(Json);
+                
                 Console.WriteLine(json.ToString(Newtonsoft.Json.Formatting.Indented));
 
 
