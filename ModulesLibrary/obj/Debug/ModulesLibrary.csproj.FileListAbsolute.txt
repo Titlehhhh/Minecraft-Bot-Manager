@@ -1,0 +1,7 @@
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\MinecraftBotManager\bin\Debug\Database\Assemblys\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\MinecraftBotManager\bin\Debug\Database\Assemblys\ModulesLibrary.pdb
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\MinecraftBotManager\bin\Debug\Modules\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CopyComplete
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\ModulesLibrary\obj\Debug\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.AssemblyReference.cache

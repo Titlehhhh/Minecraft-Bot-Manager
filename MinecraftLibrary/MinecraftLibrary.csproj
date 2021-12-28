@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D15FF94-592E-44A0-9D68-FAE0393CA975}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MinecraftLibrary</RootNamespace>
+    <AssemblyName>MinecraftLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GeometRi, Version=1.3.5.16, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeometRi.1.3.5.16\lib\net20\GeometRi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StarkSoftProxy, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StarkSoftProxy.1.6.0\lib\netstandard2.0\StarkSoftProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IBotObjectModulesService.cs" />
+    <Compile Include="Interfaces\IMainViewModelController.cs" />
+    <Compile Include="Interfaces\Interface1.cs" />
+    <Compile Include="MinecraftModels\ChatCommand.cs" />
+    <Compile Include="MinecraftModels\ChatMessage.cs" />
+    <Compile Include="MinecraftModels\MinecraftModule.cs" />
+    <Compile Include="MinecraftModels\BotObject.cs" />
+    <Compile Include="MinecraftProtocol\ChatParser.cs" />
+    <Compile Include="MinecraftProtocol\Compression\CRC32.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Deflate.cs" />
+    <Compile Include="MinecraftProtocol\Compression\DeflateStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\GZipStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Inflate.cs" />
+    <Compile Include="MinecraftProtocol\Compression\InfTree.cs" />
+    <Compile Include="MinecraftProtocol\Compression\ParallelDeflateOutputStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Tree.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ComHelper.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\EncryptionAlgorithm.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\Events.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\Exceptions.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ExtractExistingFileAction.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\FileSelector.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\OffsetStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\Shared.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\WinZipAes.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipConstants.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipCrypto.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipDirEntry.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipEntry.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipEntry.Extract.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipEntry.Read.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipEntry.Write.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipEntrySource.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipErrorAction.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.AddUpdate.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.Check.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.Events.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.Extract.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.Read.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.Save.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.SaveSelfExtractor.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.Selector.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipFile.x-IEnumerable.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipInputStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipOutputStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zip\ZipSegmentedStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\Zlib.cs" />
+    <Compile Include="MinecraftProtocol\Compression\ZlibBaseStream.cs" />
+    <Compile Include="MinecraftProtocol\Compression\ZlibCodec.cs" />
+    <Compile Include="MinecraftProtocol\Compression\ZlibConstants.cs" />
+    <Compile Include="MinecraftProtocol\Compression\ZlibStream.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\CryptoHandler.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\IAesStream.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\AesFastEngine.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\BufferedBlockCipher.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\BufferedCipherBase.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\CfbBlockCipher.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\Check.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\CipherStream.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\CryptoException.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\DataLengthException.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\IBlockCipher.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\IBufferedCipher.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\ICipherParameters.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\KeyParameter.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\OutputLengthException.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\Pack.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\BouncyAes\ParametersWithIV.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\MonoAesStream.cs" />
+    <Compile Include="MinecraftProtocol\Crypto\Streams\RegularAesStream.cs" />
+    <Compile Include="MinecraftProtocol\Data\Block.cs" />
+    <Compile Include="MinecraftProtocol\Data\Chunk.cs" />
+    <Compile Include="MinecraftProtocol\Data\ChunkColumn.cs" />
+    <Compile Include="MinecraftProtocol\Data\CommandBlockFlags.cs" />
+    <Compile Include="MinecraftProtocol\Data\CommandBlockMode.cs" />
+    <Compile Include="MinecraftProtocol\Data\CubeFromWorld.cs" />
+    <Compile Include="MinecraftProtocol\Data\Direction.cs" />
+    <Compile Include="MinecraftProtocol\Data\Entity.cs" />
+    <Compile Include="MinecraftProtocol\Data\EntityPose.cs" />
+    <Compile Include="MinecraftProtocol\Data\EntityType.cs" />
+    <Compile Include="MinecraftProtocol\Data\EntityTypeExtensions.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\Container.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ContainerType.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\Effects.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\Hand.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\Item.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ItemPalettes\ItemPalette.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ItemPalettes\ItemPalette115.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ItemPalettes\ItemPalette1161.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ItemPalettes\ItemPalette1162.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ItemType.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\ItemTypeExtensions.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\Point3D_I32.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\VillagerInfo.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\VillagerTrade.cs" />
+    <Compile Include="MinecraftProtocol\Data\Inventory\WindowActionType.cs" />
+    <Compile Include="MinecraftProtocol\Data\Location.cs" />
+    <Compile Include="MinecraftProtocol\Data\Material.cs" />
+    <Compile Include="MinecraftProtocol\Data\Material2Tool.cs" />
+    <Compile Include="MinecraftProtocol\Data\MaterialExtensions.cs" />
+    <Compile Include="MinecraftProtocol\Data\PlayerAction.cs" />
+    <Compile Include="MinecraftProtocol\Data\PlayerInfo\PlayerInfo.cs" />
+    <Compile Include="MinecraftProtocol\Data\VillagerInfo.cs" />
+    <Compile Include="MinecraftProtocol\Data\World.cs" />
+    <Compile Include="MinecraftProtocol\DisconnectReason.cs" />
+    <Compile Include="MinecraftProtocol\IO\NetInput.cs" />
+    <Compile Include="MinecraftProtocol\IO\NetOutput.cs" />
+    <Compile Include="MinecraftProtocol\IO\Stream\StreamNetInput.cs" />
+    <Compile Include="MinecraftProtocol\IO\Stream\StreamNetOutput.cs" />
+    <Compile Include="MinecraftProtocol\Json.cs" />
+    <Compile Include="MinecraftProtocol\MinecraftConstans.cs" />
+    <Compile Include="MinecraftProtocol\PacketPalletes\PacketPallete.cs" />
+    <Compile Include="MinecraftProtocol\PacketPalletes\Packets1_12_2.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientAdvancementTabPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientAnimationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientChatMessagePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientWindowActionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientClientSettingsPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientClientStatusPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientCloseWindowPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientCraftRecipeRequestPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientCreativeInventoryActionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientEnchantItemPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientEntityActionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientHeldItemChangePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientInteractEntityPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientKeepAlivePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerAbilitiesPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerBlockPlacementPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerActionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerMovementPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerPositionAndRotationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerPositionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPlayerRotationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientPluginMessagePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientRecipeBookDataPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientResourcePackStatusPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientSpectatePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientSteerBoatPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientSteerVehiclePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientTabCompletePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientTeleportConfirmPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientUpdateSignPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientUseItemPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientVehicleMovePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientWindowConfirmationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Login\EncryptionResponsePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Login\LoginStartPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\HandShake\HandShakePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Packet.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerAdvancementsPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerAttachEntityPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerBlockActionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerBlockBreakAnimationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerBlockChangePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerBlockEntityDataPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerBossBarPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerCameraPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerChangeGameStatePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerChatMessagePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerChunkDataPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerCloseWindowPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerCollectItemPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerCombatEventPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerCraftRecipeResponsePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerDestroyEntitiesPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerDisconnectPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerDisplayScoreboardPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEffectPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityAnimationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityEffectPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityEquipmentPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityHeadLookPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityMetadataPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityMovementPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityPositionAndRotationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityPositionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityPropertiesPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityRotationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityStatusPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityTeleportPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerEntityVelocityPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerExplosionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerHeldItemChangePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerJoinGamePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerKeepAlivePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerMapDataPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerMultiBlockChangePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerNamedSoundEffectPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerOpenSignEditorPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerOpenWindowPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerParticlePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerPlayerAbilitiesPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerPlayerInfoPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerPlayerListHeaderAndFooterPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerPlayerPositionAndLookPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerPluginMessagePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerRemoveEntityEffectPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerResourcePackSendPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerRespawnPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerScoreboardObjectivePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSelectAdvancementTabPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerServerDifficultyPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSetCooldownPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSetExperiencePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSetPassengersPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSetSlotPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSoundEffectPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnEntityPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnExperienceOrbPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnLivingEntityPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnPaintingPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnPlayerPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnPositionPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerSpawnWeatherEntityPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerStatisticsPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerTabCompletePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerTeamsPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerTimeUpdatePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerTitlePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUnloadChunkPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUnlockRecipesPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUpdateHealthPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUpdateScorePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUseBedPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerVehicleMovePacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWindowConfirmationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWindowItemsPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWindowPropertyPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWorldBorderPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Login\EncryptionRequestPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Login\LoginSuccesPacket.cs" />
+    <Compile Include="MinecraftProtocol\PalletesExtensions.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\BlockPalette.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette112.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette113.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette114.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette115.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette1161.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\EntityPalette1162.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\Palette112.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\Palette113.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\Palette114.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\Palette115.cs" />
+    <Compile Include="MinecraftProtocol\Pallets\Palette116.cs" />
+    <Compile Include="MinecraftProtocol\SessionListener.cs" />
+    <Compile Include="MinecraftProtocol\Session\SubProtocol.cs" />
+    <Compile Include="MinecraftProtocol\Session\TcpClientSession.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

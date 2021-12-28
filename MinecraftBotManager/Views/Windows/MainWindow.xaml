@@ -1,0 +1,215 @@
+﻿<ext:MaterialWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinecraftBotManager.Views.Windows"
+        xmlns:converters="clr-namespace:MinecraftBotManager.Converters"
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:ext="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
+        xmlns:models="clr-namespace:MinecraftBotManager.Models"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"    
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:viewmodels="clr-namespace:MinecraftBotManager.ViewModel"
+        xmlns:ucs="clr-namespace:MinecraftBotManager.Views.UserControls"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:assist="clr-namespace:MinecraftBotManager.Asists"
+        x:Class="MinecraftBotManager.Views.Windows.MainWindow"
+        mc:Ignorable="d"                    
+        WindowStartupLocation="CenterScreen"
+        Title="Minecraft Bot Manager" Height="Auto" Width="Auto">
+    <Window.Background>
+        <VisualBrush>
+            <VisualBrush.Visual>
+                <Image Source="BackGround.jpg"/>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </Window.Background>
+    <Window.Resources>
+        <converters:BoolToVisibilyInverse x:Key="booltoCollased"/>
+        <DataTemplate DataType="{x:Type viewmodels:ConfirmDialogVM}">
+            <ucs:ConfirmDialog/>
+        </DataTemplate>
+        <converters:InverseConverter x:Key="InverseConverter"/>
+    </Window.Resources>
+
+    <mat:DialogHost Identifier="RootDialog" x:Name="Test1223">
+        <mat:DrawerHost IsRightDrawerOpen="False">
+            <mat:DrawerHost.RightDrawerContent>
+                <StackPanel>
+
+                </StackPanel>
+            </mat:DrawerHost.RightDrawerContent>
+            <DockPanel>
+
+                <Border DockPanel.Dock="Left" Grid.Row="0" Grid.Column="0" >
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.8"/>
+                    </Border.Background>
+
+
+                    <DockPanel Margin="5" LastChildFill="False">
+                        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Hidden" >
+                            <StackPanel>
+                                <Button x:Name="ModuleWindowButton" Click="ModuleWindowButton_Click" Padding="4" BorderThickness="0" Height="Auto"  Width="Auto" Background="Transparent" Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="Transparent">
+                                    <Button.ToolTip>
+                                        <TextBlock Text="Управление модулями"/>
+                                    </Button.ToolTip>
+                                    <mat:PackIcon Height="38" Width="Auto" Kind="ScriptTextOutline" Foreground="White"/>
+                                </Button>
+                                <Button x:Name="ProxyListButton" Click="ProxyListButton_Click" Padding="4" BorderThickness="0" Height="Auto" Width="Auto" Background="Transparent" Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="Transparent">
+                                    <Button.ToolTip>
+                                        <TextBlock Text="Прокси сервера"/>
+                                    </Button.ToolTip>
+                                    <mat:PackIcon Height="38" Width="Auto" Kind="Server" Foreground="White"/>
+                                </Button>
+                                <Button Padding="4" BorderThickness="0" Height="Auto" Width="Auto" Background="Transparent" Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="Transparent">
+                                    <Button.ToolTip>
+                                        <TextBlock Text="СУБД"/>
+                                    </Button.ToolTip>
+                                    <mat:PackIcon Height="38" Width="Auto" Kind="Database" Foreground="White"/>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <ScrollViewer DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Hidden" >
+                            <StackPanel>
+                                <ToggleButton Command="{Binding OpenSettingsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsChecked}" Padding="4" BorderThickness="0" Height="Auto" Width="Auto" Background="Transparent" BorderBrush="Transparent">
+
+
+                                    <ToggleButton.Style>
+                                        <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <mat:PackIcon Height="38" Width="Auto" Kind="Settings" Foreground="White"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text="Настройки"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <mat:PackIcon Height="38" Width="Auto" Kind="Home" Foreground="White"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="ToolTip">
+                                                        <Setter.Value>
+                                                            <TextBlock Text="Вернуться"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ToggleButton.Style>
+                                </ToggleButton>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                    </DockPanel>
+
+                </Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ContentControl DockPanel.Dock="Right" Content="{Binding CurrentPage}"/>
+                    <Border Grid.Row="1">
+                        <Grid>
+                            
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">                                
+                                <ToggleButton Click="TaskButton_Click" Padding="0" x:Name="TaskButton" Background="Transparent" Height="Auto" BorderBrush="Transparent" Style="{StaticResource MaterialDesignRaisedButton}" BorderThickness="0" >
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock FontSize="15" Margin="5,0,5,0" Text="Задачи" Foreground="White" VerticalAlignment="Center"/>
+                                        <ProgressBar VerticalAlignment="Center" Margin="0,0,5,0" Height="7" Value="50" IsIndeterminate="True" Width="150" BorderThickness="0" Foreground="White" Background="#FF636363">
+
+                                        </ProgressBar>
+                                    </StackPanel>
+                                </ToggleButton>
+                                <ToggleButton IsChecked="False" Click="NotificationsButton_Click" x:Name="NotificationsButton" Margin="10,0,10,0" VerticalAlignment="Center" Height="Auto" Width="Auto" Padding="0" Style="{StaticResource MaterialDesignRaisedButton}" Background="Transparent" BorderThickness="0">
+                                    <ToggleButton.Content>
+                                        <Grid>
+                                            <mat:PackIcon Width="Auto" Height="20" Margin="1" Kind="Notifications"/>
+                                            <Ellipse x:Name="IsNotifi" VerticalAlignment="Top" Margin="0,2,2,0" HorizontalAlignment="Right" Width="7" Height="7" Fill="#FFD31919"/>
+                                        </Grid>
+                                    </ToggleButton.Content>
+                                </ToggleButton>
+                            </StackPanel>
+                            <Popup PopupAnimation="Slide" IsOpen="{Binding ElementName=TaskButton,Path=IsChecked}"  Width="{Binding ElementName=TaskButton,Path=ActualWidth}" x:Name="TaskPopup" StaysOpen="False" AllowsTransparency="True" Placement="Top" PlacementTarget="{Binding ElementName=TaskButton}">
+                                <Border Padding="5,10">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="White" Opacity="0.4"/>
+                                    </Border.Background>
+                                    <ItemsControl ItemsSource="{Binding BackgroundTasks}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Foreground="Black" FontSize="14" Text="{Binding Name}"/>
+                                                    <ProgressBar Value="{Binding Value}" Height="5"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Border>
+                            </Popup>
+                            <Popup  StaysOpen="False" x:Name="NotifiPopup" AllowsTransparency="True" PlacementTarget="{Binding ElementName=NotificationsButton}" Placement="Top" IsOpen="{Binding ElementName=NotificationsButton,Path=IsChecked}">
+                                <Popup.HorizontalOffset>
+                                    <MultiBinding Converter="{StaticResource InverseConverter}">
+                                        <Binding ElementName="RootBorder" Path="ActualWidth"/>
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualWidth"/>
+                                    </MultiBinding>
+                                </Popup.HorizontalOffset>                                
+                                <Border x:Name="RootBorder" Padding="2,5">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="Black" Opacity="0.4"/>
+                                    </Border.Background>
+                                    <Grid>
+                                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                        <ListBox x:Name="NotifiList" ItemsSource="{Binding Notifications}" mat:ThemeAssist.Theme="Dark">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                                    <Setter Property="Padding" Value="0"/>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type models:NotificationElement}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <mat:PackIcon x:Name="Icon" Margin="0,0,5,0" Height="Auto" Width="25" Kind="Check" Foreground="Green"/>
+                                                        <TextBlock FontSize="14" Foreground="White" VerticalAlignment="Center" Text="{Binding Message}"/>
+                                                    </StackPanel>
+                                                    <DataTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding Type}" Value="ERROR">
+                                                            <Setter TargetName="Icon" Property="Kind" Value="Error"/>
+                                                            <Setter TargetName="Icon" Property="Foreground" Value="Red"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Type}" Value="WARNING">
+                                                            <Setter TargetName="Icon" Property="Kind" Value="Warning"/>
+                                                            <Setter TargetName="Icon" Property="Foreground" Value="#FFF5C520"/>
+                                                        </DataTrigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>                                            
+                                        </ListBox>
+                                    </ScrollViewer>
+                                        <TextBlock Text="Уедомлений нет!" Visibility="{Binding ElementName=NotifiList,Path=HasItems,Converter={StaticResource booltoCollased}}" FontSize="15" VerticalAlignment="Center" Foreground="White"/>
+                                    </Grid>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <Border.Background>
+                            <SolidColorBrush Color="#FFD1D1D1" Opacity="0.2"/>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </DockPanel>
+        </mat:DrawerHost>
+    </mat:DialogHost>
+</ext:MaterialWindow>

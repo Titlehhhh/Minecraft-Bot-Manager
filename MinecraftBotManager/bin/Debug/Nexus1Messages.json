@@ -1,0 +1,8810 @@
+{
+  "text": ""
+}
+{
+  "color": "green",
+  "text": "Подключение..."
+}
+{
+  "color": "green",
+  "text": "Вы подключены к серверу номер 1"
+}
+{
+  "extra": [
+    {
+      "color": "green",
+      "text": "Подошла ваша очередь, подключаем к серверу "
+    },
+    {
+      "bold": true,
+      "color": "green",
+      "text": ":)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302, enablee\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2201\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg vika658993 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fvika658993\n"
+          },
+          {
+            "text": "§7Баланс: §f92,299$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "vika658993"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "?"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l687\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg target "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §ftarget\n"
+          },
+          {
+            "text": "§7Баланс: §f95,144$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "target"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "принимай"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "МОДЕРАТОР "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg To_Mimo "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fTo_Mimo\n"
+          },
+          {
+            "text": "§7Баланс: §f1,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "To_Mimo"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg amita_tyan "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §famita_tyan\n"
+          },
+          {
+            "text": "§7Баланс: §f991$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "amita_tyan"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "qq all"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fT1mur4ik, raraka\n"
+          },
+          {
+            "text": "§fСуществует - §f2 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l376\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто хочет помочь для видео c дискордом"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fT1mur4ik, raraka\n"
+          },
+          {
+            "text": "§fСуществует - §f2 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l376\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "С-АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg raraka "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fraraka\n"
+          },
+          {
+            "text": "§7Баланс: §f2,227$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "raraka"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "нужно money кто сможет help me перевидите player raraka любую сумму каждого озвучу"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg panda4ca "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fpanda4ca\n"
+          },
+          {
+            "text": "§7Баланс: §f197$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "panda4ca"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "сфыштщ 300"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302, enablee\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2201\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg artemprostopro "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fartemprostopro\n"
+          },
+          {
+            "text": "§7Баланс: §f10,330$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "artemprostopro"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто в дс (пиши в лс) кто в дс (пиши в лс) кто в дс (пиши в лс) кто в дс (пиши в лс) кто в дс (пиши в лс)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info квасик"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fВладелец - §6wickesy\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f7 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#9\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§c§lZu§9§lZi\n"
+          },
+          {
+            "text": "§fРепутация - §6§l210\n"
+          }
+        ]
+      },
+      "text": "§8[§a§3§lква§9§lсик§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "МОДЕРАТОР "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Sapsanchik230 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSapsanchik230\n"
+          },
+          {
+            "text": "§7Баланс: §f15,760$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+2\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Sapsanchik230"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "я больше не хочу связываться с тобой, ты е*****й"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg panda4ca "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fpanda4ca\n"
+          },
+          {
+            "text": "§7Баланс: §f197$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "panda4ca"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "ой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fT1mur4ik, raraka\n"
+          },
+          {
+            "text": "§fСуществует - §f2 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l376\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто хочет помочь для видео c дискордом"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg kovixu "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fkovixu\n"
+          },
+          {
+            "text": "§7Баланс: §f1,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "kovixu"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "у кого можно поселиться пишите в лс"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l687\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "С-АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg _pussykiller228_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f_pussykiller228_\n"
+          },
+          {
+            "text": "§7Баланс: §f648,500$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за RussianPvP\n"
+          },
+          {
+            "text": "§7Репутация: §a+3\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "_pussykiller228_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "/like RussianPvP = 5k"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info квасик"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fВладелец - §6wickesy\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f7 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#9\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§c§lZu§9§lZi\n"
+          },
+          {
+            "text": "§fРепутация - §6§l210\n"
+          }
+        ]
+      },
+      "text": "§8[§a§3§lква§9§lсик§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "МОДЕРАТОР "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Sapsanchik230 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSapsanchik230\n"
+          },
+          {
+            "text": "§7Баланс: §f15,760$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+2\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Sapsanchik230"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "я тебя боюсь"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "МОДЕРАТОР "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg fgydgfd "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §ffgydgfd\n"
+          },
+          {
+            "text": "§7Баланс: §f1,696$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "fgydgfd"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "9999про#1808"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302, enablee\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2201\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg vika658993 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fvika658993\n"
+          },
+          {
+            "text": "§7Баланс: §f92,299$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "vika658993"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "угу"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302, enablee\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2201\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg vika658993 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fvika658993\n"
+          },
+          {
+            "text": "§7Баланс: §f92,299$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "vika658993"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "молодец"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l687\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg target "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §ftarget\n"
+          },
+          {
+            "text": "§7Баланс: §f95,144$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "target"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "прими в дс"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l687\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg target "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §ftarget\n"
+          },
+          {
+            "text": "§7Баланс: §f95,144$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "target"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "ало заявку"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fT1mur4ik, raraka\n"
+          },
+          {
+            "text": "§fСуществует - §f2 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l376\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg taboopka "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §ftaboopka\n"
+          },
+          {
+            "text": "§7Баланс: §f27,705$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "taboopka"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "а ты где"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "МОДЕРАТОР "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg fgydgfd "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §ffgydgfd\n"
+          },
+          {
+            "text": "§7Баланс: §f1,696$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "fgydgfd"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "нету"
+    }
+  ],
+  "text": ""
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "tdfg"
+  ]
+}
+{
+  "color": "aqua",
+  "text": "addsf"
+}
+{
+  "color": "aqua",
+  "text": "addsf"
+}
+{
+  "color": "aqua",
+  "text": "addsff"
+}
+{
+  "color": "aqua",
+  "text": "addsff"
+}
+{
+  "color": "aqua",
+  "text": "addsff"
+}
+{
+  "color": "aqua",
+  "text": "addsff"
+}
+{
+  "color": "aqua",
+  "text": "123"
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "TestBot",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg TestBot "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"TestBot\",id:\"30fecbe1-2271-3418-8553-d3ded0e95f56\"}"
+        }
+      },
+      "text": "TestBot"
+    },
+    "а"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "sdf"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "sdg"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "asfd"
+  ]
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "red",
+  "text": "123"
+}
+{
+  "color": "yellow",
+  "translate": "multiplayer.player.joined",
+  "with": [
+    {
+      "insertion": "Ookla",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Ookla "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Ookla\",id:\"64213572-c639-33dd-aae3-edd2611d0f71\"}"
+        }
+      },
+      "text": "Ookla"
+    }
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "sdgdfhj"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "sdgdfhj"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "sdfghfjgkhlj"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "sdfghfjgkhlj"
+  ]
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "text": " "
+    },
+    {
+      "color": "green",
+      "text": "Ожидайте завершения проверки..."
+    }
+  ],
+  "text": ""
+}
+{
+  "color": "aqua",
+  "text": "asdfsdfg"
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "wrtdfs"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "rdfghjkl"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "dsfghj"
+  ]
+}
+{
+  "translate": "chat.type.text",
+  "with": [
+    {
+      "insertion": "Title_",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Title_\",id:\"20080084-0be2-41aa-b831-dff4dd0b2d0c\"}"
+        }
+      },
+      "text": "Title_"
+    },
+    "Привет"
+  ]
+}
+{
+  "color": "yellow",
+  "translate": "multiplayer.player.joined",
+  "with": [
+    {
+      "insertion": "Ookla",
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Ookla "
+      },
+      "hoverEvent": {
+        "action": "show_entity",
+        "value": {
+          "text": "{name:\"Ookla\",id:\"64213572-c639-33dd-aae3-edd2611d0f71\"}"
+        }
+      },
+      "text": "Ookla"
+    }
+  ]
+}
+{
+  "text": ""
+}
+{
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "dark_red",
+      "text": "[!] "
+    },
+    {
+      "color": "gray",
+      "text": "Вы в лобби. Для игры на сервере зайдите в портал."
+    }
+  ],
+  "text": ""
+}
+{
+  "color": "green",
+  "text": "Вы подключены к серверу номер 1"
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "и мне совсем не до тебя"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "С-АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Title_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fTitle_\n"
+          },
+          {
+            "text": "§7Баланс: §f1,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Title_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "asd"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "да н***й рот закрыл"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info цзы_аръ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6цзы_аръ\n"
+          },
+          {
+            "text": "§fВладелец - §6ststasik\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCIganiche\n"
+          },
+          {
+            "text": "§fСуществует - §f4 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#39\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§d§lмозг§f§lо§0§lёбы\n"
+          },
+          {
+            "text": "§fРепутация - §6§l14\n"
+          }
+        ]
+      },
+      "text": "§8[§aцзы_аръ§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg CIganiche "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fCIganiche\n"
+          },
+          {
+            "text": "§7Баланс: §f325,970$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+8\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "CIganiche"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "е***о вальни хуйло"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "[!] "
+    },
+    {
+      "color": "white",
+      "text": "Игроку "
+    },
+    {
+      "color": "gold",
+      "text": "GoldBoi2 "
+    },
+    {
+      "color": "white",
+      "text": "выпала привилегия "
+    },
+    {
+      "bold": true,
+      "italic": true,
+      "color": "green",
+      "text": "ВИП "
+    },
+    {
+      "color": "white",
+      "text": "из кейса с привилегиями на /warp case!"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg RedWill1995 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRedWill1995\n"
+          },
+          {
+            "text": "§7Баланс: §f401$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "RedWill1995"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто таргует травой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "мне не нужны твои подарки я насосу на них сома"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Удаление предметов через "
+    },
+    {
+      "bold": true,
+      "color": "yellow",
+      "text": "20 "
+    },
+    {
+      "color": "yellow",
+      "text": "секунд"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_gray",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Tushentsova228 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fTushentsova228\n"
+          },
+          {
+            "text": "§7Баланс: §f0$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за Frytik2005\n"
+          },
+          {
+            "text": "§7Репутация: §c-71\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Tushentsova228"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_aqua",
+      "italic": true,
+      "text": "урааа вииип!!!!"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "так же поётся вроде"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg RedWill1995 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRedWill1995\n"
+          },
+          {
+            "text": "§7Баланс: §f401$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "RedWill1995"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто таргует травой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info NexTant"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§6§lNex§8§lTant\n"
+          },
+          {
+            "text": "§fВладелец - §6FoziTix\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#19\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fРепутация - §6§l60\n"
+          }
+        ]
+      },
+      "text": "§8[§a§6§lNex§8§lTant§8] "
+    },
+    {
+      "color": "light_purple",
+      "bold": true,
+      "italic": true,
+      "text": "ДИРЕКТОР"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg x_O6JIA4Ko_x "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fx_O6JIA4Ko_x\n"
+          },
+          {
+            "text": "§7Баланс: §f48,500$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за _nika_\n"
+          },
+          {
+            "text": "§7Репутация: §a+29\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "x_O6JIA4Ko_x"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "light_purple",
+      "italic": true,
+      "text": "е***ь"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "green",
+      "text": "(!) "
+    },
+    {
+      "color": "white",
+      "text": "Вы телепортированы на варп "
+    },
+    {
+      "color": "gold",
+      "text": "exit"
+    },
+    {
+      "color": "white",
+      "text": ". Его владелец - "
+    },
+    {
+      "color": "green",
+      "text": "console"
+    }
+  ],
+  "text": ""
+}
+{
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": "   "
+    },
+    {
+      "color": "white",
+      "text": "Решите пример: "
+    },
+    {
+      "color": "gold",
+      "text": "382 - 722"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gold",
+      "text": "   "
+    },
+    {
+      "color": "white",
+      "text": "Kто первый ответит, получает "
+    },
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "4,000$"
+    }
+  ],
+  "text": ""
+}
+{
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_gray",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Tushentsova228 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fTushentsova228\n"
+          },
+          {
+            "text": "§7Баланс: §f0$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за Frytik2005\n"
+          },
+          {
+            "text": "§7Репутация: §c-71\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Tushentsova228"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_aqua",
+      "italic": true,
+      "text": "всё молчи , рома"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info NexTant"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§6§lNex§8§lTant\n"
+          },
+          {
+            "text": "§fВладелец - §6FoziTix\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#19\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fРепутация - §6§l60\n"
+          }
+        ]
+      },
+      "text": "§8[§a§6§lNex§8§lTant§8] "
+    },
+    {
+      "color": "light_purple",
+      "bold": true,
+      "italic": true,
+      "text": "ДИРЕКТОР"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg x_O6JIA4Ko_x "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fx_O6JIA4Ko_x\n"
+          },
+          {
+            "text": "§7Баланс: §f48,500$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за _nika_\n"
+          },
+          {
+            "text": "§7Репутация: §a+29\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "x_O6JIA4Ko_x"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "light_purple",
+      "italic": true,
+      "text": "Даша"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info NexTant"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§6§lNex§8§lTant\n"
+          },
+          {
+            "text": "§fВладелец - §6FoziTix\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#19\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fРепутация - §6§l60\n"
+          }
+        ]
+      },
+      "text": "§8[§a§6§lNex§8§lTant§8] "
+    },
+    {
+      "color": "light_purple",
+      "bold": true,
+      "italic": true,
+      "text": "ДИРЕКТОР"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg x_O6JIA4Ko_x "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fx_O6JIA4Ko_x\n"
+          },
+          {
+            "text": "§7Баланс: §f48,500$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за _nika_\n"
+          },
+          {
+            "text": "§7Репутация: §a+29\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "x_O6JIA4Ko_x"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "light_purple",
+      "italic": true,
+      "text": "Хочешь рофл?"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg RedWill1995 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRedWill1995\n"
+          },
+          {
+            "text": "§7Баланс: §f401$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "RedWill1995"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто таргует травой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "da"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Предметы удалены - 102 шт."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "КРЕАТИВ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Danil77 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDanil77\n"
+          },
+          {
+            "text": "§7Баланс: §f27,188$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Danil77"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "0"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg bobiktopchik "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fbobiktopchik\n"
+          },
+          {
+            "text": "§7Баланс: §f87$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "bobiktopchik"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "-260"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info NexTant"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§6§lNex§8§lTant\n"
+          },
+          {
+            "text": "§fВладелец - §6FoziTix\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#19\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fРепутация - §6§l60\n"
+          }
+        ]
+      },
+      "text": "§8[§a§6§lNex§8§lTant§8] "
+    },
+    {
+      "color": "light_purple",
+      "bold": true,
+      "italic": true,
+      "text": "ДИРЕКТОР"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg x_O6JIA4Ko_x "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fx_O6JIA4Ko_x\n"
+          },
+          {
+            "text": "§7Баланс: §f48,500$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за _nika_\n"
+          },
+          {
+            "text": "§7Репутация: §a+29\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "x_O6JIA4Ko_x"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "light_purple",
+      "italic": true,
+      "text": "У нас есть училка с фамилией \"Моргенштерн\""
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 3a_PujleM_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f3a_PujleM_\n"
+          },
+          {
+            "text": "§7Баланс: §f318,959$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "3a_PujleM_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "Cupcake1_ q"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "ВНИМАНИЕ! "
+    },
+    {
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Все на варп Club11 "
+    },
+    {
+      "color": "dark_red",
+      "text": " Бухло, музыка и халявные головы ждут вас!!!!!! "
+    },
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Бильярд, данспол и кабинки для секса включены! И СТРИПТИЗЗ! "
+    },
+    {
+      "color": "gray",
+      "text": "(Написал: Nynlexx)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": "   "
+    },
+    {
+      "color": "white",
+      "text": "Победил игрок: "
+    },
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "Tmel04"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": "   "
+    },
+    {
+      "color": "white",
+      "text": "Правильный ответ был: "
+    },
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "-340"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "text": "   "
+    },
+    {
+      "color": "white",
+      "text": "*Полезная информация: /chatgame"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "[dfEW\"FPEWF\"EW{PF{pef['wefччееее"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": " вы где ее нашли"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info NexTant"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§6§lNex§8§lTant\n"
+          },
+          {
+            "text": "§fВладелец - §6FoziTix\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#19\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§3§lква§9§lсик\n"
+          },
+          {
+            "text": "§fРепутация - §6§l60\n"
+          }
+        ]
+      },
+      "text": "§8[§a§6§lNex§8§lTant§8] "
+    },
+    {
+      "color": "light_purple",
+      "bold": true,
+      "italic": true,
+      "text": "ДИРЕКТОР"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg x_O6JIA4Ko_x "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fx_O6JIA4Ko_x\n"
+          },
+          {
+            "text": "§7Баланс: §f48,500$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за _nika_\n"
+          },
+          {
+            "text": "§7Репутация: §a+29\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "x_O6JIA4Ko_x"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "light_purple",
+      "italic": true,
+      "text": "Хз)))"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Daniel_Kildebaev "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDaniel_Kildebaev\n"
+          },
+          {
+            "text": "§7Баланс: §f3,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Daniel_Kildebaev"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "/ah view Daniel_Kildebaev стак алмазов!"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg _AKRIT_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f_AKRIT_\n"
+          },
+          {
+            "text": "§7Баланс: §f3,649$\n"
+          },
+          {
+            "text": "§7Брак: §fженат на bykov\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "_AKRIT_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "Ага б***ь а у меня отец с именем вагина"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "КОРОЛЬ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg mummyissick "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fmummyissick\n"
+          },
+          {
+            "text": "§7Баланс: §f45,517$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "mummyissick"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "ну да, существует такая фамилия.."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg _AKRIT_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f_AKRIT_\n"
+          },
+          {
+            "text": "§7Баланс: §f3,649$\n"
+          },
+          {
+            "text": "§7Брак: §fженат на bykov\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "_AKRIT_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "ой б***ь фараон"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "хазцуазхуцзауцхзщухзщкхуц акрит вагина"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "КРЕАТИВ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Danil77 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDanil77\n"
+          },
+          {
+            "text": "§7Баланс: §f27,188$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Danil77"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "0"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info цзы_аръ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6цзы_аръ\n"
+          },
+          {
+            "text": "§fВладелец - §6ststasik\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCIganiche\n"
+          },
+          {
+            "text": "§fСуществует - §f4 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#39\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§d§lмозг§f§lо§0§lёбы\n"
+          },
+          {
+            "text": "§fРепутация - §6§l14\n"
+          }
+        ]
+      },
+      "text": "§8[§aцзы_аръ§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg CIganiche "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fCIganiche\n"
+          },
+          {
+            "text": "§7Баланс: §f325,970$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+8\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "CIganiche"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "всем п***й, зачем в глобал то писать? лс же есть"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l703\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg kit07 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fkit07\n"
+          },
+          {
+            "text": "§7Баланс: §f64,016$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "kit07"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "На Регионе ТЯН продается крутая японская база с ресами,автопечкой,3 этажа+большой подвал + сарай(258)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg _AKRIT_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f_AKRIT_\n"
+          },
+          {
+            "text": "§7Баланс: §f3,649$\n"
+          },
+          {
+            "text": "§7Брак: §fженат на bykov\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "_AKRIT_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "у нас училка с фамилией вагиной, п****ц же"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 3a_PujleM_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f3a_PujleM_\n"
+          },
+          {
+            "text": "§7Баланс: §f318,959$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "3a_PujleM_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "у нас учитель с фамилией \"Дикий\""
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "тебе не п***й как вижно"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg _AKRIT_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f_AKRIT_\n"
+          },
+          {
+            "text": "§7Баланс: §f3,649$\n"
+          },
+          {
+            "text": "§7Брак: §fженат на bykov\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "_AKRIT_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "вагинина"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info цзы_аръ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6цзы_аръ\n"
+          },
+          {
+            "text": "§fВладелец - §6ststasik\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCIganiche\n"
+          },
+          {
+            "text": "§fСуществует - §f4 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#39\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§d§lмозг§f§lо§0§lёбы\n"
+          },
+          {
+            "text": "§fРепутация - §6§l14\n"
+          }
+        ]
+      },
+      "text": "§8[§aцзы_аръ§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg CIganiche "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fCIganiche\n"
+          },
+          {
+            "text": "§7Баланс: §f325,970$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+8\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "CIganiche"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "да"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l703\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg kit07 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fkit07\n"
+          },
+          {
+            "text": "§7Баланс: §f64,016$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "kit07"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "На Регионе ТЯН продается крутая японская база с ресами,автопечкой,3 этажа+большой подвал + сарай(название 258)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "КОРОЛЬ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg mummyissick "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fmummyissick\n"
+          },
+          {
+            "text": "§7Баланс: §f45,517$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "mummyissick"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": " _AKRIT_ мисс заглотник"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "у меня фамилия давкунех и че дальше"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "КРЕАТИВ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Danil77 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDanil77\n"
+          },
+          {
+            "text": "§7Баланс: §f27,188$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Danil77"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "тп меня"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "ВНИМАНИЕ! "
+    },
+    {
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Все на варп Club11 "
+    },
+    {
+      "color": "dark_red",
+      "text": " Бухло, музыка и халявные головы ждут вас!!!!!! "
+    },
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Бильярд, данспол и кабинки для секса включены! И СТРИПТИЗЗ! "
+    },
+    {
+      "color": "gray",
+      "text": "(Написал: Nynlexx)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2515\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg _AKRIT_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f_AKRIT_\n"
+          },
+          {
+            "text": "§7Баланс: §f3,649$\n"
+          },
+          {
+            "text": "§7Брак: §fженат на bykov\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "_AKRIT_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "н***я а я долбоеб"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "не"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "ДЕПУТАТ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Dasha_345 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fDasha_345\n"
+          },
+          {
+            "text": "§7Баланс: §f27,590$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за ra4ok54\n"
+          },
+          {
+            "text": "§7Репутация: §a+18\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Dasha_345"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "нет дса"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "КОРОЛЬ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg mummyissick "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fmummyissick\n"
+          },
+          {
+            "text": "§7Баланс: §f45,517$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "mummyissick"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "у меня нет фамилии"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 3a_PujleM_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f3a_PujleM_\n"
+          },
+          {
+            "text": "§7Баланс: §f318,959$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "3a_PujleM_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "kit07 хааахахах оно 100к не стоит как 1 лям"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "КОРОЛЬ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg mummyissick "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fmummyissick\n"
+          },
+          {
+            "text": "§7Баланс: §f45,517$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "mummyissick"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "с**и"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info цзы_аръ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6цзы_аръ\n"
+          },
+          {
+            "text": "§fВладелец - §6ststasik\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCIganiche\n"
+          },
+          {
+            "text": "§fСуществует - §f4 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#39\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§d§lмозг§f§lо§0§lёбы\n"
+          },
+          {
+            "text": "§fРепутация - §6§l14\n"
+          }
+        ]
+      },
+      "text": "§8[§aцзы_аръ§8] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg CIganiche "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fCIganiche\n"
+          },
+          {
+            "text": "§7Баланс: §f325,970$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+8\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "CIganiche"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "фамилия для бомжей, у меня под забором кент с такой же фамилиеей, сидит деньги просит"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg RedWill1995 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRedWill1995\n"
+          },
+          {
+            "text": "§7Баланс: §f401$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "RedWill1995"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто таргует травой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gray",
+      "text": "Игрок KOTUK_HA_KOTE получил из ежедневного кейса: "
+    },
+    {
+      "color": "white",
+      "text": "Алмазные блоки. "
+    },
+    {
+      "color": "gray",
+      "text": "Для получения: /prize"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Удаление предметов через "
+    },
+    {
+      "bold": true,
+      "color": "yellow",
+      "text": "20 "
+    },
+    {
+      "color": "yellow",
+      "text": "секунд"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg RedWill1995 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRedWill1995\n"
+          },
+          {
+            "text": "§7Баланс: §f401$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "RedWill1995"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кто таргует травой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gray",
+      "text": "Игрок qirya получил из ежедневного кейса: "
+    },
+    {
+      "color": "white",
+      "text": "10000$. "
+    },
+    {
+      "color": "gray",
+      "text": "Для получения: /prize"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "[!] "
+    },
+    {
+      "color": "white",
+      "text": "Игроку "
+    },
+    {
+      "color": "gold",
+      "text": "daniloch128 "
+    },
+    {
+      "color": "white",
+      "text": "выпала привилегия "
+    },
+    {
+      "bold": true,
+      "italic": true,
+      "color": "green",
+      "text": "КРЕАТИВ "
+    },
+    {
+      "color": "white",
+      "text": "из кейса с привилегиями на /warp case!"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "КОРОЛЬ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg mummyissick "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fmummyissick\n"
+          },
+          {
+            "text": "§7Баланс: §f45,517$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "mummyissick"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "к кому тп"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg RedWill1995 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRedWill1995\n"
+          },
+          {
+            "text": "§7Баланс: §f401$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "RedWill1995"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "дай покурит травки"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gray",
+      "text": "Игрок K1ryyy получил из ежедневного кейса: "
+    },
+    {
+      "color": "white",
+      "text": "1000$. "
+    },
+    {
+      "color": "gray",
+      "text": "Для получения: /prize"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Предметы удалены - 160 шт."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "ВНИМАНИЕ! "
+    },
+    {
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Все на варп Club11 "
+    },
+    {
+      "color": "dark_red",
+      "text": " Бухло, музыка и халявные головы ждут вас!!!!!! "
+    },
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Бильярд, данспол и кабинки для секса включены! И СТРИПТИЗЗ! "
+    },
+    {
+      "color": "gray",
+      "text": "(Написал: Nynlexx)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gray",
+      "text": "Игрок FireBreathe2006 получил из ежедневного кейса: "
+    },
+    {
+      "color": "white",
+      "text": "Гнилая плоть. "
+    },
+    {
+      "color": "gray",
+      "text": "Для получения: /prize"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "casino 5000"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "С-АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 1G0L04KA "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f1G0L04KA\n"
+          },
+          {
+            "text": "§7Баланс: §f104$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "1G0L04KA"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "ладно"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f16,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "я долбаёб"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "С-АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 1G0L04KA "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f1G0L04KA\n"
+          },
+          {
+            "text": "§7Баланс: §f104$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "1G0L04KA"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "ага"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Удаление предметов через "
+    },
+    {
+      "bold": true,
+      "color": "yellow",
+      "text": "20 "
+    },
+    {
+      "color": "yellow",
+      "text": "секунд"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "white",
+      "text": " Хотите сыграть с игроком в Камень, ножницы, бумага? Пиши: "
+    },
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "/ssp <ник> <ставка>"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 3a_PujleM_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f3a_PujleM_\n"
+          },
+          {
+            "text": "§7Баланс: §f318,959$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "3a_PujleM_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "/warp kiev-city продажа офисов/квартир"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg BOTFanera "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fBOTFanera\n"
+          },
+          {
+            "text": "§7Баланс: §f21,309$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "BOTFanera"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "б*я норм что с инвента удочка пропала?"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info СБЕРБАНК"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§o§l§aСБЕРБАНК\n"
+          },
+          {
+            "text": "§fВладелец - §6NINA\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#3\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l703\n"
+          }
+        ]
+      },
+      "text": "§8[§a§o§l§aСБЕРБАНК§8] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg kit07 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fkit07\n"
+          },
+          {
+            "text": "§7Баланс: §f64,016$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "kit07"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "На Регионе ТЯН продается крутая японская база с ресами,автопечкой,3 этажа+большой подвал + сарай(название 258)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gray",
+      "text": "Игрок sedrik получил из ежедневного кейса: "
+    },
+    {
+      "color": "white",
+      "text": "1000$. "
+    },
+    {
+      "color": "gray",
+      "text": "Для получения: /prize"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg X_Gamer324 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fX_Gamer324\n"
+          },
+          {
+            "text": "§7Баланс: §f1,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "X_Gamer324"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "кому нужна помощь с ресами пиши я"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f1,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "всё слил"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Предметы удалены - 107 шт."
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "С-АДМИН "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 1G0L04KA "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f1G0L04KA\n"
+          },
+          {
+            "text": "§7Баланс: §f104$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "1G0L04KA"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "крутой"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "КРЕАТИВ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg drennay "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fdrennay\n"
+          },
+          {
+            "text": "§7Баланс: §f6,955$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "drennay"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "123"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info Anonist"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§d§lAnon§4ist\n"
+          },
+          {
+            "text": "§fВладелец - §6Nynlexx\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §facira\n"
+          },
+          {
+            "text": "§fСуществует - §f3 дня\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#6\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l483\n"
+          }
+        ]
+      },
+      "text": "§8[§a§d§lAnon§4ist§8] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg SosiskaK1ller "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fSosiskaK1ller\n"
+          },
+          {
+            "text": "§7Баланс: §f1,903$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "SosiskaK1ller"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "всё слил"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ауе"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§f§oауе\n"
+          },
+          {
+            "text": "§fВладелец - §6DannyArtzz\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fCupcake1_, sanjok302\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#1\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l\n"
+          },
+          {
+            "text": "§fРепутация - §6§l2514\n"
+          }
+        ]
+      },
+      "text": "§8[§a§f§oауе§8] "
+    },
+    {
+      "color": "black",
+      "bold": true,
+      "italic": true,
+      "text": "ᴜɴɪᴄᴏʀɴ"
+    },
+    {
+      "text": " "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg romantikq69 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fromantikq69\n"
+          },
+          {
+            "text": "§7Баланс: §f19,739$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "romantikq69"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "aqua",
+      "italic": true,
+      "text": "("
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg 3a_PujleM_ "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §f3a_PujleM_\n"
+          },
+          {
+            "text": "§7Баланс: §f318,959$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "3a_PujleM_"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "/warp kiev-city продажа офисов/квартир"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gray",
+      "italic": true,
+      "text": "ВИП "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg GoldBoi2 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fGoldBoi2\n"
+          },
+          {
+            "text": "§7Баланс: §f1,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "GoldBoi2"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "1"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info КУЛЬТИСТ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§4§lКУЛЬТИСТ\n"
+          },
+          {
+            "text": "§fВладелец - §6stonks228\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fнету\n"
+          },
+          {
+            "text": "§fСуществует - §f8 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#20\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§4§leisenwut\n"
+          },
+          {
+            "text": "§fРепутация - §6§l58\n"
+          }
+        ]
+      },
+      "text": "§8[§a§4§lКУЛЬТИСТ§8] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg stonks228 "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fstonks228\n"
+          },
+          {
+            "text": "§7Баланс: §f367,592$\n"
+          },
+          {
+            "text": "§7Брак: §fзамужем за 0_Sanya_0\n"
+          },
+          {
+            "text": "§7Репутация: §a+1\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "stonks228"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": ".цфкз"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "gray",
+      "text": "Бой между pippipmakoroshka и JastReddy на арене Башни начался. Чтобы посмотреть на их бой - "
+    },
+    {
+      "extra": [
+        {
+          "color": "gray",
+          "underlined": true,
+          "text": "[НАЖМИТЕ ТУТ]"
+        }
+      ],
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/battle tp map6"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "color": "gold",
+            "text": "Телепортироваться смотреть"
+          }
+        ]
+      },
+      "text": ""
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "gold",
+      "bold": true,
+      "italic": true,
+      "text": "ВЛАДЕЛЕЦ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Rushhall "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fRushhall\n"
+          },
+          {
+            "text": "§7Баланс: §f5,000$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Rushhall"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "white",
+      "text": "дайте кто нибудь п******й шалкер пж"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "color": "dark_gray",
+      "text": "[] "
+    },
+    {
+      "color": "dark_gray",
+      "italic": true,
+      "text": "ИГРОК "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg Tymur "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fTymur\n"
+          },
+          {
+            "text": "§7Баланс: §f5,208$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §70\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "Tymur"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "gray",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "gray",
+      "text": "ge"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "color": "gold",
+      "text": "ВНИМАНИЕ! "
+    },
+    {
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Все на варп Club11 "
+    },
+    {
+      "color": "dark_red",
+      "text": " Бухло, музыка и халявные головы ждут вас!!!!!! "
+    },
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "light_purple",
+      "text": "Бильярд, данспол и кабинки для секса включены! И СТРИПТИЗЗ! "
+    },
+    {
+      "color": "gray",
+      "text": "(Написал: Nynlexx)"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "bold": true,
+      "underlined": true,
+      "color": "yellow",
+      "text": "[!]"
+    },
+    {
+      "color": "yellow",
+      "text": " Удаление предметов через "
+    },
+    {
+      "bold": true,
+      "color": "yellow",
+      "text": "20 "
+    },
+    {
+      "color": "yellow",
+      "text": "секунд"
+    }
+  ],
+  "text": ""
+}
+{
+  "extra": [
+    {
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/clan info ГЕЙКЛУБ"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§fКлан - §6§b§lГЕЙ§d§lКЛУБ\n"
+          },
+          {
+            "text": "§fВладелец - §6kankan\n"
+          },
+          {
+            "text": "§fМодеры онлайн: - §fDasha_345\n"
+          },
+          {
+            "text": "§fСуществует - §f9 дней\n"
+          },
+          {
+            "text": "§fМесто в топе - §f#5\n"
+          },
+          {
+            "text": "§fСоюзные кланы: §f§l§8§l§oговядина\n"
+          },
+          {
+            "text": "§fРепутация - §6§l486\n"
+          }
+        ]
+      },
+      "text": "§8[§a§b§lГЕЙ§d§lКЛУБ§8] "
+    },
+    {
+      "color": "dark_red",
+      "bold": true,
+      "italic": true,
+      "text": "КОРОЛЬ "
+    },
+    {
+      "clickEvent": {
+        "action": "suggest_command",
+        "value": "/msg mummyissick "
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": [
+          {
+            "text": "§7НИК: §fmummyissick\n"
+          },
+          {
+            "text": "§7Баланс: §f45,517$\n"
+          },
+          {
+            "text": "§7Брак: §fне в браке\n"
+          },
+          {
+            "text": "§7Репутация: §c-4\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "§7Кликни, чтобы написать ему в ЛС"
+          }
+        ]
+      },
+      "text": "mummyissick"
+    },
+    {
+      "text": " "
+    },
+    {
+      "color": "yellow",
+      "bold": true,
+      "text": "→ "
+    },
+    {
+      "color": "dark_red",
+      "text": "к кому тп"
+    }
+  ],
+  "text": ""
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
+{
+  "text": "",
+  "extra": [
+    {
+      "text": "| ",
+      "color": "dark_gray"
+    },
+    {
+      "text": "Ожидайте завершения проверки...",
+      "color": "gray"
+    }
+  ]
+}
