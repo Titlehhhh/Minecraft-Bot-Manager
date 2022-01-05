@@ -251,11 +251,7 @@ namespace MinecraftBotManager.ViewModel
             Cvs.Source = ProxyServers;
             Cvs.Filter += Cvs_Filter;
 
-            using (FileStream fs = new FileStream("DataBase/MinecraftLibrary.dll", FileMode.OpenOrCreate))
-            {
-                BinaryFormatter bin = new BinaryFormatter();
-                bin.Serialize(fs, typeof(MinecraftModule).Assembly);
-            }
+            
 
 
 

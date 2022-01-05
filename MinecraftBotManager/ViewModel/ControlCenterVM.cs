@@ -96,11 +96,11 @@ namespace MinecraftBotManager.ViewModel
         {
             get => deletecommand ?? (deletecommand = new RelayCommand<BotObject>(async p =>
             {
-                bool result = (bool)await DialogHost.Show(new ConfirmDialogVM("Вы точно хотите удалить?"));
+                bool result = (bool)await DialogHost.Show(new ConfirmDialogVM("Вы точно хотите удалить?"),"RootDialog");
                 if (result && p != null)
                 {
-                    dataService.RemoveBot(p);
                     p.Disconnect();
+                    dataService.RemoveBot(p);                    
                 }
             }));
         }

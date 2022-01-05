@@ -26,5 +26,7 @@ namespace MinecraftLibrary
         public const int MC1165Version = 754;
         public const int MC117Version = 755;
         public const int MC1171Version = 756;
+
+        public static readonly string[] SupportedVersion = {"1.12.2","1.16.5" };
     }
 }

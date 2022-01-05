@@ -25,10 +25,7 @@ namespace MinecraftBotManager.Services
 
         }
 
-        public void AddDocument(TextDocumentWrap newDocument)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public void AddProxy(ProxyServer newProxy)
         {
@@ -43,10 +40,6 @@ namespace MinecraftBotManager.Services
             };
         }
 
-        public IEnumerable<TextDocumentWrap> GetDocuments()
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<ProxyServer> GetProxyServers()
         {
@@ -58,10 +51,6 @@ namespace MinecraftBotManager.Services
             throw new NotImplementedException();
         }
 
-        public void RemoveDocument(TextDocumentWrap old)
-        {
-            throw new NotImplementedException();
-        }
 
         public void RemoveProxy(ProxyServer remove)
         {

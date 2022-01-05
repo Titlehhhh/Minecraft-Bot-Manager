@@ -58,7 +58,7 @@
                                     <Button.ToolTip>
                                         <TextBlock Text="Управление модулями"/>
                                     </Button.ToolTip>
-                                    <mat:PackIcon Height="38" Width="Auto" Kind="ScriptTextOutline" Foreground="White"/>
+                                    <mat:PackIcon Height="38" Width="Auto" Kind="Toolbox" Foreground="White"/>
                                 </Button>
                                 <Button x:Name="ProxyListButton" Click="ProxyListButton_Click" Padding="4" BorderThickness="0" Height="Auto" Width="Auto" Background="Transparent" Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="Transparent">
                                     <Button.ToolTip>

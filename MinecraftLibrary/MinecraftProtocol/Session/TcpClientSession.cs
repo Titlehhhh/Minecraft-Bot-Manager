@@ -108,6 +108,7 @@ namespace MinecraftLibrary
         }
         public bool Connect()
         {
+            Disconect = false;
             if (socket != null)
             {
                 if (socket.IsConnected())
@@ -200,14 +201,17 @@ namespace MinecraftLibrary
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e);
-                DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.Message);
+                if (!Disconect)
+                    DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.ToString());
                 return false;
             }
         }
+        private bool Disconect = false;
         public void Disconnect()
         {
             try
             {
+                Disconect = true;
                 need = false;
                 tcpClient?.Close();
                 tcpClient?.Dispose();
@@ -245,13 +249,13 @@ namespace MinecraftLibrary
                         try
                         {
                             ServerPacket pac = GetPacketIn(packet.Item1);
-                            
+
                             pac.Read(new StreamNetInput(new Queue<byte>(packet.Item2), protocolversion), protocolversion);
                             if (pac.GetType() == typeof(ServerDisconnectPacket))
                             {
                                 var dis = pac as ServerDisconnectPacket;
-
-                                DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.InGameKick, dis.DisconnectMessage);
+                                if (!Disconect)
+                                    DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.InGameKick, dis.DisconnectMessage);
                                 Disconnect();
                                 break;
                             }
@@ -266,7 +270,8 @@ namespace MinecraftLibrary
                 catch (Exception e)
                 {
                     Debug.WriteLine(e);
-                    DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.Message);
+                    if (!Disconect)
+                        DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.ToString());
 
                 }
             });
@@ -307,7 +312,8 @@ namespace MinecraftLibrary
                     catch (Exception e)
                     {
                         Console.WriteLine(e.ToString());
-                        DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.Message);
+                        if (!Disconect)
+                            DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.ToString());
                     }
                 }
             }

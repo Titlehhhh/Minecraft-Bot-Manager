@@ -20,14 +20,13 @@ namespace MinecraftBotManager.Interfaces
 
         IEnumerable<BotObject> GetAllBots();
         IEnumerable<ProxyServer> GetProxyServers();
-        IEnumerable<TextDocumentWrap> GetDocuments();
+       
         void AddBot(BotObject newBot);
         void RemoveBot(BotObject remove);
         void Save();
         void AddProxy(ProxyServer newProxy);
         void RemoveProxy(ProxyServer remove);
-        void AddDocument(TextDocumentWrap newDocument);
-        void RemoveDocument(TextDocumentWrap old);
+        
         
         ConfigModel Config { get; }
     }

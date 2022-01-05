@@ -17,7 +17,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="GridChat">
         <ScrollViewer x:Name="ScrollChat" Height="300" VerticalScrollBarVisibility="Visible">
-            <ItemsControl  x:Name="ChatList" Margin="2" VerticalAlignment="Bottom" ItemsSource="{Binding ChatQueue}">
+            <ItemsControl  x:Name="ChatList" Margin="2" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" VerticalAlignment="Bottom" ItemsSource="{Binding ChatQueue}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type mcm:ChatMessage}">
                         <local:ChatTextBlock/>

@@ -338,6 +338,7 @@
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\JsonToRuns.cs" />
     <Compile Include="Converters\NameAttributeConverter.cs" />
+    <Compile Include="Converters\ProxyTypeConverter.cs" />
     <Compile Include="Converters\StringToVisibiltyConverter.cs" />
     <Compile Include="Converters\ValueToTypeConverter.cs" />
     <Compile Include="CustomControls\ChatControl.xaml.cs">
@@ -348,34 +349,23 @@
     </Compile>
     <Compile Include="CustomControls\EditBox.cs" />
     <Compile Include="CustomControls\EditingTreeView.cs" />
-    <Compile Include="CustomControls\FileProvider\ReferenceContainer.cs" />
-    <Compile Include="CustomControls\FileProvider\ReferenceItem.cs" />
-    <Compile Include="CustomControls\FileProvider\SolutionItem.cs" />
     <Compile Include="CustomControls\SimpleTextBlock.cs" />
-    <Compile Include="CustomControls\SolutionTreeView.xaml.cs">
-      <DependentUpon>SolutionTreeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Interfaces\ICompileService.cs" />
-    <Compile Include="Interfaces\ICreateElementVisitor.cs" />
     <Compile Include="Interfaces\IDataService.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\IFileReader.cs" />
     <Compile Include="Interfaces\IModulesService.cs" />
     <Compile Include="Interfaces\IStorageService.cs" />
-    <Compile Include="CustomControls\FileProvider\DirectoryInfoVM.cs" />
-    <Compile Include="CustomControls\FileProvider\FileInfoVM.cs" />
-    <Compile Include="CustomControls\FileProvider\Item.cs" />
     <Compile Include="Interfaces\IXMLSerializeSettingsService.cs" />
+    <Compile Include="Markup\EnumToCollectionExtension.cs" />
     <Compile Include="Messages\ShowAddElementMessage.cs" />
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\ElementType.cs" />
     <Compile Include="Models\NotificationElement.cs" />
     <Compile Include="Models\ReferencePath.cs" />
-    <Compile Include="Models\SolutionsModel\CSharpSolution.cs" />
     <Compile Include="Models\TargetLanguage.cs" />
     <Compile Include="Models\TaskVM.cs" />
-    <Compile Include="Models\TextDocumentWrap.cs" />
     <Compile Include="Models\EventRun.cs" />
     <Compile Include="Models\ProxyServer.cs" />
     <Compile Include="Services\DesignControlCenterVM.cs" />
@@ -391,12 +381,10 @@
     <Compile Include="ViewModel\AddModuleVM.cs" />
     <Compile Include="ViewModel\ConfirmDialogVM.cs" />
     <Compile Include="ViewModel\ControlCenterVM.cs" />
-    <Compile Include="ViewModel\ExplorerViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\BotObjectVM.cs" />
     <Compile Include="ViewModel\ModuleMenegerViewModel.cs" />
     <Compile Include="ViewModel\ModuleVM.cs" />
-    <Compile Include="ViewModel\ReferenceItemVM.cs" />
     <Compile Include="ViewModel\SettingsVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WindowVM.cs" />
@@ -467,10 +455,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\ChatTextBlock.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\SolutionTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

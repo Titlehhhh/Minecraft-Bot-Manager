@@ -25,6 +25,8 @@ namespace MinecraftBotManager.Services
             this.storageService = storageService;
             this.xmlService = xmlService;
             Config = xmlService.LoadSettings();
+            if (!Directory.Exists("Data"))
+                Directory.CreateDirectory("Data");
 
             BotsCollectionChanged += DataService_CollectionChanged;
             LoadData();            
@@ -32,12 +34,12 @@ namespace MinecraftBotManager.Services
 
         private void DataService_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            storageService.SaveObjectAsync(botObjects, "Database/Bots.dat");
+            storageService.SaveObjectAsync(botObjects, "Data/Bots.dat");
         }
 
         private void LoadData()
         {
-            botObjects = (List<BotObject>) storageService.LoadObjectAsync("Database/Bots.dat").Result ?? new List<BotObject>();
+            botObjects = (List<BotObject>) storageService.LoadObjectAsync("Data/Bots.dat").Result ?? new List<BotObject>();
             botObjects.ForEach((item) => { item.PropertyChanged += Item_PropertyChanged; });
         }
 
@@ -74,10 +76,6 @@ namespace MinecraftBotManager.Services
             BotsCollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new List<BotObject> { remove }));
         }
 
-        public IEnumerable<TextDocumentWrap> GetDocuments()
-        {
-            throw new NotImplementedException();
-        }
 
         public void AddProxy(ProxyServer newProxy)
         {
@@ -88,26 +86,18 @@ namespace MinecraftBotManager.Services
         {
             throw new NotImplementedException();
         }
-        private readonly List<TextDocumentWrap> Documents = new List<TextDocumentWrap>();
+        
 
         public ConfigModel Config { get; private set; }
 
-        public void AddDocument(TextDocumentWrap newDocument)
-        {
-            Documents.Add(newDocument);            
-            DocumentsCollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new List<TextDocumentWrap> { newDocument }));
-        }
+       
 
-        public void RemoveDocument(TextDocumentWrap old)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Save()
         {
             try
             {
-                storageService.SaveObjectAsync(botObjects, "Database/Bots.dat");
+                storageService.SaveObjectAsync(botObjects, "Data/Bots.dat");
                 xmlService.SaveSettings();
             }
             catch(Exception e)

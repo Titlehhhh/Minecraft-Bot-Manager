@@ -5,9 +5,9 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
 {
     public class ClientPlayerPositionPacket : ClientPacket
     {
-        public void Write(NetOutput output, int version)
+        public void Write(NetOutput output, int protocolversion)
         {
-
+            
         }
     }
 

@@ -11,6 +11,7 @@ using MinecraftBotManager.Interfaces;
 using MinecraftBotManager.Models;
 using MinecraftLibrary.MinecraftModels;
 using System.Diagnostics;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MinecraftBotManager.Services
 {
@@ -43,6 +44,11 @@ namespace MinecraftBotManager.Services
             if (!Modules.Exists)
                 Modules.Create();
 
+            using (FileStream fs = new FileStream(@"Data\MinecraftLibrary.dll",FileMode.OpenOrCreate))
+            {
+                BinaryFormatter bin = new BinaryFormatter();
+                bin.Serialize(fs, typeof(BotObject).Assembly);
+            }
 
             Modules.GetFiles("*.dll").ToList().ForEach(x =>
             {
@@ -54,7 +60,7 @@ namespace MinecraftBotManager.Services
             FileSystemWatcher ModulesWatcher = new FileSystemWatcher(Modules.FullName, "*.dll");
             ModulesWatcher.EnableRaisingEvents = true;
 
-            ModulesWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.Size;
+            ModulesWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite;
             ModulesWatcher.Created += ModulesWatcher_Created;
             ModulesWatcher.Changed += ModulesWatcher_Changed;
             ModulesWatcher.Deleted += ModulesWatcher_Deleted;
@@ -129,7 +135,8 @@ namespace MinecraftBotManager.Services
                         {
                             bot.RemoveType(mod.GetType());
                         }
-                        Type newT = updates.FirstOrDefault(x => x.Name == mod.GetType().Name);
+                        Type newT = dll.Modules.FirstOrDefault(x => x.Name == mod.GetType().Name);
+
                         if (newT != null)
                         {
                             App.Current.Dispatcher.Invoke(() =>
@@ -137,6 +144,10 @@ namespace MinecraftBotManager.Services
                                 bot.RemoveType(mod.GetType());
                                 bot.AddModule(newT);
                             });
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Не найдено!");
                         }
                     }
                 }
@@ -219,14 +230,31 @@ namespace MinecraftBotManager.Services
 
         private void ModulesWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            //System.Windows.MessageBox.Show("File Changed: " + e.FullPath);
-
-            foreach (var dll in Dlls.ToArray())
+            
+            FileSystemWatcher obj = sender as FileSystemWatcher;
+            try
             {
-                if (dll.Info.FullName == e.FullPath)
+                obj.EnableRaisingEvents = false;
+                // System.Windows.MessageBox.Show("File Changed: " + e.FullPath);
+                try
                 {
-                    UpdateDll(new ReferencePath(new FileInfo(e.FullPath)));
+                    Process.Start(e.FullPath).WaitForExit();
                 }
+                catch (System.ComponentModel.Win32Exception ex)
+                {
+
+                }
+                foreach (var dll in Dlls.ToArray())
+                {
+                    if (dll.Info.FullName == e.FullPath)
+                    {
+                        UpdateDll(new ReferencePath(new FileInfo(e.FullPath)));
+                    }
+                }
+            }
+            finally
+            {
+                obj.EnableRaisingEvents = true;
             }
         }
 

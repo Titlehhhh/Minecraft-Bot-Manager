@@ -18,7 +18,7 @@ namespace MinecraftBotManager.ViewModel
 {
     public class SettingsVM : ViewModelBase
     {
-        public static readonly string SettingsFile = Path.Combine(Directory.GetCurrentDirectory(), "DataBase", "Settings.xml");
+        public static readonly string SettingsFile = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Settings.xml");
 
         private ReferencePath select;
 

@@ -12,6 +12,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
         public float Yaw { get; private set; }
         public float Pitch { get; private set; }
         public int TeleportID { get; private set; }
+        public byte LocMask { get; private set; }
         public void Read(NetInput input, int version)
         {
             X = input.ReadNextDouble();
@@ -19,7 +20,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
             Z = input.ReadNextDouble();
             Yaw = input.ReadNextFloat();
             Pitch = input.ReadNextFloat();
-            byte locMask = input.ReadNextByte();
+            LocMask = input.ReadNextByte();
             TeleportID = input.ReadNextVarInt();
             
 

@@ -17,7 +17,7 @@ namespace MinecraftBotManager.Models.SolutionsModel
     {
         
 
-        static readonly string RootDirectory = Directory.GetCurrentDirectory() + @"\DataBase\SourceCodes\CSharp";
+        static readonly string RootDirectory = Directory.GetCurrentDirectory() + @"\Data\SourceCodes\CSharp";
         static readonly string ProjPath = Path.Combine(RootDirectory,"CSModules", "CSModules.csproj");
         public CSharpSolution() : base(RootDirectory, scanning: true)
         {

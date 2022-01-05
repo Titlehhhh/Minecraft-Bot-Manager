@@ -47,7 +47,7 @@ namespace MinecraftLibrary.MinecraftModels
 
         #region Сериализуемые
         private string nickname = "";
-        private string version = "";
+        private string version = "1.12.2";
         private string host = "";
         private ushort port = 0;
         private string proxyHost = "";
@@ -81,7 +81,7 @@ namespace MinecraftLibrary.MinecraftModels
             if (ModulesTypes is null)
                 ModulesTypes = new ObservableCollection<string>();
             ModulesTypes.GroupBy(x => x).Where(x => x.Count() > 1).Select(x => x.Key).ToList().ForEach(x => ModulesTypes.Remove(x));
-
+            
             ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
             ChatQueue = new ObservableCollection<ChatMessage>();
             position = new Point3d();
@@ -108,11 +108,15 @@ namespace MinecraftLibrary.MinecraftModels
         }
         public string Version
         {
-            get => version;
+            get
+            {
+                
+                return version;
+            }
             set
             {
                 version = value;
-
+                
             }
         }
         public string Host
@@ -151,12 +155,13 @@ namespace MinecraftLibrary.MinecraftModels
 
             }
         }
-        public ProxyType ProxyType
+        public ProxyType PrxType
         {
-            get => proxyType;
+            get => ProxyType.None;
             set
             {
                 proxyType = value;
+               
 
             }
         }
@@ -236,14 +241,18 @@ namespace MinecraftLibrary.MinecraftModels
             {
                 Modules.Add(module);
                 ModulesTypes.Add(t.FullName);
-
+                if(StatusLaunched == RunningStatus.Launched)
+                {
+                    module.Start();
+                }
             }
 
         }
         public void RemoveType(Type t)
         {
             MinecraftModule runModule = Modules.FirstOrDefault(x => x.GetType() == t);
-            runModule.UnLoad();         
+            runModule.UnLoad();
+            runModule.Stop();
             Modules.Remove(runModule);
             ModulesTypes.Remove(t.FullName);
 
@@ -301,6 +310,7 @@ namespace MinecraftLibrary.MinecraftModels
             Port = port;
             ProxyHost = proxyHost;
             ProxyPort = proxyPort;
+           
             ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
         }
 
@@ -331,9 +341,12 @@ namespace MinecraftLibrary.MinecraftModels
         /// </summary>        
         public void StartClient()
         {
+            System.Diagnostics.Debug.WriteLine("StartBot: "+Nickname);
             position = new Point3d();
             world = new World();
             ProtocolVersion = MCVer2ProtocolVersion(version);
+            System.Diagnostics.Debug.WriteLine("Version: " + version);
+            System.Diagnostics.Debug.WriteLine("ProtocolVersion: " + ProtocolVersion);
             ChatQueue.Clear();            
             if (ProtocolVersion == 0)
             {
@@ -349,7 +362,7 @@ namespace MinecraftLibrary.MinecraftModels
                     {
                         StatusLaunched = RunningStatus.Initialization;
 
-                        client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, ProxyType, Nickname, ProtocolVersion);
+                        client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, proxyType, Nickname, ProtocolVersion);
                         client.PacketSentChanged += (e) =>
                         {
                             
@@ -452,7 +465,11 @@ namespace MinecraftLibrary.MinecraftModels
                             else if (p is ServerPlayerPositionAndLookPacket)
                             {
                                 ServerPlayerPositionAndLookPacket pos = p as ServerPlayerPositionAndLookPacket;
-                                Position = new Point3d(pos.X, pos.Y, pos.Z);
+
+                                double x = (pos.LocMask & 1 << 0) != 0 ? Position.X + pos.X : pos.X;
+                                double y = (pos.LocMask & 1 << 1) != 0 ? Position.Y + pos.Y : pos.Y;
+                                double z = (pos.LocMask & 1 << 2) != 0 ? Position.Z + pos.Z : pos.Z;
+                                Position = new Point3d(x,y,z);
                                 Yaw = pos.Yaw;
                                 Pitch = pos.Pitch;
                                 client.SendPacket(new ClientTeleportConfirmPacket(pos.TeleportID));
@@ -517,6 +534,7 @@ namespace MinecraftLibrary.MinecraftModels
                     }
                     catch (Exception e)
                     {
+                        ChatQueue.Add(new ChatMessage(e.ToString()));
 
                         StatusLaunched = RunningStatus.None;
                     }
@@ -539,6 +557,22 @@ namespace MinecraftLibrary.MinecraftModels
             }
 
         }
+        public void UpdatePosition(Point3d pos,bool onground = true)
+        {
+
+            client.SendPacket(new ClientPlayerPositionAndRotationPacket(pos.X,pos.Y,pos.Z,yaw,pitch, onground));
+            Position = pos;
+            //ChatQueue.Add(new ChatMessage("test"));
+            
+        }
+        public void UpdatePosition(Point3d pos,float yaw,float pitch, bool onground = true)
+        {
+            client.SendPacket(new ClientPlayerPositionAndRotationPacket(pos.X, pos.Y, pos.Z, yaw, pitch, onground));
+            Position = pos;
+            Yaw = yaw;
+            Pitch = pitch;
+        }
+
 
         public void SendText(string msg)
         {
@@ -747,12 +781,18 @@ namespace MinecraftLibrary.MinecraftModels
         public static long TwoIntToLong(int val1, int val2)
         {
             long res = val1;
-            res = (res << 32);
+            res = res << 32;
             res = res | (long)(uint)val2;
             return res;
         }
     }
-
+    public enum MCVersion : int
+    {
+        [Description("1.12.2")]
+        MC1_12_2=340,
+        [Description("1.16.5")]
+        MC1_16_5 =754
+    }
     public enum RunningStatus
     {
         None = 0,

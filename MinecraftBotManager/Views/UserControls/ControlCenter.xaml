@@ -8,7 +8,8 @@
              xmlns:services="clr-namespace:MinecraftBotManager.Services"
              xmlns:custom="clr-namespace:MinecraftBotManager.CustomControls"
              xmlns:ext="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"             
-             xmlns:root="clr-namespace:MinecraftBotManager"             
+             xmlns:root="clr-namespace:MinecraftBotManager"
+             xmlns:mcModels="clr-namespace:MinecraftLibrary.MinecraftModels;assembly=MinecraftLibrary"
              xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:converters="clr-namespace:MinecraftBotManager.Converters"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -16,8 +17,9 @@
              xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:models="clr-namespace:MinecraftBotManager.Models"
              xmlns:vms="clr-namespace:MinecraftBotManager.ViewModel"
-             
+             xmlns:McContans="clr-namespace:MinecraftLibrary;assembly=MinecraftLibrary"
              xmlns:local="clr-namespace:MinecraftBotManager.Views.UserControls"             
+             xmlns:markups ="clr-namespace:MinecraftBotManager.Markup"
              
              mc:Ignorable="d"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -27,6 +29,7 @@
              x:Name="test">
 
     <UserControl.Resources>
+        <converters:ProxyTypeConverter x:Key="ProxyTypeConverter"/>
         <Popup x:Key="PopupTextBox" AllowsTransparency="True" x:Name="PART_Popup" Placement="Top" >
             <Border CornerRadius="3" Padding="3" BorderThickness="1" BorderBrush="Gray">
                 <Border.Background>
@@ -157,7 +160,7 @@
                                 <TextBlock Text="{Binding ErrorStart}" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="Red" FontSize="15"/>
                             </StackPanel>
 
-                            <Button DockPanel.Dock="Right" Click="Button_Click"  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}},Path=DataContext.MainModel}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.DeleteCommand}" Padding="0" Background="Transparent" BorderThickness="0">
+                            <Button DockPanel.Dock="Right" Click="Button_Click"  CommandParameter="{Binding MainModel}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.DeleteCommand}" Padding="0" Background="Transparent" BorderThickness="0">
                                 <mat:PackIcon Kind="Delete"  Margin="0,0,0,0" Height="20" Width="20"/>
                             </Button>
                         </DockPanel>
@@ -219,11 +222,13 @@
                                 <TextBlock Text="Прокси порт" Grid.Row="3"/>
                                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding ProxyPort,UpdateSourceTrigger=PropertyChanged}" DataObject.Pasting="TextBox_Pasting" PreviewTextInput="TextBox_PreviewTextInput"/>
                                 <TextBlock Text="Прокси тип" Grid.Row="4"/>
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" Margin="3,2" Style="{StaticResource MaterialDesignComboBox}" mat:ThemeAssist.Theme="Dark" SelectedItem="{Binding ProxyType,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Source={StaticResource ProxyEnums}}">
-
+                                <ComboBox Grid.Column="1" SelectedValue="{Binding Path=PrxType,Mode=TwoWay}" ItemsSource="{Binding ProxyTypes}" SelectedIndex="0" HorizontalAlignment="Left" Grid.Row="4"  Margin="3,2" Style="{StaticResource MaterialDesignComboBox}"  mat:ThemeAssist.Theme="Dark" >
+                                    
                                 </ComboBox>
                                 <TextBlock Text="Версия игры" Grid.Row="5"/>
-                                <TextBox Grid.Column="1" MinWidth="150" Grid.Row="5" Text="{Binding Version,UpdateSourceTrigger=PropertyChanged}"/>
+                                <ComboBox Foreground="White" FontSize="15" FontFamily="JetBrains Mono" Grid.Column="1" SelectedValue="{Binding Version,Mode=TwoWay}" ItemsSource="{Binding SupportedVersions}" SelectedIndex="0" HorizontalAlignment="Left" Grid.Row="5"  Margin="3,2" Style="{StaticResource MaterialDesignComboBox}"  mat:ThemeAssist.Theme="Dark" >
+
+                                </ComboBox>
                             </Grid>
                             <TextBlock  Text="Игровые данные:" Foreground="White" FontSize="17" FontWeight="Bold"/>
                             <Grid >

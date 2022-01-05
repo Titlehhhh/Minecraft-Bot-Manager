@@ -19,7 +19,7 @@ namespace MinecraftBotManager.Services
             XmlSerializer xml = new XmlSerializer(typeof(ConfigModel));           
             try
             {
-                using (FileStream fs = new FileStream(@"DataBase\Settings.xml", FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(@"Data\Settings.xml", FileMode.OpenOrCreate))
                 {
                     configModel = xml.Deserialize(fs) as ConfigModel;
                 }
@@ -36,7 +36,7 @@ namespace MinecraftBotManager.Services
             try
             {
                 XmlSerializer xml = new XmlSerializer(typeof(ConfigModel));                
-                using (TextWriter tw = new StreamWriter("DataBase/Settings.xml"))
+                using (TextWriter tw = new StreamWriter("Data/Settings.xml"))
                 {
                     xml.Serialize(tw, configModel);
                 }

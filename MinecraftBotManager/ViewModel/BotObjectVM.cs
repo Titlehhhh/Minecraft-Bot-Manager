@@ -23,7 +23,8 @@ namespace MinecraftBotManager.ViewModel
 {
     public class BotObjectVM : INotifyPropertyChanged
     {
-
+        public ProxyType[] ProxyTypes { get; private set; } = {ProxyType.None,ProxyType.Http,ProxyType.Socks4,ProxyType.Socks4a,ProxyType.Socks5 };
+        public string[] SupportedVersions { get; private set; } = {"1.12.2","1.16.5" };
 
         private BotObject Main;
         public BotObject MainModel => Main;
@@ -44,6 +45,7 @@ namespace MinecraftBotManager.ViewModel
             set
             {
                 Main.Version = value;
+                
                 RaisePropertyChanged();
             }
         }
@@ -102,12 +104,13 @@ namespace MinecraftBotManager.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public ProxyType ProxyType
+        public ProxyType PrxType
         {
-            get => MainModel.ProxyType;
+            get => MainModel.PrxType;
             set
             {
-                MainModel.ProxyType = value;
+                MainModel.PrxType = value;
+                System.Diagnostics.Debug.WriteLine(value);
                 RaisePropertyChanged();
             }
         }
@@ -271,6 +274,7 @@ namespace MinecraftBotManager.ViewModel
                 RaisePropertyChanged();
             }
         }
-
+        
     }
+    
 }
