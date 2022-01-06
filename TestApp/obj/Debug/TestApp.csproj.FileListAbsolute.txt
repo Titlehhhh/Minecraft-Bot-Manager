@@ -14,8 +14,6 @@ C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\TestAp
 C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\TestApp\bin\Debug\GeometRi.xml
 C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\TestApp\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\TestApp\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.AssemblyReference.cache
-C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\TestApp.exe.config
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\TestApp.exe
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\TestApp.pdb
@@ -25,6 +23,8 @@ C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debu
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\MinecraftLibrary.pdb
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\StarkSoftProxy.xml
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\GeometRi.xml
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.AssemblyReference.cache
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.CopyComplete
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.exe
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.pdb

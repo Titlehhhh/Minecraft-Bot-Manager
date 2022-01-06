@@ -116,7 +116,7 @@ namespace MinecraftBotManager.ViewModel
         }
         public string Gamemode { get => Main.Gamemode; }
         public string UUID { get => Main.UUID; }
-        public string Health { get => Main.Health; }
+        public string Health { get => Main.Health.ToString(); }
         public string Current_Slot { get => Main.Current_Slot; }
         public string Position => $"X: {Main.Position.X} Y:{Main.Position.Y} Z:{Main.Position.Z}";
         private ObservableCollection<ChatMessage> chat;

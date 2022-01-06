@@ -11,4 +11,9 @@ namespace MinecraftLibrary.MinecraftProtocol.Data
         RELEASE_USE_ITEM = 5,
         SWAP_HANDS = 6
     }
+    public enum ClientRequest : int
+    {
+        RESPAWN=0,
+        STATS=1
+    }
 }

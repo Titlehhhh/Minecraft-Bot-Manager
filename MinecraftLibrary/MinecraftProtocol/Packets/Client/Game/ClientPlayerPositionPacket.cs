@@ -3,12 +3,21 @@ using MinecraftProtocol.Packets;
 
 namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
 {
-    public class ClientPlayerPositionPacket : ClientPacket
+    public class ClientPlayerPositionPacket : ClientPlayerMovementPacket
     {
-        public void Write(NetOutput output, int protocolversion)
+        public ClientPlayerPositionPacket(double x,double y,double z,bool isOnGround)
         {
-            
+            pos = true;
+            X = x;
+            Y = y;
+            Z = z;
+            OnGround = isOnGround;
         }
+        public ClientPlayerPositionPacket()
+        {
+            pos = true;
+        }
+        
     }
 
 

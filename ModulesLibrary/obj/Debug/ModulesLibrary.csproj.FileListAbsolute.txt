@@ -6,8 +6,8 @@ C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\Module
 C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\ModulesLibrary\obj\Debug\ModulesLibrary.dll
 C:\Users\Пользователь\Desktop\Minecraft-Console-Client-master\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.AssemblyReference.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\MinecraftBotManager\bin\Debug\ModulesTest\ModulesLibrary.dll
-C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.AssemblyReference.cache
-C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\MinecraftBotManager\bin\Debug\Modules\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CopyComplete
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.AssemblyReference.cache

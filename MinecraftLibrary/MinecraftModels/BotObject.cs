@@ -69,7 +69,7 @@ namespace MinecraftLibrary.MinecraftModels
         [NonSerialized]
         private string uUID;
         [NonSerialized]
-        private string health;
+        private float health;
         [NonSerialized]
         private string current_Slot;
         [field: NonSerialized]
@@ -81,7 +81,7 @@ namespace MinecraftLibrary.MinecraftModels
             if (ModulesTypes is null)
                 ModulesTypes = new ObservableCollection<string>();
             ModulesTypes.GroupBy(x => x).Where(x => x.Count() > 1).Select(x => x.Key).ToList().ForEach(x => ModulesTypes.Remove(x));
-            
+
             ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
             ChatQueue = new ObservableCollection<ChatMessage>();
             position = new Point3d();
@@ -110,13 +110,13 @@ namespace MinecraftLibrary.MinecraftModels
         {
             get
             {
-                
+
                 return version;
             }
             set
             {
                 version = value;
-                
+
             }
         }
         public string Host
@@ -161,7 +161,7 @@ namespace MinecraftLibrary.MinecraftModels
             set
             {
                 proxyType = value;
-               
+
 
             }
         }
@@ -234,14 +234,14 @@ namespace MinecraftLibrary.MinecraftModels
 
         public void AddModule(Type t)
         {
-            
+
             //Некоторая обработка
             MinecraftModule module = Activator.CreateInstance(t, this, this.MainViewModelController) as MinecraftModule;
             if (module != null)
             {
                 Modules.Add(module);
                 ModulesTypes.Add(t.FullName);
-                if(StatusLaunched == RunningStatus.Launched)
+                if (StatusLaunched == RunningStatus.Launched)
                 {
                     module.Start();
                 }
@@ -276,7 +276,7 @@ namespace MinecraftLibrary.MinecraftModels
                 RaisePropertyChanged();
             }
         }
-        public string Health
+        public float Health
         {
             get => health;
             private set
@@ -310,7 +310,7 @@ namespace MinecraftLibrary.MinecraftModels
             Port = port;
             ProxyHost = proxyHost;
             ProxyPort = proxyPort;
-           
+
             ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
         }
 
@@ -341,13 +341,13 @@ namespace MinecraftLibrary.MinecraftModels
         /// </summary>        
         public void StartClient()
         {
-            System.Diagnostics.Debug.WriteLine("StartBot: "+Nickname);
+            System.Diagnostics.Debug.WriteLine("StartBot: " + Nickname);
             position = new Point3d();
             world = new World();
             ProtocolVersion = MCVer2ProtocolVersion(version);
             System.Diagnostics.Debug.WriteLine("Version: " + version);
             System.Diagnostics.Debug.WriteLine("ProtocolVersion: " + ProtocolVersion);
-            ChatQueue.Clear();            
+            ChatQueue.Clear();
             if (ProtocolVersion == 0)
             {
                 StatusLaunched = RunningStatus.None;
@@ -365,11 +365,11 @@ namespace MinecraftLibrary.MinecraftModels
                         client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, proxyType, Nickname, ProtocolVersion);
                         client.PacketSentChanged += (e) =>
                         {
-                            
+
                         };
                         client.PacketSendChanged += a =>
                         {
-                            
+
                         };
                         client.ConnectedChanged += () =>
                         {
@@ -385,7 +385,7 @@ namespace MinecraftLibrary.MinecraftModels
                             else if (p.GetType() == typeof(ServerChatMessagePacket))
                             {
                                 ServerChatMessagePacket chatpacket = p as ServerChatMessagePacket;
-                                
+
                                 ChatQueue.Add(new ChatMessage(chatpacket.Message));
                                 CallModule(m => m.ServerChat(chatpacket.Message));
 
@@ -395,16 +395,18 @@ namespace MinecraftLibrary.MinecraftModels
                             {
                                 ServerChunkDataPacket packet = p as ServerChunkDataPacket;
                                 world[packet.ColumnX, packet.ColumnZ] = packet.Column;
+                                CallModule(m => m.WorldUpdate(packet.ColumnX, packet.ColumnZ));
                             }
                             else if (p is ServerBlockChangePacket)
                             {
                                 ServerBlockChangePacket block = p as ServerBlockChangePacket;
                                 world.SetBlock(new Location(block.Position.X, block.Position.Y, block.Position.Z), block.Block);
+                                CallModule(m => m.WorldUpdate(block.Block));
                             }
                             else if (p is ServerSpawnEntityPacket)
                             {
                                 ServerSpawnEntityPacket entity = p as ServerSpawnEntityPacket;
-                                
+
                                 Entities[entity.NewEntity.ID] = entity.NewEntity;
                                 CallModule(m => m.OnEntitySpawn(entity.NewEntity));
 
@@ -412,7 +414,7 @@ namespace MinecraftLibrary.MinecraftModels
                             else if (p is ServerSpawnLivingEntityPacket)
                             {
                                 ServerSpawnLivingEntityPacket entity = p as ServerSpawnLivingEntityPacket;
-                                
+
                                 Entities[entity.NewEntity.ID] = entity.NewEntity;
                                 CallModule(m => m.OnEntitySpawn(entity.NewEntity));
                             }
@@ -425,14 +427,14 @@ namespace MinecraftLibrary.MinecraftModels
                                     name = OnlinePlayers[player.UUID];
                                 }
                                 Entity entity = new Entity(player.EntityID, EntityType.Player, player.Position, player.Yaw, player.Pitch, player.UUID, name);
-                                
+
                                 Entities[player.EntityID] = entity;
                                 CallModule(m => m.OnEntitySpawn(entity));
                             }
                             else if (p is ServerEntityTeleportPacket)
                             {
                                 ServerEntityTeleportPacket teleport = p as ServerEntityTeleportPacket;
-                                
+
                                 Entity entity = Entities[teleport.EntityID];
                                 entity.Location = new Point3d(teleport.X, teleport.Y, teleport.Z);
                                 entity.Yaw = teleport.Yaw;
@@ -469,7 +471,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 double x = (pos.LocMask & 1 << 0) != 0 ? Position.X + pos.X : pos.X;
                                 double y = (pos.LocMask & 1 << 1) != 0 ? Position.Y + pos.Y : pos.Y;
                                 double z = (pos.LocMask & 1 << 2) != 0 ? Position.Z + pos.Z : pos.Z;
-                                Position = new Point3d(x,y,z);
+                                Position = new Point3d(x, y, z);
                                 Yaw = pos.Yaw;
                                 Pitch = pos.Pitch;
                                 client.SendPacket(new ClientTeleportConfirmPacket(pos.TeleportID));
@@ -490,21 +492,30 @@ namespace MinecraftLibrary.MinecraftModels
 
 
                                 }
-                            } else if(p is ServerDestroyEntitiesPacket)
+                            }
+                            else if (p is ServerDestroyEntitiesPacket)
                             {
                                 var destroys = p as ServerDestroyEntitiesPacket;
-                                foreach(int id in destroys.Entities)
+                                foreach (int id in destroys.Entities)
                                 {
                                     Entities.Remove(id);
                                 }
-                            }else if(p is ServerSpawnExperienceOrbPacket)
+                            }
+                            else if (p is ServerSpawnExperienceOrbPacket)
                             {
                                 var exp = p as ServerSpawnExperienceOrbPacket;
                                 Entities[exp.ID] = new Entity(exp.ID, EntityType.ExperienceOrb, new Point3d());
-                            } else if(p is ServerSpawnPaintingPacket)
+                            }
+                            else if (p is ServerSpawnPaintingPacket)
                             {
                                 var paint = p as ServerSpawnPaintingPacket;
                                 Entities[paint.ID] = new Entity(paint.ID, EntityType.Painting, new Point3d());
+                            }
+                            else if (p is ServerPlayerHealthPacket)
+                            {
+                                var health = p as ServerPlayerHealthPacket;
+                                Health = health.Health;
+                                CallModule(m => m.OnHealthUpdate(health.Health, health.Food));
                             }
 
                         };
@@ -515,6 +526,7 @@ namespace MinecraftLibrary.MinecraftModels
                             ChatQueue?.Add(new ChatMessage("Вы были кинуты с сервера:"));
                             ChatQueue?.Add(new ChatMessage(m));
                             StatusLaunched = RunningStatus.None;
+                            CallModule(x => x.Stop());
 
                         };
                         client.LoginSuccesChanged += () =>
@@ -543,34 +555,49 @@ namespace MinecraftLibrary.MinecraftModels
 
         private void CallModule(Action<MinecraftModule> action)
         {
-
-            foreach (var m in Modules.ToArray())
+            Task.Run(() =>
             {
-                try
+                foreach (var m in Modules.ToArray())
                 {
-                    action.Invoke(m);
-                }
-                catch
-                {
+                    try
+                    {
+                        action.Invoke(m);
+                    }
+                    catch
+                    {
 
+                    }
                 }
-            }
+            });
 
         }
-        public void UpdatePosition(Point3d pos,bool onground = true)
+
+        public void RespawnPlayer()
+        {
+            if (Health == 0)
+            {
+                client.SendPacket(new ClientRequestPacket(MinecraftProtocol.Data.ClientRequest.RESPAWN));
+            }
+        }
+        public void UpdatePosition(Point3d pos, bool onground = true)
         {
 
-            client.SendPacket(new ClientPlayerPositionAndRotationPacket(pos.X,pos.Y,pos.Z,yaw,pitch, onground));
+            client.SendPacket(new ClientPlayerPositionPacket(pos.X, pos.Y, pos.Z, onground));
             Position = pos;
             //ChatQueue.Add(new ChatMessage("test"));
-            
+
         }
-        public void UpdatePosition(Point3d pos,float yaw,float pitch, bool onground = true)
+        public void UpdatePosition(Point3d pos, float yaw, float pitch, bool onground = true)
         {
             client.SendPacket(new ClientPlayerPositionAndRotationPacket(pos.X, pos.Y, pos.Z, yaw, pitch, onground));
             Position = pos;
             Yaw = yaw;
             Pitch = pitch;
+        }
+        public void UpdatePosition(Vector3d vector, bool gr)
+        {
+            Position = Position.Translate(vector);
+            client.SendPacket(new ClientPlayerPositionPacket(Position.X, Position.Y, Position.Z, gr));
         }
 
 
@@ -789,9 +816,9 @@ namespace MinecraftLibrary.MinecraftModels
     public enum MCVersion : int
     {
         [Description("1.12.2")]
-        MC1_12_2=340,
+        MC1_12_2 = 340,
         [Description("1.16.5")]
-        MC1_16_5 =754
+        MC1_16_5 = 754
     }
     public enum RunningStatus
     {

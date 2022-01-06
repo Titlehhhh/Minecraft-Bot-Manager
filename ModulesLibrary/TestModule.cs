@@ -17,7 +17,7 @@ using GeometRi;
 
 namespace ModulesLibrary
 {
-    [DisplayName("Физический движок6")]
+    [DisplayName("Физический движок")]
 
     public class PhysicEngine : MinecraftModule
     {
@@ -27,63 +27,116 @@ namespace ModulesLibrary
         Task gameLoop;
         public PhysicEngine(BotObject mainBot, IMainViewModelController controller) : base(mainBot, controller)
         {
-            ChatAdd("Constructo2r");
+
 
         }
+        ManualResetEvent ChunkLoad = new ManualResetEvent(false);
+        double VelY = 0;
+        bool physics = false;
         public override void Start()
         {
-            ChatAdd("Start4");
-            world = MainBot.World;
-            need = true;
 
-            gameLoop =Task.Run(() =>
+            world = MainBot.World;
+
+
+            gameLoop = Task.Run(() =>
             {
 
-                Thread.Sleep(2000);
+                //Thread.Sleep(3500);
+                ChatAdd("Start");
+                //
+                ChunkLoad.Reset();
+                Stopwatch stopWatch = new Stopwatch();
+                Location player = new Location(MainBot.Position.X, 0, MainBot.Position.Z);
 
-                Point3d playerpos = MainBot.Position;
-                double VelY = 0;
-
-                ChatAdd("play pos: " + playerpos);
-
-                while (need)
-                {
-                    
-                    playerpos = MainBot.Position;
-                    if (world.GetBlock(new Location(playerpos.X, playerpos.Y, playerpos.Z)).Type == Material.Air)
-                    {
-
-                        VelY = VelY * tick / 50;
-
-                        playerpos.Y -= 0.5;
-                        MainBot.UpdatePosition(playerpos, false);
-                        tick += 1;
-                    }
-                    else
-                    {
-                        VelY = 0;
-                        tick = 0;
-                    }
-
-
-                    Thread.Sleep(50);
-
+                if (world[player.ChunkX, player.ChunkZ] != null)
+                {                   
+                    physics = true;
                 }
+                else
+                {
+                    ChunkLoad.WaitOne();
+                }
+
+                while (true)
+                {
+                    stopWatch.Start();
+                    if (!need)
+                        break;
+
+                    if (physics)
+                    {
+                        
+                        
+                        Location playerpos1 = new Location(MainBot.Position.X, MainBot.Position.Y, MainBot.Position.Z);
+                        Location playerpos2 = Movement.HandleGravity(world, playerpos1, ref VelY);
+                        //VelY += 0.1;
+                        bool b = Movement.IsOnGround(world, playerpos2);
+                        if (!b)
+                        {
+                            MainBot.UpdatePosition(new Vector3d(0, VelY, 0), b);
+                        }
+                        else
+                        {
+                            VelY = 0;                            
+                        }
+
+
+                    }
+                    stopWatch.Stop();
+                    int elapsed = stopWatch.Elapsed.Milliseconds;
+                    if (elapsed < 100)
+                        Thread.Sleep(100 - elapsed);
+                }
+                ChatAdd("GameLoopStop");
 
 
             });
         }
+        public override void WorldUpdate(int chunkX, int chunkZ)
+        {
+            Location player = new Location(MainBot.Position.X, 0, MainBot.Position.Z);
+            
+            if (player.ChunkX == chunkX && player.ChunkZ == chunkZ)
+            {
+                
+                ChunkLoad.Set();
+            }
+
+        }
+        public override void OnHealthUpdate(float health, int food)
+        {
+
+            if (health == 0)
+            {
+                MainBot.RespawnPlayer();
+            }
+
+        }
+        public override void OnPositionRotation(Point3d pos, float yaw, float pitch)
+        {
+            physics = true;
+            ChunkLoad.Set();
+            VelY = 0;
+        }
+
         public override void Stop()
         {
             ChatAdd("Stop");
             need = false;
-            //gameLoop.Wait();
+            Task.Run(() =>
+            {
+                gameLoop.Wait();
+
+            });
         }
         public override void UnLoad()
         {
-            ChatAdd("Unload");
             need = false;
-            //gameLoop.Wait();
+            Task.Run(() =>
+            {
+                gameLoop.Wait();               
+            });
         }
     }
     [DisplayName("Авто-Рыбалка")]
@@ -140,17 +193,17 @@ namespace ModulesLibrary
                             ChatAdd("otvet: " + otvet);
                             if (otvet.Trim() == "[]")
                             {
-                                //SendText("!" + "Действительных корней нет!");
-                            }
-                            //else
-                            //SendText("!"+"");
+                            //SendText("!" + "Действительных корней нет!");
                         }
+                        //else
+                        //SendText("!"+"");
+                    }
                         else
                         {
-                            // ChatAdd("§4Erorr: " + error);
+                        // ChatAdd("§4Erorr: " + error);
 
 
-                        }
+                    }
 
                     });
 

@@ -62,7 +62,8 @@ namespace MinecraftLibrary.MinecraftModels
                 RaisePropertyChanged();
             }
         }
-
+        public virtual void WorldUpdate(int chunkX,int chunkZ) { }
+        public virtual void WorldUpdate(Block block) { }
         public virtual void OnBlockBreakAnimation(Entity entity, Location location, byte stage) { }
         public virtual void OnEntityAnimation(Entity entity, byte animation) { }
         public virtual void ServerChat(string json) { }
