@@ -335,6 +335,7 @@
     <Compile Include="Converters\BooleanToString.cs" />
     <Compile Include="Converters\BoolToVisibilyInverse.cs" />
     <Compile Include="Converters\DescriptionConverter.cs" />
+    <Compile Include="Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Converters\InverseConverter.cs" />
     <Compile Include="Converters\JsonToRuns.cs" />
     <Compile Include="Converters\NameAttributeConverter.cs" />

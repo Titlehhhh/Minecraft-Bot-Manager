@@ -157,7 +157,7 @@ namespace MinecraftLibrary.MinecraftModels
         }
         public ProxyType PrxType
         {
-            get => ProxyType.None;
+            get => proxyType;
             set
             {
                 proxyType = value;

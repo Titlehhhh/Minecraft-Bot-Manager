@@ -23,7 +23,7 @@ namespace MinecraftBotManager.ViewModel
 {
     public class BotObjectVM : INotifyPropertyChanged
     {
-        public ProxyType[] ProxyTypes { get; private set; } = {ProxyType.None,ProxyType.Http,ProxyType.Socks4,ProxyType.Socks4a,ProxyType.Socks5 };
+        public ProxyType[] ProxyTypes { get; private set; } = Enum.GetValues(typeof(ProxyType)).Cast<ProxyType>().ToArray();
         public string[] SupportedVersions { get; private set; } = {"1.12.2","1.16.5" };
 
         private BotObject Main;

@@ -30,6 +30,7 @@
 
     <UserControl.Resources>
         <converters:ProxyTypeConverter x:Key="ProxyTypeConverter"/>
+        
         <Popup x:Key="PopupTextBox" AllowsTransparency="True" x:Name="PART_Popup" Placement="Top" >
             <Border CornerRadius="3" Padding="3" BorderThickness="1" BorderBrush="Gray">
                 <Border.Background>
