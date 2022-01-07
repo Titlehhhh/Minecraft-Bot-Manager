@@ -579,13 +579,10 @@ namespace MinecraftLibrary.MinecraftModels
                 client.SendPacket(new ClientRequestPacket(MinecraftProtocol.Data.ClientRequest.RESPAWN));
             }
         }
-        public void UpdatePosition(Point3d pos, bool onground = true)
+        public void UpdatePosition(Point3d pos, bool onground)
         {
-
-            client.SendPacket(new ClientPlayerPositionPacket(pos.X, pos.Y, pos.Z, onground));
-            Position = pos;
-            //ChatQueue.Add(new ChatMessage("test"));
-
+            Position = new Point3d(pos.X,pos.Y,pos.Z);
+            client.SendPacket(new ClientPlayerPositionPacket(pos.X, pos.Y, pos.Z, onground));   
         }
         public void UpdatePosition(Point3d pos, float yaw, float pitch, bool onground = true)
         {
@@ -594,10 +591,10 @@ namespace MinecraftLibrary.MinecraftModels
             Yaw = yaw;
             Pitch = pitch;
         }
-        public void UpdatePosition(Vector3d vector, bool gr)
+        public void UpdatePosition(Vector3d vector, bool onground)
         {
             Position = Position.Translate(vector);
-            client.SendPacket(new ClientPlayerPositionPacket(Position.X, Position.Y, Position.Z, gr));
+            client.SendPacket(new ClientPlayerPositionPacket(Position.X, Position.Y, Position.Z, onground));
         }
 
 

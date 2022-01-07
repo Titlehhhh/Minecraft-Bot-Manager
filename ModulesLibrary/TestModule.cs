@@ -66,8 +66,6 @@ namespace ModulesLibrary
 
                     if (physics)
                     {
-                        
-                        
                         Location playerpos1 = new Location(MainBot.Position.X, MainBot.Position.Y, MainBot.Position.Z);
                         Location playerpos2 = Movement.HandleGravity(world, playerpos1, ref VelY);
                         //VelY += 0.1;
@@ -78,15 +76,14 @@ namespace ModulesLibrary
                         }
                         else
                         {
-                            VelY = 0;                            
-                        }
-
-
+                            MainBot.UpdatePosition(new Point3d(playerpos2.X,Math.Truncate(playerpos2.Y), playerpos2.Z), true);
+                            //VelY = 0;                            
+                       }
                     }
                     stopWatch.Stop();
                     int elapsed = stopWatch.Elapsed.Milliseconds;
                     if (elapsed < 100)
-                        Thread.Sleep(100 - elapsed);
+                        Thread.Sleep(100-elapsed);
                 }
                 ChatAdd("GameLoopStop");
 
@@ -109,6 +106,7 @@ namespace ModulesLibrary
 
             if (health == 0)
             {
+                VelY = 0;
                 MainBot.RespawnPlayer();
             }
 
@@ -117,25 +115,36 @@ namespace ModulesLibrary
         {
             physics = true;
             ChunkLoad.Set();
-            VelY = 0;
+            //VelY = 0;
         }
 
         public override void Stop()
         {
             ChatAdd("Stop");
-            need = false;
+            
+            
             Task.Run(() =>
             {
-                gameLoop.Wait();
-
+                if (need)
+                {
+                    need = false;
+                    gameLoop.Wait();
+                    VelY = 0;
+                }
             });
         }
         public override void UnLoad()
         {
-            need = false;
+           
+
             Task.Run(() =>
             {
-                gameLoop.Wait();               
+                if (need)
+                {
+                    need = false;
+                    gameLoop.Wait();
+                    VelY = 0;
+                }
             });
         }
     }
