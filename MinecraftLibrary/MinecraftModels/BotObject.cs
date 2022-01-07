@@ -533,11 +533,15 @@ namespace MinecraftLibrary.MinecraftModels
                         {
                             Console.WriteLine("Login Sucess!!!");
                             StatusLaunched = RunningStatus.Launched;
+                            CallModule(x => x.Start());
                         };
-
+                        client.ReadPacketChanged += (s, i, d) =>
+                        {
+                            CallModule(m => m.ReadPacket(i, d));
+                        };
                         if (client.Connect())
                         {
-                            CallModule(x => x.Start());
+                            
                         }
 
 
@@ -555,20 +559,19 @@ namespace MinecraftLibrary.MinecraftModels
 
         private void CallModule(Action<MinecraftModule> action)
         {
-            Task.Run(() =>
+            
+            foreach (var m in Modules.ToArray())
             {
-                foreach (var m in Modules.ToArray())
+                try
                 {
-                    try
-                    {
-                        action.Invoke(m);
-                    }
-                    catch
-                    {
-
-                    }
+                    action.Invoke(m);
                 }
-            });
+                catch
+                {
+
+                }
+            }
+
 
         }
 
@@ -581,8 +584,8 @@ namespace MinecraftLibrary.MinecraftModels
         }
         public void UpdatePosition(Point3d pos, bool onground)
         {
-            Position = new Point3d(pos.X,pos.Y,pos.Z);
-            client.SendPacket(new ClientPlayerPositionPacket(pos.X, pos.Y, pos.Z, onground));   
+            Position = new Point3d(pos.X, pos.Y, pos.Z);
+            client.SendPacket(new ClientPlayerPositionPacket(pos.X, pos.Y, pos.Z, onground));
         }
         public void UpdatePosition(Point3d pos, float yaw, float pitch, bool onground = true)
         {
@@ -621,7 +624,7 @@ namespace MinecraftLibrary.MinecraftModels
         {
             try
             {
-
+                System.Diagnostics.Debug.WriteLine("Disconnect: "+nickname);
                 client?.Disconnect();
                 StatusLaunched = RunningStatus.None;
                 CallModule(x => x.Stop());

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using GeometRi;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ModulesLibrary
 {
@@ -22,84 +23,73 @@ namespace ModulesLibrary
     public class PhysicEngine : MinecraftModule
     {
         private bool need = true;
+        private bool Need
+        {
+            get { return need; }
+            set
+            {               
+                need = value;
+            }
+        }
         private World world;
         private long tick = 0;
         Task gameLoop;
+        Location location;
         public PhysicEngine(BotObject mainBot, IMainViewModelController controller) : base(mainBot, controller)
         {
-
 
         }
         ManualResetEvent ChunkLoad = new ManualResetEvent(false);
         double VelY = 0;
         bool physics = false;
+        bool old = false;
         public override void Start()
         {
-
+            
             world = MainBot.World;
-
-
+            location = new Location(MainBot.Position.X, 0, MainBot.Position.Z);
+            Need = true;            
             gameLoop = Task.Run(() =>
-            {
+             {
+                 ChunkLoad.Reset();
+                 if (!physics)
+                     if (world[location.ChunkX, location.ChunkZ] == null)
+                         ChunkLoad.WaitOne();
+                 ChatAdd("GameLoopStart");
+                 while (Need)
+                 {
 
-                //Thread.Sleep(3500);
-                ChatAdd("Start");
-                //
-                ChunkLoad.Reset();
-                Stopwatch stopWatch = new Stopwatch();
-                Location player = new Location(MainBot.Position.X, 0, MainBot.Position.Z);
+                     location = new Location(MainBot.Position.X, MainBot.Position.Y, MainBot.Position.Z);
+                     location = Movement.HandleGravity(world, location, ref VelY);
+                     bool g = Movement.IsOnGround(world, location);
+                     MainBot.UpdatePosition(new Point3d(location.X, location.Y, location.Z), g);
+                     if (g)
+                     {
+                         VelY = 0;
+                     }
 
-                if (world[player.ChunkX, player.ChunkZ] != null)
-                {                   
-                    physics = true;
-                }
-                else
-                {
-                    ChunkLoad.WaitOne();
-                }
+                     Thread.Sleep(100);
+                 }
 
-                while (true)
-                {
-                    stopWatch.Start();
-                    if (!need)
-                        break;
-
-                    if (physics)
-                    {
-                        Location playerpos1 = new Location(MainBot.Position.X, MainBot.Position.Y, MainBot.Position.Z);
-                        Location playerpos2 = Movement.HandleGravity(world, playerpos1, ref VelY);
-                        //VelY += 0.1;
-                        bool b = Movement.IsOnGround(world, playerpos2);
-                        if (!b)
-                        {
-                            MainBot.UpdatePosition(new Vector3d(0, VelY, 0), b);
-                        }
-                        else
-                        {
-                            MainBot.UpdatePosition(new Point3d(playerpos2.X,Math.Truncate(playerpos2.Y), playerpos2.Z), true);
-                            //VelY = 0;                            
-                       }
-                    }
-                    stopWatch.Stop();
-                    int elapsed = stopWatch.Elapsed.Milliseconds;
-                    if (elapsed < 100)
-                        Thread.Sleep(100-elapsed);
-                }
-                ChatAdd("GameLoopStop");
+                 ChatAdd("GameloopStop: " + need);
+             });
 
 
-            });
+
+        }
+        double d = 0;
+        int yaw = 0;
+        public override void ReadPacket(int id, byte[] data)
+        {
+
         }
         public override void WorldUpdate(int chunkX, int chunkZ)
         {
             Location player = new Location(MainBot.Position.X, 0, MainBot.Position.Z);
-            
             if (player.ChunkX == chunkX && player.ChunkZ == chunkZ)
             {
-                
                 ChunkLoad.Set();
             }
-
         }
         public override void OnHealthUpdate(float health, int food)
         {
@@ -113,41 +103,40 @@ namespace ModulesLibrary
         }
         public override void OnPositionRotation(Point3d pos, float yaw, float pitch)
         {
-            physics = true;
+            //physics = true;
+
+
             ChunkLoad.Set();
+
+            location = new Location(pos.X, pos.Y, pos.Z);
             //VelY = 0;
         }
 
         public override void Stop()
         {
-            ChatAdd("Stop");
-            
-            
-            Task.Run(() =>
+            if (need)
             {
-                if (need)
+                Task.Run(() =>
                 {
                     need = false;
                     gameLoop.Wait();
-                    VelY = 0;
-                }
-            });
+                });
+            }
         }
         public override void UnLoad()
         {
-           
-
-            Task.Run(() =>
+            if (need)
             {
-                if (need)
+                Task.Run(() =>
                 {
                     need = false;
                     gameLoop.Wait();
-                    VelY = 0;
-                }
-            });
+                });
+            }
         }
     }
+
+
     [DisplayName("Авто-Рыбалка")]
     public class AutoFish : MinecraftModule
     {
@@ -202,17 +191,17 @@ namespace ModulesLibrary
                             ChatAdd("otvet: " + otvet);
                             if (otvet.Trim() == "[]")
                             {
-                            //SendText("!" + "Действительных корней нет!");
+                                //SendText("!" + "Действительных корней нет!");
+                            }
+                            //else
+                            //SendText("!"+"");
                         }
-                        //else
-                        //SendText("!"+"");
-                    }
                         else
                         {
-                        // ChatAdd("§4Erorr: " + error);
+                            // ChatAdd("§4Erorr: " + error);
 
 
-                    }
+                        }
 
                     });
 
@@ -239,6 +228,64 @@ namespace ModulesLibrary
                     ChatAdd("Ошибка");
                 }
             }
+
+        }
+    }
+
+    public class AutoAuth : MinecraftModule
+    {
+        public AutoAuth(BotObject mainBot, IMainViewModelController controller) : base(mainBot, controller)
+        {
+
+        }
+        public override void Start()
+        {
+
+
+        }
+        public override void Stop()
+        {
+
+        }
+        public override void UnLoad()
+        {
+
+        }
+        public override void OnPositionRotation(Point3d pos, float yaw, float pitch)
+        {
+            if (pos.Y == 450)
+            {
+                Task.Run(() =>
+                {
+                    Queue<double> steps = new Queue<double>();
+                    try
+                    {
+                        using (FileStream fs = new FileStream("Data/AutoAuth/Steps.dat", FileMode.OpenOrCreate))
+                        {
+                            BinaryFormatter bin = new BinaryFormatter();
+                            steps = (Queue<double>)bin.Deserialize(fs);
+                        }
+                    }
+                    finally
+                    {
+
+                    }
+                    while (steps.Count > 0)
+                    {
+                        double vel = steps.Dequeue();
+                        MainBot.UpdatePosition(new Vector3d(0, vel, 0), false);
+                        Thread.Sleep(50);
+                    }
+
+                });
+            }
+        }
+        public override void OnEntitySpawn(Entity entity)
+        {
+
+        }
+        public override void OnEntityMove(Entity entity)
+        {
 
         }
     }

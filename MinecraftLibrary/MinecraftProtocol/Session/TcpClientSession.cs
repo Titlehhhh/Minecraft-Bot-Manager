@@ -29,6 +29,7 @@ using System.IO;
 
 namespace MinecraftLibrary
 {
+    public delegate void ReadPacket(object sender, int id, byte[] data);
     public class TcpClientSession
     {
 
@@ -79,6 +80,8 @@ namespace MinecraftLibrary
 
         public event Disconnect DisconnectChanged;
         public event LoginSucces LoginSuccesChanged;
+
+        public event ReadPacket ReadPacketChanged;
 
         private TcpClient tcpClient;
 
@@ -188,7 +191,8 @@ namespace MinecraftLibrary
                     else if (packet.Item1 == 0)
                     {
                         StreamNetInput netInput = new StreamNetInput(new Queue<byte>(packet.Item2), protocolversion);
-                        DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.LoginRejected, netInput.ReadNextString());
+                        if (!Disconect)
+                            DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.LoginRejected, netInput.ReadNextString());
                         return false;
                     }
 
@@ -242,10 +246,14 @@ namespace MinecraftLibrary
             {
                 try
                 {
+
                     while (need)
                     {
+                        if (Disconect)
+                            return;
 
                         Tuple<int, byte[]> packet = ReadNextPacket();
+                        ReadPacketChanged?.Invoke(this, packet.Item1, packet.Item2);
                         try
                         {
                             ServerPacket pac = GetPacketIn(packet.Item1);
@@ -265,6 +273,8 @@ namespace MinecraftLibrary
                         {
                             Console.WriteLine("При считывании пакета произошло исключение:\n" + packetRead);
                         }
+
+
                     }
                 }
                 catch (Exception e)
