@@ -2,6 +2,7 @@
 using MinecraftLibrary.Data;
 using MinecraftLibrary.Data.Inventory;
 using MinecraftLibrary.Data.Inventory.ItemPalettes;
+using MinecraftLibrary.Geometri;
 using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
 using MinecraftLibrary.Palletes;
 using System;
@@ -63,7 +64,7 @@ namespace MinecraftProtocol.IO
         /// Read a Location encoded as an ulong field and remove it from the cache
         /// </summary>
         /// <returns>The Location value</returns>
-        Point3D_I32 ReadNextLocation();
+        Location ReadNextLocation();
         
 
         /// <summary>

@@ -30,7 +30,7 @@ using System.IO;
 namespace MinecraftLibrary
 {
     public delegate void ReadPacket(object sender, int id, byte[] data);
-    public class TcpClientSession
+    public class TcpClientSession : IDisposable
     {
 
 
@@ -61,13 +61,58 @@ namespace MinecraftLibrary
         private Dictionary<int, Type> PacketsIn = new Dictionary<int, Type>();
 
 
-        private string Host;
-        private int Port;
-        private string Nickname;
-        private int protocolversion;
-        private string proxyHost;
-        private int proxyPort;
-        private ProxyType proxyType;
+        public string Host
+        {
+            get => host;
+            set
+            {
+                if (!socket.IsConnected())
+                    host = value;
+            }
+        }
+        public int Port
+        {
+            get => port; set
+            {
+                if (!socket.IsConnected())
+                    port = value;
+            }
+        }
+        public string Nickname
+        {
+            get => nickname; set
+            {
+                if (!socket.IsConnected())
+                    nickname = value;
+            }
+        }
+        public int ProtocolVersion
+        {
+            get => protocolVersion; set
+            {
+                if (!socket.IsConnected())
+                    protocolVersion = value;
+            }
+        }
+        public string ProxyHost { get => proxyHost; set { if (!socket.IsConnected()) proxyHost = value; } }
+        public int ProxyPort
+        {
+            get => proxyPort; set
+            {
+                if (!socket.IsConnected())
+                    proxyPort = value;
+            }
+        }
+        public ProxyType PrxyType
+        {
+            get => prxyType; set
+            {
+                if (!socket.IsConnected())
+                    prxyType = value;
+            }
+        }
+
+
 
 
         public event Connected ConnectedChanged;
@@ -95,18 +140,22 @@ namespace MinecraftLibrary
             Host = host;
             Port = port;
             Nickname = username;
-            protocolversion = version;
+            ProtocolVersion = version;
+        }
+        public TcpClientSession()
+        {
+
         }
         public TcpClientSession(string host, int port, string proxyHost, int proxyPort, ProxyType proxyType, string username, int version)
         {
             Host = host;
             Port = port;
             Nickname = username;
-            protocolversion = version;
+            ProtocolVersion = version;
 
-            this.proxyHost = proxyHost;
-            this.proxyPort = proxyPort;
-            this.proxyType = proxyType;
+            this.ProxyHost = proxyHost;
+            this.ProxyPort = proxyPort;
+            this.PrxyType = proxyType;
 
         }
         public bool Connect()
@@ -127,7 +176,7 @@ namespace MinecraftLibrary
             {
                 need = true;
 
-                if (proxyType == ProxyType.None)
+                if (PrxyType == ProxyType.None)
                 {
                     tcpClient = new TcpClient();
                     tcpClient.ReceiveBufferSize = 1024 * 1024;
@@ -137,15 +186,15 @@ namespace MinecraftLibrary
                 }
                 else
                 {
-                    Debug.WriteLine($"StartProxy: {proxyHost} {proxyPort} {proxyType}");
+                    Debug.WriteLine($"StartProxy: {ProxyHost} {ProxyPort} {PrxyType}");
                     ProxyClientFactory factory = new ProxyClientFactory();
-                    tcpClient = factory.CreateProxyClient(proxyType, proxyHost, proxyPort).CreateConnection(Host, Port);
+                    tcpClient = factory.CreateProxyClient(PrxyType, ProxyHost, ProxyPort).CreateConnection(Host, Port);
 
                 }
 
-                if (protocolversion == MinecraftConstans.MC1122Version)
+                if (ProtocolVersion == MinecraftConstans.MC1122Version)
                     packetPallete = new Packets1_12_2();
-                else if (protocolversion == MinecraftConstans.MC1165Version)
+                else if (ProtocolVersion == MinecraftConstans.MC1165Version)
                     packetPallete = new Packets1_16_5();
 
                 socket = new SocketWrapper(tcpClient);
@@ -153,7 +202,7 @@ namespace MinecraftLibrary
 
                 SetSubProtocol = SubProtocol.HANDSHAKE;
 
-                HandShakePacket handShake = new HandShakePacket(HandShakeIntent.LOGIN, protocolversion, Port, Host);
+                HandShakePacket handShake = new HandShakePacket(HandShakeIntent.LOGIN, ProtocolVersion, Port, Host);
                 SendPacket(handShake);
                 SetSubProtocol = SubProtocol.LOGIN;
                 LoginStartPacket loginStart = new LoginStartPacket(Nickname);
@@ -164,21 +213,21 @@ namespace MinecraftLibrary
                     Debug.WriteLine("Login: " + packet.Item1);
                     if (packet.Item1 == 1)
                     {
-                        StreamNetInput input = new StreamNetInput(new Queue<byte>(packet.Item2), protocolversion);
+                        StreamNetInput input = new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion);
                         EncryptionRequestPacket encryptionRequest = new EncryptionRequestPacket();
-                        encryptionRequest.Read(input, protocolversion);
+                        encryptionRequest.Read(input, ProtocolVersion);
                         System.Security.Cryptography.RSACryptoServiceProvider RSAService = CryptoHandler.DecodeRSAPublicKey(encryptionRequest.sharedkey);
                         byte[] secretKey = CryptoHandler.GenerateAESPrivateKey();
-                        byte[] key_enc = StreamNetOutput.GetArray(RSAService.Encrypt(secretKey, false), protocolversion);
-                        byte[] token_enc = StreamNetOutput.GetArray(RSAService.Encrypt(encryptionRequest.verifytoken, false), protocolversion);
+                        byte[] key_enc = StreamNetOutput.GetArray(RSAService.Encrypt(secretKey, false), ProtocolVersion);
+                        byte[] token_enc = StreamNetOutput.GetArray(RSAService.Encrypt(encryptionRequest.verifytoken, false), ProtocolVersion);
 
                         SendPacket(0x01, StreamNetOutput.ConcatBytes(key_enc, token_enc));
                         socket.SwitchToEncrypted(secretKey);
                     }
                     else if (packet.Item1 == 3)
                     {
-                        if (protocolversion >= MinecraftConstans.MC18Version)
-                            compression_treshold = new StreamNetInput(new Queue<byte>(packet.Item2), protocolversion).ReadNextVarInt();
+                        if (ProtocolVersion >= MinecraftConstans.MC18Version)
+                            compression_treshold = new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion).ReadNextVarInt();
 
                     }
                     else if (packet.Item1 == 2)
@@ -190,7 +239,7 @@ namespace MinecraftLibrary
                     }
                     else if (packet.Item1 == 0)
                     {
-                        StreamNetInput netInput = new StreamNetInput(new Queue<byte>(packet.Item2), protocolversion);
+                        StreamNetInput netInput = new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion);
                         if (!Disconect)
                             DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.LoginRejected, netInput.ReadNextString());
                         return false;
@@ -211,6 +260,14 @@ namespace MinecraftLibrary
             }
         }
         private bool Disconect = false;
+        private string host;
+        private int port;
+        private string nickname;
+        private int protocolVersion;
+        private ProxyType prxyType;
+        private int proxyPort;
+        private string proxyHost;
+
         public void Disconnect()
         {
             try
@@ -258,7 +315,7 @@ namespace MinecraftLibrary
                         {
                             ServerPacket pac = GetPacketIn(packet.Item1);
 
-                            pac.Read(new StreamNetInput(new Queue<byte>(packet.Item2), protocolversion), protocolversion);
+                            pac.Read(new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion), ProtocolVersion);
                             if (pac.GetType() == typeof(ServerDisconnectPacket))
                             {
                                 var dis = pac as ServerDisconnectPacket;
@@ -296,8 +353,8 @@ namespace MinecraftLibrary
                     try
                     {
                         // Debug.WriteLine(PacketsOut[packet.GetType()]);
-                        StreamNetOutput output = new StreamNetOutput(protocolversion);
-                        packet.Write(output, protocolversion);
+                        StreamNetOutput output = new StreamNetOutput(ProtocolVersion);
+                        packet.Write(output, ProtocolVersion);
                         byte[] the_packet = StreamNetOutput.ConcatBytes(StreamNetOutput.GetVarInt(PacketsOut[packet.GetType()]), output.Data);
                         if (compression_treshold > 0) //Compression enabled?
                         {
@@ -312,7 +369,7 @@ namespace MinecraftLibrary
                                 the_packet = StreamNetOutput.ConcatBytes(uncompressed_length, the_packet);
                             }
                         }
-                        output = new StreamNetOutput(protocolversion);
+                        output = new StreamNetOutput(ProtocolVersion);
                         output.WriteArray(the_packet);
 
                         PacketSendChanged?.Invoke(packet);
@@ -358,9 +415,9 @@ namespace MinecraftLibrary
 
             byte[] rawpacket = socket.ReadDataRAW(size);
 
-            StreamNetInput input = new StreamNetInput(new Queue<byte>(rawpacket), protocolversion);
+            StreamNetInput input = new StreamNetInput(new Queue<byte>(rawpacket), ProtocolVersion);
 
-            if (protocolversion >= MinecraftConstans.MC18Version
+            if (ProtocolVersion >= MinecraftConstans.MC18Version
                 && compression_treshold > 0)
             {
                 int sizeUncompressed = input.ReadNextVarInt();
@@ -369,7 +426,7 @@ namespace MinecraftLibrary
                 if (sizeUncompressed != 0) // != 0 means compressed, let's decompress
                 {
                     byte[] unCompress = ZlibUtils.Decompress(input.Data, sizeUncompressed);
-                    input = new StreamNetInput(new Queue<byte>(unCompress), protocolversion);
+                    input = new StreamNetInput(new Queue<byte>(unCompress), ProtocolVersion);
 
                 }
             }
@@ -422,6 +479,11 @@ namespace MinecraftLibrary
                 if ((k & 0x80) != 128) break;
             }
             return i;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

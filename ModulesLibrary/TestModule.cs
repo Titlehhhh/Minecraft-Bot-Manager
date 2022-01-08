@@ -13,8 +13,8 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-using GeometRi;
 using System.Runtime.Serialization.Formatters.Binary;
+using MinecraftLibrary.Geometri;
 
 namespace ModulesLibrary
 {
@@ -27,7 +27,7 @@ namespace ModulesLibrary
         {
             get { return need; }
             set
-            {               
+            {
                 need = value;
             }
         }
@@ -45,16 +45,13 @@ namespace ModulesLibrary
         bool old = false;
         public override void Start()
         {
-            
+
             world = MainBot.World;
             location = new Location(MainBot.Position.X, 0, MainBot.Position.Z);
-            Need = true;            
+            Need = true;
             gameLoop = Task.Run(() =>
              {
-                 ChunkLoad.Reset();
-                 if (!physics)
-                     if (world[location.ChunkX, location.ChunkZ] == null)
-                         ChunkLoad.WaitOne();
+                 
                  ChatAdd("GameLoopStart");
                  while (Need)
                  {
@@ -62,13 +59,13 @@ namespace ModulesLibrary
                      location = new Location(MainBot.Position.X, MainBot.Position.Y, MainBot.Position.Z);
                      location = Movement.HandleGravity(world, location, ref VelY);
                      bool g = Movement.IsOnGround(world, location);
-                     MainBot.UpdatePosition(new Point3d(location.X, location.Y, location.Z), g);
+                     MainBot.UpdatePosition(new Location(location.X, location.Y, location.Z), g);
                      if (g)
                      {
                          VelY = 0;
                      }
 
-                     Thread.Sleep(100);
+                     Thread.Sleep(50);
                  }
 
                  ChatAdd("GameloopStop: " + need);
@@ -101,7 +98,7 @@ namespace ModulesLibrary
             }
 
         }
-        public override void OnPositionRotation(Point3d pos, float yaw, float pitch)
+        public override void OnPositionRotation(Location pos, float yaw, float pitch)
         {
             //physics = true;
 
@@ -251,7 +248,7 @@ namespace ModulesLibrary
         {
 
         }
-        public override void OnPositionRotation(Point3d pos, float yaw, float pitch)
+        public override void OnPositionRotation(Location pos, float yaw, float pitch)
         {
             if (pos.Y == 450)
             {
@@ -273,7 +270,7 @@ namespace ModulesLibrary
                     while (steps.Count > 0)
                     {
                         double vel = steps.Dequeue();
-                        MainBot.UpdatePosition(new Vector3d(0, vel, 0), false);
+                        MainBot.UpdatePosition(new Vector3(0, vel, 0), false);
                         Thread.Sleep(50);
                     }
 

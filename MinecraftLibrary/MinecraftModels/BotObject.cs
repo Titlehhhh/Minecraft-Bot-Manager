@@ -1,5 +1,6 @@
-﻿using GeometRi;
+﻿
 using MinecraftLibrary.Data;
+using MinecraftLibrary.Geometri;
 using MinecraftLibrary.Interfaces;
 using MinecraftLibrary.MinecraftProtocol;
 using MinecraftLibrary.MinecraftProtocol.Data.PlayerInfo;
@@ -81,15 +82,13 @@ namespace MinecraftLibrary.MinecraftModels
             if (ModulesTypes is null)
                 ModulesTypes = new ObservableCollection<string>();
             ModulesTypes.GroupBy(x => x).Where(x => x.Count() > 1).Select(x => x.Key).ToList().ForEach(x => ModulesTypes.Remove(x));
-
-            ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
-            ChatQueue = new ObservableCollection<ChatMessage>();
-            position = new Point3d();
+            Inizialize();
         }
 
         private void ModulesTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
 
+            
         }
 
         #endregion
@@ -103,20 +102,19 @@ namespace MinecraftLibrary.MinecraftModels
             set
             {
                 nickname = value;
-
+                client.Nickname = nickname;
             }
         }
         public string Version
         {
             get
             {
-
                 return version;
             }
             set
             {
                 version = value;
-
+                
             }
         }
         public string Host
@@ -124,8 +122,8 @@ namespace MinecraftLibrary.MinecraftModels
             get { return host; }
             set
             {
-                host = value;
-
+                client.Host=host = value;
+                
 
             }
         }
@@ -134,7 +132,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => port;
             set
             {
-                port = value;
+               client.Port= port = value;
 
             }
         }
@@ -143,7 +141,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => proxyHost;
             set
             {
-                proxyHost = value;
+               client.ProxyHost= proxyHost = value;
             }
         }
         public int ProxyPort
@@ -151,7 +149,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => proxyPort;
             set
             {
-                proxyPort = value;
+               client.ProxyPort= proxyPort = value;
 
             }
         }
@@ -160,7 +158,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => proxyType;
             set
             {
-                proxyType = value;
+               client.PrxyType= proxyType = value;
 
 
             }
@@ -177,9 +175,9 @@ namespace MinecraftLibrary.MinecraftModels
             }
         }
         [NonSerialized]
-        private Point3d position = new Point3d();
+        private Location position = new Location();
 
-        public Point3d Position
+        public Location Position
         {
             get { return position; ; }
             set
@@ -299,7 +297,16 @@ namespace MinecraftLibrary.MinecraftModels
 
         public BotObject()
         {
+            Inizialize();
+        }
 
+        private void Inizialize()
+        {
+            ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
+            ChatQueue = new ObservableCollection<ChatMessage>();
+            client = new TcpClientSession();
+            position = new Location();
+            
         }
 
         public BotObject(string nickname, string version, string host, ushort port, string proxyHost, int proxyPort)
@@ -311,7 +318,7 @@ namespace MinecraftLibrary.MinecraftModels
             ProxyHost = proxyHost;
             ProxyPort = proxyPort;
 
-            ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
+            Inizialize();
         }
 
         private void CreateModules(IMainViewModelController controller)
@@ -342,17 +349,19 @@ namespace MinecraftLibrary.MinecraftModels
         public void StartClient()
         {
             System.Diagnostics.Debug.WriteLine("StartBot: " + Nickname);
-            position = new Point3d();
+            Position = Location.Zero;
             world = new World();
             ProtocolVersion = MCVer2ProtocolVersion(version);
             System.Diagnostics.Debug.WriteLine("Version: " + version);
             System.Diagnostics.Debug.WriteLine("ProtocolVersion: " + ProtocolVersion);
             ChatQueue.Clear();
+
             if (ProtocolVersion == 0)
             {
                 StatusLaunched = RunningStatus.None;
                 return;
             }
+            client.ProtocolVersion = ProtocolVersion;
             Block.Palette = PalletesExtensions.GetBlockPalette(ProtocolVersion);
 
             if (StatusLaunched == RunningStatus.None)
@@ -362,7 +371,7 @@ namespace MinecraftLibrary.MinecraftModels
                     {
                         StatusLaunched = RunningStatus.Initialization;
 
-                        client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, proxyType, Nickname, ProtocolVersion);
+                        //client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, proxyType, Nickname, ProtocolVersion);
                         client.PacketSentChanged += (e) =>
                         {
 
@@ -436,7 +445,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 ServerEntityTeleportPacket teleport = p as ServerEntityTeleportPacket;
 
                                 Entity entity = Entities[teleport.EntityID];
-                                entity.Location = new Point3d(teleport.X, teleport.Y, teleport.Z);
+                                entity.Location = new Location(teleport.X, teleport.Y, teleport.Z);
                                 entity.Yaw = teleport.Yaw;
                                 entity.Pitch = teleport.Pitch;
                                 CallModule(m => m.OnEntityMove(entity));
@@ -447,7 +456,7 @@ namespace MinecraftLibrary.MinecraftModels
 
                                 Entity entity = Entities[pos.EntityID];
 
-                                entity.Velocity = new Vector3d(pos.DeltaX, pos.DeltaY, pos.DeltaZ);
+                                entity.Velocity = new Vector3(pos.DeltaX, pos.DeltaY, pos.DeltaZ);
                                 entity.Location.X += pos.DeltaX;
                                 entity.Location.Y += pos.DeltaY;
                                 entity.Location.Z += pos.DeltaZ;
@@ -458,7 +467,7 @@ namespace MinecraftLibrary.MinecraftModels
                             {
                                 ServerEntityPositionAndRotationPacket rot = p as ServerEntityPositionAndRotationPacket;
                                 Entity entity = Entities[rot.EntityID];
-                                entity.Velocity = new Vector3d(rot.DeltaX, rot.DeltaY, rot.DeltaZ);
+                                entity.Velocity = new Vector3(rot.DeltaX, rot.DeltaY, rot.DeltaZ);
                                 entity.Location.X += rot.DeltaX;
                                 entity.Location.Y += rot.DeltaY;
                                 entity.Location.Z += rot.DeltaZ;
@@ -471,7 +480,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 double x = (pos.LocMask & 1 << 0) != 0 ? Position.X + pos.X : pos.X;
                                 double y = (pos.LocMask & 1 << 1) != 0 ? Position.Y + pos.Y : pos.Y;
                                 double z = (pos.LocMask & 1 << 2) != 0 ? Position.Z + pos.Z : pos.Z;
-                                Position = new Point3d(x, y, z);
+                                Position = new Location(x, y, z);
                                 Yaw = pos.Yaw;
                                 Pitch = pos.Pitch;
                                 client.SendPacket(new ClientTeleportConfirmPacket(pos.TeleportID));
@@ -504,12 +513,12 @@ namespace MinecraftLibrary.MinecraftModels
                             else if (p is ServerSpawnExperienceOrbPacket)
                             {
                                 var exp = p as ServerSpawnExperienceOrbPacket;
-                                Entities[exp.ID] = new Entity(exp.ID, EntityType.ExperienceOrb, new Point3d());
+                                Entities[exp.ID] = new Entity(exp.ID, EntityType.ExperienceOrb, new Location());
                             }
                             else if (p is ServerSpawnPaintingPacket)
                             {
                                 var paint = p as ServerSpawnPaintingPacket;
-                                Entities[paint.ID] = new Entity(paint.ID, EntityType.Painting, new Point3d());
+                                Entities[paint.ID] = new Entity(paint.ID, EntityType.Painting, new Location());
                             }
                             else if (p is ServerPlayerHealthPacket)
                             {
@@ -582,21 +591,21 @@ namespace MinecraftLibrary.MinecraftModels
                 client.SendPacket(new ClientRequestPacket(MinecraftProtocol.Data.ClientRequest.RESPAWN));
             }
         }
-        public void UpdatePosition(Point3d pos, bool onground)
+        public void UpdatePosition(Location location, bool onground)
         {
-            Position = new Point3d(pos.X, pos.Y, pos.Z);
-            client.SendPacket(new ClientPlayerPositionPacket(pos.X, pos.Y, pos.Z, onground));
+            Position = new Location(location.X, location.Y, location.Z);
+            client.SendPacket(new ClientPlayerPositionPacket(location.X, location.Y, location.Z, onground));
         }
-        public void UpdatePosition(Point3d pos, float yaw, float pitch, bool onground = true)
+        public void UpdatePosition(Location pos, float yaw, float pitch, bool onground = true)
         {
             client.SendPacket(new ClientPlayerPositionAndRotationPacket(pos.X, pos.Y, pos.Z, yaw, pitch, onground));
             Position = pos;
             Yaw = yaw;
             Pitch = pitch;
         }
-        public void UpdatePosition(Vector3d vector, bool onground)
+        public void UpdatePosition(Vector3 vector, bool onground)
         {
-            Position = Position.Translate(vector);
+            Position += vector;
             client.SendPacket(new ClientPlayerPositionPacket(Position.X, Position.Y, Position.Z, onground));
         }
 
@@ -651,17 +660,17 @@ namespace MinecraftLibrary.MinecraftModels
             Pitch = pitch;
             client.SendPacket(new ClientPlayerRotationPacket(yaw, pitch, true));
         }
-        public void LookHead(Point3d pos)
+        public void LookHead(Location pos)
         {
             if (!pos.Equals(Position))
             {
-                Vector3d vector = new Vector3d(Position, pos);
+                Vector3 vector = new Vector3(Position, pos);
                 LookHead(vector);
             }
         }
-        public void LookHead(Vector3d vector)
+        public void LookHead(Vector3 vector)
         {
-            vector.Normalize();
+            vector = vector.Normalize();
             float yaw = (float)((float)(Math.Atan2(vector.Z, vector.X) - Math.PI / 2) * 180 / Math.PI);
             float pitch = (float)(Math.Asin(-vector.Y) * 180 / Math.PI);
             LookHead(yaw, pitch);

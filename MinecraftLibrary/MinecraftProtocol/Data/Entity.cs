@@ -1,5 +1,6 @@
-using GeometRi;
+
 using MinecraftLibrary.Data.Inventory;
+using MinecraftLibrary.Geometri;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace MinecraftLibrary.Data
     /// </summary>
     public class Entity : System.ComponentModel.INotifyPropertyChanged
     {
-        public Vector3d Velocity;
+        public Vector3 Velocity;
         /// <summary>
         /// ID of the entity on the Minecraft server
         /// </summary>
@@ -57,7 +58,7 @@ namespace MinecraftLibrary.Data
         /// <summary>
         /// Entity location in the Minecraft world
         /// </summary>
-        public Point3d Location;
+        public Location Location;
 
         /// <summary>
         /// Entity head yaw
@@ -117,7 +118,7 @@ namespace MinecraftLibrary.Data
         /// <param name="ID">Entity ID</param>
         /// <param name="type">Entity Type Enum</param>
         /// <param name="location">Entity location</param>
-        public Entity(int ID, EntityType type, Point3d location)
+        public Entity(int ID, EntityType type, Location location)
         {
             this.ID = ID;
             this.Type = type;
@@ -133,7 +134,7 @@ namespace MinecraftLibrary.Data
         /// <param name="ID">Entity ID</param>
         /// <param name="type">Entity Type Enum</param>
         /// <param name="location">Entity location</param>
-        public Entity(int ID, EntityType type, Point3d location, float yaw, float pitch)
+        public Entity(int ID, EntityType type, Location location, float yaw, float pitch)
         {
             this.ID = ID;
             this.Type = type;
@@ -153,7 +154,7 @@ namespace MinecraftLibrary.Data
         /// <param name="location">Entity location</param>
         /// <param name="uuid">Player uuid</param>
         /// <param name="name">Player name</param>
-        public Entity(int ID, EntityType type, Point3d location, Guid uuid, string name)
+        public Entity(int ID, EntityType type, Location location, Guid uuid, string name)
         {
             this.ID = ID;
             this.Type = type;
@@ -164,7 +165,7 @@ namespace MinecraftLibrary.Data
             this.Equipment = new Dictionary<int, Item>();
             this.Item = new Item(ItemType.Air, 0, null);
         }
-        public Entity(int ID, EntityType type, Point3d location,float yaw,float pitch, Guid uuid, string name)
+        public Entity(int ID, EntityType type, Location location,float yaw,float pitch, Guid uuid, string name)
         {
             this.ID = ID;
             this.Type = type;

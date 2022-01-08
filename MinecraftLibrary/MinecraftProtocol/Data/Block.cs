@@ -1,4 +1,5 @@
-﻿using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
+﻿using MinecraftLibrary.Geometri;
+using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
 using MinecraftLibrary.Palletes;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace MinecraftLibrary.Data
     /// </summary>
     public struct Block
     {
-        public Point3D_I32 Position;
+        public Location Position;
 
         /// <summary>
         /// Get or set global block ID to Material mapping
@@ -96,7 +97,7 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="type">Block type</param>
         /// <param name="metadata">Block metadata</param>
-        public Block(short type, byte metadata,Point3D_I32 pos):this(pos)
+        public Block(short type, byte metadata, Location pos):this(pos)
         {
             if (!Palette.IdHasMetadata)
                 throw new InvalidOperationException("Current global Palette does not support block Metadata");
@@ -109,12 +110,12 @@ namespace MinecraftLibrary.Data
         /// Get a block of the specified type and metadata OR block state
         /// </summary>
         /// <param name="typeAndMeta">Type and metadata packed in the same value OR block state</param>
-        public Block(ushort typeAndMeta,Point3D_I32 pos):this(pos)
+        public Block(ushort typeAndMeta, Location pos):this(pos)
         {
             this.blockIdAndMeta = typeAndMeta;
         }
 
-        public Block(Point3D_I32 position):this()
+        public Block(Location position):this()
         {
             Position = position;
         }

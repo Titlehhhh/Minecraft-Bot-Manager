@@ -1,4 +1,5 @@
 ﻿using MinecraftLibrary.Data;
+using MinecraftLibrary.Geometri;
 using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
 using MinecraftProtocol.IO;
 using MinecraftProtocol.Packets;
@@ -164,7 +165,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
                                     }
 
                                     // We have our block, save the block into the chunk
-                                    chunk[blockX, blockY, blockZ] = new Block(blockId, new Point3D_I32(blockX, blockY, blockZ));
+                                    chunk[blockX, blockY, blockZ] = new Block(blockId, new Location(blockX, blockY, blockZ));
                                 }
                             }
                         }

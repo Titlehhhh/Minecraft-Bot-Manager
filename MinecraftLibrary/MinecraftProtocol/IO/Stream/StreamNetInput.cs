@@ -1,9 +1,10 @@
 ﻿
-using GeometRi;
+
 using MinecraftLibrary;
 using MinecraftLibrary.Data;
 using MinecraftLibrary.Data.Inventory;
 using MinecraftLibrary.Data.Inventory.ItemPalettes;
+using MinecraftLibrary.Geometri;
 using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
 using MinecraftLibrary.Palletes;
 using System;
@@ -134,7 +135,7 @@ namespace MinecraftProtocol.IO.Stream
         /// Read a Location encoded as an ulong field and remove it from the cache
         /// </summary>
         /// <returns>The Location value</returns>
-        public Point3D_I32 ReadNextLocation()
+        public Location ReadNextLocation()
         {
             ulong locEncoded = ReadNextULong();
             int x, y, z;
@@ -156,7 +157,7 @@ namespace MinecraftProtocol.IO.Stream
                 y -= 4096;
             if (z >= 33554432)
                 z -= 67108864;
-            return new Point3D_I32(x, y, z);
+            return new Location(x, y, z);
         }
         
         /// <summary>
@@ -402,7 +403,7 @@ namespace MinecraftProtocol.IO.Stream
             short velocityY = ReadNextShort();
             short velocityZ = ReadNextShort();
 
-            return new Entity(entityID, entityType, new Point3d(entityX, entityY, entityZ), entityYaw, entityPitch);
+            return new Entity(entityID, entityType, new Location(entityX, entityY, entityZ), entityYaw, entityPitch);
         }
 
         /// <summary>

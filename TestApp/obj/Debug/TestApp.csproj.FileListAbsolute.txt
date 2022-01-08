@@ -19,10 +19,8 @@ C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debu
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\TestApp.pdb
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\MinecraftLibrary.dll
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\StarkSoftProxy.dll
-C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\GeometRi.dll
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\MinecraftLibrary.pdb
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\StarkSoftProxy.xml
-C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\bin\Debug\GeometRi.xml
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.AssemblyReference.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\TestApp\obj\Debug\TestApp.csproj.CopyComplete

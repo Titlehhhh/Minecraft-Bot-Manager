@@ -1,4 +1,5 @@
-﻿using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
+﻿using MinecraftLibrary.Geometri;
+using MinecraftLibrary.MinecraftProtocol.Data.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,7 @@ namespace MinecraftLibrary.Data
                 if (chunk != null)
                     return chunk.GetBlock(location);
             }
-            return new Block(0,new Point3D_I32(0)); //Air
+            return new Block(0,new Location(0)); //Air
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using MinecraftLibrary.Data;
 using MinecraftLibrary.Data.Inventory;
 using MinecraftLibrary.Data.Inventory.ItemPalettes;
+using MinecraftLibrary.Geometri;
 using MinecraftProtocol.IO;
 using System;
 using System.Collections.Generic;

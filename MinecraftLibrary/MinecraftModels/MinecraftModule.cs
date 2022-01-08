@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using MinecraftLibrary.Interfaces;
-using GeometRi;
+using MinecraftLibrary.Geometri;
 
 namespace MinecraftLibrary.MinecraftModels
 {
@@ -98,7 +98,7 @@ namespace MinecraftLibrary.MinecraftModels
         public virtual void OnEntityHealth(Entity entity, float health) { }
         public virtual void OnEntityMetadata(Entity entity, Dictionary<int, object> metadata) { }
         public virtual void OnPlayerStatus(byte statusId) { }
-        public virtual void OnPositionRotation(Point3d pos, float yaw,float pitch) { }
+        public virtual void OnPositionRotation(Location pos, float yaw,float pitch) { }
 
         public void SendText(string msg)
         {
@@ -108,11 +108,11 @@ namespace MinecraftLibrary.MinecraftModels
         {
             MainBot.LookHead(yaw, pitch);
         }
-        public void LookHead(Point3d pos)
+        public void LookHead(Vector3 pos)
         {
             MainBot.LookHead(pos);
         }
-        public void LookHead(Vector3d vector)
+        public void LookHead(Location vector)
         {
             mainBot.LookHead(vector);
 

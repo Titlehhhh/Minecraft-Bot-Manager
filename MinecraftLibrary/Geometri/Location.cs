@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MinecraftLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MinecraftLibrary.Data
+namespace MinecraftLibrary.Geometri
 {
     /// <summary>
     /// Represents a location into a Minecraft world
@@ -44,6 +45,10 @@ namespace MinecraftLibrary.Data
             X = x;
             Y = y;
             Z = z;
+        }
+        public Location(double value)
+        {
+            X = Y = Z = value;
         }
 
         /// <summary>
@@ -222,6 +227,15 @@ namespace MinecraftLibrary.Data
                 loc1.X + loc2.X,
                 loc1.Y + loc2.Y,
                 loc1.Z + loc2.Z
+            );
+        }
+        public static Location operator +(Location loc1, Vector3 vector)
+        {
+            return new Location
+            (
+                loc1.X + vector.X,
+                loc1.Y + vector.Y,
+                loc1.Z + vector.Z
             );
         }
 
