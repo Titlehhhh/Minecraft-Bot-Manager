@@ -66,49 +66,56 @@ namespace MinecraftLibrary
             get => host;
             set
             {
-                if (!socket.IsConnected())
-                    host = value;
+
+                host = value;
             }
         }
         public int Port
         {
             get => port; set
             {
-                if (!socket.IsConnected())
-                    port = value;
+
+                port = value;
             }
         }
         public string Nickname
         {
             get => nickname; set
             {
-                if (!socket.IsConnected())
-                    nickname = value;
+
+                nickname = value;
             }
         }
         public int ProtocolVersion
         {
             get => protocolVersion; set
             {
-                if (!socket.IsConnected())
-                    protocolVersion = value;
+
+                protocolVersion = value;
             }
         }
-        public string ProxyHost { get => proxyHost; set { if (!socket.IsConnected()) proxyHost = value; } }
+        public string ProxyHost
+        {
+            get => proxyHost;
+            set
+            {
+                proxyHost = value;
+            }
+        }
         public int ProxyPort
         {
             get => proxyPort; set
             {
-                if (!socket.IsConnected())
-                    proxyPort = value;
+
+                proxyPort = value;
             }
         }
         public ProxyType PrxyType
         {
             get => prxyType; set
             {
-                if (!socket.IsConnected())
-                    prxyType = value;
+
+                prxyType = value;
             }
         }
 
@@ -128,7 +135,9 @@ namespace MinecraftLibrary
 
         public event ReadPacket ReadPacketChanged;
 
-        private TcpClient tcpClient;
+        public event Action UpdateChanged;
+
+        private TcpClient tcpClient = new TcpClient();
 
         private PacketPallete packetPallete;
 
@@ -141,6 +150,7 @@ namespace MinecraftLibrary
             Port = port;
             Nickname = username;
             ProtocolVersion = version;
+
         }
         public TcpClientSession()
         {
@@ -160,28 +170,20 @@ namespace MinecraftLibrary
         }
         public bool Connect()
         {
+            Disconnect();
             Disconect = false;
-            if (socket != null)
-            {
-                if (socket.IsConnected())
-                {
-                    return false;
-                }
-                else
-                {
-                    tcpClient.Dispose();
-                }
-            }
+
             try
             {
                 need = true;
 
                 if (PrxyType == ProxyType.None)
                 {
-                    tcpClient = new TcpClient();
+                    tcpClient = new TcpClient(Host, Port);
                     tcpClient.ReceiveBufferSize = 1024 * 1024;
                     tcpClient.ReceiveTimeout = 30000;
-                    tcpClient.Connect(Host, Port);
+                    socket = new SocketWrapper(tcpClient);
+
                     ConnectedChanged?.Invoke();
                 }
                 else
@@ -189,15 +191,16 @@ namespace MinecraftLibrary
                     Debug.WriteLine($"StartProxy: {ProxyHost} {ProxyPort} {PrxyType}");
                     ProxyClientFactory factory = new ProxyClientFactory();
                     tcpClient = factory.CreateProxyClient(PrxyType, ProxyHost, ProxyPort).CreateConnection(Host, Port);
-
+                    socket = new SocketWrapper(tcpClient);
                 }
+
 
                 if (ProtocolVersion == MinecraftConstans.MC1122Version)
                     packetPallete = new Packets1_12_2();
                 else if (ProtocolVersion == MinecraftConstans.MC1165Version)
                     packetPallete = new Packets1_16_5();
 
-                socket = new SocketWrapper(tcpClient);
+
 
 
                 SetSubProtocol = SubProtocol.HANDSHAKE;
@@ -243,6 +246,10 @@ namespace MinecraftLibrary
                         if (!Disconect)
                             DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.LoginRejected, netInput.ReadNextString());
                         return false;
+                    } else if (packet.Item1 == 4)
+                    {
+                        StreamNetInput netInput = new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion);
+                        SendLoginPluginResponse(netInput.ReadNextVarInt(), false, new byte[0]);
                     }
 
                 }
@@ -274,13 +281,11 @@ namespace MinecraftLibrary
             {
                 Disconect = true;
                 need = false;
-                tcpClient?.Close();
+                socket?.Disconnect();
                 tcpClient?.Dispose();
             }
             catch
             {
-
-                tcpClient?.Dispose();
 
             }
         }
@@ -299,50 +304,70 @@ namespace MinecraftLibrary
         }
         public void StartUpdate()
         {
-            Task.Run(() =>
+            new Thread(() =>
+           {
+               try
+               {
+                   Stopwatch stopwatch = new Stopwatch();
+                   while (need)
+                   {
+                       stopwatch.Start();
+
+                       ReadUpdate();
+
+
+                       stopwatch.Stop();
+                       int el = stopwatch.Elapsed.Milliseconds;
+                       stopwatch.Reset();
+                       if (el < 50)
+                           Thread.Sleep(50 - el);
+
+                   }
+               }
+               catch (Exception e)
+               {
+                   Debug.WriteLine(e);
+                   if (!Disconect)
+                       DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.ToString());
+
+               }
+           })
+            { IsBackground =true}.Start();
+        }
+
+        private void ReadUpdate()
+        {
+            UpdateChanged?.Invoke();
+            if (Disconect)
+                return;
+            while (socket.HasDataAvailable())
             {
+
+                Tuple<int, byte[]> packet = ReadNextPacket();
+
+                ReadPacketChanged?.Invoke(this, packet.Item1, packet.Item2);
                 try
                 {
+                    ServerPacket pac = GetPacketIn(packet.Item1);
 
-                    while (need)
+                    pac.Read(new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion), ProtocolVersion);
+                    if (pac.GetType() == typeof(ServerDisconnectPacket))
                     {
-                        if (Disconect)
-                            return;
-
-                        Tuple<int, byte[]> packet = ReadNextPacket();
-                        ReadPacketChanged?.Invoke(this, packet.Item1, packet.Item2);
-                        try
-                        {
-                            ServerPacket pac = GetPacketIn(packet.Item1);
-
-                            pac.Read(new StreamNetInput(new Queue<byte>(packet.Item2), ProtocolVersion), ProtocolVersion);
-                            if (pac.GetType() == typeof(ServerDisconnectPacket))
-                            {
-                                var dis = pac as ServerDisconnectPacket;
-                                if (!Disconect)
-                                    DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.InGameKick, dis.DisconnectMessage);
-                                Disconnect();
-                                break;
-                            }
-                            PacketReceiveChanged?.Invoke(pac);
-                        }
-                        catch (Exception packetRead)
-                        {
-                            Console.WriteLine("При считывании пакета произошло исключение:\n" + packetRead);
-                        }
-
-
+                        var dis = pac as ServerDisconnectPacket;
+                        if (!Disconect)
+                            DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.InGameKick, dis.DisconnectMessage);
+                        Disconnect();
+                        return;
                     }
+                    PacketReceiveChanged?.Invoke(pac);
                 }
-                catch (Exception e)
+                catch (Exception packetRead)
                 {
-                    Debug.WriteLine(e);
-                    if (!Disconect)
-                        DisconnectChanged?.Invoke(MinecraftProtocol.DisconnectReason.ConnectionLost, e.ToString());
-
+                    Console.WriteLine("При считывании пакета произошло исключение:\n" + packetRead);
                 }
-            });
+            }
         }
+
         public void SendPacket(ClientPacket packet)
         {
             if (socket != null)
@@ -483,7 +508,7 @@ namespace MinecraftLibrary
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Disconnect();
         }
         #endregion
     }

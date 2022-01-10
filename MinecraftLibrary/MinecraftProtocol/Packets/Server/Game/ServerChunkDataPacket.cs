@@ -165,7 +165,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
                                     }
 
                                     // We have our block, save the block into the chunk
-                                    chunk[blockX, blockY, blockZ] = new Block(blockId, new Location(blockX, blockY, blockZ));
+                                    chunk[blockX, blockY, blockZ] = new Block(blockId, new Point3(blockX, blockY, blockZ));
                                 }
                             }
                         }

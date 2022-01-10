@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Geometri\BlockFace.cs" />
     <Compile Include="Geometri\BoundingBox.cs" />
+    <Compile Include="Geometri\BoundingCylinder.cs" />
     <Compile Include="Geometri\ContainmentType.cs" />
     <Compile Include="Geometri\Coordinates2D.cs" />
     <Compile Include="Geometri\Coordinates3D.cs" />
@@ -153,7 +154,7 @@
     <Compile Include="MinecraftProtocol\Data\Inventory\VillagerInfo.cs" />
     <Compile Include="MinecraftProtocol\Data\Inventory\VillagerTrade.cs" />
     <Compile Include="MinecraftProtocol\Data\Inventory\WindowActionType.cs" />
-    <Compile Include="Geometri\Location.cs" />
+    <Compile Include="Geometri\Point3.cs" />
     <Compile Include="MinecraftProtocol\Data\Material.cs" />
     <Compile Include="MinecraftProtocol\Data\Material2Tool.cs" />
     <Compile Include="MinecraftProtocol\Data\MaterialExtensions.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientUseItemPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientVehicleMovePacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Client\Game\ClientWindowConfirmationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Client\Login\ClientPluginResponsePacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Client\Login\EncryptionResponsePacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Client\Login\LoginStartPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\HandShake\HandShakePacket.cs" />
@@ -346,6 +348,7 @@
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWorldBorderPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Login\EncryptionRequestPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Login\LoginSuccesPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Login\ServerPluginRequestPacket.cs" />
     <Compile Include="MinecraftProtocol\PalletesExtensions.cs" />
     <Compile Include="MinecraftProtocol\Pallets\BlockPalette.cs" />
     <Compile Include="MinecraftProtocol\Pallets\EntityPalette.cs" />
@@ -363,6 +366,7 @@
     <Compile Include="MinecraftProtocol\SessionListener.cs" />
     <Compile Include="MinecraftProtocol\Session\SubProtocol.cs" />
     <Compile Include="MinecraftProtocol\Session\TcpClientSession.cs" />
+    <Compile Include="Modules\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

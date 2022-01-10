@@ -13,7 +13,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
         public Guid UUID { get; private set; }
         public float Yaw { get; private set; }
         public float Pitch { get; private set; }
-        public Location Position { get; private set; }
+        public Point3 Position { get; private set; }
         public void Read(NetInput input, int version)
         {
             EntityID = input.ReadNextVarInt();
@@ -24,7 +24,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
             Yaw = input.ReadNextByte() * 360 / 256f;
             Pitch = input.ReadNextByte() * 360 / 256f;
 
-            Position = new Location(X, Y, Z);
+            Position = new Point3(X, Y, Z);
         }
     }
 

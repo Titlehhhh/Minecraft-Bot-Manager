@@ -56,7 +56,7 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="location">Location, a modulo will be applied</param>
         /// <returns>The block</returns>
-        public Block GetBlock(Location location)
+        public Block GetBlock(Point3 location)
         {
             return this[location.ChunkBlockX, location.ChunkBlockY, location.ChunkBlockZ];
         }

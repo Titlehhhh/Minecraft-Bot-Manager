@@ -96,7 +96,7 @@ namespace MinecraftProtocol.IO
         /// Z: -33,554,432 to +33,554,431
         /// </remarks>
         /// <returns>Location representation as ulong</returns>
-        void WriteLocation(Location location);
+        void WriteLocation(Point3 location);
 
         /// <summary>
         /// Write a byte array representing the given item as an item slot

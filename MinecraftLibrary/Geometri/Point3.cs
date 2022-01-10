@@ -9,13 +9,13 @@ namespace MinecraftLibrary.Geometri
     /// <summary>
     /// Represents a location into a Minecraft world
     /// </summary>
-    public struct Location
+    public struct Point3
     {
         /// <summary>
         /// The X Coordinate
         /// </summary>
         public double X;
-        
+
         /// <summary>
         /// The Y Coordinate (vertical)
         /// </summary>
@@ -29,24 +29,24 @@ namespace MinecraftLibrary.Geometri
         /// <summary>
         /// Get location with zeroed coordinates
         /// </summary>
-        public static Location Zero
+        public static Point3 Zero
         {
             get
             {
-                return new Location(0, 0, 0);
+                return new Point3(0, 0, 0);
             }
         }
 
         /// <summary>
         /// Create a new location
         /// </summary>
-        public Location(double x, double y, double z)
+        public Point3(double x, double y, double z)
         {
             X = x;
             Y = y;
             Z = z;
         }
-        public Location(double value)
+        public Point3(double value)
         {
             X = Y = Z = value;
         }
@@ -59,7 +59,7 @@ namespace MinecraftLibrary.Geometri
         /// <param name="blockX">Location of the block into the chunk</param>
         /// <param name="blockY">Location of the block into the world</param>
         /// <param name="blockZ">Location of the block into the chunk</param>
-        public Location(int chunkX, int chunkZ, int blockX, int blockY, int blockZ)
+        public Point3(int chunkX, int chunkZ, int blockX, int blockY, int blockZ)
         {
             X = chunkX * Chunk.SizeX + blockX;
             Y = blockY;
@@ -106,7 +106,8 @@ namespace MinecraftLibrary.Geometri
         {
             get
             {
-                return ((int)Math.Floor(X) % Chunk.SizeX + Chunk.SizeX) % Chunk.SizeX;
+                int ceil = (int)Y;
+                return ceil & 15;
             }
         }
 
@@ -117,7 +118,8 @@ namespace MinecraftLibrary.Geometri
         {
             get
             {
-                return ((int)Math.Floor(Y) % Chunk.SizeY + Chunk.SizeY) % Chunk.SizeY;
+                int ceil = (int)Y;
+                return ceil & 15;
             }
         }
 
@@ -128,7 +130,8 @@ namespace MinecraftLibrary.Geometri
         {
             get
             {
-                return ((int)Math.Floor(Z) % Chunk.SizeZ + Chunk.SizeZ) % Chunk.SizeZ;
+                int ceil = (int)Y;
+                return ceil & 15;
             }
         }
 
@@ -137,7 +140,7 @@ namespace MinecraftLibrary.Geometri
         /// </summary>
         /// <param name="location">Other location for computing distance</param>
         /// <returns>Distance to the specified location, without using a square root</returns>
-        public double DistanceSquared(Location location)
+        public double DistanceSquared(Point3 location)
         {
             return ((X - location.X) * (X - location.X))
                  + ((Y - location.Y) * (Y - location.Y))
@@ -149,7 +152,7 @@ namespace MinecraftLibrary.Geometri
         /// </summary>
         /// <param name="location">Other location for computing distance</param>
         /// <returns>Distance to the specified location, with square root so lower performances</returns>
-        public double Distance(Location location)
+        public double Distance(Point3 location)
         {
             return Math.Sqrt(DistanceSquared(location));
         }
@@ -158,9 +161,9 @@ namespace MinecraftLibrary.Geometri
         /// Considering the current location as Feet location, calculate Eyes location
         /// </summary>
         /// <returns>Player Eyes location</returns>
-        public Location EyesLocation()
+        public Point3 EyesLocation()
         {
-            return this + new Location(0, 1.62, 0);
+            return this + new Point3(0, 1.62, 0);
         }
 
         /// <summary>
@@ -172,11 +175,11 @@ namespace MinecraftLibrary.Geometri
         {
             if (obj == null)
                 return false;
-            if (obj is Location)
+            if (obj is Point3)
             {
-                return ((int)this.X) == ((int)((Location)obj).X)
-                    && ((int)this.Y) == ((int)((Location)obj).Y)
-                    && ((int)this.Z) == ((int)((Location)obj).Z);
+                return ((int)this.X) == ((int)((Point3)obj).X)
+                    && ((int)this.Y) == ((int)((Point3)obj).Y)
+                    && ((int)this.Z) == ((int)((Point3)obj).Z);
             }
             return false;
         }
@@ -187,7 +190,7 @@ namespace MinecraftLibrary.Geometri
         /// <param name="loc1">First location to compare</param>
         /// <param name="loc2">Second location to compare</param>
         /// <returns>TRUE if the locations are equals</returns>
-        public static bool operator ==(Location loc1, Location loc2)
+        public static bool operator ==(Point3 loc1, Point3 loc2)
         {
             if (loc1 == null && loc2 == null)
                 return true;
@@ -202,7 +205,7 @@ namespace MinecraftLibrary.Geometri
         /// <param name="loc1">First location to compare</param>
         /// <param name="loc2">Second location to compare</param>
         /// <returns>TRUE if the locations are equals</returns>
-        public static bool operator !=(Location loc1, Location loc2)
+        public static bool operator !=(Point3 loc1, Point3 loc2)
         {
             if (loc1 == null && loc2 == null)
                 return true;
@@ -220,22 +223,31 @@ namespace MinecraftLibrary.Geometri
         /// <param name="loc1">First location to sum</param>
         /// <param name="loc2">Second location to sum</param>
         /// <returns>Sum of the two locations</returns>
-        public static Location operator +(Location loc1, Location loc2)
+        public static Point3 operator +(Point3 loc1, Point3 loc2)
         {
-            return new Location
+            return new Point3
             (
                 loc1.X + loc2.X,
                 loc1.Y + loc2.Y,
                 loc1.Z + loc2.Z
             );
         }
-        public static Location operator +(Location loc1, Vector3 vector)
+        public static Point3 operator +(Point3 loc1, Vector3 vector)
         {
-            return new Location
+            return new Point3
             (
                 loc1.X + vector.X,
                 loc1.Y + vector.Y,
                 loc1.Z + vector.Z
+            );
+        }
+        public static Point3 operator -(Point3 loc1, Vector3 vector)
+        {
+            return new Point3
+            (
+                loc1.X - vector.X,
+                loc1.Y - vector.Y,
+                loc1.Z - vector.Z
             );
         }
 
@@ -248,9 +260,9 @@ namespace MinecraftLibrary.Geometri
         /// <param name="loc1">First location</param>
         /// <param name="loc2">Location to substract to the first one</param>
         /// <returns>Sum of the two locations</returns>
-        public static Location operator -(Location loc1, Location loc2)
+        public static Point3 operator -(Point3 loc1, Point3 loc2)
         {
-            return new Location
+            return new Point3
             (
                 loc1.X - loc2.X,
                 loc1.Y - loc2.Y,
@@ -264,9 +276,9 @@ namespace MinecraftLibrary.Geometri
         /// <param name="loc">Location to multiply</param>
         /// <param name="val">Scalar value</param>
         /// <returns>Product of the location and the scalar value</returns>
-        public static Location operator *(Location loc, double val)
+        public static Point3 operator *(Point3 loc, double val)
         {
-            return new Location
+            return new Point3
             (
                 loc.X * val,
                 loc.Y * val,
@@ -280,9 +292,9 @@ namespace MinecraftLibrary.Geometri
         /// <param name="loc">Location to divide</param>
         /// <param name="val">Scalar value</param>
         /// <returns>Result of the division</returns>
-        public static Location operator /(Location loc, double val)
+        public static Point3 operator /(Point3 loc, double val)
         {
-            return new Location
+            return new Point3
             (
                 loc.X / val,
                 loc.Y / val,

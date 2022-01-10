@@ -5,19 +5,13 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
 {
     public class ClientPlayerRotationPacket : ClientPlayerMovementPacket
     {
-        public ClientPlayerRotationPacket()
-        {
-            rot = true;
-        }
-
-        public ClientPlayerRotationPacket(float yaw, float pitch, bool onGround)
+        public ClientPlayerRotationPacket(float yaw,float pitch, bool isGround)
         {
             rot = true;
             Yaw = yaw;
             Pitch = pitch;
-            OnGround = onGround;
+            OnGround = isGround;
         }
-
     }
 
 

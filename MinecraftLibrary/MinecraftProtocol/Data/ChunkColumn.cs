@@ -44,16 +44,20 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="location">Location, a modulo will be applied</param>
         /// <returns>The chunk, or null if not loaded</returns>
-        public Chunk GetChunk(Location location)
+        public Chunk GetChunk(Point3 location)
         {
-            try
+            if (location.Y >= 0 && location.Y <= 255)
             {
-                return this[location.ChunkY];
+                int c = (int)location.Y;
+                int b = c >> 4;
+                return chunks[b];
+
             }
-            catch (IndexOutOfRangeException)
+            else
             {
                 return null;
             }
+
         }
     }
 }

@@ -30,6 +30,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
             }
             output.WriteBool(this.OnGround);
         }
+
     }
 
 

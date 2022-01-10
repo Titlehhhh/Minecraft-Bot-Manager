@@ -10,7 +10,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
     public class ClientPlayerActionPacket : ClientPacket
     {
         public PlayerAction Action { get; set; }
-        public Location Position { get; set; }
+        public Point3 Position { get; set; }
         public Direction Face { get; set; }
         public void Write(NetOutput output, int version)
         {
@@ -20,7 +20,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
             
         }
 
-        public ClientPlayerActionPacket(PlayerAction action, Location position, Direction face)
+        public ClientPlayerActionPacket(PlayerAction action, Point3 position, Direction face)
         {
             Action = action;
             Position = position;

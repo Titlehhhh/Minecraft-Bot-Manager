@@ -9,15 +9,15 @@ namespace MinecraftLibrary.Data
     /// </summary>
     public class Row
     {
-        public readonly List<Location> BlocksInRow;
+        public readonly List<Point3> BlocksInRow;
 
         /// <summary>
         /// Initialize a row of blocks
         /// </summary>
         /// <param name="bIL"> Enter a list of blocks </param>
-        public Row(List<Location> blocksInRow = null)
+        public Row(List<Point3> blocksInRow = null)
         {
-            BlocksInRow = blocksInRow ?? new List<Location>();
+            BlocksInRow = blocksInRow ?? new List<Point3>();
         }
     }
 
@@ -83,13 +83,13 @@ namespace MinecraftLibrary.Data
         /// <param name="startBlock">Start Location</param>
         /// <param name="stopBlock">Stop Location</param>
         /// <returns>A cube of blocks consisting of Layers, Rows and single blocks</returns>
-        public static Cube GetBlocksAsCube(World currentWorld, Location startBlock, Location stopBlock, List<Material> materialList = null, bool isBlacklist = true)
+        public static Cube GetBlocksAsCube(World currentWorld, Point3 startBlock, Point3 stopBlock, List<Material> materialList = null, bool isBlacklist = true)
         {
             // Initialize cube to mine.
             Cube cubeToMine = new Cube();
 
             // Get the distance between start and finish as Vector.
-            Location vectorToStopPosition = stopBlock - startBlock;
+            Point3 vectorToStopPosition = stopBlock - startBlock;
 
             // Initialize Iteration process
             int[] iterateX = GetNumbersFromTo(0, Convert.ToInt32(Math.Round(vectorToStopPosition.X))).ToArray();
@@ -107,7 +107,7 @@ namespace MinecraftLibrary.Data
                     {
                         if (materialList != null && materialList.Count > 0)
                         {
-                            Location tempLocation = new Location(Math.Round(startBlock.X + x), Math.Round(startBlock.Y + y), Math.Round(startBlock.Z + z));
+                            Point3 tempLocation = new Point3(Math.Round(startBlock.X + x), Math.Round(startBlock.Y + y), Math.Round(startBlock.Z + z));
                             Material tempLocationMaterial = currentWorld.GetBlock(tempLocation).Type;
 
                             // XOR
@@ -120,7 +120,7 @@ namespace MinecraftLibrary.Data
                         }
                         else
                         {
-                            tempRow.BlocksInRow.Add(new Location(Math.Round(startBlock.X + x), Math.Round(startBlock.Y + y), Math.Round(startBlock.Z + z)));
+                            tempRow.BlocksInRow.Add(new Point3(Math.Round(startBlock.X + x), Math.Round(startBlock.Y + y), Math.Round(startBlock.Z + z)));
                         }
                     }
                     if (tempRow.BlocksInRow.Count > 0)

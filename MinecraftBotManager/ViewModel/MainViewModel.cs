@@ -99,7 +99,7 @@ namespace MinecraftBotManager.ViewModel
         public MainViewModel(IDataService dataService, IModulesService modulesService, IDialogService dialogService)
         {
 
-           
+            
 
             this.modulesService = modulesService;
             this.dialogService = dialogService;

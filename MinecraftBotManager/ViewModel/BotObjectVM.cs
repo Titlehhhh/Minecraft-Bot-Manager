@@ -174,7 +174,10 @@ namespace MinecraftBotManager.ViewModel
             get => startcommand ?? (startcommand = new RelayCommand<object>(p =>
             {
                 if (StatusLaunched == RunningStatus.None)
+                {
+                    
                     MainModel.StartClient();
+                }
                 else
                     MainModel.Disconnect();
             }));

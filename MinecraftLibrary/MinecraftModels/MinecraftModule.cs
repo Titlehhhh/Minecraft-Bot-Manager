@@ -62,10 +62,11 @@ namespace MinecraftLibrary.MinecraftModels
                 RaisePropertyChanged();
             }
         }
+        public virtual void TickUpdate() { }
         public virtual void ReadPacket(int id, byte[] data) { }
         public virtual void WorldUpdate(int chunkX,int chunkZ) { }
         public virtual void WorldUpdate(Block block) { }
-        public virtual void OnBlockBreakAnimation(Entity entity, Location location, byte stage) { }
+        public virtual void OnBlockBreakAnimation(Entity entity, Point3 location, byte stage) { }
         public virtual void OnEntityAnimation(Entity entity, byte animation) { }
         public virtual void ServerChat(string json) { }
         public virtual void ServerChat(string message, string json) { }
@@ -76,7 +77,7 @@ namespace MinecraftLibrary.MinecraftModels
         public virtual void OnEntityDespawn(Entity entity) { }
         public virtual void OnHeldItemChange(byte slot) { }
         public virtual void OnHealthUpdate(float health, int food) { }
-        public virtual void OnExplosion(Location explode, float strength, int recordcount) { }
+        public virtual void OnExplosion(Point3 explode, float strength, int recordcount) { }
         public virtual void OnSetExperience(float Experiencebar, int Level, int TotalExperience) { }
         public virtual void OnGamemodeUpdate(string playername, Guid uuid, int gamemode) { }
         public virtual void OnLatencyUpdate(string playername, Guid uuid, int latency) { }
@@ -98,7 +99,7 @@ namespace MinecraftLibrary.MinecraftModels
         public virtual void OnEntityHealth(Entity entity, float health) { }
         public virtual void OnEntityMetadata(Entity entity, Dictionary<int, object> metadata) { }
         public virtual void OnPlayerStatus(byte statusId) { }
-        public virtual void OnPositionRotation(Location pos, float yaw,float pitch) { }
+        public virtual void OnPositionRotation(Point3 pos, float yaw,float pitch) { }
 
         public void SendText(string msg)
         {
@@ -112,7 +113,7 @@ namespace MinecraftLibrary.MinecraftModels
         {
             MainBot.LookHead(pos);
         }
-        public void LookHead(Location vector)
+        public void LookHead(Point3 vector)
         {
             mainBot.LookHead(vector);
 

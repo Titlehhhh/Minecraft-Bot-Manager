@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Login
 {
-    public class Class1
+    class ClientPluginResponsePacket
     {
     }
 }

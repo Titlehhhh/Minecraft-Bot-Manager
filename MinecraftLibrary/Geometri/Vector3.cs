@@ -35,7 +35,7 @@ namespace MinecraftLibrary.Geometri
         {
             X = Y = Z = value;
         }
-        public Vector3 (Location location1,Location location2)
+        public Vector3 (Point3 location1,Point3 location2)
         {
             X = location2.X - location1.X;
             Y = location2.Y - location1.Y;

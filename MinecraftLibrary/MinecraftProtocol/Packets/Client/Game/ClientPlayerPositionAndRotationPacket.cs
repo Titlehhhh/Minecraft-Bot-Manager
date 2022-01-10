@@ -5,6 +5,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
 {
     public class ClientPlayerPositionAndRotationPacket : ClientPlayerMovementPacket
     {
+        
         public ClientPlayerPositionAndRotationPacket(double x, double y, double z, float yaw, float pitch, bool onGround)
         {
             pos = true;
@@ -18,10 +19,10 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Client.Game
         }
         public ClientPlayerPositionAndRotationPacket()
         {
-
+            pos = true;
+            rot = true;
         }
         
-
     }
 
 

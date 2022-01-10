@@ -32,7 +32,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
                     int blockX = (sectionX * 16) + localX;
                     int blockY = (sectionY * 16) + localY;
                     int blockZ = (sectionZ * 16) + localZ;
-                    var l = new Location(blockX, blockY, blockZ);
+                    var l = new Point3(blockX, blockY, blockZ);
                     Block b = new Block((ushort)blockId,l);
                     Blocks.Add(b);
                 }
@@ -50,7 +50,7 @@ namespace MinecraftLibrary.MinecraftProtocol.Packets.Server.Game
                     int x = (chunkX >> 4) + (pos >> 12 & 15);
                     int y = pos & 255;
                     int z = (chunkZ << 4) + (pos >> 8 & 15);
-                    Block block = new Block(blockIdMeta, new Location(x, y, z));
+                    Block block = new Block(blockIdMeta, new Point3(x, y, z));
                     Blocks.Add(block);
                 }
             }

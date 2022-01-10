@@ -344,7 +344,7 @@ namespace MinecraftLibrary.MinecraftProtocol.IO.Stream
         /// Z: -33,554,432 to +33,554,431
         /// </remarks>
         /// <returns>Location representation as ulong</returns>
-        public void WriteLocation(Location location)
+        public void WriteLocation(Point3 location)
         {
             byte[] locationBytes;
             if (protocolversion >= MinecraftConstans.MC114Version)

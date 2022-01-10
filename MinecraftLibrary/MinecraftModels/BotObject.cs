@@ -25,9 +25,13 @@ namespace MinecraftLibrary.MinecraftModels
     [Serializable]
     public class BotObject : IDeserializationCallback, INotifyPropertyChanged
     {
+        [NonSerialized]
+        public float? _yaw = null;
+        [NonSerialized]
+        public float? _pitch = null;
 
-
-
+        [NonSerialized]
+        public object LocationLock = new object();
         public IMainViewModelController MainViewModelController
         {
             get => modelController;
@@ -88,7 +92,7 @@ namespace MinecraftLibrary.MinecraftModels
         private void ModulesTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
 
-            
+
         }
 
         #endregion
@@ -102,7 +106,7 @@ namespace MinecraftLibrary.MinecraftModels
             set
             {
                 nickname = value;
-                client.Nickname = nickname;
+
             }
         }
         public string Version
@@ -114,7 +118,7 @@ namespace MinecraftLibrary.MinecraftModels
             set
             {
                 version = value;
-                
+
             }
         }
         public string Host
@@ -122,8 +126,8 @@ namespace MinecraftLibrary.MinecraftModels
             get { return host; }
             set
             {
-                client.Host=host = value;
-                
+                host = value;
+
 
             }
         }
@@ -132,7 +136,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => port;
             set
             {
-               client.Port= port = value;
+                port = value;
 
             }
         }
@@ -141,7 +145,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => proxyHost;
             set
             {
-               client.ProxyHost= proxyHost = value;
+                proxyHost = value;
             }
         }
         public int ProxyPort
@@ -149,7 +153,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => proxyPort;
             set
             {
-               client.ProxyPort= proxyPort = value;
+                client.ProxyPort = proxyPort = value;
 
             }
         }
@@ -158,9 +162,7 @@ namespace MinecraftLibrary.MinecraftModels
             get => proxyType;
             set
             {
-               client.PrxyType= proxyType = value;
-
-
+                proxyType = value;
             }
         }
 
@@ -175,9 +177,9 @@ namespace MinecraftLibrary.MinecraftModels
             }
         }
         [NonSerialized]
-        private Location position = new Location();
+        private Point3 position = new Point3();
 
-        public Location Position
+        public Point3 Position
         {
             get { return position; ; }
             set
@@ -194,6 +196,7 @@ namespace MinecraftLibrary.MinecraftModels
             get { return yaw; }
             set
             {
+
                 yaw = value;
                 RaisePropertyChanged();
             }
@@ -304,9 +307,14 @@ namespace MinecraftLibrary.MinecraftModels
         {
             ModulesTypes.CollectionChanged += ModulesTypes_CollectionChanged;
             ChatQueue = new ObservableCollection<ChatMessage>();
-            client = new TcpClientSession();
-            position = new Location();
-            
+            position = new Point3();
+
+            Modules.Clear();
+            ModulesTypes.Clear();
+
+            AddModule(typeof(MinecraftLibrary.Modules.PhysicEngineModule));
+
+
         }
 
         public BotObject(string nickname, string version, string host, ushort port, string proxyHost, int proxyPort)
@@ -348,8 +356,9 @@ namespace MinecraftLibrary.MinecraftModels
         /// </summary>        
         public void StartClient()
         {
+            LocationLock = new object();
             System.Diagnostics.Debug.WriteLine("StartBot: " + Nickname);
-            Position = Location.Zero;
+            Position = Point3.Zero;
             world = new World();
             ProtocolVersion = MCVer2ProtocolVersion(version);
             System.Diagnostics.Debug.WriteLine("Version: " + version);
@@ -361,7 +370,7 @@ namespace MinecraftLibrary.MinecraftModels
                 StatusLaunched = RunningStatus.None;
                 return;
             }
-            client.ProtocolVersion = ProtocolVersion;
+
             Block.Palette = PalletesExtensions.GetBlockPalette(ProtocolVersion);
 
             if (StatusLaunched == RunningStatus.None)
@@ -371,7 +380,8 @@ namespace MinecraftLibrary.MinecraftModels
                     {
                         StatusLaunched = RunningStatus.Initialization;
 
-                        //client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, proxyType, Nickname, ProtocolVersion);
+                        client = new TcpClientSession(Host, Port, ProxyHost, ProxyPort, proxyType, Nickname, ProtocolVersion);
+                        client.ProtocolVersion = ProtocolVersion;
                         client.PacketSentChanged += (e) =>
                         {
 
@@ -385,8 +395,15 @@ namespace MinecraftLibrary.MinecraftModels
                             Console.WriteLine("Connected!");
                         };
 
+                        client.UpdateChanged += () =>
+                        {
+                            CallModule(m => m.TickUpdate());
+                        };
+
                         client.PacketReceiveChanged += (p) =>
                         {
+                            //Task.Run(() => System.Diagnostics.Debug.WriteLine(p.GetType().Name));
+
                             if (p.GetType() == typeof(ServerKeepAlivePacket))
                             {
                                 client.SendPacket(new ClientKeepAlivePacket((p as ServerKeepAlivePacket).PingId));
@@ -402,14 +419,16 @@ namespace MinecraftLibrary.MinecraftModels
                             }
                             else if (p is ServerChunkDataPacket)
                             {
+
                                 ServerChunkDataPacket packet = p as ServerChunkDataPacket;
                                 world[packet.ColumnX, packet.ColumnZ] = packet.Column;
                                 CallModule(m => m.WorldUpdate(packet.ColumnX, packet.ColumnZ));
+
                             }
                             else if (p is ServerBlockChangePacket)
                             {
                                 ServerBlockChangePacket block = p as ServerBlockChangePacket;
-                                world.SetBlock(new Location(block.Position.X, block.Position.Y, block.Position.Z), block.Block);
+                                world.SetBlock(new Point3(block.Position.X, block.Position.Y, block.Position.Z), block.Block);
                                 CallModule(m => m.WorldUpdate(block.Block));
                             }
                             else if (p is ServerSpawnEntityPacket)
@@ -445,7 +464,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 ServerEntityTeleportPacket teleport = p as ServerEntityTeleportPacket;
 
                                 Entity entity = Entities[teleport.EntityID];
-                                entity.Location = new Location(teleport.X, teleport.Y, teleport.Z);
+                                entity.Location = new Point3(teleport.X, teleport.Y, teleport.Z);
                                 entity.Yaw = teleport.Yaw;
                                 entity.Pitch = teleport.Pitch;
                                 CallModule(m => m.OnEntityMove(entity));
@@ -480,9 +499,14 @@ namespace MinecraftLibrary.MinecraftModels
                                 double x = (pos.LocMask & 1 << 0) != 0 ? Position.X + pos.X : pos.X;
                                 double y = (pos.LocMask & 1 << 1) != 0 ? Position.Y + pos.Y : pos.Y;
                                 double z = (pos.LocMask & 1 << 2) != 0 ? Position.Z + pos.Z : pos.Z;
-                                Position = new Location(x, y, z);
-                                Yaw = pos.Yaw;
-                                Pitch = pos.Pitch;
+                                lock (LocationLock)
+                                {
+                                    Position = new Point3(x, y, z);
+                                    //Yaw = pos.Yaw;
+                                    //Pitch = pos.Pitch;
+                                    _yaw = pos.Yaw;
+                                    _pitch = pos.Pitch;
+                                }
                                 client.SendPacket(new ClientTeleportConfirmPacket(pos.TeleportID));
                                 CallModule(m => m.OnPositionRotation(Position, yaw, pitch));
                             }
@@ -513,12 +537,12 @@ namespace MinecraftLibrary.MinecraftModels
                             else if (p is ServerSpawnExperienceOrbPacket)
                             {
                                 var exp = p as ServerSpawnExperienceOrbPacket;
-                                Entities[exp.ID] = new Entity(exp.ID, EntityType.ExperienceOrb, new Location());
+                                Entities[exp.ID] = new Entity(exp.ID, EntityType.ExperienceOrb, new Point3());
                             }
                             else if (p is ServerSpawnPaintingPacket)
                             {
                                 var paint = p as ServerSpawnPaintingPacket;
-                                Entities[paint.ID] = new Entity(paint.ID, EntityType.Painting, new Location());
+                                Entities[paint.ID] = new Entity(paint.ID, EntityType.Painting, new Point3());
                             }
                             else if (p is ServerPlayerHealthPacket)
                             {
@@ -550,7 +574,7 @@ namespace MinecraftLibrary.MinecraftModels
                         };
                         if (client.Connect())
                         {
-                            
+
                         }
 
 
@@ -568,19 +592,18 @@ namespace MinecraftLibrary.MinecraftModels
 
         private void CallModule(Action<MinecraftModule> action)
         {
-            
+
             foreach (var m in Modules.ToArray())
             {
                 try
                 {
                     action.Invoke(m);
                 }
-                catch
+                catch (Exception e)
                 {
-
+                    Task.Run(() => System.Diagnostics.Debug.WriteLine("ERROROROORORORORO \n" + e));
                 }
             }
-
 
         }
 
@@ -591,22 +614,29 @@ namespace MinecraftLibrary.MinecraftModels
                 client.SendPacket(new ClientRequestPacket(MinecraftProtocol.Data.ClientRequest.RESPAWN));
             }
         }
-        public void UpdatePosition(Location location, bool onground)
+        public void UpdatePosition(Point3 location, bool onground, bool updateProperty = true)
         {
-            Position = new Location(location.X, location.Y, location.Z);
+            if (updateProperty)
+            {
+                Position = new Point3(location.X, location.Y, location.Z);
+            }
             client.SendPacket(new ClientPlayerPositionPacket(location.X, location.Y, location.Z, onground));
         }
-        public void UpdatePosition(Location pos, float yaw, float pitch, bool onground = true)
+        public void UpdatePosition(Point3 pos, float yaw, float pitch, bool onground = true, bool updateProperty = true)
         {
+            if (updateProperty)
+            {
+                Position = pos;
+                Yaw = yaw;
+                Pitch = pitch;
+            }
             client.SendPacket(new ClientPlayerPositionAndRotationPacket(pos.X, pos.Y, pos.Z, yaw, pitch, onground));
-            Position = pos;
-            Yaw = yaw;
-            Pitch = pitch;
+
         }
         public void UpdatePosition(Vector3 vector, bool onground)
         {
             Position += vector;
-            client.SendPacket(new ClientPlayerPositionPacket(Position.X, Position.Y, Position.Z, onground));
+            //client.SendPacket(new ClientPlayerPositionPacket(Position.X, Position.Y, Position.Z, onground));
         }
 
 
@@ -633,8 +663,8 @@ namespace MinecraftLibrary.MinecraftModels
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("Disconnect: "+nickname);
-                client?.Disconnect();
+                System.Diagnostics.Debug.WriteLine("Disconnect: " + nickname);
+                client?.Dispose();
                 StatusLaunched = RunningStatus.None;
                 CallModule(x => x.Stop());
             }
@@ -658,9 +688,9 @@ namespace MinecraftLibrary.MinecraftModels
         {
             Yaw = yaw;
             Pitch = pitch;
-            client.SendPacket(new ClientPlayerRotationPacket(yaw, pitch, true));
+            //client.SendPacket(new ClientPlayerRotationPacket(yaw, pitch, true));
         }
-        public void LookHead(Location pos)
+        public void LookHead(Point3 pos)
         {
             if (!pos.Equals(Position))
             {

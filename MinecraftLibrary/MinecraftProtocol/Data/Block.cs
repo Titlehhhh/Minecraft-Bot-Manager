@@ -13,7 +13,7 @@ namespace MinecraftLibrary.Data
     /// </summary>
     public struct Block
     {
-        public Location Position;
+        public Point3 Position;
 
         /// <summary>
         /// Get or set global block ID to Material mapping
@@ -97,7 +97,7 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="type">Block type</param>
         /// <param name="metadata">Block metadata</param>
-        public Block(short type, byte metadata, Location pos):this(pos)
+        public Block(short type, byte metadata, Point3 pos):this(pos)
         {
             if (!Palette.IdHasMetadata)
                 throw new InvalidOperationException("Current global Palette does not support block Metadata");
@@ -110,12 +110,12 @@ namespace MinecraftLibrary.Data
         /// Get a block of the specified type and metadata OR block state
         /// </summary>
         /// <param name="typeAndMeta">Type and metadata packed in the same value OR block state</param>
-        public Block(ushort typeAndMeta, Location pos):this(pos)
+        public Block(ushort typeAndMeta, Point3 pos):this(pos)
         {
             this.blockIdAndMeta = typeAndMeta;
         }
 
-        public Block(Location position):this()
+        public Block(Point3 position):this()
         {
             Position = position;
         }

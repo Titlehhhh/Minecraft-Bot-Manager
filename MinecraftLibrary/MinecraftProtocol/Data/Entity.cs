@@ -58,7 +58,7 @@ namespace MinecraftLibrary.Data
         /// <summary>
         /// Entity location in the Minecraft world
         /// </summary>
-        public Location Location;
+        public Point3 Location;
 
         /// <summary>
         /// Entity head yaw
@@ -118,7 +118,7 @@ namespace MinecraftLibrary.Data
         /// <param name="ID">Entity ID</param>
         /// <param name="type">Entity Type Enum</param>
         /// <param name="location">Entity location</param>
-        public Entity(int ID, EntityType type, Location location)
+        public Entity(int ID, EntityType type, Point3 location)
         {
             this.ID = ID;
             this.Type = type;
@@ -134,7 +134,7 @@ namespace MinecraftLibrary.Data
         /// <param name="ID">Entity ID</param>
         /// <param name="type">Entity Type Enum</param>
         /// <param name="location">Entity location</param>
-        public Entity(int ID, EntityType type, Location location, float yaw, float pitch)
+        public Entity(int ID, EntityType type, Point3 location, float yaw, float pitch)
         {
             this.ID = ID;
             this.Type = type;
@@ -154,7 +154,7 @@ namespace MinecraftLibrary.Data
         /// <param name="location">Entity location</param>
         /// <param name="uuid">Player uuid</param>
         /// <param name="name">Player name</param>
-        public Entity(int ID, EntityType type, Location location, Guid uuid, string name)
+        public Entity(int ID, EntityType type, Point3 location, Guid uuid, string name)
         {
             this.ID = ID;
             this.Type = type;
@@ -165,7 +165,7 @@ namespace MinecraftLibrary.Data
             this.Equipment = new Dictionary<int, Item>();
             this.Item = new Item(ItemType.Air, 0, null);
         }
-        public Entity(int ID, EntityType type, Location location,float yaw,float pitch, Guid uuid, string name)
+        public Entity(int ID, EntityType type, Point3 location,float yaw,float pitch, Guid uuid, string name)
         {
             this.ID = ID;
             this.Type = type;

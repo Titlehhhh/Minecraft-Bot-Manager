@@ -12,10 +12,11 @@ namespace MinecraftLibrary.Data
     /// </summary>
     public class World
     {
+
         /// <summary>
         /// The chunks contained into the Minecraft world
         /// </summary>
-        private Dictionary<int, Dictionary<int, ChunkColumn>> chunks = new Dictionary<int, Dictionary<int, ChunkColumn>>();
+        private Dictionary<long, ChunkColumn> chunks = new Dictionary<long, ChunkColumn>();
 
         /// <summary>
         /// Read, set or unload the specified chunk column
@@ -23,38 +24,37 @@ namespace MinecraftLibrary.Data
         /// <param name="chunkX">ChunkColumn X</param>
         /// <param name="chunkY">ChunkColumn Y</param>
         /// <returns>chunk at the given location</returns>
+        /// 
+        public bool IsValidPosition(Coordinates3D position)
+        {
+            return position.Y >= 0 && position.Y <256;
+        }
+
+        public BoundingBox? GetBox(Coordinates3D coordinates)
+        {
+            Block block = GetBlock(new Point3(coordinates.X, coordinates.Y, coordinates.Z));
+            if(block.Type == Material.Air)
+            {
+                return null;
+            }
+            else
+            {
+                return new BoundingBox(Vector3.Zero, Vector3.One);
+            }
+        }
         public ChunkColumn this[int chunkX, int chunkZ]
         {
             get
             {
-                //Read a chunk
-                if (chunks.ContainsKey(chunkX))
-                    if (chunks[chunkX].ContainsKey(chunkZ))
-                        return chunks[chunkX][chunkZ];
+                long key = TwoIntToLong(chunkX, chunkZ);
+                if (chunks.ContainsKey(key))
+                    return chunks[key];                
                 return null;
             }
             set
             {
-                if (value != null)
-                {
-                    //Update a chunk column
-                    if (!chunks.ContainsKey(chunkX))
-                        chunks[chunkX] = new Dictionary<int, ChunkColumn>();
-                    chunks[chunkX][chunkZ] = value;
-                }
-                else
-                {
-                    //Unload a chunk column
-                    if (chunks.ContainsKey(chunkX))
-                    {
-                        if (chunks[chunkX].ContainsKey(chunkZ))
-                        {
-                            chunks[chunkX].Remove(chunkZ);
-                            if (chunks[chunkX].Count == 0)
-                                chunks.Remove(chunkX);
-                        }
-                    }
-                }
+                long key = TwoIntToLong(chunkX, chunkZ);
+                chunks[key] = value;
             }
         }
 
@@ -63,7 +63,7 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="location">Location to retrieve chunk column</param>
         /// <returns>The chunk column</returns>
-        public ChunkColumn GetChunkColumn(Location location)
+        public ChunkColumn GetChunkColumn(Point3 location)
         {
             return this[location.ChunkX, location.ChunkZ];
         }
@@ -73,8 +73,11 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="location">Location to retrieve block from</param>
         /// <returns>Block at specified location or Air if the location is not loaded</returns>
-        public Block GetBlock(Location location)
+        public Block GetBlock(Point3 location)
         {
+            if (location.Y > 255 || location.Y<0)
+               return new Block(0, location);
+                
             ChunkColumn column = GetChunkColumn(location);
             if (column != null)
             {
@@ -82,7 +85,7 @@ namespace MinecraftLibrary.Data
                 if (chunk != null)
                     return chunk.GetBlock(location);
             }
-            return new Block(0,new Location(0)); //Air
+            return new Block(0,location); //Air
         }
 
         /// <summary>
@@ -92,7 +95,7 @@ namespace MinecraftLibrary.Data
         /// <param name="block">Block type</param>
         /// <param name="radius">Search radius - larger is slower: O^3 complexity</param>
         /// <returns>Block matching the specified block type</returns>
-        public List<Location> FindBlock(Location from, Material block, int radius)
+        public List<Point3> FindBlock(Point3 from, Material block, int radius)
         {
             return FindBlock(from, block, radius, radius, radius);
         }
@@ -106,18 +109,18 @@ namespace MinecraftLibrary.Data
         /// <param name="radiusy">Search radius on the Y axis</param>
         /// <param name="radiusz">Search radius on the Z axis</param>
         /// <returns>Block matching the specified block type</returns>
-        public List<Location> FindBlock(Location from, Material block, int radiusx, int radiusy, int radiusz)
+        public List<Point3> FindBlock(Point3 from, Material block, int radiusx, int radiusy, int radiusz)
         {
-            Location minPoint = new Location(from.X - radiusx, from.Y - radiusy, from.Z - radiusz);
-            Location maxPoint = new Location(from.X + radiusx, from.Y + radiusy, from.Z + radiusz);
-            List<Location> list = new List<Location> { };
+            Point3 minPoint = new Point3(from.X - radiusx, from.Y - radiusy, from.Z - radiusz);
+            Point3 maxPoint = new Point3(from.X + radiusx, from.Y + radiusy, from.Z + radiusz);
+            List<Point3> list = new List<Point3> { };
             for (double x = minPoint.X; x <= maxPoint.X; x++)
             {
                 for (double y = minPoint.Y; y <= maxPoint.Y; y++)
                 {
                     for (double z = minPoint.Z; z <= maxPoint.Z; z++)
                     {
-                        Location doneloc = new Location(x, y, z);
+                        Point3 doneloc = new Point3(x, y, z);
                         Block doneblock = GetBlock(doneloc);
                         Material blockType = GetBlock(doneloc).Type;
                         if (blockType == block)
@@ -135,7 +138,7 @@ namespace MinecraftLibrary.Data
         /// </summary>
         /// <param name="location">Location to set block to</param>
         /// <param name="block">Block to set</param>
-        public void SetBlock(Location location, Block block)
+        public void SetBlock(Point3 location, Block block)
         {
             ChunkColumn column = this[location.ChunkX, location.ChunkZ];
             if (column != null)
@@ -152,7 +155,7 @@ namespace MinecraftLibrary.Data
         /// </summary>
         public void Clear()
         {
-            chunks = new Dictionary<int, Dictionary<int, ChunkColumn>>();
+            chunks = new Dictionary<long, ChunkColumn>();
         }
 
         /// <summary>
@@ -162,18 +165,18 @@ namespace MinecraftLibrary.Data
         /// <param name="yaw">Yaw of the entity</param>
         /// <param name="pitch">Pitch of the entity</param>
         /// <returns>Location of the block or empty Location if no block was found</returns>
-        public Location GetLookingBlockLocation(Location location, double yaw, double pitch)
+        public Point3 GetLookingBlockLocation(Point3 location, double yaw, double pitch)
         {
             double rotX = (Math.PI / 180) * yaw;
             double rotY = (Math.PI / 180) * pitch;
             double x = -Math.Cos(rotY) * Math.Sin(rotX);
             double y = -Math.Sin(rotY);
             double z = Math.Cos(rotY) * Math.Cos(rotX);
-            Location vector = new Location(x, y, z);
+            Point3 vector = new Point3(x, y, z);
             for (int i = 0; i < 5; i++)
             {
-                Location newVector = vector * i;
-                Location blockLocation = location.EyesLocation() + new Location(newVector.X, newVector.Y, newVector.Z);
+                Point3 newVector = vector * i;
+                Point3 blockLocation = location.EyesLocation() + new Point3(newVector.X, newVector.Y, newVector.Z);
                 blockLocation.X = Math.Floor(blockLocation.X);
                 blockLocation.Y = Math.Floor(blockLocation.Y);
                 blockLocation.Z = Math.Floor(blockLocation.Z);
@@ -183,7 +186,14 @@ namespace MinecraftLibrary.Data
                     return blockLocation;
                 }
             }
-            return new Location();
+            return new Point3();
+        }
+        public static long TwoIntToLong(int val1,int val2)
+        {
+            long res = val1;
+            res = res << 32;
+            res = res | (long)(uint)val2;
+            return res;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
+using System.Linq;
 using MinecraftLibrary.MinecraftModels;
 
 namespace MinecraftBotManager.Models
@@ -41,6 +42,10 @@ namespace MinecraftBotManager.Models
                     }
                 }
 
+            }
+            catch(ReflectionTypeLoadException e)
+            {
+                System.Diagnostics.Debug.WriteLine("Error: " + string.Join("\n", e.LoaderExceptions.Select(x=>x.ToString())));
             }
             catch(Exception e)
             {

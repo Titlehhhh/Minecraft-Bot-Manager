@@ -64,7 +64,7 @@ namespace MinecraftProtocol.IO
         /// Read a Location encoded as an ulong field and remove it from the cache
         /// </summary>
         /// <returns>The Location value</returns>
-        Location ReadNextLocation();
+        Point3 ReadNextLocation();
         
 
         /// <summary>

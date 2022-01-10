@@ -19,10 +19,10 @@ namespace ModulesLibrary
         /// <param name="location">Location the player is currently at</param>
         /// <param name="motionY">Current vertical motion speed</param>
         /// <returns>Updated location after applying gravity</returns>
-        public static Location HandleGravity(World world, Location location, ref double motionY)
+        public static Point3 HandleGravity(World world, Point3 location, ref double motionY)
         {
-            Location onFoots = new Location(location.X, Math.Floor(location.Y), location.Z);
-            Location belowFoots = Move(location, Direction.Down);
+            Point3 onFoots = new Point3(location.X, Math.Floor(location.Y), location.Z);
+            Point3 belowFoots = Move(location, Direction.Down);
             if (location.Y > Math.Truncate(location.Y) + 0.0001)
             {
                 belowFoots = location;
@@ -46,9 +46,9 @@ namespace ModulesLibrary
         /// <param name="location">Location the player is currently at</param>
         /// <param name="allowUnsafe">Allow possible but unsafe locations</param>
         /// <returns>A list of new locations the player can move to</returns>
-        public static IEnumerable<Location> GetAvailableMoves(World world, Location location, bool allowUnsafe = false)
+        public static IEnumerable<Point3> GetAvailableMoves(World world, Point3 location, bool allowUnsafe = false)
         {
-            List<Location> availableMoves = new List<Location>();
+            List<Point3> availableMoves = new List<Point3>();
             if (IsOnGround(world, location) || IsSwimming(world, location))
             {
                 foreach (Direction dir in Enum.GetValues(typeof(Direction)))
@@ -78,7 +78,7 @@ namespace ModulesLibrary
         /// <param name="falling">Specify if performing falling steps</param>
         /// <param name="stepsByBlock">Amount of steps by block</param>
         /// <returns>A list of locations corresponding to the requested steps</returns>
-        public static Queue<Location> Move2Steps(Location start, Location goal, ref double motionY, bool falling = false, int stepsByBlock = 8)
+        public static Queue<Point3> Move2Steps(Point3 start, Point3 goal, ref double motionY, bool falling = false, int stepsByBlock = 8)
         {
             if (stepsByBlock <= 0)
                 stepsByBlock = 1;
@@ -87,15 +87,15 @@ namespace ModulesLibrary
             {
                 //Use MC-Like falling algorithm
                 double Y = start.Y;
-                Queue<Location> fallSteps = new Queue<Location>();
+                Queue<Point3> fallSteps = new Queue<Point3>();
                 fallSteps.Enqueue(start);
                 double motionPrev = motionY;
                 motionY -= 0.08D;
                 motionY *= 0.9800000190734863D;
                 Y += motionY;
                 if (Y < goal.Y)
-                    return new Queue<Location>(new[] { goal });
-                else return new Queue<Location>(new[] { new Location(start.X, Y, start.Z) });
+                    return new Queue<Point3>(new[] { goal });
+                else return new Queue<Point3>(new[] { new Point3(start.X, Y, start.Z) });
             }
             else
             {
@@ -103,16 +103,16 @@ namespace ModulesLibrary
                 motionY = 0; //Reset motion speed
                 double totalStepsDouble = start.Distance(goal) * stepsByBlock;
                 int totalSteps = (int)Math.Ceiling(totalStepsDouble);
-                Location step = (goal - start) / totalSteps;
+                Point3 step = (goal - start) / totalSteps;
 
                 if (totalStepsDouble >= 1)
                 {
-                    Queue<Location> movementSteps = new Queue<Location>();
+                    Queue<Point3> movementSteps = new Queue<Point3>();
                     for (int i = 1; i <= totalSteps; i++)
                         movementSteps.Enqueue(start + step * i);
                     return movementSteps;
                 }
-                else return new Queue<Location>(new[] { goal });
+                else return new Queue<Point3>(new[] { goal });
             }
         }
 
@@ -127,9 +127,9 @@ namespace ModulesLibrary
         /// <param name="goal">Destination location</param>
         /// <param name="allowUnsafe">Allow possible but unsafe locations</param>
         /// <returns>A list of locations, or null if calculation failed</returns>
-        public static Queue<Location> CalculatePath(World world, Location start, Location goal, bool allowUnsafe = false)
+        public static Queue<Point3> CalculatePath(World world, Point3 start, Point3 goal, bool allowUnsafe = false)
         {
-            Queue<Location> result = null;
+            Queue<Point3> result = null;
 
             //AutoTimeout.Perform(() =>
             //{
@@ -192,19 +192,12 @@ namespace ModulesLibrary
         /// <param name="world">World for performing check</param>
         /// <param name="location">Location to check</param>
         /// <returns>True if the specified location is on the ground</returns>
-        public static bool IsOnGround(World world, Location location)
+        public static bool IsOnGround(World world, Point3 location)
         {
-          
-
-            Location loc1 = new Location(location.X + 0.3, location.Y , location.Z);
-            Location loc2 = new Location(location.X + 0.3, location.Y , location.Z + 0.3);
-            Location loc3 = new Location(location.X - 0.3, location.Y, location.Z);
-            Location loc4 = new Location(location.X - 0.3, location.Y , location.Z - 0.3);
-
-            return IsSolid(world, loc1) || IsSolid(world, loc2) || IsSolid(world, loc3) || IsSolid(world, loc4);
-
+            return world.GetBlock(Move(location, Direction.Down)).Type.IsSolid()
+                  && (location.Y <= Math.Truncate(location.Y) + 0.0001);
         }
-        private static bool IsSolid(World world, Location loc)
+        private static bool IsSolid(World world, Point3 loc)
         {
             loc.Y -= 1;
             if (world.GetBlock(loc).Type.IsSolid() && (loc.Y <= Math.Truncate(loc.Y) + 0.0001))
@@ -219,7 +212,7 @@ namespace ModulesLibrary
         /// <param name="world">World for performing check</param>
         /// <param name="location">Location to check</param>
         /// <returns>True if the specified location implies swimming</returns>
-        public static bool IsSwimming(World world, Location location)
+        public static bool IsSwimming(World world, Point3 location)
         {
             return world.GetBlock(location).Type.IsLiquid();
         }
@@ -230,7 +223,7 @@ namespace ModulesLibrary
         /// <param name="world">World for performing check</param>
         /// <param name="location">Location to check</param>
         /// <returns>True if the destination location won't directly harm the player</returns>
-        public static bool IsSafe(World world, Location location)
+        public static bool IsSafe(World world, Point3 location)
         {
             return
                    //No block that can harm the player
@@ -256,7 +249,7 @@ namespace ModulesLibrary
         /// <param name="location">Location the player is currently at</param>
         /// <param name="direction">Direction the player is moving to</param>
         /// <returns>True if the player can move in the specified direction</returns>
-        public static bool CanMove(World world, Location location, Direction direction)
+        public static bool CanMove(World world, Point3 location, Direction direction)
         {
             switch (direction)
             {
@@ -283,7 +276,7 @@ namespace ModulesLibrary
         /// <param name="direction">Direction to move to</param>
         /// <param name="length">Distance, in blocks</param>
         /// <returns>Updated location</returns>
-        public static Location Move(Location location, Direction direction, int length = 1)
+        public static Point3 Move(Point3 location, Direction direction, int length = 1)
         {
             return location + Move(direction) * length;
         }
@@ -293,22 +286,22 @@ namespace ModulesLibrary
         /// </summary>
         /// <param name="direction">Direction to move to</param>
         /// <returns>A location delta for moving in that direction</returns>
-        public static Location Move(Direction direction)
+        public static Point3 Move(Direction direction)
         {
             switch (direction)
             {
                 case Direction.Down:
-                    return new Location(0, -1, 0);
+                    return new Point3(0, -1, 0);
                 case Direction.Up:
-                    return new Location(0, 1, 0);
+                    return new Point3(0, 1, 0);
                 case Direction.East:
-                    return new Location(1, 0, 0);
+                    return new Point3(1, 0, 0);
                 case Direction.West:
-                    return new Location(-1, 0, 0);
+                    return new Point3(-1, 0, 0);
                 case Direction.South:
-                    return new Location(0, 0, 1);
+                    return new Point3(0, 0, 1);
                 case Direction.North:
-                    return new Location(0, 0, -1);
+                    return new Point3(0, 0, -1);
                 default:
                     throw new ArgumentException("Unknown direction", "direction");
             }

@@ -10,3 +10,9 @@ C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\MinecraftBotMana
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CoreCompileInputs.cache
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.CopyComplete
 C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\obj\Debug\ModulesLibrary.csproj.AssemblyReference.cache
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\bin\Debug\ModulesLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\bin\Debug\MinecraftLibrary.dll
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\bin\Debug\StarkSoftProxy.dll
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\bin\Debug\MinecraftLibrary.pdb
+C:\Users\Пользователь\Desktop\Minecraft-Bot-Manager\ModulesLibrary\bin\Debug\StarkSoftProxy.xml
