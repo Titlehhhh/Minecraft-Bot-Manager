@@ -25,10 +25,7 @@ namespace MinecraftLibrary.MinecraftModels
     [Serializable]
     public class BotObject : IDeserializationCallback, INotifyPropertyChanged
     {
-        [NonSerialized]
-        public float? _yaw = null;
-        [NonSerialized]
-        public float? _pitch = null;
+        
 
         [NonSerialized]
         public object LocationLock = new object();
@@ -394,7 +391,7 @@ namespace MinecraftLibrary.MinecraftModels
 
                         client.UpdateChanged += () =>
                         {
-                            CallModule(m => m.TickUpdate());
+                            InvokeModule(m => m.TickUpdate());
                         };
 
                         client.PacketReceiveChanged += (p) =>
@@ -410,7 +407,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 ServerChatMessagePacket chatpacket = p as ServerChatMessagePacket;
 
                                 ChatQueue.Add(new ChatMessage(chatpacket.Message));
-                                CallModule(m => m.ServerChat(chatpacket.Message));
+                                InvokeModule(m => m.ServerChat(chatpacket.Message));
 
 
                             }
@@ -419,21 +416,21 @@ namespace MinecraftLibrary.MinecraftModels
 
                                 ServerChunkDataPacket packet = p as ServerChunkDataPacket;
                                 world[packet.ColumnX, packet.ColumnZ] = packet.Column;
-                                CallModule(m => m.WorldUpdate(packet.ColumnX, packet.ColumnZ));
+                                InvokeModule(m => m.WorldUpdate(packet.ColumnX, packet.ColumnZ));
 
                             }
                             else if (p is ServerBlockChangePacket)
                             {
                                 ServerBlockChangePacket block = p as ServerBlockChangePacket;
                                 world.SetBlock(new Point3(block.Position.X, block.Position.Y, block.Position.Z), block.Block);
-                                CallModule(m => m.WorldUpdate(block.Block));
+                                InvokeModule(m => m.WorldUpdate(block.Block));
                             }
                             else if (p is ServerSpawnEntityPacket)
                             {
                                 ServerSpawnEntityPacket entity = p as ServerSpawnEntityPacket;
 
                                 Entities[entity.NewEntity.ID] = entity.NewEntity;
-                                CallModule(m => m.OnEntitySpawn(entity.NewEntity));
+                                InvokeModule(m => m.OnEntitySpawn(entity.NewEntity));
 
                             }
                             else if (p is ServerSpawnLivingEntityPacket)
@@ -441,7 +438,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 ServerSpawnLivingEntityPacket entity = p as ServerSpawnLivingEntityPacket;
 
                                 Entities[entity.NewEntity.ID] = entity.NewEntity;
-                                CallModule(m => m.OnEntitySpawn(entity.NewEntity));
+                                InvokeModule(m => m.OnEntitySpawn(entity.NewEntity));
                             }
                             else if (p is ServerSpawnPlayerPacket)
                             {
@@ -454,7 +451,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 Entity entity = new Entity(player.EntityID, EntityType.Player, player.Position, player.Yaw, player.Pitch, player.UUID, name);
 
                                 Entities[player.EntityID] = entity;
-                                CallModule(m => m.OnEntitySpawn(entity));
+                                InvokeModule(m => m.OnEntitySpawn(entity));
                             }
                             else if (p is ServerEntityTeleportPacket)
                             {
@@ -464,7 +461,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 entity.Location = new Point3(teleport.X, teleport.Y, teleport.Z);
                                 entity.Yaw = teleport.Yaw;
                                 entity.Pitch = teleport.Pitch;
-                                CallModule(m => m.OnEntityMove(entity));
+                                InvokeModule(m => m.OnEntityMove(entity));
                             }
                             else if (p is ServerEntityPositionPacket)
                             {
@@ -476,7 +473,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 entity.Location.X += pos.DeltaX;
                                 entity.Location.Y += pos.DeltaY;
                                 entity.Location.Z += pos.DeltaZ;
-                                CallModule(m => m.OnEntityMove(entity));
+                                InvokeModule(m => m.OnEntityMove(entity));
 
                             }
                             else if (p is ServerEntityPositionAndRotationPacket)
@@ -487,7 +484,7 @@ namespace MinecraftLibrary.MinecraftModels
                                 entity.Location.X += rot.DeltaX;
                                 entity.Location.Y += rot.DeltaY;
                                 entity.Location.Z += rot.DeltaZ;
-                                CallModule(m => m.OnEntityMove(entity));
+                                InvokeModule(m => m.OnEntityMove(entity));
                             }
                             else if (p is ServerPlayerPositionAndLookPacket)
                             {
@@ -503,7 +500,7 @@ namespace MinecraftLibrary.MinecraftModels
 
 
                                 client.SendPacket(new ClientTeleportConfirmPacket(pos.TeleportID));
-                                CallModule(m => m.OnPositionRotation(Position, yaw, pitch));
+                                InvokeModule(m => m.OnPositionRotation(Position, yaw, pitch));
                             }
                             else if (p is ServerPlayerInfoPacket)
                             {
@@ -515,7 +512,7 @@ namespace MinecraftLibrary.MinecraftModels
                                         PlayerJoin playerJoin = item as PlayerJoin;
                                         OnlinePlayers[playerJoin.UUID] = playerJoin.Nickname;
 
-                                        CallModule(m => m.OnPlayerJoin(item.UUID, playerJoin.Nickname));
+                                        InvokeModule(m => m.OnPlayerJoin(item.UUID, playerJoin.Nickname));
                                     }
 
 
@@ -543,7 +540,7 @@ namespace MinecraftLibrary.MinecraftModels
                             {
                                 var health = p as ServerPlayerHealthPacket;
                                 Health = health.Health;
-                                CallModule(m => m.OnHealthUpdate(health.Health, health.Food));
+                                InvokeModule(m => m.OnHealthUpdate(health.Health, health.Food));
                             }
 
                         };
@@ -554,18 +551,18 @@ namespace MinecraftLibrary.MinecraftModels
                             ChatQueue?.Add(new ChatMessage("Вы были кинуты с сервера:"));
                             ChatQueue?.Add(new ChatMessage(m));
                             StatusLaunched = RunningStatus.None;
-                            CallModule(x => x.Stop());
+                            InvokeModule(x => x.Stop());
 
                         };
                         client.LoginSuccesChanged += () =>
                         {
                             Console.WriteLine("Login Sucess!!!");
                             StatusLaunched = RunningStatus.Launched;
-                            CallModule(x => x.Start());
+                            InvokeModule(x => x.Start());
                         };
                         client.ReadPacketChanged += (s, i, d) =>
                         {
-                            CallModule(m => m.ReadPacket(i, d));
+                            InvokeModule(m => m.ReadPacket(i, d));
                         };
                         if (client.Connect())
                         {
@@ -585,7 +582,7 @@ namespace MinecraftLibrary.MinecraftModels
                 });
         }
 
-        private void CallModule(Action<MinecraftModule> action)
+        private void InvokeModule(Action<MinecraftModule> action)
         {
 
             foreach (var m in Modules.ToArray())
@@ -661,7 +658,7 @@ namespace MinecraftLibrary.MinecraftModels
                 System.Diagnostics.Debug.WriteLine("Disconnect: " + nickname);
                 client?.Dispose();
                 StatusLaunched = RunningStatus.None;
-                CallModule(x => x.Stop());
+                InvokeModule(x => x.Stop());
             }
             catch
             {
@@ -701,7 +698,15 @@ namespace MinecraftLibrary.MinecraftModels
             LookHead(yaw, pitch);
         }
 
+        public MinecraftModule FindModule(string name)
+        {
+            return Modules.FirstOrDefault(m => m.GetType().Name == name);
+        }
 
+        public void InvokeEvent(MinecraftModule sender,object parametr)
+        {
+            InvokeModule(m=>m.OnModuleEvent(sender.GetType().Name,parametr));
+        }
 
 
         [field: NonSerialized]

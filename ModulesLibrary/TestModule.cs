@@ -20,9 +20,10 @@ namespace ModulesLibrary
 {
 
 
-    [DisplayName("Физический движок")]
+    [DisplayName("Авторизатор для MstNetwork")]
+    [Description("Автоматически проходит бот фильтер на падение. Вводит или регистрирует пароль. Заходит в портал на указанную \"Анку\"")]
 
-    public class PhysicEngineModule : MinecraftModule
+    public class MSTAutoAuth : MinecraftModule
     {
 
         private float Yaw;
@@ -31,7 +32,7 @@ namespace ModulesLibrary
         private float? _yaw;
         private float? _pitch;
 
-        public PhysicEngineModule(BotObject mainBot, IMainViewModelController controller) : base(mainBot, controller)
+        public MSTAutoAuth(BotObject mainBot, IMainViewModelController controller) : base(mainBot, controller)
         {
 
         }

@@ -14,6 +14,8 @@ namespace MinecraftLibrary.MinecraftModels
 {
     public abstract class MinecraftModule : INotifyPropertyChanged
     {
+        public event EventHandler<object> NotifyChanged;
+
         [Browsable(false)]
         public BotObject MainBot => mainBot;
 
@@ -32,6 +34,9 @@ namespace MinecraftLibrary.MinecraftModels
             this.MainViewModel = controller;
             //this.dataService = dataService;
         }
+
+        public virtual void OnModuleEvent(string sender,object parametr) { }
+
         public virtual void UnLoad() { }
         public virtual void Start() { }
         public virtual void Stop() { }
@@ -121,6 +126,25 @@ namespace MinecraftLibrary.MinecraftModels
         public void ChatAdd(string text,bool isjson = true)
         {
             MainBot.ChatQueue.Add(new ChatMessage(text, isjson));
+        }
+
+        public void NotifyModules(object parametr)
+        {
+            NotifyChanged?.Invoke(this, parametr);
+            MainBot.InvokeEvent(this, parametr);
+        }
+        public MinecraftModule FindModule(string name)
+        {
+            return MainBot.FindModule(name);
+        }
+
+        public void Disconnect()
+        {
+            MainBot.Disconnect();
+        }
+        public void Connect()
+        {
+            MainBot.StartClient();
         }
 
     }
