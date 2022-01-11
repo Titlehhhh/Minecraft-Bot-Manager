@@ -23,14 +23,14 @@ namespace ModulesLibrary
             {
                 while (!IsOnGround(world, belowFoots) && belowFoots.Y >= 1)
                     belowFoots = Move(belowFoots, Direction.Down);
-                location = Move2Steps(location, belowFoots, ref motionY);
+                location = Fall(location, belowFoots, ref motionY);
             }
             else if (!(world.GetBlock(onFoots).Type.IsSolid()))
-                location = Move2Steps(location, onFoots, ref motionY);
+                location = Fall(location, onFoots, ref motionY);
             return location;
         }
 
-        public static Point3 Move2Steps(Point3 start, Point3 goal, ref double motionY)
+        public static Point3 Fall(Point3 start, Point3 goal, ref double motionY)
         {
             //Use MC-Like falling algorithm
             double Y = start.Y;
