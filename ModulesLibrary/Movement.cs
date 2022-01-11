@@ -31,11 +31,8 @@ namespace ModulesLibrary
         }
 
         public static Point3 Fall(Point3 start, Point3 goal, ref double motionY)
-        {
-            //Use MC-Like falling algorithm
-            double Y = start.Y;
-            Queue<Point3> fallSteps = new Queue<Point3>();
-            fallSteps.Enqueue(start);            
+        {            
+            double Y = start.Y;                       
             motionY -= 0.08D;
             motionY *= 0.9800000190734863D;
             Y += motionY;
