@@ -18,6 +18,7 @@ using MinecraftBotManager.Messages;
 using MinecraftBotManager.Interfaces;
 using MaterialDesignThemes.Wpf;
 using MinecraftLibrary.Interfaces;
+using System.Windows;
 
 namespace MinecraftBotManager.ViewModel
 {
@@ -165,7 +166,9 @@ namespace MinecraftBotManager.ViewModel
                 }
             };
 
-            Main.PropertyChanged += (s, p) => { RaisePropertyChanged(p.PropertyName); };
+            Main.PropertyChanged += (s, p) => {
+                Task.Run(() =>Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background,new Action(()=> RaisePropertyChanged(p.PropertyName))));                 
+            };
         }
         private RelayCommand<object> startcommand;
 

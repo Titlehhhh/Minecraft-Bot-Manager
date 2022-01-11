@@ -319,8 +319,8 @@ namespace MinecraftLibrary
                        stopwatch.Stop();
                        int el = stopwatch.Elapsed.Milliseconds;
                        stopwatch.Reset();
-                       if (el < 50)
-                           Thread.Sleep(50 - el);
+                       if (el < 100)
+                           Thread.Sleep(100 - el);
 
                    }
                }

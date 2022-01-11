@@ -18,52 +18,144 @@ using MinecraftLibrary.Geometri;
 
 namespace ModulesLibrary
 {
-    
 
-    public interface IModule
+
+    [DisplayName("Физический движок")]
+
+    public class PhysicEngineModule : MinecraftModule
     {
-        void UpdatePos(Point3 pos, bool isGround);
 
-    }
+        private float Yaw;
+        private float Pitch;
 
-    public class Player
-    {
-        public Vector3 Velocity { get; set; }
-        public Vector3 Position { get; set; }
-        public Size HitBox { get; set; }
+        private float? _yaw;
+        private float? _pitch;
 
-        public float TerminalVelocity => 78.4f;
-        public Player()
+        public PhysicEngineModule(BotObject mainBot, IMainViewModelController controller) : base(mainBot, controller)
         {
 
         }
-        public float AccelerationDueToGravity => 1.6f;
 
-        public float Drag => 0.40f;
-        public float Yaw { get; set; }
-        public float Pitch { get; set; }
-        public const double Width = 0.6;
-        public const double Height = 1.62;
-        public const double Depth = 0.6;
-        public BoundingBox BoundingBox
+
+        private double VelY = 0;
+        public override void Start()
         {
-            get
+            LocationReceived = false;
+            PhysicsLoop = true;
+            Task.Run(() =>
             {
-                var pos = Position - new Vector3(Width / 2, 0, Depth / 2);
-                return new BoundingBox(pos, pos + Size);
+                Stopwatch stopwatch = new Stopwatch();
+                while (PhysicsLoop)
+                {
+                    stopwatch.Start();
+
+                    PhysicsUpdate();
+                    stopwatch.Stop();
+                    int el = stopwatch.Elapsed.Milliseconds;
+                    stopwatch.Reset();
+                    if (el < 100)
+                        Thread.Sleep(100 - el);
+                }
+            });
+
+        }
+        private bool LocationReceived;
+        private bool PhysicsLoop = true;
+
+        private readonly object LocationLock = new object();
+
+        private void PhysicsUpdate()
+        {
+            if (!LocationReceived)
+                return;
+            lock (LocationLock)
+            {
+                for (int i = 1; i <= 2; i++)
+                {
+                    Point3 location = MainBot.Position;
+                    if (_yaw == null || _pitch == null)
+                        location = Movement.HandleGravity(MainBot.World, location, ref VelY);
+                    Yaw = _yaw == null ? Yaw : _yaw.Value;
+                    Pitch = _pitch == null ? Pitch : _pitch.Value;
+                    SendUpdateLoc(location, Movement.IsOnGround(MainBot.World, location), _yaw, _pitch);
+                }
+                _yaw = _pitch = null;
             }
         }
-        public void TerrainCollision(Vector3 collisionPoint, Vector3 collisionDirection)
+        public void SendUpdateLoc(Point3 location, bool onGround, float? yaw = null, float? pitch = null)
         {
-            // This space intentionally left blank
+            int type = 0;
+            if (yaw.HasValue && pitch.HasValue)
+            {
+                type = 1;
+            }
+            if (type == 0)
+            {
+                MainBot.UpdatePosition(location, onGround, true);
+            }
+            else
+            {
+                MainBot.UpdatePosition(location, yaw.Value, pitch.Value, onGround, true);
+            }
+        }
+        public override void TickUpdate()
+        {
+
+            //if (LocationReceived)
+            //{
+
+            //    lock (MainBot.LocationLock)
+            //    {
+            //        for (int i = 1; i <= 2; i++)
+            //        {
+            //            PhysicsUpdate();
+            //        }
+            //        MainBot._yaw = null;
+            //        MainBot._pitch = null;
+            //    }
+            //}
         }
 
-        public Size Size
+        public override void WorldUpdate(int chunkX, int chunkZ)
         {
-            get { return new Size(Width, Height, Depth); }
+
+        }
+        public override void OnHealthUpdate(float health, int food)
+        {
+
+            if (health == 0)
+            {
+                MainBot.RespawnPlayer();
+            }
+
+        }
+        public override void OnPositionRotation(Point3 pos, float yaw, float pitch)
+        {
+            lock (LocationLock)
+            {
+                _yaw = yaw;
+                _pitch = pitch;
+                LocationReceived = true;
+                //ChatAdd(yaw.ToString());
+            }
+        }
+
+
+        public void UpdatePos(Point3 pos, bool isGround)
+        {
+            MainBot.UpdatePosition(pos, isGround);
+        }
+        public override void Stop()
+        {
+            PhysicsLoop = false;
+            base.Stop();
+        }
+        public override void UnLoad()
+        {
+            PhysicsLoop = false;
+            base.UnLoad();
         }
     }
-
-
+   
 
 }

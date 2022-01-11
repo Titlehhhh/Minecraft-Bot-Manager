@@ -309,10 +309,7 @@ namespace MinecraftLibrary.MinecraftModels
             ChatQueue = new ObservableCollection<ChatMessage>();
             position = new Point3();
 
-            Modules.Clear();
-            ModulesTypes.Clear();
-
-            AddModule(typeof(MinecraftLibrary.Modules.PhysicEngineModule));
+            
 
 
         }
@@ -499,14 +496,12 @@ namespace MinecraftLibrary.MinecraftModels
                                 double x = (pos.LocMask & 1 << 0) != 0 ? Position.X + pos.X : pos.X;
                                 double y = (pos.LocMask & 1 << 1) != 0 ? Position.Y + pos.Y : pos.Y;
                                 double z = (pos.LocMask & 1 << 2) != 0 ? Position.Z + pos.Z : pos.Z;
-                                lock (LocationLock)
-                                {
-                                    Position = new Point3(x, y, z);
-                                    //Yaw = pos.Yaw;
-                                    //Pitch = pos.Pitch;
-                                    _yaw = pos.Yaw;
-                                    _pitch = pos.Pitch;
-                                }
+
+                                Position = new Point3(x, y, z);
+                                Yaw = pos.Yaw;
+                                Pitch = pos.Pitch;
+
+
                                 client.SendPacket(new ClientTeleportConfirmPacket(pos.TeleportID));
                                 CallModule(m => m.OnPositionRotation(Position, yaw, pitch));
                             }
