@@ -9,7 +9,7 @@
         xmlns:ext="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
         xmlns:models="clr-namespace:MinecraftBotManager.Models"
         DataContext="{Binding Main, Source={StaticResource Locator}}"    
-       
+        UseLayoutRounding="True"
         xmlns:viewmodels="clr-namespace:MinecraftBotManager.ViewModel"
         xmlns:ucs="clr-namespace:MinecraftBotManager.Views.UserControls"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"

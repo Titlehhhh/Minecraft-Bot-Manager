@@ -29,7 +29,7 @@ namespace MinecraftLibrary.MinecraftProtocol.PacketPalletes
             {0x0E,typeof(ServerChatMessagePacket)},
             {0x0F,typeof(ServerTabCompletePacket)},
             {0x10,typeof(ServerDeclareCommandsPacket)},
-            {0x11,typeof(ServerWindowConfirmationPacket)},
+            {0x11,typeof(ServerConfirmTransactionPacket)},
             {0x12,typeof(ServerCloseWindowPacket)},
             {0x13,typeof(ServerWindowItemsPacket)},
             {0x14,typeof(ServerWindowPropertyPacket)},

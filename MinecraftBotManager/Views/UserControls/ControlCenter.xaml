@@ -20,7 +20,7 @@
              xmlns:McContans="clr-namespace:MinecraftLibrary;assembly=MinecraftLibrary"
              xmlns:local="clr-namespace:MinecraftBotManager.Views.UserControls"             
              xmlns:markups ="clr-namespace:MinecraftBotManager.Markup"
-             
+             xmlns:Inventorys ="clr-namespace:MinecraftBotManager.Views.UserControls.Windows"
              mc:Ignorable="d"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
               d:DesignWidth="800"
@@ -325,7 +325,12 @@
                                 </Expander.Background>
 
                             </Expander>
-
+                            <Expander IsExpanded="True" Header="Окно" Foreground="White" Margin="0,10,5,10">
+                                <Expander.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                </Expander.Background>
+                                <Inventorys:PlayerWindow HorizontalAlignment="Left"/>
+                            </Expander>
                             <Expander Margin="0,10,5,10" Foreground="White" Header="Чат">
                                 <Expander.Background>
                                     <SolidColorBrush Color="Black" Opacity="0.5"/>
@@ -352,12 +357,7 @@
 
                                 </Grid>
                             </Expander>
-                            <Expander Header="Окно" Foreground="White" Margin="0,10,5,10">
-                                <Expander.Background>
-                                    <SolidColorBrush Color="Black" Opacity="0.5"/>
-                                </Expander.Background>
-
-                            </Expander>
+                            
                         </StackPanel>
                     </Border>
 
@@ -426,7 +426,7 @@
                 <GridSplitter Foreground="White" mat:ThemeAssist.Theme="Dark" Width="3" Grid.Column="1" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
                 <ContentPresenter Grid.Column="0" Content="{Binding ElementName=Listbots,Path=SelectedItem}"/>
             </Grid>
-
+            
         </Grid>
     </Border>
 </UserControl>

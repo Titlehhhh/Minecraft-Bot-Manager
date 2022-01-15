@@ -277,6 +277,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\AddElementVM.cs" />
     <Compile Include="ViewModel\AddModuleVM.cs" />
+    <Compile Include="ViewModel\ChatMessageVM.cs" />
     <Compile Include="ViewModel\ConfirmDialogVM.cs" />
     <Compile Include="ViewModel\ControlCenterVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -300,6 +301,12 @@
     </Compile>
     <Compile Include="Views\UserControls\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Windows\ItemFrame.xaml.cs">
+      <DependentUpon>ItemFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Windows\PlayerWindow.xaml.cs">
+      <DependentUpon>PlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\WindowView.xaml.cs">
       <DependentUpon>WindowView.xaml</DependentUpon>
@@ -381,6 +388,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Windows\ItemFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Windows\PlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

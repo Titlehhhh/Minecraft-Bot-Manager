@@ -16,7 +16,7 @@
         <converts:StringToVisibiltyConverter x:Key="StringToVisi"/>
     </UserControl.Resources>
         <StackPanel Orientation="Horizontal">
-        <TextBlock MaxWidth="{Binding RelativeSource={RelativeSource AncestorType=Border},Path=ActualWidth}"  attached:TextBlockExtensions.BindableInlines="{Binding Converter={StaticResource JsonToRunsConverter}}" TextWrapping="WrapWithOverflow" x:Name="Text" Foreground="White" FontFamily="JetBrains Mono" FontSize="14">
+        <TextBlock MaxWidth="{Binding RelativeSource={RelativeSource AncestorType=Border},Path=ActualWidth}"  attached:TextBlockExtensions.BindableInlines="{Binding ColoredText}" TextWrapping="WrapWithOverflow" x:Name="Text" Foreground="White" FontFamily="JetBrains Mono" FontSize="14">
                            
             </TextBlock>
             <Button Click="Button_Click" Visibility="{Binding ElementName=Text,Path=Text,Converter={StaticResource StringToVisi}}" Margin="15,0,0,0" Height="auto" Width="auto" VerticalAlignment="Center" Padding="1" Background="Transparent" BorderThickness="0" >

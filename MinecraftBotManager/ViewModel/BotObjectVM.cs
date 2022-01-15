@@ -25,7 +25,7 @@ namespace MinecraftBotManager.ViewModel
     public class BotObjectVM : INotifyPropertyChanged
     {
         public ProxyType[] ProxyTypes { get; private set; } = Enum.GetValues(typeof(ProxyType)).Cast<ProxyType>().ToArray();
-        public string[] SupportedVersions { get; private set; } = {"1.12.2","1.16.5" };
+        public string[] SupportedVersions { get; private set; } = { "1.12.2", "1.16.5" };
 
         private BotObject Main;
         public BotObject MainModel => Main;
@@ -46,7 +46,7 @@ namespace MinecraftBotManager.ViewModel
             set
             {
                 Main.Version = value;
-                
+
                 RaisePropertyChanged();
             }
         }
@@ -120,11 +120,11 @@ namespace MinecraftBotManager.ViewModel
         public string Health { get => Main.Health.ToString(); }
         public string Current_Slot { get => Main.Current_Slot; }
         public string Position => $"X: {Main.Position.X} Y:{Main.Position.Y} Z:{Main.Position.Z}";
-        private ObservableCollection<ChatMessage> chat;
-        public ObservableCollection<ChatMessage> ChatQueue => chat ?? (chat = new ObservableCollection<ChatMessage>());
+        private ObservableCollection<ChatMessageVM> chat;
+        public ObservableCollection<ChatMessageVM> ChatQueue => chat ?? (chat = new ObservableCollection<ChatMessageVM>());
         public float Yaw => Main.Yaw;
         public float Pitch => Main.Pitch;
-        
+
         public RunningStatus StatusLaunched { get => Main.StatusLaunched; }
 
         private readonly IDataService data;
@@ -137,7 +137,7 @@ namespace MinecraftBotManager.ViewModel
             this.dialogService = dialogService;
             this.modules = modules;
 
-            
+
             data = dataService;
             Main = mainModel;
             Main.MainViewModelController = controller;
@@ -147,10 +147,10 @@ namespace MinecraftBotManager.ViewModel
                 {
                     if (e.NewItems != null)
                         foreach (ChatMessage item in e.NewItems)
-                            App.Current?.Dispatcher.Invoke(() => ChatQueue?.Add(item));
+                            App.Current?.Dispatcher.Invoke(() => ChatQueue?.Add(new ChatMessageVM(item)));
                     if (e.OldItems != null)
                         foreach (ChatMessage item in e.OldItems)
-                            App.Current?.Dispatcher.Invoke(() => ChatQueue?.Remove(item));
+                            App.Current?.Dispatcher.Invoke(() => ChatQueue?.Remove(ChatQueue?.FirstOrDefault(x=>x.Model == item)));
                 }
                 catch
                 {
@@ -158,16 +158,17 @@ namespace MinecraftBotManager.ViewModel
                 }
             };
 
-            modules.UnLoadModuleChanged += (s,p) =>
+            modules.UnLoadModuleChanged += (s, p) =>
             {
-                foreach(Type t in p.Modules)
+                foreach (Type t in p.Modules)
                 {
                     Main.RemoveType(t);
                 }
             };
 
-            Main.PropertyChanged += (s, p) => {
-                Task.Run(() =>Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background,new Action(()=> RaisePropertyChanged(p.PropertyName))));                 
+            Main.PropertyChanged += (s, p) =>
+            {
+                Task.Run(() => Application.Current?.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => RaisePropertyChanged(p.PropertyName))));
             };
         }
         private RelayCommand<object> startcommand;
@@ -178,7 +179,7 @@ namespace MinecraftBotManager.ViewModel
             {
                 if (StatusLaunched == RunningStatus.None)
                 {
-                    
+
                     MainModel.StartClient();
                 }
                 else
@@ -280,7 +281,7 @@ namespace MinecraftBotManager.ViewModel
                 RaisePropertyChanged();
             }
         }
-        
+
     }
-    
+
 }

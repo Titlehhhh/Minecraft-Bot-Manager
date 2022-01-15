@@ -62,6 +62,9 @@
     <Compile Include="Interfaces\Interface1.cs" />
     <Compile Include="MinecraftModels\ChatCommand.cs" />
     <Compile Include="MinecraftModels\ChatMessage.cs" />
+    <Compile Include="MinecraftModels\Containers\ContainerBase.cs" />
+    <Compile Include="MinecraftModels\Containers\EventArgs\SetSlotEventArgs.cs" />
+    <Compile Include="MinecraftModels\Containers\PlayerContainer.cs" />
     <Compile Include="MinecraftModels\MinecraftModule.cs" />
     <Compile Include="MinecraftModels\BotObject.cs" />
     <Compile Include="MinecraftProtocol\ChatParser.cs" />
@@ -342,7 +345,7 @@
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUpdateViewPositionPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerUseBedPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerVehicleMovePacket.cs" />
-    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWindowConfirmationPacket.cs" />
+    <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerConfirmTransactionPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWindowItemsPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWindowPropertyPacket.cs" />
     <Compile Include="MinecraftProtocol\Packets\Server\Game\ServerWorldBorderPacket.cs" />

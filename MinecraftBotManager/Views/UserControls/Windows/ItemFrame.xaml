@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="MinecraftBotManager.Views.UserControls.Windows.ItemFrame"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MinecraftBotManager.Views.UserControls.Windows"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+             Height="35"
+             Width="35">
+    <Grid>
+        <Border>
+            <Border.Background>
+                <SolidColorBrush Color="Gray" Opacity="0.5"/>
+            </Border.Background>
+        </Border>
+        <Image Source="{Binding BackgoundIcon}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased"/>
+        <ContentControl Content="{Binding ContentIcon}">
+            
+        </ContentControl>
+    </Grid>
+</UserControl>

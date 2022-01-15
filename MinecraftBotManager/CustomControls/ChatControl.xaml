@@ -17,13 +17,25 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="GridChat">
         <ScrollViewer x:Name="ScrollChat" Height="300" VerticalScrollBarVisibility="Visible">
-            <ItemsControl  x:Name="ChatList" Margin="2" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" VerticalAlignment="Bottom" ItemsSource="{Binding ChatQueue}">
+            <ItemsControl  x:Name="ChatList"
+                           Margin="2"
+                           VirtualizingPanel.IsVirtualizing="True"
+                           VirtualizingPanel.CacheLength="30"
+                           VirtualizingPanel.CacheLengthUnit="Item"
+                           VirtualizingPanel.VirtualizationMode="Recycling"
+                           VerticalAlignment="Bottom"
+                           ItemsSource="{Binding ChatQueue}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type mcm:ChatMessage}">
                         <local:ChatTextBlock/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>            
         </ScrollViewer>
         <Grid Margin="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Visibility="Collapsed" Name="ButtonExpand" Style="{StaticResource MaterialDesignFloatingActionButton}" Width="50" Height="50">
