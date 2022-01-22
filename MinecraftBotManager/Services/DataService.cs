@@ -11,6 +11,9 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
+using MinecraftBotManager.Messages;
+using Newtonsoft.Json.Linq;
 
 namespace MinecraftBotManager.Services
 {
@@ -19,9 +22,11 @@ namespace MinecraftBotManager.Services
         private List<BotObject> botObjects;
         private IStorageService storageService;
         private IXMLSerializeSettingsService xmlService;
-
+        
+        
         public DataService(IStorageService storageService, IXMLSerializeSettingsService xmlService)
         {
+            
             this.storageService = storageService;
             this.xmlService = xmlService;
             Config = xmlService.LoadSettings();
@@ -29,7 +34,7 @@ namespace MinecraftBotManager.Services
                 Directory.CreateDirectory("Data");
 
             BotsCollectionChanged += DataService_CollectionChanged;
-            LoadData();            
+            LoadData();
         }
 
         private void DataService_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -38,14 +43,15 @@ namespace MinecraftBotManager.Services
         }
 
         private void LoadData()
-        {
-            botObjects = (List<BotObject>) storageService.LoadObjectAsync("Data/Bots.dat").Result ?? new List<BotObject>();
+        {            
+            
+            botObjects = (List<BotObject>)storageService.LoadObjectAsync("Data/Bots.dat").Result ?? new List<BotObject>();
             botObjects.ForEach((item) => { item.PropertyChanged += Item_PropertyChanged; });
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            
+
         }
 
         public event NotifyCollectionChangedEventHandler BotsCollectionChanged;
@@ -56,7 +62,7 @@ namespace MinecraftBotManager.Services
         {
             botObjects.Add(newBot);
             newBot.PropertyChanged += Item_PropertyChanged;
-            BotsCollectionChanged?.Invoke(this,new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add,new List<BotObject> { newBot}));
+            BotsCollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new List<BotObject> { newBot }));
         }
 
         public IEnumerable<BotObject> GetAllBots()
@@ -86,11 +92,11 @@ namespace MinecraftBotManager.Services
         {
             throw new NotImplementedException();
         }
-        
+
 
         public ConfigModel Config { get; private set; }
 
-       
+
 
 
         public void Save()
@@ -100,10 +106,12 @@ namespace MinecraftBotManager.Services
                 storageService.SaveObjectAsync(botObjects, "Data/Bots.dat");
                 xmlService.SaveSettings();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.MessageBox.Show(e.ToString());
             }
         }
+
+      
     }
 }

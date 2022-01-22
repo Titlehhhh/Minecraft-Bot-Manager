@@ -14,7 +14,7 @@ namespace MinecraftBotManager.ViewModel
     public class ChatMessageVM
     {
         public ChatMessage Model { get; set; }
-        public List<Run> ColoredText { get; set; }
+        public List<Run> ColoredText { get; set; } = new List<Run>();
         public ChatMessageVM(ChatMessage chatMessage)
         {
             Model = chatMessage;
@@ -36,6 +36,10 @@ namespace MinecraftBotManager.ViewModel
             {
                 ColoredText = new List<Run> { new Run(json) };
             }
+        }
+        public ChatMessageVM()
+        {
+                
         }
         public static readonly Dictionary<string, string> rules = new Dictionary<string, string>
         {

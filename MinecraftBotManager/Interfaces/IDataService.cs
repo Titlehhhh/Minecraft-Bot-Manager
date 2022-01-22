@@ -1,6 +1,7 @@
 ﻿using MinecraftBotManager.Models;
 using MinecraftBotManager.ViewModel;
 using MinecraftLibrary.MinecraftModels;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +21,6 @@ namespace MinecraftBotManager.Interfaces
 
         IEnumerable<BotObject> GetAllBots();
         IEnumerable<ProxyServer> GetProxyServers();
-       
         void AddBot(BotObject newBot);
         void RemoveBot(BotObject remove);
         void Save();

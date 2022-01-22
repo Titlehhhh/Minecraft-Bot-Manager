@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SharpDX;
+using SharpDX.Direct3D9;
+using System.Windows.Interop;
+using System.Windows.Media.Media3D;
 
 namespace MinecraftBotManager.Views.UserControls.Windows
 {
@@ -47,10 +52,17 @@ namespace MinecraftBotManager.Views.UserControls.Windows
 
 
 
-
+        Surface target;
         public ItemFrame()
         {
             InitializeComponent();
+            
+
+
+        }
+
+        private void CompositionTarget_Rendering(object sender, EventArgs e)
+        {
             
         }
     }

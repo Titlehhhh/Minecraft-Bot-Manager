@@ -66,7 +66,7 @@
                                                 <GeometryModel3D.Material>
                                                     <DiffuseMaterial>
                                                         <DiffuseMaterial.Brush>
-                                                            <ImageBrush RenderOptions.BitmapScalingMode="NearestNeighbor" ImageSource="C:\Users\Пользователь\Desktop\tnt_top.png"/>
+                                                            <ImageBrush RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                                         </DiffuseMaterial.Brush>
                                                     </DiffuseMaterial>
                                                 </GeometryModel3D.Material>

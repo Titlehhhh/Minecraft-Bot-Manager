@@ -466,15 +466,16 @@ namespace MinecraftLibrary.MinecraftModels
                             else if (p is ServerEntityPositionPacket)
                             {
                                 ServerEntityPositionPacket pos = p as ServerEntityPositionPacket;
+                                if (Entities.ContainsKey(pos.EntityID))
+                                {
+                                    Entity entity = Entities[pos.EntityID];
 
-                                Entity entity = Entities[pos.EntityID];
-
-                                entity.Velocity = new Vector3(pos.DeltaX, pos.DeltaY, pos.DeltaZ);
-                                entity.Location.X += pos.DeltaX;
-                                entity.Location.Y += pos.DeltaY;
-                                entity.Location.Z += pos.DeltaZ;
-                                InvokeModule(m => m.OnEntityMove(entity));
-
+                                    entity.Velocity = new Vector3(pos.DeltaX, pos.DeltaY, pos.DeltaZ);
+                                    entity.Location.X += pos.DeltaX;
+                                    entity.Location.Y += pos.DeltaY;
+                                    entity.Location.Z += pos.DeltaZ;
+                                    InvokeModule(m => m.OnEntityMove(entity));
+                                }
                             }
                             else if (p is ServerEntityPositionAndRotationPacket)
                             {

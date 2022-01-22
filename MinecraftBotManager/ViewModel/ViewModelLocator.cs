@@ -35,31 +35,23 @@ namespace MinecraftBotManager.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                // Create design time view services and models
-                SimpleIoc.Default.Register<IDataService, DesignDataService>();
 
-                
-            }
-            else
-            {
+            SimpleIoc.Default.Register<IModulesService, ModulesService>();
 
-                SimpleIoc.Default.Register<IDataService, DataService>();
-                // Create run time view services and models
-                SimpleIoc.Default.Register<IModulesService, ModulesService>();
-
-                SimpleIoc.Default.Register<IStorageService, StorageService>();
-                SimpleIoc.Default.Register<IXMLSerializeSettingsService, XMLService>();
-                
-            }
-            SimpleIoc.Default.Register<IDialogService>(()=>new DialogService(App.Current.MainWindow));
+            SimpleIoc.Default.Register<IStorageService>(() => new StorageService());
+            SimpleIoc.Default.Register<IXMLSerializeSettingsService>(() => new XMLService());
+            SimpleIoc.Default.Register<IDataService,DataService>();
             
+
+            SimpleIoc.Default.Register<IDialogService>(() => new DialogService(App.Current.MainWindow));
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ModuleMenegerViewModel>();
             SimpleIoc.Default.Register<AddModuleVM>();
-            
+
         }
+
+
 
         public MainViewModel Main
         {

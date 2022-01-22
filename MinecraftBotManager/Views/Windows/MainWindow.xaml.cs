@@ -23,7 +23,7 @@ using System.Windows.Threading;
 namespace MinecraftBotManager.Views.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : MaterialWindow
     {
@@ -31,16 +31,12 @@ namespace MinecraftBotManager.Views.Windows
         private ProxyListWindow proxyListWindow;
         private ModuleMenegerWindow moduleMeneger;
 
-        Random rand = new Random();
-        Stopwatch stopwatch;
-        long frameCounter = 0;
-        GlyphTypeface glyphTypeface;
-        double renderingEmSize, advanceWidth, advanceHeight;
-        Point baselineOrigin;
+
 
         public MainWindow()
         {
             InitializeComponent();
+
             NotifiPopup.Opened += NotifiPopup_Opened;
             Messenger.Default.Register<ShowAddElementMessage>(this, async msg =>
              {
@@ -48,7 +44,7 @@ namespace MinecraftBotManager.Views.Windows
              });
             Closed += MainWindow_Closed;
 
-           
+
 
         }
 

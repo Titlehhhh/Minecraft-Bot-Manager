@@ -1,5 +1,9 @@
-﻿using System;
+﻿using MinecraftBotManager.ViewModel;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -24,32 +28,51 @@ namespace MinecraftBotManager.CustomControls
     {
 
 
-        public object ChatQueue
+
+        public INotifyCollectionChanged ChatItems
         {
-            get { return GetValue(ChatQueueProperty); }
-            set { SetValue(ChatQueueProperty, value); }
+            get { return this.DataContext as INotifyCollectionChanged; }
+
         }
 
-        // Using a DependencyProperty as the backing store for ChatQueue.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ChatQueueProperty =
-            DependencyProperty.Register("ChatQueue", typeof(object), typeof(ChatControl), new PropertyMetadata(new object()));
 
 
+        ScrollViewer ScrollChat;
         public ChatControl()
         {
             InitializeComponent();
-            ScrollChat.ScrollChanged += ScrollChat_ScrollChanged;
-            ICollectionView view = ChatList.Items;
-            view.CollectionChanged += View_CollectionChanged;
-
-
+            ScrollChat = GetScroll(ChatList, typeof(ScrollViewer)) as ScrollViewer;
+            //ScrollChat.ScrollChanged += ScrollChat_ScrollChanged;
+             ICollectionView view = ChatList.Items;
+              view.CollectionChanged += View_CollectionChanged;
+            
         }
+        public static Visual GetScroll(Visual element,Type type)
+        {
+            if (element == null)
+                return null;
+            if (element.GetType() == type)
+                return element;
+            Visual foundElement = null;
+            if (element is FrameworkElement)
+                (element as FrameworkElement).ApplyTemplate();
+
+            for(int i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
+            {
+                Visual visual = VisualTreeHelper.GetChild(element,i) as Visual;
+                foundElement =GetScroll(visual, type);
+                if (foundElement != null)
+                    break;
+            }
+            return foundElement;
+        }
+
         private bool flag = true;
         private void View_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (flag)
             {
-                ScrollChat.ScrollToBottom();
+                 ScrollChat.ScrollToBottom();
             }
         }
 

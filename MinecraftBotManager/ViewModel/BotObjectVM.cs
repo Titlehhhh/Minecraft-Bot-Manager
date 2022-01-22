@@ -19,11 +19,14 @@ using MinecraftBotManager.Interfaces;
 using MaterialDesignThemes.Wpf;
 using MinecraftLibrary.Interfaces;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace MinecraftBotManager.ViewModel
 {
     public class BotObjectVM : INotifyPropertyChanged
     {
+        public ObservableCollection<TestClass> testCollection = new ObservableCollection<TestClass>();
+        public ObservableCollection<TestClass> TestCollection => testCollection;
         public ProxyType[] ProxyTypes { get; private set; } = Enum.GetValues(typeof(ProxyType)).Cast<ProxyType>().ToArray();
         public string[] SupportedVersions { get; private set; } = { "1.12.2", "1.16.5" };
 
@@ -150,7 +153,7 @@ namespace MinecraftBotManager.ViewModel
                             App.Current?.Dispatcher.Invoke(() => ChatQueue?.Add(new ChatMessageVM(item)));
                     if (e.OldItems != null)
                         foreach (ChatMessage item in e.OldItems)
-                            App.Current?.Dispatcher.Invoke(() => ChatQueue?.Remove(ChatQueue?.FirstOrDefault(x=>x.Model == item)));
+                            App.Current?.Dispatcher.Invoke(() => ChatQueue?.Remove(ChatQueue?.FirstOrDefault(x => x.Model == item)));
                 }
                 catch
                 {
@@ -165,6 +168,11 @@ namespace MinecraftBotManager.ViewModel
                     Main.RemoveType(t);
                 }
             };
+            count = 0;
+            for (int i = 0; i <= 50; i++)
+            {
+                //ChatQueue.Add(new ChatMessageVM() { ColoredText = GenerateStr(random.Next(1,100))});
+            }
 
             Main.PropertyChanged += (s, p) =>
             {
@@ -186,6 +194,20 @@ namespace MinecraftBotManager.ViewModel
                     MainModel.Disconnect();
             }));
         }
+        static Random random = new Random();
+        static int count =0;
+        public static List<Run> GenerateStr(int length)
+        {
+            List<Run> res = new List<Run>();
+            for (int i = 1; i <= length; i++)
+            {
+                res.Add(new Run(count.ToString()+" "));
+            }
+            count++;
+            return res;            
+
+        }
+
         private RelayCommand<object> sendcommand;
 
         public RelayCommand<object> SendCommand
@@ -282,6 +304,19 @@ namespace MinecraftBotManager.ViewModel
             }
         }
 
+    }
+    public class TestClass
+    {
+        public List<Run> TextTest { get; set; }
+
+        public TestClass(string textTest)
+        {
+            TextTest = new List<Run>();
+            foreach(char c in textTest)
+            {
+                TextTest.Add(new Run(c.ToString()));
+            }
+        }
     }
 
 }

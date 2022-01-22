@@ -28,4 +28,23 @@ namespace MinecraftBotManager.Messages
             Result = type;
         }
     }
+    public class InizializeData : MessageBase
+    {
+        public int MaxCount { get; private set; }
+        public InizializeData(int max)
+        {
+            MaxCount = max;
+        }
+    }
+    public class UpdateProgress : MessageBase
+    {
+        public int Progress { get;private set; }
+        public string Text { get; private set; }
+
+        public UpdateProgress(int progress, string text)
+        {
+            Progress = progress;
+            Text = text;
+        }
+    }
 }

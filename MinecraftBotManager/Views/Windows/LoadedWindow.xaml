@@ -1,0 +1,76 @@
+﻿<Window x:Class="MinecraftBotManager.Views.Windows.LoadedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinecraftBotManager.Views.Windows"
+        mc:Ignorable="d"        
+        WindowStyle="None"        
+        Background="Transparent"
+        AllowsTransparency="True"
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="StartWindow" Height="300" Width="600">
+    <Border CornerRadius="5" Background="White" BorderThickness="1" BorderBrush="#FF272838">
+        <DockPanel Margin="0,20" LastChildFill="False" HorizontalAlignment="Center">
+            <mat:PackIcon DockPanel.Dock="Top" Kind="Cube"  Width="40" HorizontalAlignment="Center" Height="Auto"/>
+            <TextBlock DockPanel.Dock="Top" Text="Minecraft Bot Manager" FontSize="25" FontFamily="JetBrains Mono Bold"/>
+            <StackPanel Width="280"  DockPanel.Dock="Bottom" Margin="0,0,0,50">
+                <TextBlock x:Name="TextProgress1" HorizontalAlignment="Center" FontSize="15" Foreground="#FF2C2C2C" />
+                <ProgressBar x:Name="ProgressBar1" IsIndeterminate="False" >
+
+                    <ProgressBar.Style>
+                        <Style TargetType="ProgressBar">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                                        <Grid MinHeight="10" MinWidth="200">
+                                            <Border x:Name="PART_Track" CornerRadius="5" BorderThickness="2" Background="#FF717176" BorderBrush="#FF8B8888">
+
+                                            </Border>
+                                            <Border x:Name="PART_Indicator"
+                                                     HorizontalAlignment="Left"
+                                                     Width="0"
+                                                     CornerRadius="5" Background="#FF27292E">
+
+                                            </Border>
+
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ProgressBar.Style>
+                </ProgressBar>
+                <TextBlock x:Name="TextProgress2" HorizontalAlignment="Center" FontSize="15" Foreground="#FF2C2C2C" />
+                <ProgressBar x:Name="ProgressBar2" IsIndeterminate="False" >
+                    
+                    <ProgressBar.Style>
+                        <Style TargetType="ProgressBar">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                                        <Grid MinHeight="10" MinWidth="200">
+                                            <Border x:Name="PART_Track" CornerRadius="5" BorderThickness="2" Background="#FF717176" BorderBrush="#FF8B8888">
+
+                                            </Border>
+                                            <Border x:Name="PART_Indicator"
+                                                     HorizontalAlignment="Left"
+                                                     Width="0"
+                                                     CornerRadius="5" Background="#FF27292E">
+
+                                            </Border>
+
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ProgressBar.Style>
+                </ProgressBar>
+            </StackPanel>
+            
+        </DockPanel>
+    </Border>
+</Window>

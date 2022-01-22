@@ -10,13 +10,14 @@
               xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:attached="clr-namespace:MinecraftBotManager.Asists"
+             MaxWidth="{Binding RelativeSource={RelativeSource AncestorType=Border},Path=ActualWidth}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <converts:JsonToRuns x:Key="JsonToRunsConverter"/>
         <converts:StringToVisibiltyConverter x:Key="StringToVisi"/>
     </UserControl.Resources>
         <StackPanel Orientation="Horizontal">
-        <TextBlock MaxWidth="{Binding RelativeSource={RelativeSource AncestorType=Border},Path=ActualWidth}"  attached:TextBlockExtensions.BindableInlines="{Binding ColoredText}" TextWrapping="WrapWithOverflow" x:Name="Text" Foreground="White" FontFamily="JetBrains Mono" FontSize="14">
+        <TextBlock attached:TextBlockExtensions.BindableInlines="{Binding ColoredText,IsAsync=True}" TextWrapping="WrapWithOverflow" x:Name="Text" Foreground="White" FontFamily="JetBrains Mono" FontSize="14">
                            
             </TextBlock>
             <Button Click="Button_Click" Visibility="{Binding ElementName=Text,Path=Text,Converter={StaticResource StringToVisi}}" Margin="15,0,0,0" Height="auto" Width="auto" VerticalAlignment="Center" Padding="1" Background="Transparent" BorderThickness="0" >

@@ -5,14 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MinecraftBotManager.Views.UserControls.Windows"
              mc:Ignorable="d"
+             xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationCore"
+             xmlns:dx="clr-namespace:SharpDX.Direct2D1;assembly=SharpDX.Direct2D1"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              Height="35"
+             xmlns:dxWin="clr-namespace:SharpDX.Windows;assembly=SharpDX.Desktop"
              Width="35">
     <Grid>
         <Border>
             <Border.Background>
                 <SolidColorBrush Color="Gray" Opacity="0.5"/>
             </Border.Background>
+            
         </Border>
         <Image Source="{Binding BackgoundIcon}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased"/>
         <ContentControl Content="{Binding ContentIcon}">
