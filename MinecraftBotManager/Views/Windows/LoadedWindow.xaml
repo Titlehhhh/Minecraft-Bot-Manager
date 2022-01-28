@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="StartWindow" Height="300" Width="600">
-    <Border CornerRadius="5" Background="White" BorderThickness="1" BorderBrush="#FF272838">
+    <Border CornerRadius="5" Background="White" BorderThickness="1" BorderBrush="#FF5D5D5D">
         <DockPanel Margin="0,20" LastChildFill="False" HorizontalAlignment="Center">
             <mat:PackIcon DockPanel.Dock="Top" Kind="Cube"  Width="40" HorizontalAlignment="Center" Height="Auto"/>
             <TextBlock DockPanel.Dock="Top" Text="Minecraft Bot Manager" FontSize="25" FontFamily="JetBrains Mono Bold"/>

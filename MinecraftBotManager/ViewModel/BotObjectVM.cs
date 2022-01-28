@@ -9,7 +9,7 @@ using GalaSoft.MvvmLight;
 using MinecraftBotManager.Models;
 using GalaSoft.MvvmLight.Messaging;
 
-using MinecraftLibrary.Data;
+using MinecraftLibrary.API;
 using MinecraftLibrary.MinecraftModels;
 using Starksoft.Net.Proxy;
 using System.Runtime.CompilerServices;
@@ -17,7 +17,7 @@ using MinecraftBotManager.Services;
 using MinecraftBotManager.Messages;
 using MinecraftBotManager.Interfaces;
 using MaterialDesignThemes.Wpf;
-using MinecraftLibrary.Interfaces;
+using MinecraftLibrary.API;
 using System.Windows;
 using System.Windows.Documents;
 

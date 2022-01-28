@@ -19,7 +19,7 @@ using MinecraftBotManager.Interfaces;
 using Starksoft.Net.Proxy;
 using MinecraftLibrary.MinecraftModels;
 using System.Xml.Serialization;
-using MinecraftLibrary.Interfaces;
+using MinecraftLibrary.API;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 
@@ -29,7 +29,7 @@ namespace MinecraftBotManager.ViewModel
     public class MainViewModel : ViewModelBase, IMainViewModelController
     {
 
-        public void Notifi(string content, MinecraftLibrary.Interfaces.NotifiType type)
+        public void Notifi(string content, MinecraftLibrary.API.NotifiType type)
         {
             Notifications.Add(new NotificationElement((Models.NotifiType)type, content));
         }

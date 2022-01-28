@@ -30,8 +30,8 @@ namespace MinecraftBotManager
             LoadedWindow loadedWindow = new LoadedWindow();
             loadedWindow.ProgressBar1.Maximum = 2;
             loadedWindow.ProgressBar2.Value = 0;
-            loadedWindow.Show();
             loadedWindow.TextProgress1.Text = "Загрузка ресурсов";
+            loadedWindow.Show();            
             BackgroundWorker LoadJsonBocks = new BackgroundWorker();
             LoadJsonBocks.WorkerReportsProgress = true;
             SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(this.Dispatcher));
@@ -69,25 +69,17 @@ namespace MinecraftBotManager
                 {
                     MainWindow main = new MainWindow();
                     main.ContentRendered += (s1, e1) =>
-                    {
-                        if (_show)
-                            return;
-                        _show = true;
-                        loadedWindow.Close();
+                    {                        
+                        loadedWindow.Close();                        
                     };
                     main.Show();
                 })));
             };
-            loadedWindow.TextProgress1.Text = "Загрузка блоков";
+            
             loadedWindow.ProgressBar2.Value = 0;
             loadedWindow.ProgressBar2.Maximum = 100;
             LoadJsonBocks.RunWorkerAsync();
-
-
-
-
-
-
+            loadedWindow.TextProgress1.Text = "Загрузка блоков";
         }
         protected override void OnStartup(StartupEventArgs e)
         {
