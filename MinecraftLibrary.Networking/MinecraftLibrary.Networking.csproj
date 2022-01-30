@@ -48,7 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\Compression\ZlibUtils.cs" />
     <Compile Include="Session\IO\GuidExtensions.cs" />
-    <Compile Include="Session\IO\StreamNetInput.cs" />
     <Compile Include="Session\TcpClientSession.cs" />
   </ItemGroup>
   <ItemGroup>

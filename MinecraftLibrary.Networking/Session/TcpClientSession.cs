@@ -7,6 +7,7 @@ using MinecraftLibrary.Networking.Session.Compression;
 using MinecraftLibrary.Networking.Session.IO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace MinecraftLibrary.Networking.Session
             }
         }
 
-        public IPEndPoint Host => host;
+        public IPEndPoint EndPoint => host;
 
         public ProxyInfo Proxy => proxyInfo;
 
@@ -51,6 +52,8 @@ namespace MinecraftLibrary.Networking.Session
 
         public bool IsProxyUsed => isProxy;
 
+        private readonly WeakEventManager manager = new WeakEventManager();
+
         public event EventHandler<ConnectedEventArgs> ConnectedChanged;
         public event EventHandler<DisconnectedEventArgs> DisconnectedChanged;
         public event EventHandler<PacketReceivedEventArgs> PacketReceivedChanged;
@@ -61,18 +64,16 @@ namespace MinecraftLibrary.Networking.Session
 
         public TcpClientSession(string host, int port)
         {
-            IPAddress ip;
-            if (IPAddress.TryParse(host, out ip))
-            {
-                this.host = new IPEndPoint(ip, port);
-            }
+            IPAddress address;
+            if (!IPAddress.TryParse(host, out address))
+                address = Dns.GetHostEntry(host).AddressList[0];
+            this.host = new IPEndPoint(address, port);
         }
         public TcpClientSession(string host, int port, ProxyInfo proxy) : this(host, port)
         {
             this.isProxy = true;
             proxyInfo = proxy;
         }
-
         public void Connect()
         {
             if (this.IsConnected || Disconnected)
@@ -83,9 +84,9 @@ namespace MinecraftLibrary.Networking.Session
                 tcpClient = new TcpClient();
                 tcpClient.ReceiveBufferSize = 1024 * 1024;
                 tcpClient.ReceiveTimeout = 30 * 1000;
-               // tcpClient.SendBufferSize = 1024 * 1024;
-              //  tcpClient.SendTimeout = 30 * 1000;
-                tcpClient.Connect(Host);
+                // tcpClient.SendBufferSize = 1024 * 1024;
+                //  tcpClient.SendTimeout = 30 * 1000;
+                tcpClient.Connect(EndPoint);
                 ConnectedChanged?.Invoke(this, new ConnectedEventArgs());
                 ReadLoop();
             }
@@ -145,22 +146,22 @@ namespace MinecraftLibrary.Networking.Session
             int size = ReadNextVarIntRAW();
 
             byte[] rawpacket = ReadDataRAW(size);
+            int id = -1;
 
-            StreamNetInput input = new StreamNetInput(new Queue<byte>(rawpacket));
-
-            if (CompressionThreshold > 0)
+            using (MemoryStream ms = new MemoryStream(rawpacket))
             {
-                int sizeUncompressed = input.ReadNextVarInt();
-                if (sizeUncompressed != 0) // != 0 means compressed, let's decompress
+                if (CompressionThreshold > 0)
                 {
-                    byte[] unCompress = ZlibUtils.Decompress(input.Data, sizeUncompressed);
-                    input = new StreamNetInput(new Queue<byte>(unCompress));
+                    int sizeUncompressed = ms.ReadVarInt();
+                    if (sizeUncompressed != 0) // != 0 means compressed, let's decompress
+                    {
+                        byte[] unCompress = ZlibUtils.Decompress(rawpacket, sizeUncompressed);
+                        rawpacket = unCompress;
+                    }
                 }
+                id = ms.ReadVarInt();
             }
-
-            int id = input.ReadNextVarInt();
-
-            return new ByteBlock(id, input.Data);
+            return new ByteBlock(id, rawpacket);
         }
 
         public void Send(ByteBlock data)
@@ -174,7 +175,8 @@ namespace MinecraftLibrary.Networking.Session
             }
             catch (Exception e)
             {
-                DisconnectedChanged?.Invoke(this, new DisconnectedEventArgs("Ошибка при отправке", e));
+                if (!Disconnected)
+                    DisconnectedChanged?.Invoke(this, new DisconnectedEventArgs("Ошибка при отправке", e));
             }
         }
 
@@ -247,6 +249,23 @@ namespace MinecraftLibrary.Networking.Session
                     }
                 }
             }
+        }
+    }
+    internal static class MemeoryStreamExt
+    {
+        internal static int ReadVarInt(this MemoryStream memory)
+        {
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            while (true)
+            {
+                k = memory.ReadByte();
+                i |= (k & 0x7F) << j++ * 7;
+                if (j > 5) throw new OverflowException("VarInt too big");
+                if ((k & 0x80) != 128) break;
+            }
+            return i;
         }
     }
 }

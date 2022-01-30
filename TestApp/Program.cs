@@ -1,11 +1,8 @@
-﻿using MinecraftClient.Crypto;
-using MinecraftLibrary;
-using MinecraftLibrary.MinecraftProtocol.Packets.Client.Game;
-using MinecraftLibrary.MinecraftProtocol.Packets.Client.Login;
-using MinecraftLibrary.MinecraftProtocol.Packets.HandShake;
-using MinecraftLibrary.MinecraftProtocol.Packets.Server.Game;
-using MinecraftLibrary.MinecraftProtocol.Packets.Server.Login;
-using MinecraftLibrary.Palletes;
+﻿
+using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Protocol;
+using MinecraftLibrary.Core.Protocol;
+using MinecraftLibrary.Networking.Session;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,14 +17,14 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            TcpClientSession bot1 = new TcpClientSession("192.168.1.153", 52134, "Title_", 340);
-            bot1.PacketReceiveChanged += (p) =>
+            ITcpClientSession tcpClient = new TcpClientSession("nexus1.su", 25565);
+            Console.WriteLine("Asd");
+            IPacketReader reader = new PacketReader(tcpClient, 740);
+            tcpClient.ConnectedChanged += (s, e) =>
             {
-                if (p.GetType() == typeof(ServerKeepAlivePacket))
-                    bot1.SendPacket(new ClientKeepAlivePacket((p as ServerKeepAlivePacket).PingId));
+                Console.WriteLine("Connect");
             };
-            bot1.Connect();
-
+            tcpClient.Connect();
             Console.ReadLine();
         }
     }

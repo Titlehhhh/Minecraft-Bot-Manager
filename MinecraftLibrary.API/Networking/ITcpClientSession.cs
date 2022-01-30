@@ -24,7 +24,8 @@ namespace MinecraftLibrary.API.Networking
         bool IsConnected { get; }
         int CompressionThreshold { get; set; }
 
-        IPEndPoint Host { get; }
+        IPEndPoint EndPoint { get; }
+        
         ProxyInfo Proxy { get; }
 
         bool IsProxyUsed { get; }

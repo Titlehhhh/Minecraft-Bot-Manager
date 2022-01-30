@@ -52,7 +52,16 @@
     <Compile Include="DisconnectReason.cs" />
     <Compile Include="EntityType.cs" />
     <Compile Include="Entity\IEntityPallete.cs" />
+    <Compile Include="Helpers\WeakEventListener.cs" />
+    <Compile Include="Helpers\CollectionChangedWeakEventListener.cs" />
     <Compile Include="Helpers\DataTypes.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\IWeakEventListener.cs" />
+    <Compile Include="Helpers\PropertyChangedWeakEventListener.cs" />
+    <Compile Include="Helpers\TypedWeakEventListener.cs" />
+    <Compile Include="Helpers\TypedWeakEventListener1.cs" />
+    <Compile Include="Helpers\WeakEventListenerBase.cs" />
+    <Compile Include="Helpers\WeakEventManager.cs" />
     <Compile Include="Inventory\IContainer.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="Material.cs" />
@@ -66,13 +75,15 @@
     <Compile Include="Networking\Events\ConnectedEventArgs.cs" />
     <Compile Include="Networking\Events\DisconnectedEventArgs.cs" />
     <Compile Include="Networking\Events\PacketReceivedEventArgs.cs" />
-    <Compile Include="Networking\IO\NetInput.cs" />
-    <Compile Include="Networking\IO\NetOutput.cs" />
     <Compile Include="Networking\ITcpClientSession.cs" />
     <Compile Include="Networking\Proxy\ProxyInfo.cs" />
-    <Compile Include="Protocol\Events\PacketProcessed.cs" />
+    <Compile Include="Protocol\ClientPacket.cs" />
+    <Compile Include="Protocol\Events\PacketProcessedEventArgs.cs" />
+    <Compile Include="Protocol\Events\PacketSendEventArgs.cs" />
+    <Compile Include="Protocol\Events\PacketSentEventArgs.cs" />
+    <Compile Include="Protocol\Helpres\MinecraftStream.cs" />
+    <Compile Include="Protocol\IPacketReader.cs" />
     <Compile Include="Protocol\IPacket.cs" />
-    <Compile Include="Protocol\IPacketHandler.cs" />
     <Compile Include="VillagerInfo.cs" />
     <Compile Include="WindowActionType.cs" />
     <Compile Include="World\Block.cs" />
@@ -92,6 +103,8 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Networking\IO\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.Protocol.Events
 {
-    public class PacketProcessed : EventArgs
+    public class PacketProcessedEventArgs : EventArgs
     {
         public IPacket Packet { get; private set; }
 
-        public PacketProcessed(IPacket packet)
+        public PacketProcessedEventArgs(IPacket packet)
         {
             Packet = packet;
         }

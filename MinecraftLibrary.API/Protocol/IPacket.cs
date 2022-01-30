@@ -1,4 +1,5 @@
-﻿using MinecraftLibrary.API.Networking.IO;
+﻿
+using MinecraftLibrary.API.Protocol.Helpres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,7 @@ namespace MinecraftLibrary.API.Protocol
 {
     public interface IPacket
     {
-        void Read(NetInput input);
-        void Write(NetOutput output);
+        void Read(MinecraftStream input, int version);
+        void Write(MinecraftStream output, int version);
     }
-    
 }

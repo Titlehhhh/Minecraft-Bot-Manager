@@ -50,9 +50,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj">
-      <Project>{0d15ff94-592e-44a0-9d68-fae0393ca975}</Project>
-      <Name>MinecraftLibrary</Name>
+    <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj">
+      <Project>{26AB2F21-8A9F-4853-924B-6FCC570E3443}</Project>
+      <Name>MinecraftLibrary.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinecraftLibrary.Core\MinecraftLibrary.Core.csproj">
+      <Project>{50176DAF-3B94-434D-9D97-5DDBFE5A87CD}</Project>
+      <Name>MinecraftLibrary.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinecraftLibrary.Networking\MinecraftLibrary.Networking.csproj">
+      <Project>{CB1B4836-B89B-4F41-8A14-D560FE57641B}</Project>
+      <Name>MinecraftLibrary.Networking</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
