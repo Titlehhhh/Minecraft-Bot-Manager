@@ -52,7 +52,12 @@
     <Compile Include="Protocol\Attributes\PacketMetaLoginAttribute.cs" />
     <Compile Include="Protocol\Attributes\PacketMetaStatusAttribute.cs" />
     <Compile Include="Protocol\PacketReader.cs" />
+    <Compile Include="Protocol\Packets\Client\Game\ClientChatPacket.cs" />
+    <Compile Include="Protocol\Packets\Client\Game\Player\PlayerPackets.cs" />
     <Compile Include="Protocol\Packets\Client\HandShake\HandShakePacket.cs" />
+    <Compile Include="Protocol\Packets\Client\Login\LoginPluginResponsePacket.cs" />
+    <Compile Include="Protocol\Packets\Client\Login\EncryptionResponsePacket.cs" />
+    <Compile Include="Protocol\Packets\Client\Login\LoginStartPacket.cs" />
     <Compile Include="World\Chunk.cs" />
     <Compile Include="World\ChunkColumn.cs" />
     <Compile Include="World\World.cs" />
