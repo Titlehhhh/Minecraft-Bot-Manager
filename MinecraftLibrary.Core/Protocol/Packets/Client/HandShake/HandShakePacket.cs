@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Helpres;
-using MinecraftLibrary.Core.Protocol.Attributes;
+using MinecraftLibrary.API.Protocol.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

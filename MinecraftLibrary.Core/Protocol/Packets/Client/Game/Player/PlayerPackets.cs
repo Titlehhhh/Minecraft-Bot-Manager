@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Helpres;
-using MinecraftLibrary.Core.Protocol.Attributes;
+using MinecraftLibrary.API.Protocol.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Core.Protocol.Packets.Client.Game.Player
 {
-    [PacketMetaGame(0x14)]
-    public class ClientPlayerMovementPacket : ClientPacket
+    [PacketMetaGame(0x14,740)]
+    public class ClientPlayerMovementPacket740 : ClientPacket
     {
         public bool Onground { get; set; }
         public override void Write(MinecraftStream output, int version)
@@ -18,15 +18,15 @@ namespace MinecraftLibrary.Core.Protocol.Packets.Client.Game.Player
             output.WriteBool(Onground);
         }
 
-        public ClientPlayerMovementPacket(bool isOnground)
+        public ClientPlayerMovementPacket740(bool isOnground)
         {
             Onground = isOnground;
         }
     }
-    [PacketMetaGame(0x13)]
-    public class ClientPlayerRotationPacket : ClientPlayerMovementPacket
+    [PacketMetaGame(0x13,740)]
+    public class ClientPlayerRotationPacket740 : ClientPlayerMovementPacket740
     {
-        public ClientPlayerRotationPacket(float yaw, float pitch, bool isOnground) : base(isOnground)
+        public ClientPlayerRotationPacket740(float yaw, float pitch, bool isOnground) : base(isOnground)
         {
             Yaw = yaw;
             Pitch = pitch;
@@ -41,13 +41,13 @@ namespace MinecraftLibrary.Core.Protocol.Packets.Client.Game.Player
             base.Write(output, version);
         }
     }
-    [PacketMetaGame(0x11)]
-    public class ClientPlayerPositionPacket : ClientPlayerMovementPacket
+    [PacketMetaGame(0x11,740)]
+    public class ClientPlayerPositionPacket740 : ClientPlayerMovementPacket740
     {
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
-        public ClientPlayerPositionPacket(double x, double y, double z, bool onground) : base(onground)
+        public ClientPlayerPositionPacket740(double x, double y, double z, bool onground) : base(onground)
         {
             X = x;
             Y = y;
@@ -61,10 +61,10 @@ namespace MinecraftLibrary.Core.Protocol.Packets.Client.Game.Player
             base.Write(output, version);
         }
     }
-    [PacketMetaGame(0x12)]
-    public class ClientPlayerPositionAndRotationPacket : ClientPlayerMovementPacket
+    [PacketMetaGame(0x12,740)]
+    public class ClientPlayerPositionAndRotationPacket740 : ClientPlayerMovementPacket740
     {
-        public ClientPlayerPositionAndRotationPacket(double x, double y, double z, float yaw, float pitch, bool isOnground) : base(isOnground)
+        public ClientPlayerPositionAndRotationPacket740(double x, double y, double z, float yaw, float pitch, bool isOnground) : base(isOnground)
         {
             X = x;
             Y = y;

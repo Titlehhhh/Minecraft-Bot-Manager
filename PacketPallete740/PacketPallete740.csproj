@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50176DAF-3B94-434D-9D97-5DDBFE5A87CD}</ProjectGuid>
+    <ProjectGuid>{C861B474-5844-4721-986B-A3A78546D00D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MinecraftLibrary.Core</RootNamespace>
-    <AssemblyName>MinecraftLibrary.Core</AssemblyName>
+    <RootNamespace>PacketPallete740</RootNamespace>
+    <AssemblyName>PacketPallete740</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,38 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlockPalletes\Palette112.cs" />
-    <Compile Include="Helpers\ConvertType.cs" />
-    <Compile Include="Helpers\EntityTypeExtensions.cs" />
-    <Compile Include="Helpers\MaterialExtensions.cs" />
+    <Compile Include="ClientChatPacket.cs" />
+    <Compile Include="Game\ClientAtackPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocol\PacketReader.cs" />
-    <Compile Include="Protocol\Packets\Client\Game\ClientChatPacket.cs" />
-    <Compile Include="Protocol\Packets\Client\Game\Player\PlayerPackets.cs" />
-    <Compile Include="Protocol\Packets\Client\HandShake\HandShakePacket.cs" />
-    <Compile Include="Protocol\Packets\Client\Login\LoginPluginResponsePacket.cs" />
-    <Compile Include="Protocol\Packets\Client\Login\EncryptionResponsePacket.cs" />
-    <Compile Include="Protocol\Packets\Client\Login\LoginStartPacket.cs" />
-    <Compile Include="World\Chunk.cs" />
-    <Compile Include="World\ChunkColumn.cs" />
-    <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj">
       <Project>{26AB2F21-8A9F-4853-924B-6FCC570E3443}</Project>
       <Name>MinecraftLibrary.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj">
-      <Project>{48CD6040-D60B-410D-9404-B1755831EC97}</Project>
-      <Name>MinecraftLibrary.Geometry</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinecraftLibrary.Networking\MinecraftLibrary.Networking.csproj">
-      <Project>{CB1B4836-B89B-4F41-8A14-D560FE57641B}</Project>
-      <Name>MinecraftLibrary.Networking</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Protocol\Packets\Server\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
