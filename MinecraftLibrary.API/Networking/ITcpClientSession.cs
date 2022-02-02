@@ -34,9 +34,9 @@ namespace MinecraftLibrary.API.Networking
         IAesStream AesStream { get; }
         #endregion
         #region События
-        event EventHandler<ConnectedEventArgs> ConnectedChanged;
-        event EventHandler<DisconnectedEventArgs> DisconnectedChanged;
-        event EventHandler<PacketReceivedEventArgs> PacketReceivedChanged;
+        event EventHandler<ConnectedEventArgs> Connected;
+        event EventHandler<DisconnectedEventArgs> DisconnectedEvent;
+        event EventHandler<PacketReceivedEventArgs> DataReceivedEvent;
         event EventHandler<ByteBlock> DataSendChanged;
         event EventHandler<ByteBlock> DataSentChanged;
         event EventHandler<byte[]> EncryptionEnabledChanged;

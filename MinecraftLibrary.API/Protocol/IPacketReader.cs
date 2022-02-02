@@ -19,7 +19,7 @@ namespace MinecraftLibrary.API.Protocol
     {
         Dictionary<Type, int> RegisteredOutputPakets { get; set; }
         Dictionary<int, Type> RegisteredInputPakets { get; set; }               
-        ITcpClientSession Session { get; }
+       
         #region Пакеты от сервера
 
 
@@ -33,8 +33,8 @@ namespace MinecraftLibrary.API.Protocol
         void SendPacket(IPacket packet);
         #endregion
 
-        int ProtocolVersion { get; set; }        
-        bool IsEnabled { get; set; }
+        int ProtocolVersion { get; set; }      
+        
 
         event EventHandler<PacketProcessedEventArgs> PacketProcessedEvent;        
         event EventHandler<PacketSendEventArgs> PacketSendEvent;

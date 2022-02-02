@@ -78,15 +78,12 @@
     <Compile Include="Networking\ITcpClientSession.cs" />
     <Compile Include="Networking\Proxy\ProxyInfo.cs" />
     <Compile Include="Protocol\Attributes\PacketMetaAttribute.cs" />
-    <Compile Include="Protocol\Attributes\PacketMetaGameAttribute.cs" />
-    <Compile Include="Protocol\Attributes\PacketMetaHandShakeAttribute.cs" />
-    <Compile Include="Protocol\Attributes\PacketMetaLoginAttribute.cs" />
-    <Compile Include="Protocol\Attributes\PacketMetaStatusAttribute.cs" />
     <Compile Include="Protocol\ClientPacket.cs" />
     <Compile Include="Protocol\Events\PacketProcessedEventArgs.cs" />
     <Compile Include="Protocol\Events\PacketSendEventArgs.cs" />
     <Compile Include="Protocol\Events\PacketSentEventArgs.cs" />
     <Compile Include="Protocol\Helpres\MinecraftStream.cs" />
+    <Compile Include="Protocol\IPacketPallete.cs" />
     <Compile Include="Protocol\IPacketReader.cs" />
     <Compile Include="Protocol\IPacket.cs" />
     <Compile Include="VillagerInfo.cs" />

@@ -41,8 +41,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientChatPacket.cs" />
-    <Compile Include="Game\ClientAtackPacket.cs" />
+    <Compile Include="PacketManager340.cs" />
+    <Compile Include="Packets\Client\Game\ClientChatPacket.cs" />
+    <Compile Include="Packets\Client\Game\ClientKeepAlivePacket.cs" />
+    <Compile Include="Packets\Client\Game\ClientPluginMessagePacket.cs" />
+    <Compile Include="Packets\Client\Game\ClientRequestPacket.cs" />
+    <Compile Include="Packets\Client\Game\ClientResourcePackStatusPacket.cs" />
+    <Compile Include="Packets\Client\Game\ClientSettingsPacket.cs" />
+    <Compile Include="Packets\Client\Game\ClientTabCompletePacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerAbilitiesPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerActionPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerChangeHeldItemPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerInteractEntityPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerMovementPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerPlaceBlockPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerPositionPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerPositionRotationPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerRotationPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerStatePacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerSwingArmPacket.cs" />
+    <Compile Include="Packets\Client\Game\Player\ClientPlayerUseItemPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientAdvancementTabPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientCloseWindowPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientConfirmTransactionPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientCraftingBookDataPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientCreativeInventoryActionPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientEnchantItemPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientPrepareCraftingGridPacket.cs" />
+    <Compile Include="Packets\Client\Game\Window\ClientWindowActionPacket.cs" />
+    <Compile Include="Packets\Client\Game\World\ClientSpectatePacket.cs" />
+    <Compile Include="Packets\Client\Game\World\ClientSteerBoatPacket.cs" />
+    <Compile Include="Packets\Client\Game\World\ClientSteerVehiclePacket.cs" />
+    <Compile Include="Packets\Client\Game\World\ClientTeleportConfirmPacket.cs" />
+    <Compile Include="Packets\Client\Game\World\ClientUpdateSignPacket.cs" />
+    <Compile Include="Packets\Client\Game\World\ClientVehicleMovePacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +82,9 @@
       <Project>{26AB2F21-8A9F-4853-924B-6FCC570E3443}</Project>
       <Name>MinecraftLibrary.API</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Packets\Server\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

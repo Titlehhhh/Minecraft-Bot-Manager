@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Geometry",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Core", "MinecraftLibrary.Core\MinecraftLibrary.Core.csproj", "{50176DAF-3B94-434D-9D97-5DDBFE5A87CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Networking", "MinecraftLibrary.Networking\MinecraftLibrary.Networking.csproj", "{CB1B4836-B89B-4F41-8A14-D560FE57641B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Protocol", "MinecraftLibrary.Protocol\MinecraftLibrary.Protocol.csproj", "{CB1B4836-B89B-4F41-8A14-D560FE57641B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketPallete340", "PacketPallete340\PacketPallete340.csproj", "{D5D0B62D-61F3-4A29-951B-4E06F599C9D1}"
 EndProject

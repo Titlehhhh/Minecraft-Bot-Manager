@@ -2,30 +2,34 @@
 
 namespace MinecraftLibrary.API.Protocol.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true,Inherited =true)]
-    public abstract class PacketMetaAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Class,Inherited =true)]
+    public sealed class PacketMetaAttribute : Attribute
     {
         public int ID { get; private set; }
-        public int[] Protocols { get; private set; }
-        public PacketState PacketState { get; private set; } = PacketState.Client;
+        public int TargetProtocol { get; private set; }
+        public PacketSide PacketState { get; private set; } = PacketSide.Client;
+        public PacketCategory Category { get; private set; } = PacketCategory.HandShake;
 
-        public PacketMetaAttribute(int iD, params int[] protocols)
+        public PacketMetaAttribute(int iD,int protocol,PacketSide state , PacketCategory  category )
         {
             ID = iD;
-            Protocols = protocols;            
-        }
-        public PacketMetaAttribute(int iD,PacketState state = PacketState.Client, params int[] protocols)
-        {
-            ID = iD;
-            Protocols = protocols;
-            PacketState = state;            
+            TargetProtocol = protocol;
+            PacketState = state;
+            Category = category;
         }
 
     }
-    public enum PacketState : byte
+    public enum PacketSide : byte
     {
         Client = 0,
         Server = 1
+    }
+    public enum PacketCategory : byte
+    {
+        HandShake,
+        Login,
+        Game,
+        Status
     }
 
 
