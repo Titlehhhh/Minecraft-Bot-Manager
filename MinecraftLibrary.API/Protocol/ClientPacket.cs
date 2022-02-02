@@ -12,12 +12,12 @@ namespace MinecraftLibrary.API.Protocol
     /// </summary>
     public abstract class ClientPacket : IPacket
     {
-        public void Read(MinecraftStream input, int version)
+        public void Read(MinecraftStream input)
         {
            
         }
 
-        public virtual void Write(MinecraftStream output, int version)
+        public virtual void Write(MinecraftStream output)
         {
             
         }

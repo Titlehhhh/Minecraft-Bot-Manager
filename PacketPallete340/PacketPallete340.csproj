@@ -75,6 +75,9 @@
     <Compile Include="Packets\Client\Game\World\ClientTeleportConfirmPacket.cs" />
     <Compile Include="Packets\Client\Game\World\ClientUpdateSignPacket.cs" />
     <Compile Include="Packets\Client\Game\World\ClientVehicleMovePacket.cs" />
+    <Compile Include="Packets\Client\HandShake\HandShakePacket.cs" />
+    <Compile Include="Packets\Client\Login\EncryptionResponsePacket.cs" />
+    <Compile Include="Packets\Client\Login\LoginStartPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Packets\Client\Status\" />
     <Folder Include="Packets\Server\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

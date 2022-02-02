@@ -10,7 +10,7 @@ namespace MinecraftLibrary.API.Protocol
 {
     public interface IPacket
     {
-        void Read(MinecraftStream input, int version);
-        void Write(MinecraftStream output, int version);
+        void Read(MinecraftStream input);
+        void Write(MinecraftStream output);
     }
 }
