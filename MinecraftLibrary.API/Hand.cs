@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.Interfaces.World
+namespace MinecraftLibrary.API
 {
-    class Class1
+    public enum HAND
     {
+        MAINHAND,
+        OFFHAND
     }
+    
 }

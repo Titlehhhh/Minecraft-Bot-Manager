@@ -25,7 +25,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
             output.WriteFloat(Pitch);
             output.WriteBool(OnGround);
         }
-
+        
         public ClientPlayerPositionRotationPacket(double x, double y, double z, float yaw, float pitch, bool onGround)
         {
             X = x;

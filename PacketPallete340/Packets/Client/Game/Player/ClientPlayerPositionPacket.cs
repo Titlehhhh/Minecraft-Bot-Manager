@@ -20,7 +20,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
             output.WriteDouble(Z);
             output.WriteBool(OnGround);
         }
-
+        
         public ClientPlayerPositionPacket(double x, double y, double z, bool onGround)
         {
             X = x;

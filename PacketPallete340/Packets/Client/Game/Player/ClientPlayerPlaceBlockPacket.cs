@@ -9,14 +9,14 @@ namespace PacketPallete340.Packets.Client.Game.Player
     public class ClientPlayerPlaceBlockPacket : ClientPacket
     {
         //NetUtil.writePosition(out, this.position);
-       //out.writeVarInt(MagicValues.value(Integer.class, this.face));
-       //out.writeVarInt(MagicValues.value(Integer.class, this.hand));
-       //out.writeFloat(this.cursorX);
-       //out.writeFloat(this.cursorY);
-       //out.writeFloat(this.cursorZ);
+        //out.writeVarInt(MagicValues.value(Integer.class, this.face));
+        //out.writeVarInt(MagicValues.value(Integer.class, this.hand));
+        //out.writeFloat(this.cursorX);
+        //out.writeFloat(this.cursorY);
+        //out.writeFloat(this.cursorZ);
         public override void Write(MinecraftStream output)
         {
-            
+
         }
     }
 }

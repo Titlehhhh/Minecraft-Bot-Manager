@@ -71,9 +71,9 @@ namespace MinecraftLibrary.Geometry
         /// <summary>
         /// Returns the distance along the ray where it intersects the specified bounding box, if it intersects at all.
         /// </summary>
-        public double? Intersects(BoundingBox box, out BlockFace face)
+        public double? Intersects(BoundingBox box, out GeoBlockFace face)
         {
-            face = BlockFace.PositiveY;
+            face = GeoBlockFace.PositiveY;
             //first test if start in box
             if (Position.X >= box.Min.X
                     && Position.X <= box.Max.X
@@ -126,9 +126,9 @@ namespace MinecraftLibrary.Geometry
                     return null;
 
                 if (Position.X < box.Min.X)
-                    face = BlockFace.NegativeX;
+                    face = GeoBlockFace.NegativeX;
                 else if (Position.X > box.Max.X)
-                    face = BlockFace.PositiveX;
+                    face = GeoBlockFace.PositiveX;
 
                 return maxT.X;
             }
@@ -146,9 +146,9 @@ namespace MinecraftLibrary.Geometry
                     return null;
 
                 if (Position.Y < box.Min.Y)
-                    face = BlockFace.NegativeY;
+                    face = GeoBlockFace.NegativeY;
                 else if (Position.Y > box.Max.Y)
-                    face = BlockFace.PositiveY;
+                    face = GeoBlockFace.PositiveY;
 
                 return maxT.Y;
             }
@@ -166,9 +166,9 @@ namespace MinecraftLibrary.Geometry
                     return null;
 
                 if (Position.Z < box.Min.Z)
-                    face = BlockFace.NegativeZ;
+                    face = GeoBlockFace.NegativeZ;
                 else if (Position.Z > box.Max.Z)
-                    face = BlockFace.PositiveZ;
+                    face = GeoBlockFace.PositiveZ;
 
                 return maxT.Z;
             }

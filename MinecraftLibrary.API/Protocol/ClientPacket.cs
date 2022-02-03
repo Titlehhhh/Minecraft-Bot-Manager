@@ -12,6 +12,10 @@ namespace MinecraftLibrary.API.Protocol
     /// </summary>
     public abstract class ClientPacket : IPacket
     {
+        public ClientPacket()
+        {
+
+        }
         public void Read(MinecraftStream input)
         {
            

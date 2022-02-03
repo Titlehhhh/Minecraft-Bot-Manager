@@ -25,7 +25,10 @@ namespace PacketPallete340.Packets.Client.Game.Player
         {
             output.WriteBool(OnGround);
         }
+        public ClientPlayerMovementPacket()
+        {
 
+        }
         public ClientPlayerMovementPacket(bool onGround)
         {
             OnGround = onGround;

@@ -22,13 +22,13 @@ namespace MinecraftLibrary.API.World.Implements
         //private static IBlock UnkownBlock = new IBlock(0, 0, new Point3_Int(0));
         public IBlock GetBlock(int x, int y, int z)
         {
-            if (IsValidPos(x) && IsValidPos(y) && IsValidPos(z))
+            if (IsValidPos(x,SizeX-1) && IsValidPos(y,SizeY-1) && IsValidPos(z,SizeZ-1))
                 return Blocks[x, y, z];
             return new UnkownBlock();
         }
-        private static bool IsValidPos(int value)
+        private static bool IsValidPos(int value,int max)
         {
-            return value >= 0 && value <= 15;
+            return value >= 0 && value <= max;
         }
 
         public IBlock GetBlock(Point3_Int position)
@@ -40,7 +40,7 @@ namespace MinecraftLibrary.API.World.Implements
         {
             if (block is null)
                 throw new ArgumentNullException(nameof(block));
-            if (IsValidPos(x) && IsValidPos(y) && IsValidPos(z))
+            if (IsValidPos(x,SizeX-1) && IsValidPos(y,SizeY-1) && IsValidPos(z,SizeZ-1))
                 Blocks[x, y, z] = block;
         }
 

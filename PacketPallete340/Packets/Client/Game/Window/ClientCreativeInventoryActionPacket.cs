@@ -9,10 +9,10 @@ namespace PacketPallete340.Packets.Client.Game.Window
     public class ClientCreativeInventoryActionPacket : ClientPacket
     {
         //out.writeShort(this.slot);
-       //NetUtil.writeItem(out, this.clicked);
+        //NetUtil.writeItem(out, this.clicked);
         public override void Write(MinecraftStream output)
         {
-            
+
         }
     }
 }
