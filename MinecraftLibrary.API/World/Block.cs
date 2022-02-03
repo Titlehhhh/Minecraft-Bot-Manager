@@ -7,26 +7,10 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.World
 {
-    public struct Block
+    public interface IBlock
     {
-        private Point3_Int position;
-        public Point3_Int Position => position;
-        private int blockId;
-
-        public int BlockID => blockId;
-        private byte blockMeta;
-
-        public byte BlockMeta => blockMeta;
-
-        public Block(int type, byte metadata, Point3_Int pos) : this(pos)
-        {
-            this.blockId = type;
-            this.blockMeta = metadata;
-        }
-        private Block(Point3_Int position) : this()
-        {
-            this.position = position;
-        }
+        int ID { get; }
+        Point3_Int Position { get; }
 
     }
 }

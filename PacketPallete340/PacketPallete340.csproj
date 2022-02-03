@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\World\Block340.cs" />
     <Compile Include="PacketManager340.cs" />
     <Compile Include="Packets\Client\Game\ClientChatPacket.cs" />
     <Compile Include="Packets\Client\Game\ClientKeepAlivePacket.cs" />
@@ -84,6 +85,10 @@
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj">
       <Project>{26AB2F21-8A9F-4853-924B-6FCC570E3443}</Project>
       <Name>MinecraftLibrary.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj">
+      <Project>{48CD6040-D60B-410D-9404-B1755831EC97}</Project>
+      <Name>MinecraftLibrary.Geometry</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

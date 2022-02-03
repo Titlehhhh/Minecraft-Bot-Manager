@@ -1,4 +1,5 @@
 ﻿using MinecraftLibrary.API.World;
+using MinecraftLibrary.API.World.Implements;
 using MinecraftLibrary.Geometry;
 using System;
 using System.Collections.Generic;
@@ -43,27 +44,27 @@ namespace MinecraftLibrary.Core.World
             return b;
         }
 
-        public IEnumerable<Block> FindBlock(Point3_Int start, double radius, int id)
+        public IEnumerable<IBlock> FindBlock(Point3_Int start, double radius, int id)
         {
             return null;
         }
 
-        public IEnumerable<Block> FindBlock(Point3_Int start, double radius, int id, byte meta = 0)
+        public IEnumerable<IBlock> FindBlock(Point3_Int start, double radius, int id, byte meta = 0)
         {
             return null;
         }
 
-        public Block GetBlock(Point3_Int position)
+        public IBlock GetBlock(Point3_Int position)
         {
             return GetBlock(position.X, position.Y, position.Z);
         }
 
-        public Block GetBlock(int x, int y, int z)
+        public IBlock GetBlock(int x, int y, int z)
         {
             return GetBlock(new Point3(x, y, z));
         }
 
-        public Block GetBlock(Point3 player)
+        public IBlock GetBlock(Point3 player)
         {
             return GetChunkColumn(player).GetChunk(player.ChunkY).GetBlock(player.ChunkBlockX, player.ChunkBlockY, player.ChunkBlockZ);
         }
@@ -103,18 +104,18 @@ namespace MinecraftLibrary.Core.World
         }
         #endregion
 
-        public void SetBlock(Point3_Int position, Block block)
+        public void SetBlock(Point3_Int position, IBlock block)
         {
             SetBlock(position.X, position.Y, position.Z, block);
         }
 
-        public void SetBlock(int x, int y, int z, Block block)
+        public void SetBlock(int x, int y, int z, IBlock block)
         {
             int blockX = x & 15;
             int blockY = y & 15;
             int blockZ = z & 15;
             IChunk chunk = GetChunk(x, y, z);
-            Block old = chunk.GetBlock(blockX, blockY, blockZ);
+            IBlock old = chunk.GetBlock(blockX, blockY, blockZ);
             chunk.SetBlock(blockX, blockY, blockZ,block);
             ChangeBlock?.Invoke(this, new BlockChangeEventArgs(new Point3_Int(x,y,z),old, block));
         }
@@ -145,6 +146,8 @@ namespace MinecraftLibrary.Core.World
         public int Z => 0;
         private IChunk[] chunks;
         public IChunk[] Chunks => chunks ?? (chunks = new IChunk[16]);
+
+        public int SizeY => throw new NotImplementedException();
 
         public IChunk GetChunk(int y)
         {

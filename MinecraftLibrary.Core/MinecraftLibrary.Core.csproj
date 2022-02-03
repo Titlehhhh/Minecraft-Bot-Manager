@@ -46,8 +46,6 @@
     <Compile Include="Helpers\EntityTypeExtensions.cs" />
     <Compile Include="Helpers\MaterialExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="World\Chunk.cs" />
-    <Compile Include="World\ChunkColumn.cs" />
     <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>

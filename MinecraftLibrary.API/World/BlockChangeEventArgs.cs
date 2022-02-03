@@ -11,7 +11,7 @@ namespace MinecraftLibrary.API.World
 {
     public class BlockChangeEventArgs : EventArgs
     {
-        public BlockChangeEventArgs(Point3_Int pos, Block oldBlock, Block newBlock)
+        public BlockChangeEventArgs(Point3_Int pos, IBlock oldBlock, IBlock newBlock)
         {
             Position = pos;
             OldBlock = oldBlock;
@@ -19,7 +19,7 @@ namespace MinecraftLibrary.API.World
         }
 
         public Point3_Int Position { get; private set; }
-        public Block OldBlock { get; private set; }
-        public Block NewBlock { get; private set; }
+        public IBlock OldBlock { get; private set; }
+        public IBlock NewBlock { get; private set; }
     }
 }

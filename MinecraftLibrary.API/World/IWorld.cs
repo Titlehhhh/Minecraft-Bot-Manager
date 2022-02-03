@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.World
 {
-    public interface IWorld : IDisposable
+    public interface IWorld : IDisposable 
     {
         #region Get/Set IChunkColumn
 
@@ -23,20 +23,20 @@ namespace MinecraftLibrary.API.World
         #region Get/Set IChunk
         IChunk GetChunk(Point3_Int position);
         IChunk GetChunk(int x, int y, int z);
-        IChunk GetChunk(Point3 player);        
+        IChunk GetChunk(Point3 player);
 
         #endregion
         #region Get/Set IBlock
-        Block GetBlock(Point3_Int position);
-        Block GetBlock(int x, int y, int z);
-        Block GetBlock(Point3 player);
+        IBlock GetBlock(Point3_Int position);
+        IBlock GetBlock(int x, int y, int z);
+        IBlock GetBlock(Point3 player);
 
-        void SetBlock(Point3_Int position, Block block);
-        void SetBlock(int x, int y, int z, Block block);
+        void SetBlock(Point3_Int position, IBlock block);
+        void SetBlock(int x, int y, int z, IBlock block);
         #endregion
 
         #region Свойства
-        Dictionary<long,IChunkColumn> ChunkColumns { get; }
+        Dictionary<long, IChunkColumn> ChunkColumns { get; }
         int Dimension { get; set; }
         #endregion
 
@@ -51,8 +51,8 @@ namespace MinecraftLibrary.API.World
         void UnLoadChunk(int x, int z);
         #endregion
         #region Удобные функции
-        IEnumerable<Block> FindBlock(Point3_Int start,double radius,int id);
-        IEnumerable<Block> FindBlock(Point3_Int start, double radius, int id, byte meta=0);
+        IEnumerable<IBlock> FindBlock(Point3_Int start, double radius, int id);
+        IEnumerable<IBlock> FindBlock(Point3_Int start, double radius, int id, byte meta = 0);
         #endregion
 
     }

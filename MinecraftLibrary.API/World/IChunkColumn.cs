@@ -12,6 +12,7 @@ namespace MinecraftLibrary.API.World
     {
         int X { get; }
         int Z { get; }
+        int SizeY { get; }
         IChunk[] Chunks { get; }
         #region Get/Set IChunk        
         IChunk GetChunk(int y);        

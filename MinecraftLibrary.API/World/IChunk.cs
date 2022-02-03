@@ -10,18 +10,18 @@ namespace MinecraftLibrary.API.World
 {
     public interface IChunk
     {
-        #region Свойства
-        int X { get; }
-        int Y { get; }
-        int Z { get; }        
-        Block[,,] Blocks { get; }
+        int SizeX { get; }
+        int SizeY { get; }
+        int SizeZ { get; }
+        #region Свойства              
+        IBlock[,,] Blocks { get; }
         #endregion
 
         #region Get/Set IBlock
-        Block GetBlock(int x, int y, int z);
-        Block GetBlock(Point3_Int position);        
-        void SetBlock(int x, int y, int z, Block block);
-        void SetBlock(Point3_Int position, Block block);
+        IBlock GetBlock(int x, int y, int z);
+        IBlock GetBlock(Point3_Int position);
+        void SetBlock(int x, int y, int z, IBlock block);
+        void SetBlock(Point3_Int position, IBlock block);
         #endregion
 
     }

@@ -94,6 +94,10 @@
     <Compile Include="World\IChunkColumn.cs" />
     <Compile Include="World\ChunkColumnRecord.cs" />
     <Compile Include="World\IChunk.cs" />
+    <Compile Include="World\Implements\Chunk.cs" />
+    <Compile Include="World\Implements\ChunkColumn.cs" />
+    <Compile Include="World\Implements\UnkownBlock.cs" />
+    <Compile Include="World\Implements\UnkownChunk.cs" />
     <Compile Include="World\IWorld.cs" />
   </ItemGroup>
   <ItemGroup>
