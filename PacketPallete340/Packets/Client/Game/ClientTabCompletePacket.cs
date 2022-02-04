@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game
 {
 
     [PacketMeta(0x01, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientTabCompletePacket : ClientPacket
+    public class ClientTabCompletePacket : MinecraftPacket
     {
         //out.writeString(this.text);
        //out.writeBoolean(this.assumeCommand);

@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
 {
 
     [PacketMeta(0x12, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPrepareCraftingGridPacket : ClientPacket
+    public class ClientPrepareCraftingGridPacket : MinecraftPacket
     {
         //out.writeByte(this.windowId);
        //out.writeVarInt(this.recipeId);

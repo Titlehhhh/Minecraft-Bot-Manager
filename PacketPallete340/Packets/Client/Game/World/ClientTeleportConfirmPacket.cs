@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.World
 {
 
     [PacketMeta(0x00, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientTeleportConfirmPacket : ClientPacket
+    public class ClientTeleportConfirmPacket : MinecraftPacket
     {
         public int ID { get; set; }
 

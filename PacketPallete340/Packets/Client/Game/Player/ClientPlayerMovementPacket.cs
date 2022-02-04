@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x0C, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerMovementPacket : ClientPacket
+    public class ClientPlayerMovementPacket : MinecraftPacket
     {
         public bool OnGround { get; set; }        
         public override void Write(MinecraftStream output)

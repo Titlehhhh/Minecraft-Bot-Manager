@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PacketPallete340.Packets.Client.Login
 {
     [PacketMeta(0x01, 340, PacketSide.Client, PacketCategory.Login)]
-    public class EncryptionResponsePacket : ClientPacket
+    public class EncryptionResponsePacket : MinecraftPacket
     {
         public byte[] VerifyToken { get; set; }
         public byte[] SharedKey { get; set; }

@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x1F, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerPlaceBlockPacket : ClientPacket
+    public class ClientPlayerPlaceBlockPacket : MinecraftPacket
     {
         //NetUtil.writePosition(out, this.position);
         //out.writeVarInt(MagicValues.value(Integer.class, this.face));

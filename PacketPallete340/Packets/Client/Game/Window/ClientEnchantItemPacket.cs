@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
 {
 
     [PacketMeta(0x06, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientEnchantItemPacket : ClientPacket
+    public class ClientEnchantItemPacket : MinecraftPacket
     {
         //out.writeByte(this.windowId);
        //out.writeByte(this.enchantment);

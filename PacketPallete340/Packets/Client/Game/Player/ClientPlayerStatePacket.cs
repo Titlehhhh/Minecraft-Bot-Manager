@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x15, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerStatePacket : ClientPacket
+    public class ClientPlayerStatePacket : MinecraftPacket
     {
         //out.writeVarInt(this.entityId);
        //out.writeVarInt(MagicValues.value(Integer.class, this.state));

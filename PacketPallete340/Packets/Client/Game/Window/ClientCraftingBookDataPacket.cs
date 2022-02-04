@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
 {
 
     [PacketMeta(0x17, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientCraftingBookDataPacket : ClientPacket
+    public class ClientCraftingBookDataPacket : MinecraftPacket
     {
         //out.writeVarInt(MagicValues.value(Integer.class, this.type));
        //switch(this.type) {

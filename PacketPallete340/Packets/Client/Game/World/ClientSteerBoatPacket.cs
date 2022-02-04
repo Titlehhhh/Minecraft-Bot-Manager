@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.World
 {
 
     [PacketMeta(0x11, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientSteerBoatPacket : ClientPacket
+    public class ClientSteerBoatPacket : MinecraftPacket
     {
         //out.writeBoolean(this.rightPaddleTurning);
        //out.writeBoolean(this.leftPaddleTurning);

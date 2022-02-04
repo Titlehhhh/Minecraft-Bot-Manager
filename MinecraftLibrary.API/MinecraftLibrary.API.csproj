@@ -80,7 +80,7 @@
     <Compile Include="Networking\ITcpClientSession.cs" />
     <Compile Include="Networking\Proxy\ProxyInfo.cs" />
     <Compile Include="Protocol\Attributes\PacketMetaAttribute.cs" />
-    <Compile Include="Protocol\ClientPacket.cs" />
+    <Compile Include="Protocol\MinecraftPacket.cs" />
     <Compile Include="Protocol\Events\PacketProcessedEventArgs.cs" />
     <Compile Include="Protocol\Events\PacketSendEventArgs.cs" />
     <Compile Include="Protocol\Events\PacketSentEventArgs.cs" />
@@ -109,7 +109,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

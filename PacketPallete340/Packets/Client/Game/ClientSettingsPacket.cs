@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game
 {
 
     [PacketMeta(0x04, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientSettingsPacket : ClientPacket
+    public class ClientSettingsPacket : MinecraftPacket
     {
         //out.writeString(this.locale);
         //out.writeByte(this.renderDistance);

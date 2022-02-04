@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
 {
 
     [PacketMeta(0x19, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientAdvancementTabPacket : ClientPacket
+    public class ClientAdvancementTabPacket : MinecraftPacket
     {
         //out.writeVarInt(MagicValues.value(Integer.class, this.action));
        //switch(this.action) {

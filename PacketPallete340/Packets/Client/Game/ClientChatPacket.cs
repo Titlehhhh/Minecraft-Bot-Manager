@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game
 {
 
     [PacketMeta(0x02, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientChatPacket : ClientPacket
+    public class ClientChatPacket : MinecraftPacket
     {
         public string Message { get; set; }
         

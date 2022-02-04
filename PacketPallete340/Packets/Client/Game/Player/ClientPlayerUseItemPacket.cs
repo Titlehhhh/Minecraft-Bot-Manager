@@ -7,7 +7,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x20, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerUseItemPacket : ClientPacket
+    public class ClientPlayerUseItemPacket : MinecraftPacket
     {
         public HAND Hand { get; set; }
         public int MyProperty { get; set; }        

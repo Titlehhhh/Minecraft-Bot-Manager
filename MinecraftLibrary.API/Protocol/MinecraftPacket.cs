@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace MinecraftLibrary.API.Protocol
 {
     /// <summary>
-    /// Переопределяет так, что метод Read нельзя переопределить
+    /// 
     /// </summary>
-    public abstract class ClientPacket : IPacket
+    public abstract class MinecraftPacket : IPacket
     {
-        public ClientPacket()
+        public MinecraftPacket()
         {
 
         }
-        public void Read(MinecraftStream input)
+        public virtual void Read(MinecraftStream input)
         {
            
         }

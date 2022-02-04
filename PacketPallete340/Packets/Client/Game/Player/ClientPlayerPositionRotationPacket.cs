@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x0E, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerPositionRotationPacket : ClientPacket
+    public class ClientPlayerPositionRotationPacket : MinecraftPacket
     {
         public double X { get; set; }
         public double Y { get; set; }

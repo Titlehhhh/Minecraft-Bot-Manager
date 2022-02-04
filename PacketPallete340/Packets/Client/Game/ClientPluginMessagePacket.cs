@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game
 {
 
     [PacketMeta(0x09, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPluginMessagePacket : ClientPacket
+    public class ClientPluginMessagePacket : MinecraftPacket
     {
         //out.writeString(this.channel);
         //out.writeBytes(this.data);

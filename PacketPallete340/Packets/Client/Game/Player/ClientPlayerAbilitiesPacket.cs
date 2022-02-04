@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x13, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerAbilitiesPacket : ClientPacket
+    public class ClientPlayerAbilitiesPacket : MinecraftPacket
     {
         //byte flags = 0;
        //if(this.invincible) {

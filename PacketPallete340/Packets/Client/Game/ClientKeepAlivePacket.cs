@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game
 {
 
     [PacketMeta(0x0B, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientKeepAlivePacket : ClientPacket
+    public class ClientKeepAlivePacket : MinecraftPacket
     {
         public long ID { get; set; }
         //out.writeLong(this.id);

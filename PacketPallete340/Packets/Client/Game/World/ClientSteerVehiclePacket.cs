@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.World
 {
 
     [PacketMeta(0x16, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientSteerVehiclePacket : ClientPacket
+    public class ClientSteerVehiclePacket : MinecraftPacket
     {
         //out.writeFloat(this.sideways);
        //out.writeFloat(this.forward);

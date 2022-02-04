@@ -7,7 +7,7 @@ namespace PacketPallete340.Packets.Client.Game
 {
 
     [PacketMeta(0x03, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientRequestPacket : ClientPacket
+    public class ClientRequestPacket : MinecraftPacket
     {
         public ClientRequest Request { get; set; }
         //out.writeVarInt(MagicValues.value(Integer.class, this.request));

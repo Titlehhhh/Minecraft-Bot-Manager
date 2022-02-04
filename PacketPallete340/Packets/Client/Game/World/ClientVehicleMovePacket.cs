@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.World
 {
 
     [PacketMeta(0x10, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientVehicleMovePacket : ClientPacket
+    public class ClientVehicleMovePacket : MinecraftPacket
     {
         //out.writeDouble(this.x);
        //out.writeDouble(this.y);

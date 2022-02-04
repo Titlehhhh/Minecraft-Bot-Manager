@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.World
 {
 
     [PacketMeta(0x1C, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientUpdateSignPacket : ClientPacket
+    public class ClientUpdateSignPacket : MinecraftPacket
     {
         //NetUtil.writePosition(out, this.position);
        //for(String line : this.lines) {

@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
 {
 
     [PacketMeta(0x07, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientWindowActionPacket : ClientPacket
+    public class ClientWindowActionPacket : MinecraftPacket
     {
         //out.writeByte(this.windowId);
        //out.writeShort(this.slot);

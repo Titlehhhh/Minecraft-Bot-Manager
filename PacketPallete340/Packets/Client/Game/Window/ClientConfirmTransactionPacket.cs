@@ -6,7 +6,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
 {
 
     [PacketMeta(0x05, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientConfirmTransactionPacket : ClientPacket
+    public class ClientConfirmTransactionPacket : MinecraftPacket
     {
         //out.writeByte(this.windowId);
        //out.writeShort(this.actionId);

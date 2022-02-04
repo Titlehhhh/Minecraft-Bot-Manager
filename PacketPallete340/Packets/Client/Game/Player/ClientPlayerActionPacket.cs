@@ -10,14 +10,11 @@ namespace PacketPallete340.Packets.Client.Game.Player
 {
 
     [PacketMeta(0x14, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerActionPacket : ClientPacket
-    {        
+    public class ClientPlayerActionPacket : MinecraftPacket
+    {
         public PlayerAction Action { get; set; }
         public Point3_Int Position { get; set; }
         public BlockFace Face { get; set; }
-        //out.writeVarInt(MagicValues.value(Integer.class, this.action));
-        //NetUtil.writePosition(out, this.position);
-        //out.writeByte(MagicValues.value(Integer.class, this.face));
         public override void Write(MinecraftStream output)
         {
             output.WriteVarInt((int)Action);
@@ -28,10 +25,6 @@ namespace PacketPallete340.Packets.Client.Game.Player
             output.WriteLong(x << POSITION_X_SIZE | y << POSITION_Y_SIZE | z);
 
             output.WriteByte((byte)Face);
-        }
-        public ClientPlayerActionPacket()
-        {
-
         }
 
         public ClientPlayerActionPacket(PlayerAction action, Point3_Int position, BlockFace face)

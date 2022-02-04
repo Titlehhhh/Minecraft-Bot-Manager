@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PacketPallete340.Packets.Client.Login
 {
     [PacketMeta(0x00,340,PacketSide.Client,PacketCategory.Login)]
-    public class LoginStartPacket : ClientPacket
+    public class LoginStartPacket : MinecraftPacket
     {
         public string Nickname { get; set; }
         public override void Write(MinecraftStream output)
