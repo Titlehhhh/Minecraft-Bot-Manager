@@ -59,24 +59,6 @@ namespace PacketPallete340.Data.World
         public Point3_Int Position { get; set; }
 
 
-
-        /// <summary>
-        /// Get a block of the specified type and metadata
-        /// </summary>
-        /// <param name="type">Block type</param>
-        /// <param name="metadata">Block metadata</param>
-        public Block340(short type, byte metadata, Point3_Int position)
-        {
-            this.blockIdAndMeta = 0;
-            
-            this.Position = position;
-            this.BlockMeta = metadata;
-        }
-
-        /// <summary>
-        /// Get a block of the specified type and metadata OR block state
-        /// </summary>
-        /// <param name="typeAndMeta">Type and metadata packed in the same value OR block state</param>
         public Block340(ushort typeAndMeta, Point3_Int position)
         {
             this.blockIdAndMeta = typeAndMeta;

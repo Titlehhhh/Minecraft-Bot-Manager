@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="2b158e26-fd32-46fe-b481-d832701e1f27"
+    Name="ae294452-d75f-4356-9f10-97dd9e945712"
     Publisher="CN=Title"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="2b158e26-fd32-46fe-b481-d832701e1f27" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ae294452-d75f-4356-9f10-97dd9e945712" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MinecraftBotManagerNetCore</DisplayName>
+    <DisplayName>MinecraftBotManager</DisplayName>
     <PublisherDisplayName>Title</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="MinecraftBotManagerNetCore.App">
+      EntryPoint="MinecraftBotManager.App">
       <uap:VisualElements
-        DisplayName="MinecraftBotManagerNetCore"
+        DisplayName="MinecraftBotManager"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="MinecraftBotManagerNetCore"
+        Description="MinecraftBotManager"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

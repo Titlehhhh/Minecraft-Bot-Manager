@@ -3,6 +3,8 @@ using MinecraftLibrary.API.Protocol.Attributes;
 using MinecraftLibrary.API.Protocol.Helpres;
 using MinecraftLibrary.API.World;
 using MinecraftLibrary.API.World.Implements;
+using MinecraftLibrary.Geometry;
+using PacketPallete340.Data.World;
 
 namespace PacketPallete340.Packets.Server.Game.World
 {
@@ -116,9 +118,9 @@ namespace PacketPallete340.Packets.Server.Game.World
 
                                         blockId = (ushort)palette[blockId];
                                     }
-
+                                    Point3_Int point = new Point3_Int(blockX, blockY, blockZ);
                                     // We have our block, save the block into the chunk
-                                    chunk.SetBlock(blockX, blockY, blockZ,new Block340(blockId));
+                                    chunk.SetBlock(point, new Block340(blockId, point));
                                 }
                             }
                         }

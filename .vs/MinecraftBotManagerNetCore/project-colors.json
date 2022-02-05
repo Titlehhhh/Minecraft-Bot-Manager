@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "afeb3991-7c6b-482f-a230-1eef8b3c6872": {
+      "ProjectGuid": "afeb3991-7c6b-482f-a230-1eef8b3c6872",
+      "DisplayName": "MinecraftLibrary.Core",
+      "ColorIndex": 0
+    },
+    "353c5e7c-5ed9-4675-85b4-e20f4f28c838": {
+      "ProjectGuid": "353c5e7c-5ed9-4675-85b4-e20f4f28c838",
+      "DisplayName": "PacketPallete340",
+      "ColorIndex": 1
+    },
+    "35e36f97-cf7f-4db0-93b2-045bf54540f4": {
+      "ProjectGuid": "35e36f97-cf7f-4db0-93b2-045bf54540f4",
+      "DisplayName": "MinecraftLibrary.API",
+      "ColorIndex": 2
+    },
+    "e8a65665-a5fa-4ff1-a48f-ba1c534623cb": {
+      "ProjectGuid": "e8a65665-a5fa-4ff1-a48f-ba1c534623cb",
+      "DisplayName": "MinecraftBotManager",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "f0f61389-b74a-4f72-a4bb-8ab2d4917e88": {
+      "ProjectGuid": "f0f61389-b74a-4f72-a4bb-8ab2d4917e88",
+      "DisplayName": "ConsoleApp1",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}
