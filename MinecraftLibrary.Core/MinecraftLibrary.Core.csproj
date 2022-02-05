@@ -1,69 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50176DAF-3B94-434D-9D97-5DDBFE5A87CD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MinecraftLibrary.Core</RootNamespace>
-    <AssemblyName>MinecraftLibrary.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Protocol\MinecraftLibrary.Protocol.csproj" />
+    <ProjectReference Include="..\PacketPallete340\PacketPallete340.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BlockPalletes\Palette112.cs" />
-    <Compile Include="Helpers\ConvertType.cs" />
-    <Compile Include="Helpers\EntityTypeExtensions.cs" />
-    <Compile Include="Helpers\MaterialExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="World\World.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj">
-      <Project>{26AB2F21-8A9F-4853-924B-6FCC570E3443}</Project>
-      <Name>MinecraftLibrary.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj">
-      <Project>{48CD6040-D60B-410D-9404-B1755831EC97}</Project>
-      <Name>MinecraftLibrary.Geometry</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinecraftLibrary.Protocol\MinecraftLibrary.Protocol.csproj">
-      <Project>{CB1B4836-B89B-4F41-8A14-D560FE57641B}</Project>
-      <Name>MinecraftLibrary.Protocol</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Ionic.Zlib;
 
+
 namespace MinecraftLibrary.Networking.Session.Compression
 {
     public static class ZlibUtils
@@ -8,7 +9,7 @@ namespace MinecraftLibrary.Networking.Session.Compression
         public static byte[] Compress(byte[] to_compress)
         {
             byte[] data;
-            using (System.IO.MemoryStream memstream = new System.IO.MemoryStream())
+            using (MemoryStream memstream = new MemoryStream())
             {
                 using (ZlibStream stream = new ZlibStream(memstream, CompressionMode.Compress))
                 {

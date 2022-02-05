@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "iz0zBt60mhDKjjTUcR6EA5loZuZWP00LQgsB5/Y1zkfH1DAB7mEzrQ4Y4Ced4CWnuyVbSXVR28RIvRY1feI0ww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Title\\Desktop\\Minecraft-Bot-Manager\\PacketPallete340\\PacketPallete340.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Title\\.nuget\\packages\\fnbt\\0.6.4\\fnbt.0.6.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"fNbt 0.6.4\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "fNbt",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
