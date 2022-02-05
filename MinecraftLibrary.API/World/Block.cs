@@ -9,8 +9,8 @@ namespace MinecraftLibrary.API.World
 {
     public interface IBlock
     {
-        int ID { get; }
-        Point3_Int Position { get; }
+        int ID { get; set; }
+        Point3_Int Position { get; set; }
 
     }
 }
