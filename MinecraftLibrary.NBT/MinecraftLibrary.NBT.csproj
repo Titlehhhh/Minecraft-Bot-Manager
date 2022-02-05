@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
+  </ItemGroup>
+
 </Project>

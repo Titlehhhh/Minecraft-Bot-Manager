@@ -30,7 +30,27 @@
       "ProjectGuid": "f0f61389-b74a-4f72-a4bb-8ab2d4917e88",
       "DisplayName": "ConsoleApp1",
       "ColorIndex": 4
+    },
+    "f15995c1-90cb-4b30-a9e4-e8586567c6f2": {
+      "ProjectGuid": "f15995c1-90cb-4b30-a9e4-e8586567c6f2",
+      "DisplayName": "App1",
+      "ColorIndex": 5
+    },
+    "a19e1c05-0a40-4ff8-bf78-7174bc8ba910": {
+      "ProjectGuid": "a19e1c05-0a40-4ff8-bf78-7174bc8ba910",
+      "DisplayName": "MinecraftBotManager",
+      "ColorIndex": 6
+    },
+    "633ef701-ba22-41e9-82ca-39516b5a8866": {
+      "ProjectGuid": "633ef701-ba22-41e9-82ca-39516b5a8866",
+      "DisplayName": "MinecraftBotManagerWPF",
+      "ColorIndex": 7
+    },
+    "2837164d-432c-46f9-b6b5-df86d84f5751": {
+      "ProjectGuid": "2837164d-432c-46f9-b6b5-df86d84f5751",
+      "DisplayName": "MinecraftLibrary.NBT",
+      "ColorIndex": 8
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 9
 }
