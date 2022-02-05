@@ -1,4 +1,4 @@
-﻿using fNbt;
+﻿
 using MinecraftLibrary.API.Helpers;
 using System;
 using System.Collections.Generic;
@@ -191,10 +191,7 @@ namespace MinecraftLibrary.API.Protocol.Helpres
             return (byte)nextByte;
         }
 
-        public NbtCompound ReadNextNbt()
-        {
-            throw new NotImplementedException();
-        }
+        
         #endregion
         #region Write
         public void WriteVarInt(int paramInt)
