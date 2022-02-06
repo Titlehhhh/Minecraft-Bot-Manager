@@ -50,7 +50,32 @@
       "ProjectGuid": "2837164d-432c-46f9-b6b5-df86d84f5751",
       "DisplayName": "MinecraftLibrary.NBT",
       "ColorIndex": 8
+    },
+    "c64c628a-b1d5-4254-b225-113462225a82": {
+      "ProjectGuid": "c64c628a-b1d5-4254-b225-113462225a82",
+      "DisplayName": "MinecraftBotManagerWPF",
+      "ColorIndex": 9
+    },
+    "3e4748d4-9c50-4efa-9f5f-fc7c852cd3dc": {
+      "ProjectGuid": "3e4748d4-9c50-4efa-9f5f-fc7c852cd3dc",
+      "DisplayName": "MinecraftBotManagerWinUI (Package)",
+      "ColorIndex": 10
+    },
+    "5b401f2f-109a-4b86-83d1-c7d21a145f6c": {
+      "ProjectGuid": "5b401f2f-109a-4b86-83d1-c7d21a145f6c",
+      "DisplayName": "MinecraftBotManagerWinUI",
+      "ColorIndex": 11
+    },
+    "1f95c2b0-1929-4854-8147-96ae3a2dcac4": {
+      "ProjectGuid": "1f95c2b0-1929-4854-8147-96ae3a2dcac4",
+      "DisplayName": "MinecraftBotManagerWinUI (Package)",
+      "ColorIndex": 12
+    },
+    "ec32a300-edd8-470c-a143-a2fd3985eb5f": {
+      "ProjectGuid": "ec32a300-edd8-470c-a143-a2fd3985eb5f",
+      "DisplayName": "MinecraftBotManagerWinUI",
+      "ColorIndex": 13
     }
   },
-  "NextColorIndex": 9
+  "NextColorIndex": 14
 }
