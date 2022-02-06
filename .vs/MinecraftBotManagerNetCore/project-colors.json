@@ -75,7 +75,17 @@
       "ProjectGuid": "ec32a300-edd8-470c-a143-a2fd3985eb5f",
       "DisplayName": "MinecraftBotManagerWinUI",
       "ColorIndex": 13
+    },
+    "222c5603-de5d-423b-a60a-ddefa3175070": {
+      "ProjectGuid": "222c5603-de5d-423b-a60a-ddefa3175070",
+      "DisplayName": "TestGG",
+      "ColorIndex": 14
+    },
+    "16d53b4d-627e-453f-ae29-ba8025e482f2": {
+      "ProjectGuid": "16d53b4d-627e-453f-ae29-ba8025e482f2",
+      "DisplayName": "MinecraftBotManagerWPF",
+      "ColorIndex": 15
     }
   },
-  "NextColorIndex": 14
+  "NextColorIndex": 0
 }
