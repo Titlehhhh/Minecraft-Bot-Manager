@@ -85,7 +85,12 @@
       "ProjectGuid": "16d53b4d-627e-453f-ae29-ba8025e482f2",
       "DisplayName": "MinecraftBotManagerWPF",
       "ColorIndex": 15
+    },
+    "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27": {
+      "ProjectGuid": "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27",
+      "DisplayName": "MinecraftLibrary.Protocol",
+      "ColorIndex": 0
     }
   },
-  "NextColorIndex": 0
+  "NextColorIndex": 1
 }

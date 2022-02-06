@@ -12,7 +12,6 @@ namespace MinecraftLibrary.API.Protocol.Helpres
 {
     public sealed class MinecraftStream : Stream
     {
-        public int ProtocollVersion { get; private set; }
         public Stream BaseStream { get; private set; }
 
         public override bool CanRead => BaseStream.CanRead;
@@ -25,11 +24,11 @@ namespace MinecraftLibrary.API.Protocol.Helpres
 
         public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
 
-        public MinecraftStream(Stream stream, int version)
+        public MinecraftStream(Stream stream)
         {
-            this.ProtocollVersion = version;
-            BaseStream = stream;            
-        }        
+
+            BaseStream = stream;
+        }
         #region Reads
         public byte[] ReadData(int offset)
         {
@@ -195,7 +194,7 @@ namespace MinecraftLibrary.API.Protocol.Helpres
         {
             throw new NotImplementedException();
         }
-        
+
         #endregion
         #region Write
         public void WriteVarInt(int paramInt)
@@ -274,7 +273,7 @@ namespace MinecraftLibrary.API.Protocol.Helpres
         }
         public void WriteNbt(NbtCompound nbt)
         {
-            
+
         }
 
         #endregion

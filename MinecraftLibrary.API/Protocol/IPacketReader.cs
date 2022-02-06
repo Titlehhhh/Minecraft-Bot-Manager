@@ -18,8 +18,8 @@ namespace MinecraftLibrary.API.Protocol
     public interface IPacketReader : IDisposable
     {
         Dictionary<Type, int> RegisteredOutputPakets { get; set; }
-        Dictionary<int, Type> RegisteredInputPakets { get; set; }               
-       
+        Dictionary<int, Type> RegisteredInputPakets { get; set; }
+
         #region Пакеты от сервера
 
 
@@ -29,14 +29,14 @@ namespace MinecraftLibrary.API.Protocol
         void RegisterPacketOutput(int id, Type t);
         bool UnRegisterPacketOutput(Type t);
         #region Методы
-       
+
         void SendPacket(IPacket packet);
         #endregion
 
-        int ProtocolVersion { get; set; }      
-        
 
-        event EventHandler<PacketProcessedEventArgs> PacketProcessedEvent;        
+
+
+        event EventHandler<PacketProcessedEventArgs> PacketProcessedEvent;
         event EventHandler<PacketSendEventArgs> PacketSendEvent;
         event EventHandler<PacketSentEventArgs> PacketSentEvent;
     }

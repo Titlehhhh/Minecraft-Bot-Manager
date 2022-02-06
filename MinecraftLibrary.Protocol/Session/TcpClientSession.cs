@@ -61,16 +61,6 @@ namespace MinecraftLibrary.Networking.Session
 
 
 
-        public int ProtocolVersion
-        {
-            get => protocolVersion;
-            set
-            {
-                if (value <= 0)
-                    throw new InvalidOperationException("Неверная версия протокола");
-                protocolVersion = value;
-            }
-        }
 
         public event EventHandler<ConnectedEventArgs> Connected;
         public event EventHandler<DisconnectedEventArgs> DisconnectedEvent;
@@ -145,7 +135,7 @@ namespace MinecraftLibrary.Networking.Session
             if (RegisteredInputPakets.ContainsKey(id))
             {
                 IPacket packet = CreateInstance(RegisteredInputPakets[id]);
-                using (MinecraftStream ms = new MinecraftStream(new MemoryStream(data), ProtocolVersion))
+                using (MinecraftStream ms = new MinecraftStream(new MemoryStream(data)))
                 {
                     packet.Read(ms);
                 }
@@ -314,7 +304,7 @@ namespace MinecraftLibrary.Networking.Session
                 int id = RegisteredOutputPakets[t];
 
                 MemoryStream ms = new MemoryStream();
-                using (MinecraftStream mcs = new MinecraftStream(ms, ProtocolVersion))
+                using (MinecraftStream mcs = new MinecraftStream(ms))
                 {
                     packet.Write(mcs);
                 }
