@@ -1,6 +1,6 @@
 using System;
 using System.Text;
-using JetBrains.Annotations;
+
 using MinecraftLibrary.NBT;
 
 namespace MinecraftLibrary.NBT.Tags
@@ -16,7 +16,7 @@ namespace MinecraftLibrary.NBT.Tags
 
         /// <summary> Value/payload of this tag (an array of signed 64-bit integers). Value is stored as-is and is NOT cloned. May not be <c>null</c>. </summary>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
-        [NotNull]
+        
         public long[] Value {
             get { return longs; }
             set {
@@ -28,7 +28,7 @@ namespace MinecraftLibrary.NBT.Tags
             }
         }
 
-        [NotNull]
+        
         private long[] longs;
 
         /// <summary> Creates an unnamed NbtLongArray tag, containing an empty array of longs. </summary>
@@ -40,12 +40,12 @@ namespace MinecraftLibrary.NBT.Tags
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         /// <remarks> Given long array will be cloned. To avoid unnecessary copying, call one of the other constructor
         /// overloads (that do not take a long[]) and then set the Value property yourself. </remarks>
-        public NbtLongArray([NotNull] long[] value)
+        public NbtLongArray( long[] value)
             : this(null, value) { }
 
         /// <summary> Creates an NbtLongArray tag with the given name, containing an empty array of longs. </summary>
         /// <param name="tagName"> Name to assign to this tag. May be <c>null</c>. </param>
-        public NbtLongArray([CanBeNull] string tagName) {
+        public NbtLongArray( string tagName) {
             name = tagName;
             longs = Array.Empty<long>();
         }
@@ -56,7 +56,7 @@ namespace MinecraftLibrary.NBT.Tags
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         /// <remarks> Given long array will be cloned. To avoid unnecessary copying, call one of the other constructor
         /// overloads (that do not take a long[]) and then set the Value property yourself. </remarks>
-        public NbtLongArray([CanBeNull] string tagName, [NotNull] long[] value) {
+        public NbtLongArray( string tagName,  long[] value) {
             if (value == null) throw new ArgumentNullException(nameof(value));
             name = tagName;
             longs = (long[])value.Clone();
@@ -67,7 +67,7 @@ namespace MinecraftLibrary.NBT.Tags
         /// <param name="other"> Tag to copy. May not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="other"/> is <c>null</c>. </exception>
         /// <remarks> Long array of given tag will be cloned. </remarks>
-        public NbtLongArray([NotNull] NbtLongArray other) {
+        public NbtLongArray( NbtLongArray other) {
             if (other == null) {
                 throw new ArgumentNullException(nameof(other));
             }

@@ -1,5 +1,5 @@
 ﻿using System;
-using JetBrains.Annotations;
+
 
 namespace MinecraftLibrary.NBT
 {
@@ -7,7 +7,7 @@ namespace MinecraftLibrary.NBT
     /// parsing or serializing an NBT file. </summary>
     [Serializable]
     public sealed class NbtFormatException : Exception {
-        internal NbtFormatException([NotNull] string message)
+        internal NbtFormatException( string message)
             : base(message) { }
     }
 }

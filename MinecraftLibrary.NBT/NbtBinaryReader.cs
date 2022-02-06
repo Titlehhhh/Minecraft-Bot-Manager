@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using JetBrains.Annotations;
+
 
 namespace MinecraftLibrary.NBT
 {
@@ -18,7 +18,7 @@ namespace MinecraftLibrary.NBT
         readonly byte[] stringConversionBuffer = new byte[64];
 
 
-        public NbtBinaryReader([NotNull] Stream input, bool bigEndian)
+        public NbtBinaryReader(Stream input, bool bigEndian)
             : base(input)
         {
             swapNeeded = BitConverter.IsLittleEndian == bigEndian;
@@ -227,7 +227,7 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        [CanBeNull]
+      
         public TagSelector Selector { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using JetBrains.Annotations;
+
 
 namespace MinecraftLibrary.NBT
 {
@@ -18,7 +18,7 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        void UpdateChecksum([NotNull] IList<byte> data, int offset, int length) {
+        void UpdateChecksum( IList<byte> data, int offset, int length) {
             for (int counter = 0; counter < length; ++counter) {
                 adler32A = (adler32A + (data[offset + counter])) % ChecksumModulus;
                 adler32B = (adler32B + adler32A) % ChecksumModulus;
@@ -26,7 +26,7 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        public ZLibStream([NotNull] Stream stream, CompressionMode mode, bool leaveOpen)
+        public ZLibStream( Stream stream, CompressionMode mode, bool leaveOpen)
             : base(stream, mode, leaveOpen) { }
 
 

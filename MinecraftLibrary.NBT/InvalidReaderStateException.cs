@@ -1,5 +1,5 @@
 ﻿using System;
-using JetBrains.Annotations;
+
 
 namespace MinecraftLibrary.NBT
 {
@@ -7,7 +7,7 @@ namespace MinecraftLibrary.NBT
     /// cannot recover from a previous parsing error. </summary>
     [Serializable]
     public sealed class InvalidReaderStateException : InvalidOperationException {
-        internal InvalidReaderStateException([NotNull] string message)
+        internal InvalidReaderStateException( string message)
             : base(message) { }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using JetBrains.Annotations;
+
 
 namespace MinecraftLibrary.NBT
 {
@@ -17,7 +17,7 @@ namespace MinecraftLibrary.NBT
         bool writingManyBytes;
 
 
-        public ByteCountingStream([NotNull] Stream stream) {
+        public ByteCountingStream( Stream stream) {
             Debug.Assert(stream != null);
             baseStream = stream;
         }

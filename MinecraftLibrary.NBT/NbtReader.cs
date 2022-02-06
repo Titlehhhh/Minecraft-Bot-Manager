@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using JetBrains.Annotations;
+
 using MinecraftLibrary.NBT;
 using MinecraftLibrary.NBT.Tags;
 
@@ -25,7 +25,7 @@ namespace MinecraftLibrary.NBT
         /// <remarks> Assumes that data in the stream is Big-Endian encoded. </remarks>
         /// <exception cref="ArgumentNullException"> <paramref name="stream"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> <paramref name="stream"/> is not readable. </exception>
-        public NbtReader([NotNull] Stream stream)
+        public NbtReader( Stream stream)
             : this(stream, true) { }
 
 
@@ -34,7 +34,7 @@ namespace MinecraftLibrary.NBT
         /// <param name="bigEndian"> Whether NBT data is in Big-Endian encoding. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="stream"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> <paramref name="stream"/> is not readable. </exception>
-        public NbtReader([NotNull] Stream stream, bool bigEndian) {
+        public NbtReader( Stream stream, bool bigEndian) {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             SkipEndTags = true;
             CacheTagValues = false;
@@ -51,15 +51,15 @@ namespace MinecraftLibrary.NBT
 
 
         /// <summary> Gets the name of the root tag of this NBT stream. </summary>
-        [CanBeNull]
+       
         public string RootName { get; private set; }
 
         /// <summary> Gets the name of the parent tag. May be null (for root tags and descendants of list elements). </summary>
-        [CanBeNull]
+       
         public string ParentName { get; private set; }
 
         /// <summary> Gets the name of the current tag. May be null (for list elements and end tags). </summary>
-        [CanBeNull]
+       
         public string TagName { get; private set; }
 
         /// <summary> Gets the type of the parent tag. Returns TagType.Unknown if there is no parent tag. </summary>
@@ -125,7 +125,7 @@ namespace MinecraftLibrary.NBT
         }
 
         /// <summary> Gets the Stream from which data is being read. </summary>
-        [NotNull]
+        
         public Stream BaseStream {
             get { return reader.BaseStream; }
         }
@@ -423,7 +423,7 @@ namespace MinecraftLibrary.NBT
         /// <returns> <c>true</c> if a matching tag is found; otherwise <c>false</c>. </returns>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidOperationException"> If NbtReader cannot recover from a previous parsing error. </exception>
-        public bool ReadToFollowing([CanBeNull] string tagName) {
+        public bool ReadToFollowing( string tagName) {
             while (ReadToFollowing()) {
                 if (TagName == tagName) {
                     return true;
@@ -439,7 +439,7 @@ namespace MinecraftLibrary.NBT
         /// <returns> <c>true</c> if a matching descendant tag is found; otherwise <c>false</c>. </returns>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
-        public bool ReadToDescendant([CanBeNull] string tagName) {
+        public bool ReadToDescendant( string tagName) {
             if (state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
             } else if (state == NbtParseState.AtStreamEnd) {
@@ -486,7 +486,7 @@ namespace MinecraftLibrary.NBT
         /// <returns> <c>true</c> if a matching sibling element is found; otherwise <c>false</c>. </returns>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidOperationException"> If NbtReader cannot recover from a previous parsing error. </exception>
-        public bool ReadToNextSibling([CanBeNull] string tagName) {
+        public bool ReadToNextSibling( string tagName) {
             while (ReadToNextSibling()) {
                 if (TagName == tagName) {
                     return true;
@@ -525,7 +525,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         /// <exception cref="EndOfStreamException"> End of stream has been reached (no more tags can be read). </exception>
         /// <exception cref="InvalidOperationException"> Tag value has already been read, and CacheTagValues is false. </exception>
-        [NotNull]
+        
         public NbtTag ReadAsTag() {
             switch (state) {
                 case NbtParseState.Error:
@@ -589,7 +589,7 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        void AddToParent([NotNull] NbtTag thisTag, [NotNull] NbtTag parent) {
+        void AddToParent( NbtTag thisTag,  NbtTag parent) {
             if (parent is NbtList parentAsList) {
                 parentAsList.Add(thisTag);
             } else if (parent is NbtCompound parentAsCompound) {
@@ -601,7 +601,7 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        [NotNull]
+        
         NbtTag ReadValueAsTag() {
             if (!atValue) {
                 // Should never happen
@@ -679,7 +679,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidOperationException"> Value has already been read, or there is no value to read. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
-        [NotNull]
+        
         public object ReadValue() {
             if (state == NbtParseState.AtStreamEnd) {
                 throw new EndOfStreamException();
@@ -771,7 +771,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidOperationException"> Current tag is not of type List. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
-        [NotNull]
+        
         public T[] ReadListAsArray<T>() {
             switch (state) {
                 case NbtParseState.AtStreamEnd:
@@ -889,7 +889,7 @@ namespace MinecraftLibrary.NBT
         /// Indents the tag according default indentation (NbtTag.DefaultIndentString). </summary>
         /// <param name="includeValue"> If set to <c>true</c>, also reads and prints the current tag's value. 
         /// Note that unless CacheTagValues is set to <c>true</c>, you can only read every tag's value ONCE. </param>
-        [NotNull]
+        
         public string ToString(bool includeValue) {
             return ToString(includeValue, NbtTag.DefaultIndentString);
         }
@@ -899,8 +899,8 @@ namespace MinecraftLibrary.NBT
         /// Prints current tag's depth, ordinal number, type, name, size (for arrays and lists), and optionally value. </summary>
         /// <param name="indentString"> String to be used for indentation. May be empty string, but may not be <c>null</c>. </param>
         /// <param name="includeValue"> If set to <c>true</c>, also reads and prints the current tag's value. </param>
-        [NotNull]
-        public string ToString(bool includeValue, [NotNull] string indentString) {
+        
+        public string ToString(bool includeValue,  string indentString) {
             if (indentString == null) throw new ArgumentNullException(nameof(indentString));
             var sb = new StringBuilder();
             for (int i = 0; i < Depth; i++) {

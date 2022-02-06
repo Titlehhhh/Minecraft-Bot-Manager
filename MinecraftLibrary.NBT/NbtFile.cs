@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using JetBrains.Annotations;
+
 using MinecraftLibrary.NBT.Tags;
 
 namespace MinecraftLibrary.NBT
@@ -17,7 +17,7 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Gets the file name used for most recent loading/saving of this file.
         /// May be <c>null</c>, if this <c>NbtFile</c> instance has not been loaded from, or saved to, a file. </summary>
-        [CanBeNull]
+       
         public string FileName { get; private set; }
 
         /// <summary> Gets the compression method used for most recent loading/saving of this file.
@@ -26,7 +26,7 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Root tag of this file. Must be a named CompoundTag. Defaults to an empty-named tag. </summary>
         /// <exception cref="ArgumentException"> If given tag is unnamed. </exception>
-        [NotNull]
+        
         public NbtCompound RootTag {
             get { return rootTag; }
             set {
@@ -36,7 +36,7 @@ namespace MinecraftLibrary.NBT
             }
         }
 
-        [NotNull]
+        
         NbtCompound rootTag;
 
         /// <summary> Whether new NbtFiles should default to big-endian encoding (default: true). </summary>
@@ -96,7 +96,7 @@ namespace MinecraftLibrary.NBT
         /// <summary> Creates a new NBT file with the given root tag. </summary>
         /// <param name="rootTag"> Compound tag to set as the root tag. May be <c>null</c>. </param>
         /// <exception cref="ArgumentException"> If given <paramref name="rootTag"/> is unnamed. </exception>
-        public NbtFile([NotNull] NbtCompound rootTag)
+        public NbtFile( NbtCompound rootTag)
             : this() {
             if (rootTag == null) throw new ArgumentNullException(nameof(rootTag));
             RootTag = rootTag;
@@ -112,7 +112,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidDataException"> If file compression could not be detected, or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="IOException"> If an I/O error occurred while reading the file. </exception>
-        public NbtFile([NotNull] string fileName)
+        public NbtFile( string fileName)
             : this() {
             if (fileName == null) throw new ArgumentNullException(nameof(fileName));
             LoadFromFile(fileName, NbtCompression.AutoDetect, null);
@@ -132,7 +132,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidDataException"> If file compression could not be detected, or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="IOException"> If an I/O error occurred while reading the file. </exception>
-        public long LoadFromFile([NotNull] string fileName) {
+        public long LoadFromFile( string fileName) {
             return LoadFromFile(fileName, NbtCompression.AutoDetect, null);
         }
 
@@ -150,7 +150,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidDataException"> If file compression could not be detected, or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="IOException"> If an I/O error occurred while reading the file. </exception>
-        public long LoadFromFile([NotNull] string fileName, NbtCompression compression, [CanBeNull] TagSelector selector) {
+        public long LoadFromFile( string fileName, NbtCompression compression, TagSelector selector) {
             if (fileName == null) throw new ArgumentNullException(nameof(fileName));
 
             using (
@@ -183,8 +183,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="EndOfStreamException"> If NBT stream extends beyond the given <paramref name="length"/>. </exception>
         /// <exception cref="InvalidDataException"> If file compression could not be detected or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
-        public long LoadFromBuffer([NotNull] byte[] buffer, int index, int length, NbtCompression compression,
-                                   [CanBeNull] TagSelector selector) {
+        public long LoadFromBuffer( byte[] buffer, int index, int length, NbtCompression compression,
+                                   TagSelector selector) {
             if (buffer == null) throw new ArgumentNullException(nameof(buffer));
 
             using (var ms = new MemoryStream(buffer, index, length)) {
@@ -209,7 +209,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="EndOfStreamException"> If NBT stream extends beyond the given <paramref name="length"/>. </exception>
         /// <exception cref="InvalidDataException"> If file compression could not be detected or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
-        public long LoadFromBuffer([NotNull] byte[] buffer, int index, int length, NbtCompression compression) {
+        public long LoadFromBuffer( byte[] buffer, int index, int length, NbtCompression compression) {
             if (buffer == null) throw new ArgumentNullException(nameof(buffer));
 
             using (var ms = new MemoryStream(buffer, index, length)) {
@@ -232,7 +232,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="EndOfStreamException"> If file ended earlier than expected. </exception>
         /// <exception cref="InvalidDataException"> If file compression could not be detected, decompressing failed, or given stream does not support reading. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
-        public long LoadFromStream([NotNull] Stream stream, NbtCompression compression, [CanBeNull] TagSelector selector) {
+        public long LoadFromStream( Stream stream, NbtCompression compression, TagSelector selector) {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
             FileName = null;
@@ -304,12 +304,12 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="EndOfStreamException"> If file ended earlier than expected. </exception>
         /// <exception cref="InvalidDataException"> If file compression could not be detected, decompressing failed, or given stream does not support reading. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
-        public long LoadFromStream([NotNull] Stream stream, NbtCompression compression) {
+        public long LoadFromStream( Stream stream, NbtCompression compression) {
             return LoadFromStream(stream, compression, null);
         }
 
 
-        static NbtCompression DetectCompression([NotNull] Stream stream) {
+        static NbtCompression DetectCompression( Stream stream) {
             NbtCompression compression;
             if (!stream.CanSeek) {
                 throw new NotSupportedException("Cannot auto-detect compression on a stream that's not seekable.");
@@ -341,7 +341,7 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        void LoadFromStreamInternal([NotNull] Stream stream, [CanBeNull] TagSelector tagSelector) {
+        void LoadFromStreamInternal( Stream stream, TagSelector tagSelector) {
             // Make sure the first byte in this file is the tag for a TAG_Compound
             int firstByte = stream.ReadByte();
             if (firstByte < 0) {
@@ -376,7 +376,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="UnauthorizedAccessException"> Specified file is read-only, or a permission issue occurred. </exception>
         /// <exception cref="NbtFormatException"> If one of the NbtCompound tags contained unnamed tags;
         /// or if an NbtList tag had Unknown list type and no elements. </exception>
-        public long SaveToFile([NotNull] string fileName, NbtCompression compression) {
+        public long SaveToFile( string fileName, NbtCompression compression) {
             if (fileName == null) throw new ArgumentNullException(nameof(fileName));
 
             using (
@@ -404,7 +404,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="UnauthorizedAccessException"> Specified file is read-only, or a permission issue occurred. </exception>
         /// <exception cref="NbtFormatException"> If one of the NbtCompound tags contained unnamed tags;
         /// or if an NbtList tag had Unknown list type and no elements. </exception>
-        public long SaveToBuffer([NotNull] byte[] buffer, int index, NbtCompression compression) {
+        public long SaveToBuffer( byte[] buffer, int index, NbtCompression compression) {
             if (buffer == null) throw new ArgumentNullException(nameof(buffer));
 
             using (var ms = new MemoryStream(buffer, index, buffer.Length - index)) {
@@ -422,7 +422,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="UnauthorizedAccessException"> Specified file is read-only, or a permission issue occurred. </exception>
         /// <exception cref="NbtFormatException"> If one of the NbtCompound tags contained unnamed tags;
         /// or if an NbtList tag had Unknown list type and no elements. </exception>
-        [NotNull]
+        
         public byte[] SaveToBuffer(NbtCompression compression) {
             using (var ms = new MemoryStream()) {
                 SaveToStream(ms, compression);
@@ -443,7 +443,7 @@ namespace MinecraftLibrary.NBT
         /// or if RootTag is unnamed;
         /// or if one of the NbtCompound tags contained unnamed tags;
         /// or if an NbtList tag had Unknown list type and no elements. </exception>
-        public long SaveToStream([NotNull] Stream stream, NbtCompression compression) {
+        public long SaveToStream( Stream stream, NbtCompression compression) {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
             switch (compression) {
@@ -525,8 +525,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidDataException"> If file compression could not be detected, or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="IOException"> If an I/O error occurred while reading the file. </exception>
-        [NotNull]
-        public static string ReadRootTagName([NotNull] string fileName) {
+        
+        public static string ReadRootTagName( string fileName) {
             return ReadRootTagName(fileName, NbtCompression.AutoDetect, BigEndianByDefault, defaultBufferSize);
         }
 
@@ -544,8 +544,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="InvalidDataException"> If file compression could not be detected, or decompressing failed. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="IOException"> If an I/O error occurred while reading the file. </exception>
-        [NotNull]
-        public static string ReadRootTagName([NotNull] string fileName, NbtCompression compression, bool bigEndian,
+        
+        public static string ReadRootTagName( string fileName, NbtCompression compression, bool bigEndian,
                                              int bufferSize) {
             if (fileName == null) {
                 throw new ArgumentNullException(nameof(fileName));
@@ -574,8 +574,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="EndOfStreamException"> If file ended earlier than expected. </exception>
         /// <exception cref="InvalidDataException"> If file compression could not be detected, decompressing failed, or given stream does not support reading. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
-        [NotNull]
-        public static string ReadRootTagName([NotNull] Stream stream, NbtCompression compression, bool bigEndian,
+        
+        public static string ReadRootTagName( Stream stream, NbtCompression compression, bool bigEndian,
                                              int bufferSize) {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
             if (bufferSize < 0) {
@@ -618,8 +618,8 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        [NotNull]
-        static string GetRootNameInternal([NotNull] Stream stream, bool bigEndian) {
+        
+        static string GetRootNameInternal( Stream stream, bool bigEndian) {
             Debug.Assert(stream != null);
             int firstByte = stream.ReadByte();
             if (firstByte < 0) {
@@ -644,8 +644,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="indentString"> String to be used for indentation. </param>
         /// <returns> A string representing contents of this tag, and all child tags (if any). </returns>
         /// <exception cref="ArgumentNullException"> <paramref name="indentString"/> is <c>null</c>. </exception>
-        [NotNull]
-        public string ToString([NotNull] string indentString) {
+        
+        public string ToString( string indentString) {
             return RootTag.ToString(indentString);
         }
 

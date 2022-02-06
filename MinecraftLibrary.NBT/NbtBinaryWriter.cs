@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
-using JetBrains.Annotations;
+
 
 namespace MinecraftLibrary.NBT
 {
@@ -41,7 +41,7 @@ namespace MinecraftLibrary.NBT
         readonly bool swapNeeded;
 
 
-        public NbtBinaryWriter([NotNull] Stream input, bool bigEndian)
+        public NbtBinaryWriter( Stream input, bool bigEndian)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
             if (!input.CanWrite) throw new ArgumentException("Given stream must be writable", nameof(input));
@@ -193,7 +193,7 @@ namespace MinecraftLibrary.NBT
 
 
         // Based on BinaryWriter.Write(String)
-        public void Write([NotNull] string value)
+        public void Write( string value)
         {
             if (value == null)
             {
