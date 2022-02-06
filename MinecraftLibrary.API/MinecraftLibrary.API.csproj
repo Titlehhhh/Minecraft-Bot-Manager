@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="fNbt" Version="0.6.4" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.NBT\MinecraftLibrary.NBT.csproj" />
   </ItemGroup>
 
 </Project>

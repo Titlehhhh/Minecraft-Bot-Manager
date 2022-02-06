@@ -1,5 +1,6 @@
 ﻿
 using MinecraftLibrary.API.Helpers;
+using MinecraftLibrary.NBT.Tags;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -190,7 +191,10 @@ namespace MinecraftLibrary.API.Protocol.Helpres
                 throw new NotSupportedException("Поток завершен");
             return (byte)nextByte;
         }
-
+        public NbtCompound ReadNbt()
+        {
+            throw new NotImplementedException();
+        }
         
         #endregion
         #region Write
@@ -270,7 +274,7 @@ namespace MinecraftLibrary.API.Protocol.Helpres
         }
         public void WriteNbt(NbtCompound nbt)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
