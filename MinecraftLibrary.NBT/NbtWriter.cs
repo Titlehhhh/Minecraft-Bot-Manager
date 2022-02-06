@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MinecraftLibrary.NBT.Tags;
 using System.Diagnostics;
-using System.IO;
-
-using MinecraftLibrary.NBT;
-using MinecraftLibrary.NBT.Tags;
 
 namespace MinecraftLibrary.NBT
 {
@@ -12,7 +7,8 @@ namespace MinecraftLibrary.NBT
     /// Each instance of NbtWriter writes one complete file. 
     /// NbtWriter enforces all constraints of the NBT file format
     /// EXCEPT checking for duplicate tag names within a compound. </summary>
-    public sealed class NbtWriter {
+    public sealed class NbtWriter
+    {
         const int MaxStreamCopyBufferSize = 8 * 1024;
 
         readonly NbtBinaryWriter writer;
@@ -29,7 +25,7 @@ namespace MinecraftLibrary.NBT
         /// <remarks> Assumes that data in the stream should be Big-Endian encoded. </remarks>
         /// <exception cref="ArgumentNullException"> <paramref name="stream"/> or <paramref name="rootTagName"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> <paramref name="stream"/> is not writable. </exception>
-        public NbtWriter( Stream stream,  string rootTagName)
+        public NbtWriter(Stream stream, string rootTagName)
             : this(stream, rootTagName, true) { }
 
 
@@ -39,7 +35,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="bigEndian"> Whether NBT data should be in Big-Endian encoding. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="stream"/> or <paramref name="rootTagName"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> <paramref name="stream"/> is not writable. </exception>
-        public NbtWriter( Stream stream,  string rootTagName, bool bigEndian) {
+        public NbtWriter(Stream stream, string rootTagName, bool bigEndian)
+        {
             if (rootTagName == null) throw new ArgumentNullException(nameof(rootTagName));
             writer = new NbtBinaryWriter(stream, bigEndian);
             writer.Write((byte)NbtTagType.Compound);
@@ -53,8 +50,9 @@ namespace MinecraftLibrary.NBT
         public bool IsDone { get; private set; }
 
         /// <summary> Gets the underlying stream of the NbtWriter. </summary>
-        
-        public Stream BaseStream {
+
+        public Stream BaseStream
+        {
             get { return writer.BaseStream; }
         }
 
@@ -65,7 +63,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named compound tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void BeginCompound() {
+        public void BeginCompound()
+        {
             EnforceConstraints(null, NbtTagType.Compound);
             GoDown(NbtTagType.Compound);
         }
@@ -75,7 +74,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="tagName"> Name to give to this compound tag. May not be null. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed compound tag was expected -OR- a tag of a different type was expected. </exception>
-        public void BeginCompound( string tagName) {
+        public void BeginCompound(string tagName)
+        {
             EnforceConstraints(tagName, NbtTagType.Compound);
             GoDown(NbtTagType.Compound);
 
@@ -86,8 +86,10 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Ends a compound tag. </summary>
         /// <exception cref="NbtFormatException"> Not currently in a compound. </exception>
-        public void EndCompound() {
-            if (IsDone || parentType != NbtTagType.Compound) {
+        public void EndCompound()
+        {
+            if (IsDone || parentType != NbtTagType.Compound)
+            {
                 throw new NbtFormatException("Not currently in a compound.");
             }
             GoUp();
@@ -103,11 +105,14 @@ namespace MinecraftLibrary.NBT
         /// the size of a parent list has been exceeded. </exception>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="size"/> is negative -OR-
         /// <paramref name="elementType"/> is not a valid NbtTagType. </exception>
-        public void BeginList(NbtTagType elementType, int size) {
-            if (size < 0) {
+        public void BeginList(NbtTagType elementType, int size)
+        {
+            if (size < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(size), "List size may not be negative.");
             }
-            if (elementType < NbtTagType.Byte || elementType > NbtTagType.LongArray) {
+            if (elementType < NbtTagType.Byte || elementType > NbtTagType.LongArray)
+            {
                 throw new ArgumentOutOfRangeException(nameof(elementType));
             }
             EnforceConstraints(null, NbtTagType.List);
@@ -128,11 +133,14 @@ namespace MinecraftLibrary.NBT
         /// an unnamed list tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="size"/> is negative -OR-
         /// <paramref name="elementType"/> is not a valid NbtTagType. </exception>
-        public void BeginList( string tagName, NbtTagType elementType, int size) {
-            if (size < 0) {
+        public void BeginList(string tagName, NbtTagType elementType, int size)
+        {
+            if (size < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(size), "List size may not be negative.");
             }
-            if (elementType < NbtTagType.Byte || elementType > NbtTagType.LongArray) {
+            if (elementType < NbtTagType.Byte || elementType > NbtTagType.LongArray)
+            {
                 throw new ArgumentOutOfRangeException(nameof(elementType));
             }
             EnforceConstraints(tagName, NbtTagType.List);
@@ -150,10 +158,14 @@ namespace MinecraftLibrary.NBT
         /// <summary> Ends a list tag. </summary>
         /// <exception cref="NbtFormatException"> Not currently in a list -OR-
         /// not all list elements have been written yet. </exception>
-        public void EndList() {
-            if (parentType != NbtTagType.List || IsDone) {
+        public void EndList()
+        {
+            if (parentType != NbtTagType.List || IsDone)
+            {
                 throw new NbtFormatException("Not currently in a list.");
-            } else if (listIndex < listSize) {
+            }
+            else if (listIndex < listSize)
+            {
                 throw new NbtFormatException("Cannot end list: not all list elements have been written yet. " +
                                              "Expected: " + listSize + ", written: " + listIndex);
             }
@@ -170,7 +182,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named byte tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteByte(byte value) {
+        public void WriteByte(byte value)
+        {
             EnforceConstraints(null, NbtTagType.Byte);
             writer.Write(value);
         }
@@ -181,7 +194,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The unsigned byte to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed byte tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteByte( string tagName, byte value) {
+        public void WriteByte(string tagName, byte value)
+        {
             EnforceConstraints(tagName, NbtTagType.Byte);
             writer.Write((byte)NbtTagType.Byte);
             writer.Write(tagName);
@@ -194,7 +208,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named double tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteDouble(double value) {
+        public void WriteDouble(double value)
+        {
             EnforceConstraints(null, NbtTagType.Double);
             writer.Write(value);
         }
@@ -205,7 +220,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The unsigned byte to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed byte tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteDouble( string tagName, double value) {
+        public void WriteDouble(string tagName, double value)
+        {
             EnforceConstraints(tagName, NbtTagType.Double);
             writer.Write((byte)NbtTagType.Double);
             writer.Write(tagName);
@@ -218,7 +234,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named float tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteFloat(float value) {
+        public void WriteFloat(float value)
+        {
             EnforceConstraints(null, NbtTagType.Float);
             writer.Write(value);
         }
@@ -229,7 +246,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The four-byte floating-point value to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed float tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteFloat( string tagName, float value) {
+        public void WriteFloat(string tagName, float value)
+        {
             EnforceConstraints(tagName, NbtTagType.Float);
             writer.Write((byte)NbtTagType.Float);
             writer.Write(tagName);
@@ -242,7 +260,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named int tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteInt(int value) {
+        public void WriteInt(int value)
+        {
             EnforceConstraints(null, NbtTagType.Int);
             writer.Write(value);
         }
@@ -253,7 +272,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The four-byte signed integer to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed int tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteInt( string tagName, int value) {
+        public void WriteInt(string tagName, int value)
+        {
             EnforceConstraints(tagName, NbtTagType.Int);
             writer.Write((byte)NbtTagType.Int);
             writer.Write(tagName);
@@ -266,7 +286,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named long tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteLong(long value) {
+        public void WriteLong(long value)
+        {
             EnforceConstraints(null, NbtTagType.Long);
             writer.Write(value);
         }
@@ -277,7 +298,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The eight-byte signed integer to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed long tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteLong( string tagName, long value) {
+        public void WriteLong(string tagName, long value)
+        {
             EnforceConstraints(tagName, NbtTagType.Long);
             writer.Write((byte)NbtTagType.Long);
             writer.Write(tagName);
@@ -290,7 +312,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named short tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteShort(short value) {
+        public void WriteShort(short value)
+        {
             EnforceConstraints(null, NbtTagType.Short);
             writer.Write(value);
         }
@@ -301,7 +324,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The two-byte signed integer to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed short tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteShort( string tagName, short value) {
+        public void WriteShort(string tagName, short value)
+        {
             EnforceConstraints(tagName, NbtTagType.Short);
             writer.Write((byte)NbtTagType.Short);
             writer.Write(tagName);
@@ -314,7 +338,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named string tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteString( string value) {
+        public void WriteString(string value)
+        {
             if (value == null) throw new ArgumentNullException(nameof(value));
             EnforceConstraints(null, NbtTagType.String);
             writer.Write(value);
@@ -326,7 +351,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="value"> The string to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed string tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteString( string tagName,  string value) {
+        public void WriteString(string tagName, string value)
+        {
             if (value == null) throw new ArgumentNullException(nameof(value));
             EnforceConstraints(tagName, NbtTagType.String);
             writer.Write((byte)NbtTagType.String);
@@ -345,7 +371,8 @@ namespace MinecraftLibrary.NBT
         /// a named byte array tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null </exception>
-        public void WriteByteArray( byte[] data) {
+        public void WriteByteArray(byte[] data)
+        {
             if (data == null) throw new ArgumentNullException(nameof(data));
             WriteByteArray(data, 0, data.Length);
         }
@@ -363,7 +390,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteByteArray( byte[] data, int offset, int count) {
+        public void WriteByteArray(byte[] data, int offset, int count)
+        {
             CheckArray(data, offset, count);
             EnforceConstraints(null, NbtTagType.ByteArray);
             writer.Write(count);
@@ -378,7 +406,8 @@ namespace MinecraftLibrary.NBT
         /// an unnamed byte array tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="tagName"/> or
         /// <paramref name="data"/> is null </exception>
-        public void WriteByteArray( string tagName,  byte[] data) {
+        public void WriteByteArray(string tagName, byte[] data)
+        {
             if (data == null) throw new ArgumentNullException(nameof(data));
             WriteByteArray(tagName, data, 0, data.Length);
         }
@@ -397,7 +426,8 @@ namespace MinecraftLibrary.NBT
         /// <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteByteArray( string tagName,  byte[] data, int offset, int count) {
+        public void WriteByteArray(string tagName, byte[] data, int offset, int count)
+        {
             CheckArray(data, offset, count);
             EnforceConstraints(tagName, NbtTagType.ByteArray);
             writer.Write((byte)NbtTagType.ByteArray);
@@ -418,11 +448,15 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count"/> is negative. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         /// <exception cref="ArgumentException"> Given stream does not support reading. </exception>
-        public void WriteByteArray( Stream dataSource, int count) {
+        public void WriteByteArray(Stream dataSource, int count)
+        {
             if (dataSource == null) throw new ArgumentNullException(nameof(dataSource));
-            if (!dataSource.CanRead) {
+            if (!dataSource.CanRead)
+            {
                 throw new ArgumentException("Given stream does not support reading.", nameof(dataSource));
-            } else if (count < 0) {
+            }
+            else if (count < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count), "count may not be negative");
             }
             int bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
@@ -442,14 +476,20 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         /// <exception cref="ArgumentException"> Given stream does not support reading -OR-
         /// <paramref name="buffer"/> size is 0. </exception>
-        public void WriteByteArray( Stream dataSource, int count,  byte[] buffer) {
+        public void WriteByteArray(Stream dataSource, int count, byte[] buffer)
+        {
             if (dataSource == null) throw new ArgumentNullException(nameof(dataSource));
             if (buffer == null) throw new ArgumentNullException(nameof(buffer));
-            if (!dataSource.CanRead) {
+            if (!dataSource.CanRead)
+            {
                 throw new ArgumentException("Given stream does not support reading.", nameof(dataSource));
-            } else if (count < 0) {
+            }
+            else if (count < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count), "count may not be negative");
-            } else if (buffer.Length == 0 && count > 0) {
+            }
+            else if (buffer.Length == 0 && count > 0)
+            {
                 throw new ArgumentException("buffer size must be greater than 0 when count is greater than 0", nameof(buffer));
             }
             EnforceConstraints(null, NbtTagType.ByteArray);
@@ -468,9 +508,11 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count"/> is negative. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         /// <exception cref="ArgumentException"> Given stream does not support reading. </exception>
-        public void WriteByteArray( string tagName,  Stream dataSource, int count) {
+        public void WriteByteArray(string tagName, Stream dataSource, int count)
+        {
             if (dataSource == null) throw new ArgumentNullException(nameof(dataSource));
-            if (count < 0) {
+            if (count < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count), "count may not be negative");
             }
             int bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
@@ -490,15 +532,21 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         /// <exception cref="ArgumentException"> Given stream does not support reading -OR-
         /// <paramref name="buffer"/> size is 0. </exception>
-        public void WriteByteArray( string tagName,  Stream dataSource, int count,
-                                    byte[] buffer) {
+        public void WriteByteArray(string tagName, Stream dataSource, int count,
+                                    byte[] buffer)
+        {
             if (dataSource == null) throw new ArgumentNullException(nameof(dataSource));
             if (buffer == null) throw new ArgumentNullException(nameof(buffer));
-            if (!dataSource.CanRead) {
+            if (!dataSource.CanRead)
+            {
                 throw new ArgumentException("Given stream does not support reading.", nameof(dataSource));
-            } else if (count < 0) {
+            }
+            else if (count < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count), "count may not be negative");
-            } else if (buffer.Length == 0 && count > 0) {
+            }
+            else if (buffer.Length == 0 && count > 0)
+            {
                 throw new ArgumentException("buffer size must be greater than 0 when count is greater than 0", nameof(buffer));
             }
             EnforceConstraints(tagName, NbtTagType.ByteArray);
@@ -514,7 +562,8 @@ namespace MinecraftLibrary.NBT
         /// a named int array tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null </exception>
-        public void WriteIntArray( int[] data) {
+        public void WriteIntArray(int[] data)
+        {
             if (data == null) throw new ArgumentNullException(nameof(data));
             WriteIntArray(data, 0, data.Length);
         }
@@ -532,11 +581,13 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteIntArray( int[] data, int offset, int count) {
+        public void WriteIntArray(int[] data, int offset, int count)
+        {
             CheckArray(data, offset, count);
             EnforceConstraints(null, NbtTagType.IntArray);
             writer.Write(count);
-            for (int i = offset; i < count; i++) {
+            for (int i = offset; i < count; i++)
+            {
                 writer.Write(data[i]);
             }
         }
@@ -549,7 +600,8 @@ namespace MinecraftLibrary.NBT
         /// an unnamed int array tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="tagName"/> or
         /// <paramref name="data"/> is null </exception>
-        public void WriteIntArray( string tagName,  int[] data) {
+        public void WriteIntArray(string tagName, int[] data)
+        {
             if (data == null) throw new ArgumentNullException(nameof(data));
             WriteIntArray(tagName, data, 0, data.Length);
         }
@@ -568,13 +620,15 @@ namespace MinecraftLibrary.NBT
         /// <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteIntArray( string tagName,  int[] data, int offset, int count) {
+        public void WriteIntArray(string tagName, int[] data, int offset, int count)
+        {
             CheckArray(data, offset, count);
             EnforceConstraints(tagName, NbtTagType.IntArray);
             writer.Write((byte)NbtTagType.IntArray);
             writer.Write(tagName);
             writer.Write(count);
-            for (int i = offset; i < count; i++) {
+            for (int i = offset; i < count; i++)
+            {
                 writer.Write(data[i]);
             }
         }
@@ -585,7 +639,8 @@ namespace MinecraftLibrary.NBT
         /// a named long array tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null </exception>
-        public void WriteLongArray( long[] data) {
+        public void WriteLongArray(long[] data)
+        {
             if (data == null) throw new ArgumentNullException(nameof(data));
             WriteLongArray(data, 0, data.Length);
         }
@@ -603,11 +658,13 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteLongArray( long[] data, int offset, int count) {
+        public void WriteLongArray(long[] data, int offset, int count)
+        {
             CheckArray(data, offset, count);
             EnforceConstraints(null, NbtTagType.LongArray);
             writer.Write(count);
-            for (int i = offset; i < count; i++) {
+            for (int i = offset; i < count; i++)
+            {
                 writer.Write(data[i]);
             }
         }
@@ -620,7 +677,8 @@ namespace MinecraftLibrary.NBT
         /// an unnamed long array tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="tagName"/> or
         /// <paramref name="data"/> is null </exception>
-        public void WriteLongArray( string tagName,  long[] data) {
+        public void WriteLongArray(string tagName, long[] data)
+        {
             if (data == null) throw new ArgumentNullException(nameof(data));
             WriteLongArray(tagName, data, 0, data.Length);
         }
@@ -639,13 +697,15 @@ namespace MinecraftLibrary.NBT
         /// <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteLongArray( string tagName,  long[] data, int offset, int count) {
+        public void WriteLongArray(string tagName, long[] data, int offset, int count)
+        {
             CheckArray(data, offset, count);
             EnforceConstraints(tagName, NbtTagType.LongArray);
             writer.Write((byte)NbtTagType.LongArray);
             writer.Write(tagName);
             writer.Write(count);
-            for (int i = offset; i < count; i++) {
+            for (int i = offset; i < count; i++)
+            {
                 writer.Write(data[i]);
             }
         }
@@ -659,12 +719,16 @@ namespace MinecraftLibrary.NBT
         /// <param name="tag"> Tag to write. Must not be null. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR- given tag is unacceptable at this time. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="tag"/> is null </exception>
-        public void WriteTag( NbtTag tag) {
+        public void WriteTag(NbtTag tag)
+        {
             if (tag == null) throw new ArgumentNullException(nameof(tag));
             EnforceConstraints(tag.Name, tag.TagType);
-            if (tag.Name != null) {
+            if (tag.Name != null)
+            {
                 tag.WriteTag(writer);
-            } else {
+            }
+            else
+            {
                 tag.WriteData(writer);
             }
         }
@@ -674,18 +738,23 @@ namespace MinecraftLibrary.NBT
         /// This method is for verification only, and does not actually write any data. 
         /// Calling this method is optional (but probably a good idea, to catch any usage errors). </summary>
         /// <exception cref="NbtFormatException"> Not all tags have been closed yet. </exception>
-        public void Finish() {
-            if (!IsDone) {
+        public void Finish()
+        {
+            if (!IsDone)
+            {
                 throw new NbtFormatException("Cannot finish: not all tags have been closed yet.");
             }
         }
 
 
-        void GoDown(NbtTagType thisType) {
-            if (nodes == null) {
+        void GoDown(NbtTagType thisType)
+        {
+            if (nodes == null)
+            {
                 nodes = new Stack<NbtWriterNode>();
             }
-            var newNode = new NbtWriterNode {
+            var newNode = new NbtWriterNode
+            {
                 ParentType = parentType,
                 ListType = listType,
                 ListSize = listSize,
@@ -700,10 +769,14 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        void GoUp() {
-            if (nodes == null || nodes.Count == 0) {
+        void GoUp()
+        {
+            if (nodes == null || nodes.Count == 0)
+            {
                 IsDone = true;
-            } else {
+            }
+            else
+            {
                 NbtWriterNode oldNode = nodes.Pop();
                 parentType = oldNode.ParentType;
                 listType = oldNode.ListType;
@@ -713,46 +786,66 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        void EnforceConstraints( string name, NbtTagType desiredType) {
-            if (IsDone) {
+        void EnforceConstraints(string name, NbtTagType desiredType)
+        {
+            if (IsDone)
+            {
                 throw new NbtFormatException("Cannot write any more tags: root tag has been closed.");
             }
-            if (parentType == NbtTagType.List) {
-                if (name != null) {
+            if (parentType == NbtTagType.List)
+            {
+                if (name != null)
+                {
                     throw new NbtFormatException("Expecting an unnamed tag.");
-                } else if (listType != desiredType) {
+                }
+                else if (listType != desiredType)
+                {
                     throw new NbtFormatException("Unexpected tag type (expected: " + listType + ", given: " +
                                                  desiredType);
-                } else if (listIndex >= listSize) {
+                }
+                else if (listIndex >= listSize)
+                {
                     throw new NbtFormatException("Given list size exceeded.");
                 }
                 listIndex++;
-            } else if (name == null) {
+            }
+            else if (name == null)
+            {
                 throw new NbtFormatException("Expecting a named tag.");
             }
         }
 
 
-        static void CheckArray( Array data, int offset, int count) {
-            if (data == null) {
+        static void CheckArray(Array data, int offset, int count)
+        {
+            if (data == null)
+            {
                 throw new ArgumentNullException(nameof(data));
-            } else if (offset < 0) {
+            }
+            else if (offset < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(offset), "offset may not be negative.");
-            } else if (count < 0) {
+            }
+            else if (count < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count), "count may not be negative.");
-            } else if ((data.Length - offset) < count) {
+            }
+            else if ((data.Length - offset) < count)
+            {
                 throw new ArgumentException("count may not be greater than offset subtracted from the array length.");
             }
         }
 
 
-        void WriteByteArrayFromStreamImpl( Stream dataSource, int count,  byte[] buffer) {
+        void WriteByteArrayFromStreamImpl(Stream dataSource, int count, byte[] buffer)
+        {
             Debug.Assert(dataSource != null);
             Debug.Assert(buffer != null);
             writer.Write(count);
             int maxBytesToWrite = Math.Min(buffer.Length, NbtBinaryWriter.MaxWriteChunk);
             int bytesWritten = 0;
-            while (bytesWritten < count) {
+            while (bytesWritten < count)
+            {
                 int bytesToRead = Math.Min(count - bytesWritten, maxBytesToWrite);
                 int bytesRead = dataSource.Read(buffer, 0, bytesToRead);
                 writer.Write(buffer, 0, bytesRead);
