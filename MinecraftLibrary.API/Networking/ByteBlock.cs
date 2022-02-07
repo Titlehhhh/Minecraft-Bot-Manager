@@ -9,6 +9,7 @@ namespace MinecraftLibrary.API.Networking
 
         public ByteBlock(int iD, byte[] data)
         {
+
             ID = iD;
             Data = data.Clone() as byte[];
             if (Data == null)

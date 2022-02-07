@@ -10,5 +10,6 @@ namespace MinecraftLibrary.API.Bot
     public interface IGameProperties 
     {
         //event 
+        
     }
 }
