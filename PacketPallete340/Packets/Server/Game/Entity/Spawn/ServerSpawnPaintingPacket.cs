@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Spawn
        //this.paintingType = MagicValues.key(PaintingType.class, in.readString());
        //this.position = NetUtil.readPosition(in);
        //this.direction = MagicValues.key(HangingDirection.class, in.readUnsignedByte());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Player
     {
         //this.entityId = in.readVarInt();
        //this.position = NetUtil.readPosition(in);
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

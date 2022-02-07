@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game
     {
         //this.message = Message.fromString(in.readString());
        //this.type = MagicValues.key(MessageType.class, in.readByte());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

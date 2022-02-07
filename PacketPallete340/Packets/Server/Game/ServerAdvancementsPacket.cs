@@ -76,7 +76,7 @@ namespace PacketPallete340.Packets.Server.Game
        //
        //this.progress.put(advancementId, advancementProgress);
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

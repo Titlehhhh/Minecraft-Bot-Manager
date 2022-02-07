@@ -23,7 +23,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
        //this.yaw = yaw;
        //this.pitch = pitch;
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

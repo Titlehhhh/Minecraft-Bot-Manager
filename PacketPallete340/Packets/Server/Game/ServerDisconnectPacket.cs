@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game
     public class ServerDisconnectPacket : MinecraftPacket
     {
         //this.message = Message.fromString(in.readString());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

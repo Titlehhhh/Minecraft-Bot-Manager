@@ -19,7 +19,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
        //if(this.action == InteractAction.INTERACT || this.action == InteractAction.INTERACT_AT) {
        //out.writeVarInt(MagicValues.value(Integer.class, this.hand));
        //}
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

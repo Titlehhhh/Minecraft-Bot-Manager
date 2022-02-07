@@ -14,7 +14,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
         //out.writeFloat(this.cursorX);
         //out.writeFloat(this.cursorY);
         //out.writeFloat(this.cursorZ);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
 
         }

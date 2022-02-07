@@ -14,7 +14,7 @@ namespace PacketPallete340.Packets.Server.Game.Scoreboard
        //this.displayName = in.readString();
        //this.type = MagicValues.key(ScoreType.class, in.readString());
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

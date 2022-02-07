@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
     public class ClientPlayerMovementPacket : MinecraftPacket
     {
         public bool OnGround { get; set; }        
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteBool(OnGround);
         }

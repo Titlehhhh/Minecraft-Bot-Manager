@@ -12,7 +12,7 @@ namespace PacketPallete340.Packets.Server.Game
        //this.difficulty = MagicValues.key(Difficulty.class, in.readUnsignedByte());
        //this.gamemode = MagicValues.key(GameMode.class, in.readUnsignedByte());
        //this.worldType = MagicValues.key(WorldType.class, in.readString().toLowerCase());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -15,7 +15,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
        //this.yaw = in.readByte() * 360 / 256f;
        //this.pitch = in.readByte() * 360 / 256f;
        //this.onGround = in.readBoolean();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

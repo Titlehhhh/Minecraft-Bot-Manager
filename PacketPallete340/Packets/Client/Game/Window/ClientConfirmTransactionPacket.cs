@@ -11,7 +11,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
         //out.writeByte(this.windowId);
        //out.writeShort(this.actionId);
        //out.writeBoolean(this.accepted);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

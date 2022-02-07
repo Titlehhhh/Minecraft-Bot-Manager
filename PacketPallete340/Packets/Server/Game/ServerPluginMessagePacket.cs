@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game
     {
         //this.channel = in.readString();
        //this.data = in.readBytes(in.available());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -24,7 +24,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //}
        //
        //this.broadcast = in.readBoolean();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

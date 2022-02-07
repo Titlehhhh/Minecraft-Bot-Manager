@@ -15,7 +15,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Player
        //this.creative = (flags & 8) > 0;
        //this.flySpeed = in.readFloat();
        //this.walkSpeed = in.readFloat();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

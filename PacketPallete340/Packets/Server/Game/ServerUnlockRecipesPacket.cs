@@ -26,7 +26,7 @@ namespace PacketPallete340.Packets.Server.Game
        //for(int i = 0; i < size; i++) {
        //this.recipes.add(in.readVarInt());
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -20,7 +20,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
        //default:
        //throw new IOException("Unknown crafting book data type: " + this.type);
        //}
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

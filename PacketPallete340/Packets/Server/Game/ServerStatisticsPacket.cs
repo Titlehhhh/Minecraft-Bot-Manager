@@ -38,7 +38,7 @@ namespace PacketPallete340.Packets.Server.Game
        //
        //this.statistics.put(statistic, in.readVarInt());
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

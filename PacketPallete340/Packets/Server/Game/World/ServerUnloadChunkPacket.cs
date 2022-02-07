@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.World
     {
         //this.x = in.readInt();
        //this.z = in.readInt();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

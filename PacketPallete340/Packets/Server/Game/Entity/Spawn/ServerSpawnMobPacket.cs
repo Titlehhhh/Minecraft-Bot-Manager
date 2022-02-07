@@ -21,7 +21,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Spawn
        //this.motY = in.readShort() / 8000D;
        //this.motZ = in.readShort() / 8000D;
        //this.metadata = NetUtil.readEntityMetadata(in);
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

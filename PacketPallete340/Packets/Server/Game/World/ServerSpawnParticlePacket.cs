@@ -22,7 +22,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //for(int index = 0; index < this.data.length; index++) {
        //this.data[index] = in.readVarInt();
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

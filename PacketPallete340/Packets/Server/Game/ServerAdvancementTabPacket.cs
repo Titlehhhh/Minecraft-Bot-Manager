@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Game
        //} else {
        //this.tabId = null;
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

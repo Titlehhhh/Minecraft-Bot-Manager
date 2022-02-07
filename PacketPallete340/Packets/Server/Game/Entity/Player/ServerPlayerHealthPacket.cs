@@ -11,7 +11,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Player
         //this.health = in.readFloat();
        //this.food = in.readVarInt();
        //this.saturation = in.readFloat();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

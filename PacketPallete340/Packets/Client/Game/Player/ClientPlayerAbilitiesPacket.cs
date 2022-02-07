@@ -28,7 +28,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
        //out.writeByte(flags);
        //out.writeFloat(this.flySpeed);
        //out.writeFloat(this.walkSpeed);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

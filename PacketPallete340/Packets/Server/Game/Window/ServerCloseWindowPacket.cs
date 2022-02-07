@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game.Window
     public class ServerCloseWindowPacket : MinecraftPacket
     {
         //this.windowId = in.readUnsignedByte();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

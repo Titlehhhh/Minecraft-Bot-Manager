@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Game.Window
        //for(int index = 0; index < this.items.length; index++) {
        //this.items[index] = NetUtil.readItem(in);
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

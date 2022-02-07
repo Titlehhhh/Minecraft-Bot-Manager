@@ -14,7 +14,7 @@ namespace PacketPallete340.Packets.Server.Game.Scoreboard
        //if(this.action == ScoreboardAction.ADD_OR_UPDATE) {
        //this.value = in.readVarInt();
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

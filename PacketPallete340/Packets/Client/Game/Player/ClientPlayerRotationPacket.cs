@@ -12,7 +12,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
         public float Pitch { get; set; }
         public bool OnGround { get; set; }
 
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteFloat(Yaw);
             output.WriteFloat(Pitch);

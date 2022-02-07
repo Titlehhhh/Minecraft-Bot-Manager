@@ -21,7 +21,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //this.pushX = in.readFloat();
        //this.pushY = in.readFloat();
        //this.pushZ = in.readFloat();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

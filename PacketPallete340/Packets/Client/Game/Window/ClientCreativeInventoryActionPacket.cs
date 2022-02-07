@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
     {
         //out.writeShort(this.slot);
         //NetUtil.writeItem(out, this.clicked);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
 
         }

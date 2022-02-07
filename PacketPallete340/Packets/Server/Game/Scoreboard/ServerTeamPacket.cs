@@ -33,7 +33,7 @@ namespace PacketPallete340.Packets.Server.Game.Scoreboard
        //this.players[index] = in.readString();
        //}
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

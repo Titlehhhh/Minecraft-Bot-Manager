@@ -18,10 +18,11 @@ namespace PacketPallete340.Packets.Server.Game
        //this.maxPlayers = in.readUnsignedByte();
        //this.worldType = MagicValues.key(WorldType.class, in.readString().toLowerCase());
        //this.reducedDebugInfo = in.readBoolean();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }
+        
         public ServerJoinGamePacket() {}
     }
 

@@ -14,7 +14,7 @@ namespace PacketPallete340.Packets.Client.Game
        //if(this.lookingAt != null) {
        //NetUtil.writePosition(out, this.lookingAt);
        //}
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

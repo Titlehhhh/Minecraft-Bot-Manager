@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
     public class ClientPlayerSwingArmPacket : MinecraftPacket
     {
         //out.writeVarInt(MagicValues.value(Integer.class, this.hand));
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

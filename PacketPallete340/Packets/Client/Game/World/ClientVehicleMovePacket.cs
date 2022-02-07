@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Client.Game.World
        //out.writeDouble(this.z);
        //out.writeFloat(this.yaw);
        //out.writeFloat(this.pitch);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

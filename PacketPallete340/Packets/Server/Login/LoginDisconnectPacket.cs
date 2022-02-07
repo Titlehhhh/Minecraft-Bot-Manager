@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Login
     public class LoginDisconnectPacket : MinecraftPacket
     {
         public string Message { get; set; }
-        public override void Read(MinecraftStream input)
+        public override void Read(IMinecraftStreamReader input)
         {
             Message = input.ReadNextString();
         }

@@ -10,9 +10,9 @@ namespace PacketPallete340.Packets.Server.Game
     {
         public long ID { get; set; }
         
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
-            ID = output.ReadNextLong();
+            ID = input.ReadNextLong();
         }
 
         public ServerKeepAlivePacket(long iD)

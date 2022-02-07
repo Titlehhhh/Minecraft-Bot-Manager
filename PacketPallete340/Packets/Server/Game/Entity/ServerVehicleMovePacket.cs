@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
        //this.z = in.readDouble();
        //this.yaw = in.readFloat();
        //this.pitch = in.readFloat();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Client.Game
     public class ClientResourcePackStatusPacket : MinecraftPacket
     {
         //out.writeVarInt(MagicValues.value(Integer.class, this.status));
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

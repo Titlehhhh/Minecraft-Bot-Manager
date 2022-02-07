@@ -21,7 +21,7 @@ namespace PacketPallete340.Packets.Client.Game
         //out.writeByte(flags);
         //
         //out.writeVarInt(MagicValues.value(Integer.class, this.mainHand));
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
 
         }

@@ -20,7 +20,7 @@ namespace PacketPallete340.Packets.Client.Game.World
        //}
        //
        //out.writeByte(flags);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

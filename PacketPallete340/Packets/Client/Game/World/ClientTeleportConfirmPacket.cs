@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Client.Game.World
     {
         public int ID { get; set; }
 
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteVarInt(ID);
         }

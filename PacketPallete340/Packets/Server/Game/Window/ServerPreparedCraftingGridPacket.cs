@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.Window
     {
         //this.windowId = in.readByte();
        //this.recipeId = in.readVarInt();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

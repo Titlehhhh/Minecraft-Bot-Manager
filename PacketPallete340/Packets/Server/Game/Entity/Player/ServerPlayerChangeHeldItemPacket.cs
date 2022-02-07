@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Player
     public class ServerPlayerChangeHeldItemPacket : MinecraftPacket
     {
         //this.slot = in.readByte();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

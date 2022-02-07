@@ -29,7 +29,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //byte data[] = in.readBytes(in.readVarInt());
        //this.data = new MapData(columns, rows, x, y, data);
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

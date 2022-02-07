@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game
     {
         //this.url = in.readString();
        //this.hash = in.readString();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

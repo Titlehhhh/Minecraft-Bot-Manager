@@ -11,7 +11,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Player
         //this.experience = in.readFloat();
        //this.level = in.readVarInt();
        //this.totalExperience = in.readVarInt();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

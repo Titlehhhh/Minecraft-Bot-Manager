@@ -17,7 +17,7 @@ namespace PacketPallete340.Packets.Server.Game
        //this.entityId = in.readInt();
        //this.message = Message.fromString(in.readString());
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -7,10 +7,8 @@ using System.ComponentModel;
 
 namespace MinecraftLibrary.API.Bot
 {
-
-    public interface IGameProperties
+    public interface IBotObject : INotifyPropertyChanged
     {
-        public float Health { get; }
 
     }
 }

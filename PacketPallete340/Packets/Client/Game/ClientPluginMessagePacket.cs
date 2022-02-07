@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Client.Game
     {
         //out.writeString(this.channel);
         //out.writeBytes(this.data);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
 
         }

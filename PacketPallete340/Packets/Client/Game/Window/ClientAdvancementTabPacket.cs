@@ -18,7 +18,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
        //default:
        //throw new IOException("Unknown advancement tab action: " + this.action);
        //}
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

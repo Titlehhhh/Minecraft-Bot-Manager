@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Client.Game
     {
         public string Message { get; set; }
         
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteString(Message);
         }

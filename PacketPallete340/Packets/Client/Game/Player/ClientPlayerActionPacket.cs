@@ -15,7 +15,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
         public PlayerAction Action { get; set; }
         public Point3_Int Position { get; set; }
         public BlockFace Face { get; set; }
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteVarInt((int)Action);
             long x = Position.X & POSITION_WRITE_SHIFT;

@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
     {
         //this.entityId = in.readVarInt();
        //this.effect = MagicValues.key(Effect.class, in.readUnsignedByte());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

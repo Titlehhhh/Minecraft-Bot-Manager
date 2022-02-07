@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.Protocol.Helpres
 {
-    public sealed class MinecraftStream : Stream
+    public sealed class MinecraftStream : Stream, IMinecraftStreamReader, IMinecraftStreamWriter
     {
         public Stream BaseStream { get; private set; }
 

@@ -19,7 +19,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //int z = (chunkZ << 4) + (pos >> 8 & 15);
        //this.records[index] = new BlockChangeRecord(new Position(x, y, z), block);
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

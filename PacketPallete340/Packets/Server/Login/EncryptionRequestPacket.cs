@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Login
         public string ServerID { get; set; }
         public byte[] PublicKey { get; set; }
         public byte[] VerifyToken { get; set; }
-        public override void Read(MinecraftStream input)
+        public override void Read(IMinecraftStreamReader input)
         {
             ServerID = input.ReadNextString();
             PublicKey = input.ReadNextByteArray();

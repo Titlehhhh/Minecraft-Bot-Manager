@@ -16,7 +16,7 @@ namespace PacketPallete340.Packets.Client.HandShake
         public int ProtocolVersion { get; set; }
         public int Port { get; set; }
         public string Host { get; set; }
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteVarInt(ProtocolVersion);
             output.WriteString(Host);

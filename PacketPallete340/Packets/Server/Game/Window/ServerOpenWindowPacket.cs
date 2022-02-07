@@ -15,7 +15,7 @@ namespace PacketPallete340.Packets.Server.Game.Window
        //if(this.type == WindowType.HORSE) {
        //this.ownerEntityId = in.readInt();
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game
     public class ServerSwitchCameraPacket : MinecraftPacket
     {
         //this.cameraEntityId = in.readVarInt();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

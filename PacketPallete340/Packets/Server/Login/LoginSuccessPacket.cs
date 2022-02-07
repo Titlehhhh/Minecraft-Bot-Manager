@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Login
     {
         public Guid UUID { get; set; }
         public string Username { get; set; }
-        public override void Read(MinecraftStream input)
+        public override void Read(IMinecraftStreamReader input)
         {
             UUID = input.ReadNextUUID();
             Username = input.ReadNextString();

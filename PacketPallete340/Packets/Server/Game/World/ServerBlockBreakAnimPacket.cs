@@ -15,7 +15,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //} catch(IllegalArgumentException e) {
        //this.stage = BlockBreakStage.RESET;
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

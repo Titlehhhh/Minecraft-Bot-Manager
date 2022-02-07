@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game.World
     public class ServerBlockChangePacket : MinecraftPacket
     {
         //this.record = new BlockChangeRecord(NetUtil.readPosition(in), NetUtil.readBlockState(in));
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

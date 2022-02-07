@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Client.Game.World
     public class ClientSpectatePacket : MinecraftPacket
     {
         //out.writeUUID(this.target);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

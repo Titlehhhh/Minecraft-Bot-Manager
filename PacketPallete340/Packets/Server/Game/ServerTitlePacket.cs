@@ -29,7 +29,7 @@ namespace PacketPallete340.Packets.Server.Game
        //case RESET:
        //break;
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game.World
     public class ServerSpawnPositionPacket : MinecraftPacket
     {
         //this.position = NetUtil.readPosition(in);
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

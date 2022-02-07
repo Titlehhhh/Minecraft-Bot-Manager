@@ -12,7 +12,7 @@ namespace PacketPallete340.Packets.Server.Game
        //for(int index = 0; index < this.matches.length; index++) {
        //this.matches[index] = in.readString();
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

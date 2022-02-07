@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
        //for(int index = 0; index < this.passengerIds.length; index++) {
        //this.passengerIds[index] = in.readVarInt();
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

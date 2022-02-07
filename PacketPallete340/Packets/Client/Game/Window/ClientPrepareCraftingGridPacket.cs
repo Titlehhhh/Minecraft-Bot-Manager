@@ -11,7 +11,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
         //out.writeByte(this.windowId);
        //out.writeVarInt(this.recipeId);
        //out.writeBoolean(this.makeAll);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

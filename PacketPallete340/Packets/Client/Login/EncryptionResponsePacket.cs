@@ -20,7 +20,7 @@ namespace PacketPallete340.Packets.Client.Login
             VerifyToken = verifyToken;
             SharedKey = sharedKey;
         }
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteArray(SharedKey);
             output.WriteArray(VerifyToken);

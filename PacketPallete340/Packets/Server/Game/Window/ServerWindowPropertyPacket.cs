@@ -11,7 +11,7 @@ namespace PacketPallete340.Packets.Server.Game.Window
         //this.windowId = in.readUnsignedByte();
        //this.property = in.readShort();
        //this.value = in.readShort();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

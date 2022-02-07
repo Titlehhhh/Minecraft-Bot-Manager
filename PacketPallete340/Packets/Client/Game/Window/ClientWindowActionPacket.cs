@@ -31,7 +31,7 @@ namespace PacketPallete340.Packets.Client.Game.Window
        //out.writeShort(this.actionId);
        //out.writeByte(MagicValues.value(Integer.class, this.action));
        //NetUtil.writeItem(out, this.clicked);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

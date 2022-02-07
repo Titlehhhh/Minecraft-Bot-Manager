@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Client.Game.World
     {
         //out.writeBoolean(this.rightPaddleTurning);
        //out.writeBoolean(this.leftPaddleTurning);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
     {
         //this.entityId = in.readInt();
        //this.attachedToId = in.readInt();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

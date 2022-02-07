@@ -23,7 +23,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
        //if(this.pos || this.rot) {
        //this.onGround = in.readBoolean();
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

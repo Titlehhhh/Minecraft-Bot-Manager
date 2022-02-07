@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Client.Game
     {
         public long ID { get; set; }
         //out.writeLong(this.id);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteLong(ID);
         }

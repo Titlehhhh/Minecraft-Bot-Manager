@@ -16,7 +16,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Spawn
        //this.yaw = in.readByte() * 360 / 256f;
        //this.pitch = in.readByte() * 360 / 256f;
        //this.metadata = NetUtil.readEntityMetadata(in);
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -24,35 +24,35 @@ namespace PacketPallete340.Packets.Server.Game.World
         //}
         //
         //this.column = NetUtil.readColumn(data, x, z, fullChunk, false, chunkMask, tileEntities);
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
-            int x = output.ReadNextInt();
-            int z = output.ReadNextInt();
-            bool chunksContinuous = output.ReadNextBool();
-            ushort chunkMask = (ushort)output.ReadNextVarInt();
+            int x = input.ReadNextInt();
+            int z = input.ReadNextInt();
+            bool chunksContinuous = input.ReadNextBool();
+            ushort chunkMask = (ushort)input.ReadNextVarInt();
             ChunkColumn column = new ChunkColumn(x, z);
             for(int chunkY = 0;chunkY< column.SizeY; chunkY++)
             {
                 if((chunkMask & (1 << chunkY)) != 0)
                 {
-                    byte bitsPerBlock = output.ReadNextByte();
+                    byte bitsPerBlock = input.ReadNextByte();
                     bool usePalette = (bitsPerBlock <= 8);
                     if (bitsPerBlock < 4)
                         bitsPerBlock = 4;
                     int paletteLength = 0; // Assume zero when length is absent
                     if (usePalette)
-                        paletteLength = output.ReadNextVarInt();
+                        paletteLength = input.ReadNextVarInt();
 
                     int[] palette = new int[paletteLength];
                     for (int i = 0; i < paletteLength; i++)
                     {
-                        palette[i] = output.ReadNextVarInt();
+                        palette[i] = input.ReadNextVarInt();
                     }
 
                     uint valueMask = (uint)((1 << bitsPerBlock) - 1);
 
                     // Block IDs are packed in the array of 64-bits integers
-                    ulong[] dataArray = output.ReadNextULongArray();
+                    ulong[] dataArray = input.ReadNextULongArray();
 
                     Chunk chunk = new Chunk();
 

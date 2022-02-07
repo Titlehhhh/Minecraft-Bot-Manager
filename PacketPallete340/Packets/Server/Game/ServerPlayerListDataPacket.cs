@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game
     {
         //this.header = Message.fromString(in.readString());
        //this.footer = Message.fromString(in.readString());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

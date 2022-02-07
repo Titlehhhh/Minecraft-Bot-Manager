@@ -21,7 +21,7 @@ namespace PacketPallete340.Packets.Server.Game.World
        //} else if(this.notification == ClientNotification.THUNDER_STRENGTH) {
        //this.value = new ThunderStrengthValue(value);
        //}
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

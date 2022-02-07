@@ -137,7 +137,7 @@ namespace MinecraftLibrary.Networking.Session
                 IPacket packet = CreateInstance(RegisteredInputPakets[id]);
                 using (MinecraftStream ms = new MinecraftStream(new MemoryStream(data)))
                 {
-                    packet.Read(ms);
+                    packet.Read(1);
                 }
                 PacketProcessedEvent?.Invoke(this, new PacketProcessedEventArgs(packet));
             }
@@ -310,7 +310,7 @@ namespace MinecraftLibrary.Networking.Session
             MemoryStream ms = new MemoryStream();
             using (MinecraftStream mcs = new MinecraftStream(ms))
             {
-                packet.Write(mcs);
+                packet.Write(1);
             }
             ByteBlock byteBlock = new ByteBlock(id, ms.ToArray());
             PacketSendEvent?.Invoke(this, new PacketSendEventArgs(packet));
@@ -338,7 +338,7 @@ namespace MinecraftLibrary.Networking.Session
             MemoryStream ms = new MemoryStream();
             using (MinecraftStream mcs = new MinecraftStream(ms))
             {
-                packet.Write(mcs);
+                packet.Write(1);
             }
             ByteBlock byteBlock = new ByteBlock(id, ms.ToArray());
             PacketSendEvent?.Invoke(this, new PacketSendEventArgs(packet));

@@ -11,7 +11,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
     {
         public HAND Hand { get; set; }
         public int MyProperty { get; set; }        
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             switch (Hand)
             {

@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
     public class ClientPlayerChangeHeldItemPacket : MinecraftPacket
     {
         //out.writeShort(this.slot);
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             
         }

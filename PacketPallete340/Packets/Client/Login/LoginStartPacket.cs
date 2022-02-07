@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Client.Login
     public class LoginStartPacket : MinecraftPacket
     {
         public string Nickname { get; set; }
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteString(Nickname);
         }

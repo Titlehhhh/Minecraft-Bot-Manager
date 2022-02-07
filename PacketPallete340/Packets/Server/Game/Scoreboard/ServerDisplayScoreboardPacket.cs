@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.Scoreboard
     {
         //this.position = MagicValues.key(ScoreboardPosition.class, in.readByte());
        //this.name = in.readString();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

@@ -16,7 +16,7 @@ namespace PacketPallete340.Packets.Client.Game.Player
 
         public bool OnGround { get; set; }
         
-        public override void Write(MinecraftStream output)
+        public override void Write(IMinecraftStreamWriter output)
         {
             output.WriteDouble(X);
             output.WriteDouble(Y);

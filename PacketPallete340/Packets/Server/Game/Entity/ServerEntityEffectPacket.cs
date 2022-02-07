@@ -16,7 +16,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity
        //int flags = in.readByte();
        //this.ambient = (flags & 0x1) == 0x1;
        //this.showParticles = (flags & 0x2) == 0x2;
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

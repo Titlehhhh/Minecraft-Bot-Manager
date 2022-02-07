@@ -9,7 +9,7 @@ namespace PacketPallete340.Packets.Server.Game
     public class ServerDifficultyPacket : MinecraftPacket
     {
         //this.difficulty = MagicValues.key(Difficulty.class, in.readUnsignedByte());
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

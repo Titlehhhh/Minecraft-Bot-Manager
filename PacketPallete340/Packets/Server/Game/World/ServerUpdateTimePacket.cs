@@ -10,7 +10,7 @@ namespace PacketPallete340.Packets.Server.Game.World
     {
         //this.age = in.readLong();
        //this.time = in.readLong();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }

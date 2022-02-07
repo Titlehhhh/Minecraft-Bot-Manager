@@ -13,7 +13,7 @@ namespace PacketPallete340.Packets.Server.Game.Entity.Spawn
        //this.x = in.readDouble();
        //this.y = in.readDouble();
        //this.z = in.readDouble();
-        public override void Read(MinecraftStream output)
+        public override void Read(IMinecraftStreamReader input)
         {
             
         }
