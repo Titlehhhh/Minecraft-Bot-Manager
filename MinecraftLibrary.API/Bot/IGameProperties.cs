@@ -7,9 +7,9 @@ using System.ComponentModel;
 
 namespace MinecraftLibrary.API.Bot
 {
-    public interface IGameProperties 
-    {
     
+    public interface IGameProperties 
+    {    
         public float Health { get; }
         
 

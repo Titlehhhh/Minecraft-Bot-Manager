@@ -115,7 +115,7 @@ namespace MinecraftLibrary.Networking.Session
                 {
                     while (IsConnected && !this.Disconnected)
                     {
-                        ByteBlock byteBlock = ReadNextByteBlock();                       
+                        ByteBlock byteBlock = ReadNextByteBlock();
                         DataReceivedEvent?.Invoke(this, new PacketReceivedEventArgs(byteBlock));
                         ProcessPacket(byteBlock);
                     }
@@ -293,27 +293,30 @@ namespace MinecraftLibrary.Networking.Session
         {
             RegisteredOutputPakets.Add(t, id);
         }
-
+        /// <summary>
+        /// Отправляет пакет если он зарегистрирован, в противном случае происходит исключение
+        /// </summary>
+        /// <param name="packet"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="KeyNotFoundException"></exception>
         public void SendPacket(IPacket packet)
         {
             if (packet is null)
                 throw new ArgumentNullException(nameof(packet));
             Type t = packet.GetType();
-            if (RegisteredOutputPakets.ContainsKey(t))
+
+            int id = RegisteredOutputPakets[t];
+
+            MemoryStream ms = new MemoryStream();
+            using (MinecraftStream mcs = new MinecraftStream(ms))
             {
-                int id = RegisteredOutputPakets[t];
-
-                MemoryStream ms = new MemoryStream();
-                using (MinecraftStream mcs = new MinecraftStream(ms))
-                {
-                    packet.Write(mcs);
-                }
-                ByteBlock byteBlock = new ByteBlock(id, ms.ToArray());
-                PacketSendEvent?.Invoke(this, new PacketSendEventArgs(packet));
-                this.Send(byteBlock);
-                PacketSentEvent?.Invoke(this, new PacketSentEventArgs(packet));
-
+                packet.Write(mcs);
             }
+            ByteBlock byteBlock = new ByteBlock(id, ms.ToArray());
+            PacketSendEvent?.Invoke(this, new PacketSendEventArgs(packet));
+            this.Send(byteBlock);
+            PacketSentEvent?.Invoke(this, new PacketSentEventArgs(packet));
+
         }
 
         public bool UnRegisterPacketInput(int id)
@@ -325,22 +328,41 @@ namespace MinecraftLibrary.Networking.Session
         {
             return RegisteredOutputPakets.Remove(t);
         }
-    }
-    internal static class MemeoryStreamExt
-    {
-        internal static int ReadVarInt(this MemoryStream memory)
+        /// <summary>
+        /// Отправить не зарегистрированный пакет
+        /// </summary>
+        /// <param name="packet"></param>
+        /// <param name="id"></param>
+        public void SendPacket(IPacket packet, int id)
         {
-            int i = 0;
-            int j = 0;
-            int k = 0;
-            while (true)
+            MemoryStream ms = new MemoryStream();
+            using (MinecraftStream mcs = new MinecraftStream(ms))
             {
-                k = memory.ReadByte();
-                i |= (k & 0x7F) << j++ * 7;
-                if (j > 5) throw new OverflowException("VarInt too big");
-                if ((k & 0x80) != 128) break;
+                packet.Write(mcs);
             }
-            return i;
+            ByteBlock byteBlock = new ByteBlock(id, ms.ToArray());
+            PacketSendEvent?.Invoke(this, new PacketSendEventArgs(packet));
+            this.Send(byteBlock);
+            PacketSentEvent?.Invoke(this, new PacketSentEventArgs(packet));
         }
     }
+
 }
+internal static class MemeoryStreamExt
+{
+    internal static int ReadVarInt(this MemoryStream memory)
+    {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while (true)
+        {
+            k = memory.ReadByte();
+            i |= (k & 0x7F) << j++ * 7;
+            if (j > 5) throw new OverflowException("VarInt too big");
+            if ((k & 0x80) != 128) break;
+        }
+        return i;
+    }
+}
+

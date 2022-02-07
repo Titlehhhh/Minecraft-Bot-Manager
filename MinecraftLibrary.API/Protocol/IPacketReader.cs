@@ -29,8 +29,8 @@ namespace MinecraftLibrary.API.Protocol
         void RegisterPacketOutput(int id, Type t);
         bool UnRegisterPacketOutput(Type t);
         #region Методы
-
         void SendPacket(IPacket packet);
+        void SendPacket(IPacket packet, int id);
         #endregion
 
 
