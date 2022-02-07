@@ -9,7 +9,9 @@ namespace MinecraftLibrary.API.Bot
 {
     public interface IGameProperties 
     {
-        //event 
+    
+        public float Health { get; }
         
+
     }
 }
