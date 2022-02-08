@@ -13,7 +13,7 @@ namespace MinecraftLibrary.Core.Bot
         public static PacketListenerFactory Instance => factory ?? (factory = new PacketListenerFactory());
         public virtual PacketListener CreateListener(string version)
         {
-
+            return null;
         }
     }
 }
