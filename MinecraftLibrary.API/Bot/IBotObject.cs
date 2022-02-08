@@ -15,22 +15,25 @@ namespace MinecraftLibrary.API.Bot
         public void Connect();
         public void Reconnect();
         public void Disconect();
-
         public string Host { get; set; }
+        public string Nickname { get; set; }
         public ushort Port { get; set; }
         public ProxyInfo? Proxy { get; set; }
+        public RunState State { get; }
 
-        public ITcpClientSession Session { get; set; }
-        public IPacketReader Reader { get; set; }
-        public IPacketWriter Writer { get; set; }
-
-
-        public SubProtocol SubProtocol { get; }
+        
     }
+    
     public enum SubProtocol
     {
         Handshake,
         Login,
         Game
+    }
+    public enum RunState
+    {
+        Init,
+        Running,
+        None
     }
 }
