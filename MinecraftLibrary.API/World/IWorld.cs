@@ -36,8 +36,7 @@ namespace MinecraftLibrary.API.World
         #endregion
 
         #region Свойства
-        Dictionary<long, IChunkColumn> ChunkColumns { get; }
-        int Dimension { get; set; }
+        Dictionary<long, IChunkColumn> ChunkColumns { get; }        
         #endregion
 
         #region Events

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinecraftBotManagerWPF.Views.Windows;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,8 +16,9 @@ namespace MinecraftBotManagerWPF
     {
         public App()
         {
-                
+            new MainWindow().Show();
         }     
+        
         
     }
 }

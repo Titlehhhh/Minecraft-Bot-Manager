@@ -10,7 +10,7 @@ namespace MinecraftLibrary.API.Networking
     /// <summary>
     /// Предоставляет низкоуровневую абстракцию для работы с TCP протоколом, сжатием и AES шифрованием
     /// </summary> 
-    public interface ITcpClientSession : IDisposable
+    public interface ITcpClientSession : IDisposable, INotifyConnectedAndDisconnected
     {
         #region Методы
         void Connect();
@@ -23,19 +23,14 @@ namespace MinecraftLibrary.API.Networking
         #region Свойства        
         bool IsConnected { get; }
         int CompressionThreshold { get; set; }
-
-        IPEndPoint EndPoint { get; }
-        
+        IPEndPoint EndPoint { get; }        
         ProxyInfo Proxy { get; }
-
         bool IsProxyUsed { get; }
         bool IsEncryption { get; }
         TcpClient Tcp { get; }
         IAesStream AesStream { get; }
         #endregion
-        #region События
-        event EventHandler<ConnectedEventArgs> Connected;
-        event EventHandler<DisconnectedEventArgs> DisconnectedEvent;
+        #region События        
         event EventHandler<PacketReceivedEventArgs> DataReceivedEvent;
         event EventHandler<ByteBlock> DataSendChanged;
         event EventHandler<ByteBlock> DataSentChanged;
@@ -43,6 +38,7 @@ namespace MinecraftLibrary.API.Networking
         event EventHandler<int> ComperssionThresholdChanged;
         #endregion
     }
+    
 
 
 }

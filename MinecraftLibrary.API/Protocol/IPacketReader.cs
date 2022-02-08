@@ -12,33 +12,24 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.Protocol
 {
-    /// <summary>
-    /// Предоставляет удобную абстракцию для работы с ITcpClientSession и пакетами
-    /// </summary>
+   
     public interface IPacketReader : IDisposable
     {
         Dictionary<Type, int> RegisteredOutputPakets { get; set; }
         Dictionary<int, Type> RegisteredInputPakets { get; set; }
-
-        #region Пакеты от сервера
-
-
         void RegisterPacketInput(int id, Type t);
         bool UnRegisterPacketInput(int id);
-        #endregion
-        void RegisterPacketOutput(int id, Type t);
-        bool UnRegisterPacketOutput(Type t);
-        #region Методы
+        event EventHandler<PacketProcessedEventArgs> PacketProcessedEvent;
+    }
+    public interface IPacketWriter
+    {
         void SendPacket(IPacket packet);
         void SendPacket(IPacket packet, int id);
-        #endregion
-
-
-
-
-        event EventHandler<PacketProcessedEventArgs> PacketProcessedEvent;
         event EventHandler<PacketSendEventArgs> PacketSendEvent;
         event EventHandler<PacketSentEventArgs> PacketSentEvent;
+        void RegisterPacketOutput(int id, Type t);
+        bool UnRegisterPacketOutput(Type t);
+
     }
 
 }

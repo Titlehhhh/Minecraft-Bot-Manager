@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Networking.Session
 {
-    public sealed class TcpClientSession : ITcpClientSession, IPacketReader
+    public sealed class TcpClientSession : ITcpClientSession, IPacketReader, IPacketWriter
     {
 
         private TcpClient tcpClient;
