@@ -4,7 +4,7 @@ using MinecraftLibrary.API.Protocol.Helpres;
 using MinecraftLibrary.API.World;
 using MinecraftLibrary.API.World.Implements;
 using MinecraftLibrary.Geometry;
-using PacketPallete340.Data.World;
+using ProtocolLib340.Data.World;
 
 namespace ProtocolLib340.Packets.Server.Game.World
 {
