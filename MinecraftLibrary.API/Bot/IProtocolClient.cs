@@ -9,10 +9,7 @@ using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 
 namespace MinecraftLibrary.API.Bot
-{
-    /// <summary>
-    /// 
-    /// </summary>
+{    
     public interface IProtocolClient : INotifyPropertyChanged
     {
         public void Connect();
@@ -26,9 +23,6 @@ namespace MinecraftLibrary.API.Bot
         public IPacketReader Reader { get; }
         public IPacketWriter Writer { get; }
         public ITcpClientSession Session { get; }
-
-
-
     }
 
     public enum SubProtocol
