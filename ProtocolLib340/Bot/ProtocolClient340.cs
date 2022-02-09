@@ -19,27 +19,27 @@ namespace ProtocolLib340.Bot
         {
         }
 
-        protected override void Connected()
+        public override void Connected()
         {
 
         }
 
-        protected override void Discconected()
+        public override void Discconected()
+        {
+            UnRegisterEvents();
+        }
+
+        public override void HandlePacket(IPacket packet)
         {
 
         }
 
-        protected override void HandlePacket(IPacket packet)
+        public override void PacketSend(IPacket packet)
         {
 
         }
 
-        protected override void PacketSend(IPacket packet)
-        {
-
-        }
-
-        protected override void PacketSent(IPacket packet)
+        public override void PacketSent(IPacket packet)
         {
 
         }

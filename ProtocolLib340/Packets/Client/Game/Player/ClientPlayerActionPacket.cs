@@ -1,4 +1,5 @@
 using MinecraftLibrary.API;
+using MinecraftLibrary.API.Enums;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
 using MinecraftLibrary.API.Protocol.Helpres;

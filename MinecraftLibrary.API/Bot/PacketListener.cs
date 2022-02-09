@@ -5,17 +5,28 @@ using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary.API.Bot
 {
-    public abstract class PacketListener : INotifyPropertyChanged, IDisposable
+    public interface IPacketListener
+    {
+        public void HandlePacket(IPacket packet);
+        public void PacketSent(IPacket packet);
+        public void PacketSend(IPacket packet);
+        public void Connected();
+        public void Discconected();
+    }
+    public abstract class PacketListener : INotifyPropertyChanged, IDisposable, IPacketListener
     {
         protected IPacketReader Reader;
         protected IPacketWriter Writer;
         protected ITcpClientSession Session;
+        public string Username { get; set; }
+        public bool CheckSession { get; set; }       
+
         public PacketListener(IPacketReader reader, IPacketWriter writer, ITcpClientSession session)
         {
             Reader = reader;
             Writer = writer;
             Session = session;
-            RegisterEvents();
+            RegisterEvents();            
         }
         protected virtual void RegisterEvents()
         {
@@ -51,26 +62,32 @@ namespace MinecraftLibrary.API.Bot
             PacketSent(e.Packet);
         }
 
-        protected virtual void HandlePacket(IPacket packet)
+        public virtual void HandlePacket(IPacket packet)
         {
 
         }
-        protected virtual void PacketSent(IPacket packet)
+        public virtual void PacketSent(IPacket packet)
         {
 
         }
-        protected virtual void PacketSend(IPacket packet)
+        public virtual void PacketSend(IPacket packet)
         {
 
         }
-        protected virtual void Connected()
+        public virtual void Connected()
         {
 
         }
-        protected virtual void Discconected()
+        public virtual void Discconected()
         {
 
         }
+
+        protected void SendPacket(IPacket packet)
+        {
+            Writer.SendPacket(packet);
+        }
+
 
 
         protected virtual void RaisePropertyChanged([CallerMemberName] string name = "")

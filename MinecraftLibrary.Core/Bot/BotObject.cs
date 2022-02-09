@@ -21,7 +21,7 @@ namespace MinecraftLibrary.Core.Bot
 
         public ProxyInfo? Proxy { get; set; }
 
-        public RunState State { get; internal set; }
+        
 
         private TcpClientSession session;
 
