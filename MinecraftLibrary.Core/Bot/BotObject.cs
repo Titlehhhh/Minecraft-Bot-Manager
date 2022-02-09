@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Core.Bot
 {    
-    public sealed class BotObject : IProtocolClient
+    public sealed class BotObject 
     {
         public string Host { get; set; }
         public string Nickname { get; set; }

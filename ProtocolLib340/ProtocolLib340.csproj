@@ -9,10 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Bot\" />
+    <ProjectReference Include="..\MinecraftLibrary.Protocol\MinecraftLibrary.Protocol.csproj" />
   </ItemGroup>
 
 </Project>
