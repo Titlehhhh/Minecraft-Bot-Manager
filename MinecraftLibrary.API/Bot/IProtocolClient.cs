@@ -10,7 +10,10 @@ using MinecraftLibrary.API.Protocol;
 
 namespace MinecraftLibrary.API.Bot
 {
-    public interface IBotObject : INotifyPropertyChanged
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IProtocolClient : INotifyPropertyChanged
     {
         public void Connect();
         public void Reconnect();
@@ -20,10 +23,14 @@ namespace MinecraftLibrary.API.Bot
         public ushort Port { get; set; }
         public ProxyInfo? Proxy { get; set; }
         public RunState State { get; }
+        public IPacketReader Reader { get; }
+        public IPacketWriter Writer { get; }
+        public ITcpClientSession Session { get; }
 
-        
+
+
     }
-    
+
     public enum SubProtocol
     {
         Handshake,
