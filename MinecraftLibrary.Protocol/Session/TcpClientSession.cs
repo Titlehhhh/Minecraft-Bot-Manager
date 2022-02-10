@@ -1,4 +1,5 @@
-﻿using MinecraftLibrary.API.Helpers;
+﻿using MinecraftLibrary.API;
+using MinecraftLibrary.API.Helpers;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Crypto;
 using MinecraftLibrary.API.Networking.Events;
@@ -17,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Networking.Session
 {
-    public sealed class TcpClientSession : ITcpClientSession, IPacketReader, IPacketWriter,IPacketProvider
+    public sealed class TcpClientSession : ITcpClientSession,IPacketProtocol
     {
 
         private TcpClient tcpClient;
@@ -43,6 +44,9 @@ namespace MinecraftLibrary.Networking.Session
                 ComperssionThresholdChanged?.Invoke(this, value);
             }
         }
+
+        public string Host => EndPoint.Address.ToString();
+        public int Port => EndPoint.Port;
 
         public IPEndPoint EndPoint => host;
 
@@ -344,6 +348,11 @@ namespace MinecraftLibrary.Networking.Session
             PacketSendEvent?.Invoke(this, new PacketSendEventArgs(packet));
             this.Send(byteBlock);
             PacketSentEvent?.Invoke(this, new PacketSentEventArgs(packet));
+        }
+
+        public void Disconnect(string message, DisconnectReason reason)
+        {
+            //TODO d
         }
     }
 

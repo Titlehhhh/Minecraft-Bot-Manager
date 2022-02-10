@@ -6,27 +6,20 @@ using System.Net;
 using System.Net.Sockets;
 
 namespace MinecraftLibrary.API.Networking
-{
-    /// <summary>
-    /// Предоставляет низкоуровневую абстракцию для работы с TCP протоколом, сжатием и AES шифрованием
-    /// </summary> 
-    public interface ITcpClientSession : IDisposable, INotifyConnectedAndDisconnected
+{  
+    public interface ITcpClientSession : IDisposable
     {
         #region Методы
         void Connect();
-        void Disconnect();       
-
-        void EnabledEncryption(byte[] key);
+        void Disconnect();
         void Send(ByteBlock data);
         void Send(byte[] data);
         #endregion
         #region Свойства        
-        bool IsConnected { get; }
-        int CompressionThreshold { get; set; }
+        bool IsConnected { get; }        
         IPEndPoint EndPoint { get; }        
         ProxyInfo Proxy { get; }
-        bool IsProxyUsed { get; }
-        bool IsEncryption { get; }
+        bool IsProxyUsed { get; }        
         TcpClient Tcp { get; }
         IAesStream AesStream { get; }
         #endregion
@@ -36,6 +29,8 @@ namespace MinecraftLibrary.API.Networking
         event EventHandler<ByteBlock> DataSentChanged;
         event EventHandler<byte[]> EncryptionEnabledChanged;
         event EventHandler<int> ComperssionThresholdChanged;
+        event EventHandler<ConnectedEventArgs> Connected;
+        event EventHandler<DisconnectedEventArgs> DisconnectedEvent;
         #endregion
     }
     
