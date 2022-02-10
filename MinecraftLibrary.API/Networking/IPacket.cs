@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MinecraftLibrary.API.Networking
 {
     public interface IPacket
     {
-        void Read(IMinecraftStreamReader input);
-        void Write(IMinecraftStreamWriter output);
+        void Deserialize(MinecraftStream input);
+        void Serialize(MinecraftStream output);
     }
 }

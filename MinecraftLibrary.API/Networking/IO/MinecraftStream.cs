@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.Networking.IO
 {
-    public sealed class MinecraftStream : Stream, IMinecraftStreamReader, IMinecraftStreamWriter
+    public partial class MinecraftStream : Stream
     {
-        public Stream BaseStream { get; private set; }
+        public Stream BaseStream { get;  set; }
 
         public override bool CanRead => BaseStream.CanRead;
 
@@ -23,265 +23,21 @@ namespace MinecraftLibrary.API.Networking.IO
         public override long Length => BaseStream.Length;
 
         public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
-
+        public MinecraftStream()
+        {
+            BaseStream = new MemoryStream();
+        }
         public MinecraftStream(Stream stream)
         {
-
             BaseStream = stream;
         }
-        #region Reads
-        public byte[] ReadData(int offset)
+        public MinecraftStream(byte[] data)
         {
-            byte[] result = null;
-            int len = BaseStream.Read(result, 0, offset);
-            if (len == 0)
-                throw new NotSupportedException("Поток завершился");
-            return result;
+            this.BaseStream = new MemoryStream(data);
         }
-
-        public string ReadNextString()
-        {
-            int length = ReadNextVarInt();
-            if (length > 0)
-            {
-                return Encoding.UTF8.GetString(ReadData(length));
-            }
-            else return "";
-        }
-
-        public bool ReadNextBool()
-        {
-            return ReadByte() == 1;
-        }
-
-        public short ReadNextShort()
-        {
-            byte[] rawValue = ReadData(2);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToInt16(rawValue, 0);
-        }
-
-        public int ReadNextInt()
-        {
-            byte[] rawValue = ReadData(4);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToInt32(rawValue, 0);
-        }
-
-        public long ReadNextLong()
-        {
-            byte[] rawValue = ReadData(8);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToInt64(rawValue, 0);
-        }
-
-        public ushort ReadNextUShort()
-        {
-            byte[] rawValue = ReadData(2);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToUInt16(rawValue, 0);
-        }
-
-        public ulong ReadNextULong()
-        {
-            byte[] rawValue = ReadData(8);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToUInt64(rawValue, 0);
-
-        }
-
-        public ushort[] ReadNextUShortsLittleEndian(int amount)
-        {
-            byte[] rawValues = ReadData(2 * amount);
-            ushort[] result = new ushort[amount];
-            for (int i = 0; i < amount; i++)
-                result[i] = BitConverter.ToUInt16(rawValues, i * 2);
-            return result;
-        }
-
-        public Guid ReadNextUUID()
-        {
-            byte[] javaUUID = ReadData(16);
-            Guid guid = new Guid(javaUUID);
-            if (BitConverter.IsLittleEndian)
-                guid = guid.ToLittleEndian();
-            return guid;
-        }
-
-        public byte[] ReadNextByteArray()
-        {
-            return ReadData(ReadNextVarInt());
-        }
-
-        public ulong[] ReadNextULongArray()
-        {
-            int len = ReadNextVarInt();
-            ulong[] result = new ulong[len];
-            for (int i = 0; i < len; i++)
-                result[i] = ReadNextULong();
-            return result;
-        }
-
-        public double ReadNextDouble()
-        {
-            byte[] rawValue = ReadData(8);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToDouble(rawValue, 0);
-        }
-
-        public float ReadNextFloat()
-        {
-            byte[] rawValue = ReadData(4);
-            Array.Reverse(rawValue); //Endianness
-            return BitConverter.ToSingle(rawValue, 0);
-        }
-
-        public int ReadNextVarInt()
-        {
-            int i = 0;
-            int j = 0;
-            int k = 0;
-            while (true)
-            {
-                k = ReadByte();
-                i |= (k & 0x7F) << j++ * 7;
-                if (j > 5) throw new OverflowException("VarInt too big ");
-                if ((k & 0x80) != 128) break;
-            }
-            return i;
-        }
-
-        public int ReadNextVarShort()
-        {
-            ushort low = ReadNextUShort();
-            byte high = 0;
-            if ((low & 0x8000) != 0)
-            {
-                low &= 0x7FFF;
-                high = ReadNextByte();
-            }
-            return ((high & 0xFF) << 15) | low;
-        }
-
-        public long ReadNextVarLong()
-        {
-            int numRead = 0;
-            long result = 0;
-            byte read;
-            do
-            {
-                read = ReadNextByte();
-                long value = (read & 0x7F);
-                result |= (value << (7 * numRead));
-
-                numRead++;
-                if (numRead > 10)
-                {
-                    throw new OverflowException("VarLong is too big");
-                }
-            } while ((read & 0x80) != 0);
-            return result;
-        }
-
-        public byte ReadNextByte()
-        {
-            int nextByte = BaseStream.ReadByte();
-            if (nextByte == -1)
-                throw new NotSupportedException("Поток завершен");
-            return (byte)nextByte;
-        }
-        public NbtCompound ReadNbt()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-        #region Write
-        public void WriteVarInt(int paramInt)
-        {
-            AddArray(DataTypes.GetVarInt(paramInt));
-        }
-
-
-        public void WriteBool(bool paramBool)
-        {
-            BaseStream.WriteByte(Convert.ToByte(paramBool));
-        }
-
-
-        public void WriteLong(long number)
-        {
-            byte[] theLong = BitConverter.GetBytes(number);
-            Array.Reverse(theLong);
-            AddArray(theLong);
-
-        }
-
-        public void WriteInt(int number)
-        {
-            byte[] theInt = BitConverter.GetBytes(number);
-            Array.Reverse(theInt);
-            AddArray(theInt);
-        }
-
-
-        public void WriteShort(short number)
-        {
-            byte[] theShort = BitConverter.GetBytes(number);
-            Array.Reverse(theShort);
-            AddArray(theShort);
-        }
-
-
-        public void WriteUShort(ushort number)
-        {
-            byte[] theShort = BitConverter.GetBytes(number);
-            Array.Reverse(theShort);
-            AddArray(theShort);
-        }
-
-        public void WriteDouble(double number)
-        {
-            byte[] theDouble = BitConverter.GetBytes(number);
-            Array.Reverse(theDouble); //Endianness
-            AddArray(theDouble);
-        }
-
-        public void WriteFloat(float number)
-        {
-            byte[] theFloat = BitConverter.GetBytes(number);
-            Array.Reverse(theFloat); //Endianness
-            AddArray(theFloat);
-        }
-
-        public void WriteArray(byte[] array)
-        {
-            WriteVarInt(array.Length);
-            AddArray(array);
-        }
-
-        public void AddArray(byte[] array)
-        {
-            BaseStream.Write(array, 0, array.Length);
-        }
-
-        public void WriteString(string text)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(text);
-            WriteVarInt(bytes.Length);
-            AddArray(bytes);
-        }
-        public void WriteNbt(NbtCompound nbt)
-        {
-
-        }
-
-        #endregion
-
-
         public override void Flush()
         {
-            BaseStream.Flush();
+            BaseStream.Flush();            
         }
 
         public override long Seek(long offset, SeekOrigin origin)
@@ -305,13 +61,7 @@ namespace MinecraftLibrary.API.Networking.IO
         }
     }
     public static class GuidExtensions
-    {
-        /// <summary>
-        /// A CLSCompliant method to convert a Java big-endian Guid to a .NET 
-        /// little-endian Guid.
-        /// The Guid Constructor (UInt32, UInt16, UInt16, Byte, Byte, Byte, Byte,
-        ///  Byte, Byte, Byte, Byte) is not CLSCompliant.
-        /// </summary>
+    {        
         public static Guid ToLittleEndian(this Guid javaGuid)
         {
             byte[] net = new byte[16];

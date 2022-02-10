@@ -12,14 +12,15 @@ namespace MinecraftLibrary.API.Networking
         {
 
         }
-        public virtual void Read(IMinecraftStreamReader input)
-        {
 
+        public void Deserialize(MinecraftStream input)
+        {
+            
         }
 
-        public virtual void Write(IMinecraftStreamWriter output)
+        public void Serialize(MinecraftStream output)
         {
-
+            
         }
     }    
 }

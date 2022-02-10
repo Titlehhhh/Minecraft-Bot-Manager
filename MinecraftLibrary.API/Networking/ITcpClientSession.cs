@@ -21,7 +21,7 @@ namespace MinecraftLibrary.API.Networking
         ProxyInfo Proxy { get; }
         bool IsProxyUsed { get; }        
         TcpClient Tcp { get; }
-        IAesStream AesStream { get; }
+        
         #endregion
         #region События        
         event EventHandler<PacketReceivedEventArgs> DataReceivedEvent;
@@ -33,6 +33,8 @@ namespace MinecraftLibrary.API.Networking
         event EventHandler<DisconnectedEventArgs> DisconnectedEvent;
         #endregion
     }
+
+
     
 
 
