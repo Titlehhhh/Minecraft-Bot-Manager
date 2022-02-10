@@ -10,11 +10,13 @@ namespace MinecraftLibrary.API.Networking.Events
     {
         public string Message { get; private set; }
         public Exception Exception { get; private set; }
+        public DisconnectReason Reason { get; private set; }
 
-        public DisconnectedEventArgs(string message, Exception exception=null)
+        public DisconnectedEventArgs(string message, Exception exception=null, DisconnectReason reason = DisconnectReason.ConnectionLost)
         {
             Message = message;
             Exception = exception;
+            Reason = reason;
         }
     }  
     

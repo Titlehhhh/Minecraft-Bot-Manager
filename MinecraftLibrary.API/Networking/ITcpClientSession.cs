@@ -14,7 +14,7 @@ namespace MinecraftLibrary.API.Networking
     {
         #region Методы
         void Connect();
-        void Disconnect();
+        void Disconnect();       
 
         void EnabledEncryption(byte[] key);
         void Send(ByteBlock data);

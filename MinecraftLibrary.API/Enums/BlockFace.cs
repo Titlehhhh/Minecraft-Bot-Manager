@@ -10,4 +10,5 @@
         EAST = 5,
         SPECIAL = 255
     }
+    
 }

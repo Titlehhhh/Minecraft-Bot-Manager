@@ -4,6 +4,7 @@ namespace MinecraftLibrary.API.Protocol
 {
     public interface IPacketWriter
     {
+        Dictionary<Type, int> RegisteredOutputPakets { get; set; }
         void SendPacket(IPacket packet);
         void SendPacket(IPacket packet, int id);
         event EventHandler<PacketSendEventArgs> PacketSendEvent;

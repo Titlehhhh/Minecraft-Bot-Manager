@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Networking.Session
 {
-    public sealed class TcpClientSession : ITcpClientSession, IPacketReader, IPacketWriter
+    public sealed class TcpClientSession : ITcpClientSession, IPacketReader, IPacketWriter,IPacketProvider
     {
 
         private TcpClient tcpClient;
@@ -151,7 +151,7 @@ namespace MinecraftLibrary.Networking.Session
 
             tcpClient.Close();
             Dispose();
-
+            
         }
 
         public void Dispose()
