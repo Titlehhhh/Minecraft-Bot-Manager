@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using MinecraftLibrary.API.Networking.Events;
+using MinecraftLibrary.API.Networking;
 
 namespace MinecraftLibrary.API.Common
 {

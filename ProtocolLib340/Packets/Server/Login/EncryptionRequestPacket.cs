@@ -1,10 +1,10 @@
 ﻿using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Server.Login
 {
-    [PacketMeta(0x01, 340, PacketSide.Server, PacketCategory.Login)]
+    [PacketInfo(0x01, 340, PacketSide.Server, PacketCategory.Login)]
     public class EncryptionRequestPacket : MinecraftPacket
     {
         public string ServerID { get; set; }

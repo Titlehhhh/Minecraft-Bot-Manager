@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Client.HandShake
 {
-    [PacketMeta(0x00,340,PacketSide.Client,PacketCategory.HandShake)]
+    [PacketInfo(0x00,340,PacketSide.Client,PacketCategory.HandShake)]
     public class HandShakePacket : MinecraftPacket
     {
         public HandShakeIntent Intent { get; set; }

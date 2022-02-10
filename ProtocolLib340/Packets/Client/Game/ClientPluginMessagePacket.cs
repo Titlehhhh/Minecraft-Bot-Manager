@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketMeta(0x09, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketInfo(0x09, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientPluginMessagePacket : MinecraftPacket
     {
         //out.writeString(this.channel);

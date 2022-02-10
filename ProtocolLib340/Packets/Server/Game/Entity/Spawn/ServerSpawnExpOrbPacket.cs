@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
 {
 
-    [PacketMeta(0x01, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketInfo(0x01, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerSpawnExpOrbPacket : MinecraftPacket
     {
         //this.entityId = in.readVarInt();

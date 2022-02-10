@@ -1,7 +1,7 @@
 using MinecraftLibrary.API;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 using MinecraftLibrary.Geometry;
 
 using static ProtocolLib340.Constans;
@@ -9,7 +9,7 @@ using static ProtocolLib340.Constans;
 namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
-    [PacketMeta(0x14, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketInfo(0x14, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientPlayerActionPacket : MinecraftPacket
     {
         public PlayerAction Action { get; set; }

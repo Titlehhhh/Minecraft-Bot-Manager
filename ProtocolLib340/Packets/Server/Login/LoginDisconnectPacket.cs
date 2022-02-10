@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Server.Login
 {
-    [PacketMeta(0x00, 340, PacketSide.Server, PacketCategory.Login)]
+    [PacketInfo(0x00, 340, PacketSide.Server, PacketCategory.Login)]
     public class LoginDisconnectPacket : MinecraftPacket
     {
         public string Message { get; set; }

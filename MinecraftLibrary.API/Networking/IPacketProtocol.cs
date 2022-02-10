@@ -1,7 +1,7 @@
 ﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Protocol.Events;
+using MinecraftLibrary.API.Networking.Events;
 
-namespace MinecraftLibrary.API.Protocol
+namespace MinecraftLibrary.API.Networking
 {
     public interface IPacketProtocol
     {

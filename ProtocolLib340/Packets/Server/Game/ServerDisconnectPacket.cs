@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Server.Game
 {
 
-    [PacketMeta(0x1A, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketInfo(0x1A, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerDisconnectPacket : MinecraftPacket
     {
         //this.message = Message.fromString(in.readString());

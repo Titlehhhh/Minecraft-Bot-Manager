@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Protocol.Helpres
+namespace MinecraftLibrary.API.Networking.IO
 {
     public sealed class MinecraftStream : Stream, IMinecraftStreamReader, IMinecraftStreamWriter
     {

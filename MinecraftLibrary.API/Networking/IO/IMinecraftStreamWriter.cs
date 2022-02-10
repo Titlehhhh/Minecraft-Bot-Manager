@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.NBT.Tags;
 
-namespace MinecraftLibrary.API.Protocol.Helpres
+namespace MinecraftLibrary.API.Networking.IO
 {
     public interface IMinecraftStreamWriter
     {

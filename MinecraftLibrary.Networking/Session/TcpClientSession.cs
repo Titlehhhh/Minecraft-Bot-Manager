@@ -3,18 +3,11 @@ using MinecraftLibrary.API.Helpers;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Crypto;
 using MinecraftLibrary.API.Networking.Events;
+using MinecraftLibrary.API.Networking.IO;
 using MinecraftLibrary.API.Networking.Proxy;
-using MinecraftLibrary.API.Protocol;
-using MinecraftLibrary.API.Protocol.Events;
-using MinecraftLibrary.API.Protocol.Helpres;
 using MinecraftLibrary.Networking.Session.Compression;
-using MinecraftLibrary.Networking.Session.IO;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Networking.Session
 {
@@ -31,7 +24,7 @@ namespace MinecraftLibrary.Networking.Session
         private bool Disconnected;
         private bool isProxy;
         private int compressionThreshold;
-        private int protocolVersion;
+        
 
         public bool IsConnected => tcpClient != null && tcpClient.Connected && !this.Disconnected;
 

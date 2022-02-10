@@ -88,7 +88,7 @@
     },
     "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27": {
       "ProjectGuid": "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27",
-      "DisplayName": "MinecraftLibrary.Protocol",
+      "DisplayName": "MinecraftLibrary.Networking",
       "ColorIndex": 0
     }
   },

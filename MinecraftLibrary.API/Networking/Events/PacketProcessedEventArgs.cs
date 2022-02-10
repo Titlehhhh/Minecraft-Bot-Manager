@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Protocol.Events
+namespace MinecraftLibrary.API.Networking.Events
 {
-    public class PacketSendEventArgs : EventArgs
+    public class PacketProcessedEventArgs : EventArgs
     {
         public IPacket Packet { get; private set; }
-        public PacketSendEventArgs(IPacket packet)
+
+        public PacketProcessedEventArgs(IPacket packet)
         {
             Packet = packet;
         }

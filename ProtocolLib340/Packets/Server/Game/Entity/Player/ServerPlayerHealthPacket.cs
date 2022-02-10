@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
-    [PacketMeta(0x41, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketInfo(0x41, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerPlayerHealthPacket : MinecraftPacket
     {
         //this.health = in.readFloat();

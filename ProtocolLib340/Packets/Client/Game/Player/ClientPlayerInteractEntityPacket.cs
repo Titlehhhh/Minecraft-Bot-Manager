@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
-    [PacketMeta(0x0A, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketInfo(0x0A, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientPlayerInteractEntityPacket : MinecraftPacket
     {
         //out.writeVarInt(this.entityId);

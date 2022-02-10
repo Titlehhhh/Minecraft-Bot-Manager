@@ -11,4 +11,9 @@
     <ProjectReference Include="..\MinecraftLibrary.NBT\MinecraftLibrary.NBT.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Protocol\Events\" />
+    <Folder Include="Protocol\Helpres\" />
+  </ItemGroup>
+
 </Project>

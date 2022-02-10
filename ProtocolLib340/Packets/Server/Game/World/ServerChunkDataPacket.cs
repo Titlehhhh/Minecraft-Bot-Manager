@@ -1,6 +1,6 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 using MinecraftLibrary.API.World;
 using MinecraftLibrary.API.World.Implements;
 using MinecraftLibrary.Geometry;
@@ -9,7 +9,7 @@ using ProtocolLib340.Data.World;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketMeta(0x20, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketInfo(0x20, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerChunkDataPacket : MinecraftPacket
     {
         public IChunkColumn Column { get; set; }

@@ -1,9 +1,5 @@
-﻿using MinecraftLibrary.API.Protocol.Helpres;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace MinecraftLibrary.API.Protocol
 {

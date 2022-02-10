@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.API", "Min
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Geometry", "MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj", "{16FD846A-250A-4784-9559-42554AC43AFA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Protocol", "MinecraftLibrary.Protocol\MinecraftLibrary.Protocol.csproj", "{2FE2CDC9-E5D8-4299-AEE7-EB4A9ACBCD27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Networking", "MinecraftLibrary.Networking\MinecraftLibrary.Networking.csproj", "{2FE2CDC9-E5D8-4299-AEE7-EB4A9ACBCD27}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtocolLib340", "ProtocolLib340\ProtocolLib340.csproj", "{353C5E7C-5ED9-4675-85B4-E20F4F28C838}"
 EndProject

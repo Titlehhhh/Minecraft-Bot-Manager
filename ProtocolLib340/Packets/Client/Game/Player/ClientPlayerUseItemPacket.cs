@@ -1,12 +1,12 @@
 using MinecraftLibrary.API;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
-    [PacketMeta(0x20, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketInfo(0x20, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientPlayerUseItemPacket : MinecraftPacket
     {
         public HAND Hand { get; set; }

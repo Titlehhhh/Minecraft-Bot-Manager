@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.API.Protocol.Attributes;
-using MinecraftLibrary.API.Protocol.Helpres;
+using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Client.Game.World
 {
 
-    [PacketMeta(0x00, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketInfo(0x00, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientTeleportConfirmPacket : MinecraftPacket
     {
         public int ID { get; set; }
