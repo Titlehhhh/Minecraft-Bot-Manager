@@ -1,4 +1,4 @@
-﻿using MinecraftLibrary.API.Protocol;
+﻿using MinecraftLibrary.API.Networking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using MinecraftLibrary.API.Networking.Events;
-using MinecraftLibrary.API.Networking;
 
 namespace MinecraftLibrary.API.Common
 {

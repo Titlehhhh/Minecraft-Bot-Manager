@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MinecraftLibrary.API.Protocol.Attributes
+namespace MinecraftLibrary.API.Networking.Attributes
 {
     [AttributeUsage(AttributeTargets.Class,Inherited =true)]
     public sealed class PacketInfoAttribute : Attribute

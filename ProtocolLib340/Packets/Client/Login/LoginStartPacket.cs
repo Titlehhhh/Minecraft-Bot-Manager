@@ -1,5 +1,5 @@
-﻿using MinecraftLibrary.API.Protocol;
-using MinecraftLibrary.API.Protocol.Attributes;
+﻿using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Networking.Attributes;
 using MinecraftLibrary.API.Networking.IO;
 using System;
 using System.Collections.Generic;

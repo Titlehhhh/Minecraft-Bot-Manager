@@ -1,7 +1,7 @@
 ﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.IO;
 
-namespace MinecraftLibrary.API.Protocol
+namespace MinecraftLibrary.API.Networking
 {
     /// <summary>
     /// 
