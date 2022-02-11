@@ -10,9 +10,14 @@ namespace ProtocolLib340.Packets.Client.Game
     {
         public long ID { get; set; }
         //out.writeLong(this.id);
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteLong(ID);
+            stream.WriteLong(ID);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public ClientKeepAlivePacket(long iD)

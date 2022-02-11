@@ -8,8 +8,13 @@ namespace ProtocolLib340.Packets.Client.Game.Window
     [PacketInfo(0x08, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientCloseWindowPacket : IPacket
     {
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         //out.writeByte(this.windowId);
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
             
         }

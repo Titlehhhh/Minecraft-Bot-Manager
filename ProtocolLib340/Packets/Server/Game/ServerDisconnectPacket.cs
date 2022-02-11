@@ -9,10 +9,16 @@ namespace ProtocolLib340.Packets.Server.Game
     public class ServerDisconnectPacket : IPacket
     {
         //this.message = Message.fromString(in.readString());
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerDisconnectPacket() {}
     }
 

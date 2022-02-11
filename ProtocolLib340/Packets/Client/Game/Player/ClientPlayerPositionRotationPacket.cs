@@ -16,16 +16,21 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 
         public bool OnGround { get; set; }
         
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteDouble(X);
-            output.WriteDouble(Y);
-            output.WriteDouble(Z);
-            output.WriteFloat(Yaw);
-            output.WriteFloat(Pitch);
-            output.WriteBool(OnGround);
+            stream.WriteDouble(X);
+            stream.WriteDouble(Y);
+            stream.WriteDouble(Z);
+            stream.WriteFloat(Yaw);
+            stream.WriteFloat(Pitch);
+            stream.WriteBoolean(OnGround);
         }
-        
+
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         public ClientPlayerPositionRotationPacket(double x, double y, double z, float yaw, float pitch, bool onGround)
         {
             X = x;

@@ -13,10 +13,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
        //this.y = in.readDouble();
        //this.z = in.readDouble();
        //this.exp = in.readShort();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerSpawnExpOrbPacket() {}
     }
 

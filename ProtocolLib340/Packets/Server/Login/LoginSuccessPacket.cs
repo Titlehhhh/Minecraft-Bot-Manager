@@ -9,11 +9,17 @@ namespace ProtocolLib340.Packets.Server.Login
     {
         public Guid UUID { get; set; }
         public string Username { get; set; }
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
-            UUID = input.ReadNextUUID();
-            Username = input.ReadNextString();
+            UUID = stream.ReadUUID();
+            Username = stream.ReadString();
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public LoginSuccessPacket(Guid uUID, string username)
         {
             UUID = uUID;

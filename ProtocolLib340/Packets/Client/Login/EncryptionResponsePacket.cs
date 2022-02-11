@@ -20,10 +20,15 @@ namespace ProtocolLib340.Packets.Client.Login
             VerifyToken = verifyToken;
             SharedKey = sharedKey;
         }
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteArray(SharedKey);
-            output.WriteArray(VerifyToken);
+            stream.WriteArray(SharedKey);
+            stream.WriteArray(VerifyToken);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
     }
 }

@@ -15,10 +15,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Player
        //this.creative = (flags & 8) > 0;
        //this.flySpeed = in.readFloat();
        //this.walkSpeed = in.readFloat();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerPlayerAbilitiesPacket() {}
     }
 

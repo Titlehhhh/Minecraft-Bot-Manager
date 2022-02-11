@@ -8,10 +8,15 @@ namespace ProtocolLib340.Packets.Client.Game.Window
     [PacketInfo(0x12, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientPrepareCraftingGridPacket : IPacket
     {
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         //out.writeByte(this.windowId);
-       //out.writeVarInt(this.recipeId);
-       //out.writeBoolean(this.makeAll);
-        public override void Write(IMinecraftStreamWriter output)
+        //out.writeVarInt(this.recipeId);
+        //out.WriteBooleanean(this.makeAll);
+        public void Write(MinecraftStream stream)
         {
             
         }

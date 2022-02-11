@@ -12,10 +12,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
        //for(int index = 0; index < this.entityIds.length; index++) {
        //this.entityIds[index] = in.readVarInt();
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerEntityDestroyPacket() {}
     }
 

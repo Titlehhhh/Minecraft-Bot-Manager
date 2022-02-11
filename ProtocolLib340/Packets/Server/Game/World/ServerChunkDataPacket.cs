@@ -24,35 +24,35 @@ namespace ProtocolLib340.Packets.Server.Game.World
         //}
         //
         //this.column = NetUtil.readColumn(data, x, z, fullChunk, false, chunkMask, tileEntities);
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
-            int x = input.ReadNextInt();
-            int z = input.ReadNextInt();
-            bool chunksContinuous = input.ReadNextBool();
-            ushort chunkMask = (ushort)input.ReadNextVarInt();
+            int x = stream.ReadInt();
+            int z = stream.ReadInt();
+            bool chunksContinuous = stream.ReadBoolean();
+            ushort chunkMask = (ushort)stream.ReadVarInt();
             ChunkColumn column = new ChunkColumn(x, z);
             for(int chunkY = 0;chunkY< column.SizeY; chunkY++)
             {
                 if((chunkMask & (1 << chunkY)) != 0)
                 {
-                    byte bitsPerBlock = input.ReadNextByte();
+                    byte bitsPerBlock = stream.ReadUnsignedByte();
                     bool usePalette = (bitsPerBlock <= 8);
                     if (bitsPerBlock < 4)
                         bitsPerBlock = 4;
                     int paletteLength = 0; // Assume zero when length is absent
                     if (usePalette)
-                        paletteLength = input.ReadNextVarInt();
+                        paletteLength = stream.ReadVarInt();
 
                     int[] palette = new int[paletteLength];
                     for (int i = 0; i < paletteLength; i++)
                     {
-                        palette[i] = input.ReadNextVarInt();
+                        palette[i] = stream.ReadVarInt();
                     }
 
                     uint valueMask = (uint)((1 << bitsPerBlock) - 1);
 
                     // Block IDs are packed in the array of 64-bits integers
-                    ulong[] dataArray = input.ReadNextULongArray();
+                    ulong[] dataArray = stream.ReadULongArray();
 
                     Chunk chunk = new Chunk();
 
@@ -131,6 +131,11 @@ namespace ProtocolLib340.Packets.Server.Game.World
             }
 
             Column = column;
+        }
+
+        public void Write(MinecraftStream stream)
+        {
+            
         }
 
         public ServerChunkDataPacket(IChunkColumn column)

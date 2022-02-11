@@ -1,7 +1,6 @@
 ﻿using Ionic.Zlib;
 
-
-namespace MinecraftLibrary.Networking.Session.Compression
+namespace MinecraftLibrary.Utils
 {
     public static class ZlibUtils
     {

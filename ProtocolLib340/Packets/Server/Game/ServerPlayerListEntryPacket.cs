@@ -67,10 +67,16 @@ namespace ProtocolLib340.Packets.Server.Game
        //
        //this.entries[count] = entry;
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerPlayerListEntryPacket() {}
     }
 

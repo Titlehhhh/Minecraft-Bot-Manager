@@ -10,10 +10,16 @@ namespace ProtocolLib340.Packets.Server.Game
     {
         //this.url = in.readString();
        //this.hash = in.readString();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerResourcePackSendPacket() {}
     }
 

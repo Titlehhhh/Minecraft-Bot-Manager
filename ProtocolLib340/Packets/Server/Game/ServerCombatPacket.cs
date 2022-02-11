@@ -17,10 +17,16 @@ namespace ProtocolLib340.Packets.Server.Game
        //this.entityId = in.readInt();
        //this.message = Message.fromString(in.readString());
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerCombatPacket() {}
     }
 

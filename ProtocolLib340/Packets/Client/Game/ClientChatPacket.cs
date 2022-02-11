@@ -10,9 +10,14 @@ namespace ProtocolLib340.Packets.Client.Game
     {
         public string Message { get; set; }
         
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteString(Message);
+            stream.WriteString(Message);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public ClientChatPacket(string message)

@@ -11,10 +11,16 @@ namespace ProtocolLib340.Packets.Client.Game
     {
         public ClientRequest Request { get; set; }
         //out.writeVarInt(MagicValues.value(Integer.class, this.request));
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteVarInt((int)Request);
+            stream.WriteVarInt((int)Request);
         }
+
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         public ClientRequestPacket()
         {
 

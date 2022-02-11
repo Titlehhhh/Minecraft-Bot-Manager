@@ -9,10 +9,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
     public class ServerBlockChangePacket : IPacket
     {
         //this.record = new BlockChangeRecord(NetUtil.readPosition(in), NetUtil.readBlockState(in));
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerBlockChangePacket() {}
     }
 

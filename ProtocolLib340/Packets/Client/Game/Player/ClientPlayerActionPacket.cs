@@ -15,16 +15,21 @@ namespace ProtocolLib340.Packets.Client.Game.Player
         public PlayerAction Action { get; set; }
         public Point3_Int Position { get; set; }
         public BlockFace Face { get; set; }
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteVarInt((int)Action);
+            stream.WriteVarInt((int)Action);
             long x = Position.X & POSITION_WRITE_SHIFT;
             long y = Position.Y & POSITION_X_SIZE;
             long z = Position.Z & POSITION_WRITE_SHIFT;
 
-            output.WriteLong(x << POSITION_X_SIZE | y << POSITION_Y_SIZE | z);
+            stream.WriteLong(x << POSITION_X_SIZE | y << POSITION_Y_SIZE | z);
 
-            output.WriteByte((byte)Face);
+            stream.WriteByte((byte)Face);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public ClientPlayerActionPacket(PlayerAction action, Point3_Int position, BlockFace face)

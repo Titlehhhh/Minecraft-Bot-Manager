@@ -10,10 +10,16 @@ namespace ProtocolLib340.Packets.Server.Game
     {
         //this.channel = in.readString();
        //this.data = in.readBytes(in.available());
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerPluginMessagePacket() {}
     }
 

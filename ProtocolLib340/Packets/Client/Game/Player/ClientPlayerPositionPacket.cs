@@ -13,14 +13,19 @@ namespace ProtocolLib340.Packets.Client.Game.Player
         public double Z { get; set; }
         public bool OnGround { get; set; }
 
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteDouble(X);
-            output.WriteDouble(Y);
-            output.WriteDouble(Z);
-            output.WriteBool(OnGround);
+            stream.WriteDouble(X);
+            stream.WriteDouble(Y);
+            stream.WriteDouble(Z);
+            stream.WriteBoolean(OnGround);
         }
-        
+
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         public ClientPlayerPositionPacket(double x, double y, double z, bool onGround)
         {
             X = x;

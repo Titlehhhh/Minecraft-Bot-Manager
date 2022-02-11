@@ -16,12 +16,17 @@ namespace ProtocolLib340.Packets.Client.HandShake
         public int ProtocolVersion { get; set; }
         public int Port { get; set; }
         public string Host { get; set; }
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteVarInt(ProtocolVersion);
-            output.WriteString(Host);
-            output.WriteUShort((ushort)Port);
-            output.WriteVarInt((int)Intent);
+            stream.WriteVarInt(ProtocolVersion);
+            stream.WriteString(Host);
+            stream.WriteUShort((ushort)Port);
+            stream.WriteVarInt((int)Intent);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public HandShakePacket(HandShakeIntent intent, int protocolVersion, int port, string host)

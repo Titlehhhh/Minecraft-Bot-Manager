@@ -13,10 +13,16 @@ namespace ProtocolLib340.Packets.Server.Game.Window
        //for(int index = 0; index < this.items.length; index++) {
        //this.items[index] = NetUtil.readItem(in);
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerWindowItemsPacket() {}
     }
 

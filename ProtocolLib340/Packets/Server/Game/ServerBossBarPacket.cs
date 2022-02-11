@@ -29,10 +29,16 @@ namespace ProtocolLib340.Packets.Server.Game
        //this.darkenSky = (flags & 0x1) == 0x1;
        //this.dragonBar = (flags & 0x2) == 0x2;
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerBossBarPacket() {}
     }
 

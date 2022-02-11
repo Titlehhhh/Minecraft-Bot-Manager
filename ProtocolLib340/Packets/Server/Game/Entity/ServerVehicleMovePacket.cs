@@ -13,10 +13,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
        //this.z = in.readDouble();
        //this.yaw = in.readFloat();
        //this.pitch = in.readFloat();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerVehicleMovePacket() {}
     }
 

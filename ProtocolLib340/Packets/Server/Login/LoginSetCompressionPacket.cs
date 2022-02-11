@@ -8,9 +8,14 @@ namespace ProtocolLib340.Packets.Server.Login
     public class LoginSetCompressionPacket : IPacket
     {
         public int Threshold { get; set; }
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
-            Threshold = input.ReadNextVarInt();
+            Threshold = stream.ReadVarInt();
+        }
+
+        public void Write(MinecraftStream stream)
+        {
+            
         }
 
         public LoginSetCompressionPacket(int threshold)

@@ -8,10 +8,15 @@ namespace ProtocolLib340.Packets.Client.Game.Window
     [PacketInfo(0x05, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientConfirmTransactionPacket : IPacket
     {
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         //out.writeByte(this.windowId);
-       //out.writeShort(this.actionId);
-       //out.writeBoolean(this.accepted);
-        public override void Write(IMinecraftStreamWriter output)
+        //out.writeShort(this.actionId);
+        //out.WriteBooleanean(this.accepted);
+        public void Write(MinecraftStream stream)
         {
             
         }

@@ -10,10 +10,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Player
     {
         //this.entityId = in.readVarInt();
        //this.position = NetUtil.readPosition(in);
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerPlayerUseBedPacket() {}
     }
 

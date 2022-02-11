@@ -8,13 +8,18 @@ namespace ProtocolLib340.Packets.Client.Game
     [PacketInfo(0x01, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientTabCompletePacket : IPacket
     {
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         //out.writeString(this.text);
-       //out.writeBoolean(this.assumeCommand);
-       //out.writeBoolean(this.lookingAt != null);
-       //if(this.lookingAt != null) {
-       //NetUtil.writePosition(out, this.lookingAt);
-       //}
-        public override void Write(IMinecraftStreamWriter output)
+        //out.WriteBooleanean(this.assumeCommand);
+        //out.WriteBooleanean(this.lookingAt != null);
+        //if(this.lookingAt != null) {
+        //NetUtil.writePosition(out, this.lookingAt);
+        //}
+        public void Write(MinecraftStream stream)
         {
             
         }

@@ -10,10 +10,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
     {
         //this.entityId = in.readInt();
        //this.attachedToId = in.readInt();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerEntityAttachPacket() {}
     }
 

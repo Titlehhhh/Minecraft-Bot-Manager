@@ -21,10 +21,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //this.pushX = in.readFloat();
        //this.pushY = in.readFloat();
        //this.pushZ = in.readFloat();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerExplosionPacket() {}
     }
 

@@ -22,10 +22,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //for(int index = 0; index < this.data.length; index++) {
        //this.data[index] = in.readVarInt();
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerSpawnParticlePacket() {}
     }
 

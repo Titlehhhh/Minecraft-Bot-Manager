@@ -30,10 +30,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //this.type = MagicValues.key(GenericBlockValueType.class, type);
        //this.value = new GenericBlockValue(value);
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerBlockValuePacket() {}
     }
 

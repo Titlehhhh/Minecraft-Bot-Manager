@@ -15,10 +15,16 @@ namespace ProtocolLib340.Packets.Server.Game.Window
        //if(this.type == WindowType.HORSE) {
        //this.ownerEntityId = in.readInt();
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerOpenWindowPacket() {}
     }
 

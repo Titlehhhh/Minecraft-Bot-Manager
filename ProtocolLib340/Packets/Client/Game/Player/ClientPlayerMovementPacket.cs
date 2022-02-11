@@ -9,10 +9,16 @@ namespace ProtocolLib340.Packets.Client.Game.Player
     public class ClientPlayerMovementPacket : IPacket
     {
         public bool OnGround { get; set; }        
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteBool(OnGround);
+            stream.WriteBooleanean(OnGround);
         }
+
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         public ClientPlayerMovementPacket()
         {
 

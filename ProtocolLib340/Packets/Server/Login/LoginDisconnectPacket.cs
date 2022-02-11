@@ -13,10 +13,16 @@ namespace ProtocolLib340.Packets.Server.Login
     public class LoginDisconnectPacket : IPacket
     {
         public string Message { get; set; }
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
-            Message = input.ReadNextString();
+            Message = stream.ReadString();
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public LoginDisconnectPacket()
         {
 

@@ -11,17 +11,22 @@ namespace ProtocolLib340.Packets.Client.Game.Player
     {
         public HAND Hand { get; set; }
         public int MyProperty { get; set; }        
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
             switch (Hand)
             {
                 case HAND.MAINHAND:
-                    output.WriteVarInt(0);
+                    stream.WriteVarInt(0);
                     break;
                 case HAND.OFFHAND:
-                    output.WriteVarInt(1);
+                    stream.WriteVarInt(1);
                     break;
             }
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public ClientPlayerUseItemPacket(HAND hand, int myProperty)

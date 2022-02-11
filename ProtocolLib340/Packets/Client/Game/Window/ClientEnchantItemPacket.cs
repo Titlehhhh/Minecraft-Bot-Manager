@@ -8,9 +8,14 @@ namespace ProtocolLib340.Packets.Client.Game.Window
     [PacketInfo(0x06, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientEnchantItemPacket : IPacket
     {
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
         //out.writeByte(this.windowId);
-       //out.writeByte(this.enchantment);
-        public override void Write(IMinecraftStreamWriter output)
+        //out.writeByte(this.enchantment);
+        public void Write(MinecraftStream stream)
         {
             
         }

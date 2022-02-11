@@ -10,10 +10,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
     {
         //this.age = in.readLong();
        //this.time = in.readLong();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerUpdateTimePacket() {}
     }
 

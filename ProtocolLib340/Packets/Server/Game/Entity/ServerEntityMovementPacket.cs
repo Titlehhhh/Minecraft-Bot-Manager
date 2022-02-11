@@ -23,10 +23,16 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
        //if(this.pos || this.rot) {
        //this.onGround = in.readBoolean();
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerEntityMovementPacket() {}
     }
 

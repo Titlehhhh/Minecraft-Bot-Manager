@@ -8,9 +8,14 @@ namespace ProtocolLib340.Packets.Client.Game.World
     [PacketInfo(0x11, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientSteerBoatPacket : IPacket
     {
-        //out.writeBoolean(this.rightPaddleTurning);
-       //out.writeBoolean(this.leftPaddleTurning);
-        public override void Write(IMinecraftStreamWriter output)
+        public void Read(MinecraftStream stream)
+        {
+            
+        }
+
+        //out.WriteBooleanean(this.rightPaddleTurning);
+        //out.WriteBooleanean(this.leftPaddleTurning);
+        public void Write(MinecraftStream stream)
         {
             
         }

@@ -21,10 +21,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //} else if(this.notification == ClientNotification.THUNDER_STRENGTH) {
        //this.value = new ThunderStrengthValue(value);
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerNotifyClientPacket() {}
     }
 

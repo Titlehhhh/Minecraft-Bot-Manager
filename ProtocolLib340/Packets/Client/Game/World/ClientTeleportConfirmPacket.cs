@@ -10,9 +10,14 @@ namespace ProtocolLib340.Packets.Client.Game.World
     {
         public int ID { get; set; }
 
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteVarInt(ID);
+            stream.WriteVarInt(ID);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public ClientTeleportConfirmPacket(int iD)

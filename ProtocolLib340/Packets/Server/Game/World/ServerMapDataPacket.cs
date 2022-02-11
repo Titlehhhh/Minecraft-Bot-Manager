@@ -29,10 +29,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //byte data[] = in.readBytes(in.readVarInt());
        //this.data = new MapData(columns, rows, x, y, data);
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerMapDataPacket() {}
     }
 

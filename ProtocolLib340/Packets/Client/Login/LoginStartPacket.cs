@@ -13,9 +13,14 @@ namespace ProtocolLib340.Packets.Client.Login
     public class LoginStartPacket : IPacket
     {
         public string Nickname { get; set; }
-        public override void Write(IMinecraftStreamWriter output)
+        public void Write(MinecraftStream stream)
         {
-            output.WriteString(Nickname);
+            stream.WriteString(Nickname);
+        }
+
+        public void Read(MinecraftStream stream)
+        {
+            
         }
 
         public LoginStartPacket(string nickname)

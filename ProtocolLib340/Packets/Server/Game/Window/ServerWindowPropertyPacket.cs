@@ -11,10 +11,16 @@ namespace ProtocolLib340.Packets.Server.Game.Window
         //this.windowId = in.readUnsignedByte();
        //this.property = in.readShort();
        //this.value = in.readShort();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerWindowPropertyPacket() {}
     }
 

@@ -10,10 +10,16 @@ namespace ProtocolLib340.Packets.Server.Game.Scoreboard
     {
         //this.position = MagicValues.key(ScoreboardPosition.class, in.readByte());
        //this.name = in.readString();
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerDisplayScoreboardPacket() {}
     }
 

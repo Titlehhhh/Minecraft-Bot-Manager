@@ -10,12 +10,18 @@ namespace ProtocolLib340.Packets.Server.Login
         public string ServerID { get; set; }
         public byte[] PublicKey { get; set; }
         public byte[] VerifyToken { get; set; }
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
-            ServerID = input.ReadNextString();
-            PublicKey = input.ReadNextByteArray();
-            VerifyToken = input.ReadNextByteArray();
+            ServerID = stream.ReadString();
+            PublicKey = stream.ReadUInt8Array();
+            VerifyToken = stream.ReadUInt8Array();
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public EncryptionRequestPacket()
         {
 

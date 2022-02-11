@@ -13,10 +13,16 @@ namespace ProtocolLib340.Packets.Server.Game
        //} else {
        //this.tabId = null;
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerAdvancementTabPacket() {}
     }
 

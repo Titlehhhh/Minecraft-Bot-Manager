@@ -32,10 +32,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //} else if(this.action == WorldBorderAction.SET_WARNING_BLOCKS) {
        //this.warningBlocks = in.readVarInt();
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerWorldBorderPacket() {}
     }
 

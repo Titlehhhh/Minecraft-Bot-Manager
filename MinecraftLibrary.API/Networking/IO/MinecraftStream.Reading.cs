@@ -4,6 +4,7 @@ using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,14 @@ namespace MinecraftLibrary.API.Networking.IO
 
         public async Task<sbyte> ReadByteAsync() => (sbyte)await this.ReadUnsignedByteAsync();
 
-
+        public ulong[] ReadULongArray()
+        {
+            int len = this.ReadVarInt();
+            Span<byte> buffer = stackalloc byte[len * 8];
+            this.Read(buffer);
+            Span<ulong> result = MemoryMarshal.Cast<byte, ulong>(buffer);
+            return result.ToArray();            
+        }
         public byte ReadUnsignedByte()
         {
             Span<byte> buffer = stackalloc byte[1];

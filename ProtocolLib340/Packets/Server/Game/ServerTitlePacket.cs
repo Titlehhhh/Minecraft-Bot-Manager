@@ -29,10 +29,16 @@ namespace ProtocolLib340.Packets.Server.Game
        //case RESET:
        //break;
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerTitlePacket() {}
     }
 

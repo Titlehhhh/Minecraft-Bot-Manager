@@ -9,10 +9,16 @@ namespace ProtocolLib340.Packets.Server.Game.World
     public class ServerOpenTileEntityEditorPacket : IPacket
     {
         //this.position = NetUtil.readPosition(in);
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerOpenTileEntityEditorPacket() {}
     }
 

@@ -12,10 +12,16 @@ namespace ProtocolLib340.Packets.Server.Game
        //this.difficulty = MagicValues.key(Difficulty.class, in.readUnsignedByte());
        //this.gamemode = MagicValues.key(GameMode.class, in.readUnsignedByte());
        //this.worldType = MagicValues.key(WorldType.class, in.readString().toLowerCase());
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerRespawnPacket() {}
     }
 

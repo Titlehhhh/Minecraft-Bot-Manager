@@ -14,10 +14,16 @@ namespace ProtocolLib340.Packets.Server.Game.Scoreboard
        //if(this.action == ScoreboardAction.ADD_OR_UPDATE) {
        //this.value = in.readVarInt();
        //}
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerUpdateScorePacket() {}
     }
 

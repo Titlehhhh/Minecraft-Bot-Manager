@@ -10,9 +10,14 @@ namespace ProtocolLib340.Packets.Server.Game
     {
         public long ID { get; set; }
         
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
-            ID = input.ReadNextLong();
+            ID = stream.ReadLong();
+        }
+
+        public void Write(MinecraftStream stream)
+        {
+            
         }
 
         public ServerKeepAlivePacket(long iD)

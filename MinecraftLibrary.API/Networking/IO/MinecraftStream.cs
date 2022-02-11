@@ -59,6 +59,8 @@ namespace MinecraftLibrary.API.Networking.IO
         {
             BaseStream.Write(buffer, offset, count);
         }
+
+        
     }
     public static class GuidExtensions
     {        

@@ -9,10 +9,16 @@ namespace ProtocolLib340.Packets.Server.Game
     public class ServerDifficultyPacket : IPacket
     {
         //this.difficulty = MagicValues.key(Difficulty.class, in.readUnsignedByte());
-        public override void Read(IMinecraftStreamReader input)
+        public void Read(MinecraftStream stream)
         {
             
         }
+
+        public void Write(MinecraftStream stream)
+        {
+            
+        }
+
         public ServerDifficultyPacket() {}
     }
 
