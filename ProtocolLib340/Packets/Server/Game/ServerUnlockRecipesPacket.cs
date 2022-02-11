@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x31, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerUnlockRecipesPacket : MinecraftPacket
+    public class ServerUnlockRecipesPacket : IPacket
     {
         //this.action = MagicValues.key(UnlockRecipesAction.class, in.readVarInt());
        //

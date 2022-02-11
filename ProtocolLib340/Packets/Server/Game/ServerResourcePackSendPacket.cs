@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x34, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerResourcePackSendPacket : MinecraftPacket
+    public class ServerResourcePackSendPacket : IPacket
     {
         //this.url = in.readString();
        //this.hash = in.readString();

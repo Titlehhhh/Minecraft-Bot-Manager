@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x18, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPluginMessagePacket : MinecraftPacket
+    public class ServerPluginMessagePacket : IPacket
     {
         //this.channel = in.readString();
        //this.data = in.readBytes(in.available());

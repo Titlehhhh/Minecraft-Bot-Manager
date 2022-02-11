@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x07, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerStatisticsPacket : MinecraftPacket
+    public class ServerStatisticsPacket : IPacket
     {
         //int length = in.readVarInt();
        //for(int index = 0; index < length; index++) {

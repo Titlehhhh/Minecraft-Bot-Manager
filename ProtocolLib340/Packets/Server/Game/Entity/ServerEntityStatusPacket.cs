@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x1B, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityStatusPacket : MinecraftPacket
+    public class ServerEntityStatusPacket : IPacket
     {
         //this.entityId = in.readInt();
        //this.status = MagicValues.key(EntityStatus.class, in.readByte());

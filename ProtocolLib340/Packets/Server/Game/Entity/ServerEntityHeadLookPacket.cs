@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x36, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityHeadLookPacket : MinecraftPacket
+    public class ServerEntityHeadLookPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.headYaw = in.readByte() * 360 / 256f;

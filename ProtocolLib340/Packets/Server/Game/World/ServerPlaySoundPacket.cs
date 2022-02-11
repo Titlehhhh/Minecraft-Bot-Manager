@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x19, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlaySoundPacket : MinecraftPacket
+    public class ServerPlaySoundPacket : IPacket
     {
         //String value = in.readString();
        //try {

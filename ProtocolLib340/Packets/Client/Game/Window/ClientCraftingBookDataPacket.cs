@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.Window
 {
 
     [PacketInfo(0x17, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientCraftingBookDataPacket : MinecraftPacket
+    public class ClientCraftingBookDataPacket : IPacket
     {
         //out.writeVarInt(MagicValues.value(Integer.class, this.type));
        //switch(this.type) {

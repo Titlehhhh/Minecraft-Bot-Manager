@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
     [PacketInfo(0x13, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerOpenWindowPacket : MinecraftPacket
+    public class ServerOpenWindowPacket : IPacket
     {
         //this.windowId = in.readUnsignedByte();
        //this.type = MagicValues.key(WindowType.class, in.readString());

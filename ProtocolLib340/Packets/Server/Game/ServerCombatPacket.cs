@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x2D, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerCombatPacket : MinecraftPacket
+    public class ServerCombatPacket : IPacket
     {
         //this.state = MagicValues.key(CombatState.class, in.readVarInt());
        //if(this.state == CombatState.END_COMBAT) {

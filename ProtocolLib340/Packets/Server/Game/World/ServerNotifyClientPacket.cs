@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x1E, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerNotifyClientPacket : MinecraftPacket
+    public class ServerNotifyClientPacket : IPacket
     {
         //this.notification = MagicValues.key(ClientNotification.class, in.readUnsignedByte());
        //float value = in.readFloat();

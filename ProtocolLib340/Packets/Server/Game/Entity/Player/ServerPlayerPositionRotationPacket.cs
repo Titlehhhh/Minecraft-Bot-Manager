@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
     [PacketInfo(0x2F, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayerPositionRotationPacket : MinecraftPacket
+    public class ServerPlayerPositionRotationPacket : IPacket
     {
         //this.x = in.readDouble();
         //this.y = in.readDouble();

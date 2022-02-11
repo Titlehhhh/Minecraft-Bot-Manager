@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x0C, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerBossBarPacket : MinecraftPacket
+    public class ServerBossBarPacket : IPacket
     {
         //this.uuid = in.readUUID();
        //this.action = MagicValues.key(BossBarAction.class, in.readVarInt());

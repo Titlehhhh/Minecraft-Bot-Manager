@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProtocolLib340.Packets.Client.Login
 {
     [PacketInfo(0x00,340,PacketSide.Client,PacketCategory.Login)]
-    public class LoginStartPacket : MinecraftPacket
+    public class LoginStartPacket : IPacket
     {
         public string Nickname { get; set; }
         public override void Write(IMinecraftStreamWriter output)

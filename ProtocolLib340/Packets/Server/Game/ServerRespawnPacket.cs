@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x35, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerRespawnPacket : MinecraftPacket
+    public class ServerRespawnPacket : IPacket
     {
         //this.dimension = in.readInt();
        //this.difficulty = MagicValues.key(Difficulty.class, in.readUnsignedByte());

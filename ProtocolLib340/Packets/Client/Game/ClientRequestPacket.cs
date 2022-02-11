@@ -7,7 +7,7 @@ namespace ProtocolLib340.Packets.Client.Game
 {
 
     [PacketInfo(0x03, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientRequestPacket : MinecraftPacket
+    public class ClientRequestPacket : IPacket
     {
         public ClientRequest Request { get; set; }
         //out.writeVarInt(MagicValues.value(Integer.class, this.request));

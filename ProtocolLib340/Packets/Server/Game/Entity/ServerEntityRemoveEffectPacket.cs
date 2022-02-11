@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x33, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityRemoveEffectPacket : MinecraftPacket
+    public class ServerEntityRemoveEffectPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.effect = MagicValues.key(Effect.class, in.readUnsignedByte());

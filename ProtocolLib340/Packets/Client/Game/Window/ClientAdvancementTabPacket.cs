@@ -6,21 +6,9 @@ namespace ProtocolLib340.Packets.Client.Game.Window
 {
 
     [PacketInfo(0x19, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientAdvancementTabPacket : MinecraftPacket
+    public class ClientAdvancementTabPacket : IPacket
     {
-        //out.writeVarInt(MagicValues.value(Integer.class, this.action));
-       //switch(this.action) {
-       //case CLOSED_SCREEN:
-       //break;
-       //case OPENED_TAB:
-       //out.writeString(this.tabId);
-       //break;
-       //default:
-       //throw new IOException("Unknown advancement tab action: " + this.action);
-       //}
-        public override void Write(IMinecraftStreamWriter output)
-        {
-            
-        }
+        
+        
     }
 }

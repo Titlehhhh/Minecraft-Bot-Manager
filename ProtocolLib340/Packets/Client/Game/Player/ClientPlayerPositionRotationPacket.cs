@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
     [PacketInfo(0x0E, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerPositionRotationPacket : MinecraftPacket
+    public class ClientPlayerPositionRotationPacket : IPacket
     {
         public double X { get; set; }
         public double Y { get; set; }

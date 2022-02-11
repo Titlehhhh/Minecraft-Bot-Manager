@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
     [PacketInfo(0x2B, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPreparedCraftingGridPacket : MinecraftPacket
+    public class ServerPreparedCraftingGridPacket : IPacket
     {
         //this.windowId = in.readByte();
        //this.recipeId = in.readVarInt();

@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x3E, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityVelocityPacket : MinecraftPacket
+    public class ServerEntityVelocityPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.motX = in.readShort() / 8000D;

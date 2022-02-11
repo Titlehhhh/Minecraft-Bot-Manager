@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
     [PacketInfo(0x3A, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayerChangeHeldItemPacket : MinecraftPacket
+    public class ServerPlayerChangeHeldItemPacket : IPacket
     {
         //this.slot = in.readByte();
         public override void Read(IMinecraftStreamReader input)

@@ -7,7 +7,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
     [PacketInfo(0x20, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerUseItemPacket : MinecraftPacket
+    public class ClientPlayerUseItemPacket : IPacket
     {
         public HAND Hand { get; set; }
         public int MyProperty { get; set; }        

@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x29, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerVehicleMovePacket : MinecraftPacket
+    public class ServerVehicleMovePacket : IPacket
     {
         //this.x = in.readDouble();
        //this.y = in.readDouble();

@@ -10,7 +10,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
     [PacketInfo(0x14, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerActionPacket : MinecraftPacket
+    public class ClientPlayerActionPacket : IPacket
     {
         public PlayerAction Action { get; set; }
         public Point3_Int Position { get; set; }

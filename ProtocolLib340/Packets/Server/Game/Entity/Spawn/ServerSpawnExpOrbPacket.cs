@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
 {
 
     [PacketInfo(0x01, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerSpawnExpOrbPacket : MinecraftPacket
+    public class ServerSpawnExpOrbPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.x = in.readDouble();

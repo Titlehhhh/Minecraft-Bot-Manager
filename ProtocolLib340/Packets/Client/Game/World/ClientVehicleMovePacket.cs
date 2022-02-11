@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.World
 {
 
     [PacketInfo(0x10, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientVehicleMovePacket : MinecraftPacket
+    public class ClientVehicleMovePacket : IPacket
     {
         //out.writeDouble(this.x);
        //out.writeDouble(this.y);

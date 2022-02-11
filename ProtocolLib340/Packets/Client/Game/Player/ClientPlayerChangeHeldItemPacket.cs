@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
     [PacketInfo(0x1A, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerChangeHeldItemPacket : MinecraftPacket
+    public class ClientPlayerChangeHeldItemPacket : IPacket
     {
         //out.writeShort(this.slot);
         public override void Write(IMinecraftStreamWriter output)

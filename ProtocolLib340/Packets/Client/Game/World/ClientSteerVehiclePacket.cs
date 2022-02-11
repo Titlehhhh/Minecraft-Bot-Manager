@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.World
 {
 
     [PacketInfo(0x16, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientSteerVehiclePacket : MinecraftPacket
+    public class ClientSteerVehiclePacket : IPacket
     {
         //out.writeFloat(this.sideways);
        //out.writeFloat(this.forward);

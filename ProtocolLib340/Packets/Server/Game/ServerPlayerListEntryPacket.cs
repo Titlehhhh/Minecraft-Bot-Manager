@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x2E, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayerListEntryPacket : MinecraftPacket
+    public class ServerPlayerListEntryPacket : IPacket
     {
         //this.action = MagicValues.key(PlayerListEntryAction.class, in.readVarInt());
        //this.entries = new PlayerListEntry[in.readVarInt()];

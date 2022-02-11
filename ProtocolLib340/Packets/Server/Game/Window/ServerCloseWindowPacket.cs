@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
     [PacketInfo(0x12, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerCloseWindowPacket : MinecraftPacket
+    public class ServerCloseWindowPacket : IPacket
     {
         //this.windowId = in.readUnsignedByte();
         public override void Read(IMinecraftStreamReader input)

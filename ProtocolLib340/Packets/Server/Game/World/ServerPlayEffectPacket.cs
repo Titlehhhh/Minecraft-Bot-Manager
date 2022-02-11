@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x21, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayEffectPacket : MinecraftPacket
+    public class ServerPlayEffectPacket : IPacket
     {
         //this.effect = MagicValues.key(WorldEffect.class, in.readInt());
        //this.position = NetUtil.readPosition(in);

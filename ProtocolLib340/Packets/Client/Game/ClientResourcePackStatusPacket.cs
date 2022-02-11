@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game
 {
 
     [PacketInfo(0x18, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientResourcePackStatusPacket : MinecraftPacket
+    public class ClientResourcePackStatusPacket : IPacket
     {
         //out.writeVarInt(MagicValues.value(Integer.class, this.status));
         public override void Write(IMinecraftStreamWriter output)

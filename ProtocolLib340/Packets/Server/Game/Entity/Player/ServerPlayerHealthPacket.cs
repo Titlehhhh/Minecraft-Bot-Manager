@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
     [PacketInfo(0x41, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayerHealthPacket : MinecraftPacket
+    public class ServerPlayerHealthPacket : IPacket
     {
         //this.health = in.readFloat();
        //this.food = in.readVarInt();

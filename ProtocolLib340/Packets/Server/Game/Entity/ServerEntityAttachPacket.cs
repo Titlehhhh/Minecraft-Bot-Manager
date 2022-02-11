@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x3D, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityAttachPacket : MinecraftPacket
+    public class ServerEntityAttachPacket : IPacket
     {
         //this.entityId = in.readInt();
        //this.attachedToId = in.readInt();

@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x28, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityRotationPacket : MinecraftPacket
+    public class ServerEntityRotationPacket : IPacket
     {
         //protected ServerEntityRotationPacket() {
        //this.rot = true;

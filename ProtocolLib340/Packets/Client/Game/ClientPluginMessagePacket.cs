@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game
 {
 
     [PacketInfo(0x09, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPluginMessagePacket : MinecraftPacket
+    public class ClientPluginMessagePacket : IPacket
     {
         //out.writeString(this.channel);
         //out.writeBytes(this.data);

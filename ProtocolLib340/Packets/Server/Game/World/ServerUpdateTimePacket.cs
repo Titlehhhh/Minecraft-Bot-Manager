@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x47, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerUpdateTimePacket : MinecraftPacket
+    public class ServerUpdateTimePacket : IPacket
     {
         //this.age = in.readLong();
        //this.time = in.readLong();

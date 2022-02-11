@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game
 {
 
     [PacketInfo(0x02, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientChatPacket : MinecraftPacket
+    public class ClientChatPacket : IPacket
     {
         public string Message { get; set; }
         

@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x37, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerAdvancementTabPacket : MinecraftPacket
+    public class ServerAdvancementTabPacket : IPacket
     {
         //if(in.readBoolean()) {
        //this.tabId = in.readString();

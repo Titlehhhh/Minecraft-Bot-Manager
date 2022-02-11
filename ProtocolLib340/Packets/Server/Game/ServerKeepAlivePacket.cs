@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x1F, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerKeepAlivePacket : MinecraftPacket
+    public class ServerKeepAlivePacket : IPacket
     {
         public long ID { get; set; }
         

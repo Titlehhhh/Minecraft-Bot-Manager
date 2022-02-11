@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x10, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerMultiBlockChangePacket : MinecraftPacket
+    public class ServerMultiBlockChangePacket : IPacket
     {
         //int chunkX = in.readInt();
        //int chunkZ = in.readInt();

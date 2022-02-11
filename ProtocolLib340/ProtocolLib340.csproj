@@ -10,6 +10,7 @@
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.Protocol\MinecraftLibrary.Networking.csproj" />
+    <ProjectReference Include="..\PacketGenerator\PacketGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>

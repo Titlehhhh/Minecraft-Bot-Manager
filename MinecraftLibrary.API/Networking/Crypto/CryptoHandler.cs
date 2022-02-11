@@ -82,8 +82,7 @@ namespace MinecraftLibrary.API.Networking.Crypto
 
         private static int ReadASNLength(System.IO.BinaryReader reader)
         {
-            //Note: this method only reads lengths up to 4 bytes long as
-            //this is satisfactory for the majority of situations.
+            
             int length = reader.ReadByte();
             if ((length & 0x00000080) == 0x00000080) //is the length greater than 1 byte
             {
@@ -96,25 +95,12 @@ namespace MinecraftLibrary.API.Networking.Crypto
             return length;
         }
 
-        /// <summary>
-        /// Generate a new random AES key for symmetric encryption
-        /// </summary>
-        /// <returns>Returns a byte array containing the key</returns>
-
         public static byte[] GenerateAESPrivateKey()
         {
             AesManaged AES = new AesManaged();
             AES.KeySize = 128; AES.GenerateKey();
             return AES.Key;
         }
-
-        /// <summary>
-        /// Get a SHA-1 hash for online-mode session checking
-        /// </summary>
-        /// <param name="serverID">Server ID hash</param>
-        /// <param name="PublicKey">Server's RSA key</param>
-        /// <param name="SecretKey">Secret key chosen by the client</param>
-        /// <returns>Returns the corresponding SHA-1 hex hash</returns>
 
         public static string getServerHash(string serverID, byte[] PublicKey, byte[] SecretKey)
         {
@@ -126,12 +112,7 @@ namespace MinecraftLibrary.API.Networking.Crypto
             return result;
         }
 
-        /// <summary>
-        /// Generate a SHA-1 hash using several byte arrays
-        /// </summary>
-        /// <param name="tohash">array of byte arrays to hash</param>
-        /// <returns>Returns the hashed data</returns>
-
+       
         private static byte[] digest(byte[][] tohash)
         {
             SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
@@ -141,11 +122,7 @@ namespace MinecraftLibrary.API.Networking.Crypto
             return sha1.Hash;
         }
 
-        /// <summary>
-        /// Converts a byte array to its hex string representation
-        /// </summary>
-        /// <param name="p">Byte array to convert</param>
-        /// <returns>Returns the string representation</returns>
+       
 
         private static string GetHexString(byte[] p)
         {

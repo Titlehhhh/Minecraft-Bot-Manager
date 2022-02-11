@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.World
 {
 
     [PacketInfo(0x11, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientSteerBoatPacket : MinecraftPacket
+    public class ClientSteerBoatPacket : IPacket
     {
         //out.writeBoolean(this.rightPaddleTurning);
        //out.writeBoolean(this.leftPaddleTurning);

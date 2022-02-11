@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
 {
 
     [PacketInfo(0x03, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerSpawnMobPacket : MinecraftPacket
+    public class ServerSpawnMobPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.uuid = in.readUUID();

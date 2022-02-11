@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x43, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntitySetPassengersPacket : MinecraftPacket
+    public class ServerEntitySetPassengersPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.passengerIds = new int[in.readVarInt()];

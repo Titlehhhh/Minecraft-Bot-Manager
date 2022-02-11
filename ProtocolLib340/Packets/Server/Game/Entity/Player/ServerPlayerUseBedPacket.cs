@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
     [PacketInfo(0x30, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayerUseBedPacket : MinecraftPacket
+    public class ServerPlayerUseBedPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.position = NetUtil.readPosition(in);

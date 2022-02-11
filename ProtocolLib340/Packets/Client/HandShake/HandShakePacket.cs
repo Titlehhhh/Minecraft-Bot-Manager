@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProtocolLib340.Packets.Client.HandShake
 {
     [PacketInfo(0x00,340,PacketSide.Client,PacketCategory.HandShake)]
-    public class HandShakePacket : MinecraftPacket
+    public class HandShakePacket : IPacket
     {
         public HandShakeIntent Intent { get; set; }
         public int ProtocolVersion { get; set; }

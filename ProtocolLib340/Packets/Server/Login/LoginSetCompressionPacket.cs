@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Login
 {
     [PacketInfo(0x03, 340, PacketSide.Server, PacketCategory.Login)]
-    public class LoginSetCompressionPacket : MinecraftPacket
+    public class LoginSetCompressionPacket : IPacket
     {
         public int Threshold { get; set; }
         public override void Read(IMinecraftStreamReader input)

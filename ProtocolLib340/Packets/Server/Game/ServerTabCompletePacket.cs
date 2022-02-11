@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x0E, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerTabCompletePacket : MinecraftPacket
+    public class ServerTabCompletePacket : IPacket
     {
         //this.matches = new String[in.readVarInt()];
        //for(int index = 0; index < this.matches.length; index++) {

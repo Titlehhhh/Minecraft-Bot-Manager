@@ -90,7 +90,17 @@
       "ProjectGuid": "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27",
       "DisplayName": "MinecraftLibrary.Networking",
       "ColorIndex": 0
+    },
+    "97a38703-32db-4596-a1a7-051a145fecfa": {
+      "ProjectGuid": "97a38703-32db-4596-a1a7-051a145fecfa",
+      "DisplayName": "MinecraftLibrary.Utils",
+      "ColorIndex": 1
+    },
+    "9d44e0f7-83ae-4f1d-b635-07b2073f46f2": {
+      "ProjectGuid": "9d44e0f7-83ae-4f1d-b635-07b2073f46f2",
+      "DisplayName": "PacketGenerator",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

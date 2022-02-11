@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x4B, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityCollectItemPacket : MinecraftPacket
+    public class ServerEntityCollectItemPacket : IPacket
     {
         //this.collectedEntityId = in.readVarInt();
        //this.collectorEntityId = in.readVarInt();

@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.World
 {
 
     [PacketInfo(0x1E, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientSpectatePacket : MinecraftPacket
+    public class ClientSpectatePacket : IPacket
     {
         //out.writeUUID(this.target);
         public override void Write(IMinecraftStreamWriter output)

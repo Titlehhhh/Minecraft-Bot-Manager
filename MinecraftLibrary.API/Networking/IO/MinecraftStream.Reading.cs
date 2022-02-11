@@ -15,7 +15,7 @@ namespace MinecraftLibrary.API.Networking.IO
 
         public async Task<sbyte> ReadByteAsync() => (sbyte)await this.ReadUnsignedByteAsync();
 
-        
+
         public byte ReadUnsignedByte()
         {
             Span<byte> buffer = stackalloc byte[1];
@@ -30,7 +30,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return buffer[0];
         }
 
-        
+
         public bool ReadBoolean()
         {
             return ReadUnsignedByte() == 0x01;
@@ -53,7 +53,7 @@ namespace MinecraftLibrary.API.Networking.IO
             }
         }
 
-        
+
         public ushort ReadUnsignedShort()
         {
             Span<byte> buffer = stackalloc byte[2];
@@ -68,7 +68,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadUInt16BigEndian(buffer);
         }
 
-        
+
         public short ReadShort()
         {
             Span<byte> buffer = stackalloc byte[2];
@@ -83,7 +83,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadInt16BigEndian(buffer);
         }
 
-        
+
         public int ReadInt()
         {
             Span<byte> buffer = stackalloc byte[4];
@@ -98,7 +98,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadInt32BigEndian(buffer);
         }
 
-        
+
         public long ReadLong()
         {
             Span<byte> buffer = stackalloc byte[8];
@@ -113,7 +113,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadInt64BigEndian(buffer);
         }
 
-        
+
         public ulong ReadUnsignedLong()
         {
             Span<byte> buffer = stackalloc byte[8];
@@ -128,7 +128,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadUInt64BigEndian(buffer);
         }
 
-        
+
         public float ReadFloat()
         {
             Span<byte> buffer = stackalloc byte[4];
@@ -143,7 +143,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadSingleBigEndian(buffer);
         }
 
-        
+
         public double ReadDouble()
         {
             Span<byte> buffer = stackalloc byte[8];
@@ -158,7 +158,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadDoubleBigEndian(buffer);
         }
 
-        
+
         public string ReadString(int maxLength = 32767)
         {
             var length = ReadVarInt();
@@ -191,7 +191,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return value;
         }
 
-       
+        public Guid ReadGuid()
+        {
+            return Guid.Parse(ReadString());
+        }
         public int ReadVarInt()
         {
             int numRead = 0;
@@ -234,7 +237,7 @@ namespace MinecraftLibrary.API.Networking.IO
             return result;
         }
 
-        
+
         public byte[] ReadUInt8Array(int length = 0)
         {
             if (length == 0)
@@ -278,7 +281,7 @@ namespace MinecraftLibrary.API.Networking.IO
             if (value == -1)
                 throw new EndOfStreamException();
             return (byte)value;
-        }       
+        }
         public long ReadVarLong()
         {
             int numRead = 0;

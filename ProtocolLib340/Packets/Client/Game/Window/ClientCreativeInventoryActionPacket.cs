@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.Window
 {
 
     [PacketInfo(0x1B, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientCreativeInventoryActionPacket : MinecraftPacket
+    public class ClientCreativeInventoryActionPacket : IPacket
     {
         //out.writeShort(this.slot);
         //NetUtil.writeItem(out, this.clicked);

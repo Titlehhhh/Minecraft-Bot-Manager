@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x22, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerSpawnParticlePacket : MinecraftPacket
+    public class ServerSpawnParticlePacket : IPacket
     {
         //this.particle = MagicValues.key(Particle.class, in.readInt());
        //this.longDistance = in.readBoolean();

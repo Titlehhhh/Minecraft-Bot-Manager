@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
     [PacketInfo(0x16, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerSetSlotPacket : MinecraftPacket
+    public class ServerSetSlotPacket : IPacket
     {
         //this.windowId = in.readUnsignedByte();
        //this.slot = in.readShort();

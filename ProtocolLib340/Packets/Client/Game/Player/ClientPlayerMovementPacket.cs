@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
     [PacketInfo(0x0C, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerMovementPacket : MinecraftPacket
+    public class ClientPlayerMovementPacket : IPacket
     {
         public bool OnGround { get; set; }        
         public override void Write(IMinecraftStreamWriter output)

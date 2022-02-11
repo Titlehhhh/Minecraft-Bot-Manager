@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
     [PacketInfo(0x14, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerWindowItemsPacket : MinecraftPacket
+    public class ServerWindowItemsPacket : IPacket
     {
         //this.windowId = in.readUnsignedByte();
        //this.items = new ItemStack[in.readShort()];

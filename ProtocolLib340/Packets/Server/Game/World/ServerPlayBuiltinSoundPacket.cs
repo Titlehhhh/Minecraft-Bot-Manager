@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x49, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerPlayBuiltinSoundPacket : MinecraftPacket
+    public class ServerPlayBuiltinSoundPacket : IPacket
     {
         //this.sound = MagicValues.key(BuiltinSound.class, in.readVarInt());
        //this.category = MagicValues.key(SoundCategory.class, in.readVarInt());

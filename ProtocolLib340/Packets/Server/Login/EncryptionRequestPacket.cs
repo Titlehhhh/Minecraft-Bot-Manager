@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Login
 {
     [PacketInfo(0x01, 340, PacketSide.Server, PacketCategory.Login)]
-    public class EncryptionRequestPacket : MinecraftPacket
+    public class EncryptionRequestPacket : IPacket
     {
         public string ServerID { get; set; }
         public byte[] PublicKey { get; set; }

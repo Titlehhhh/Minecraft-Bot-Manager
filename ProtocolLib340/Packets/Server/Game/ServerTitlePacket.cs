@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game
 {
 
     [PacketInfo(0x48, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerTitlePacket : MinecraftPacket
+    public class ServerTitlePacket : IPacket
     {
         //this.action = MagicValues.key(TitleAction.class, in.readVarInt());
        //switch(this.action) {

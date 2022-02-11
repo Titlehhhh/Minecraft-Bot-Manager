@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x24, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerMapDataPacket : MinecraftPacket
+    public class ServerMapDataPacket : IPacket
     {
         //this.mapId = in.readVarInt();
        //this.scale = in.readByte();

@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Scoreboard
 {
 
     [PacketInfo(0x45, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerUpdateScorePacket : MinecraftPacket
+    public class ServerUpdateScorePacket : IPacket
     {
         //this.entry = in.readString();
        //this.action = MagicValues.key(ScoreboardAction.class, in.readVarInt());

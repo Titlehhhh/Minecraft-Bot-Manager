@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
     [PacketInfo(0x4E, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerEntityPropertiesPacket : MinecraftPacket
+    public class ServerEntityPropertiesPacket : IPacket
     {
         //this.entityId = in.readVarInt();
        //this.attributes = new ArrayList<Attribute>();

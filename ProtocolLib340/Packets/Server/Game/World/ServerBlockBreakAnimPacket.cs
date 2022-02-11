@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x08, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerBlockBreakAnimPacket : MinecraftPacket
+    public class ServerBlockBreakAnimPacket : IPacket
     {
         //this.breakerEntityId = in.readVarInt();
        //this.position = NetUtil.readPosition(in);

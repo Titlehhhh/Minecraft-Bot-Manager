@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x0A, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerBlockValuePacket : MinecraftPacket
+    public class ServerBlockValuePacket : IPacket
     {
         //this.position = NetUtil.readPosition(in);
        //int type = in.readUnsignedByte();

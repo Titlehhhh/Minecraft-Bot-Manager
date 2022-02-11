@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
 {
 
     [PacketInfo(0x09, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerUpdateTileEntityPacket : MinecraftPacket
+    public class ServerUpdateTileEntityPacket : IPacket
     {
         //this.position = NetUtil.readPosition(in);
        //this.type = MagicValues.key(UpdatedTileType.class, in.readUnsignedByte());

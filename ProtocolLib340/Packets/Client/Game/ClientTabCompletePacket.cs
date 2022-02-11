@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game
 {
 
     [PacketInfo(0x01, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientTabCompletePacket : MinecraftPacket
+    public class ClientTabCompletePacket : IPacket
     {
         //out.writeString(this.text);
        //out.writeBoolean(this.assumeCommand);

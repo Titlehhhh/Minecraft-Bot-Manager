@@ -11,7 +11,7 @@ namespace MinecraftLibrary.API.Networking
 {
     public interface IPacket
     {
-        void Deserialize(MinecraftStream input);
-        void Serialize(MinecraftStream output);
+        void Read(MinecraftStream stream);
+        void Write(MinecraftStream stream);
     }
 }

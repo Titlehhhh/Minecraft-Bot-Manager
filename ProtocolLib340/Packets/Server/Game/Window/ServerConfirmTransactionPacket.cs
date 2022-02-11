@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
     [PacketInfo(0x11, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerConfirmTransactionPacket : MinecraftPacket
+    public class ServerConfirmTransactionPacket : IPacket
     {
         //this.windowId = in.readUnsignedByte();
        //this.actionId = in.readShort();

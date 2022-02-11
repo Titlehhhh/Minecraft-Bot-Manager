@@ -6,7 +6,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
     [PacketInfo(0x13, 340, PacketSide.Client, PacketCategory.Game)]
-    public class ClientPlayerAbilitiesPacket : MinecraftPacket
+    public class ClientPlayerAbilitiesPacket : IPacket
     {
         //byte flags = 0;
        //if(this.invincible) {
