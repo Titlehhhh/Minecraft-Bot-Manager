@@ -22,8 +22,8 @@ namespace ProtocolLib340.Packets.Client.Login
         }
         public void Write(MinecraftStream stream)
         {
-            stream.WriteArray(SharedKey);
-            stream.WriteArray(VerifyToken);
+            stream.WriteByteArray(SharedKey);
+            stream.WriteByteArray(VerifyToken);
         }
 
         public void Read(MinecraftStream stream)

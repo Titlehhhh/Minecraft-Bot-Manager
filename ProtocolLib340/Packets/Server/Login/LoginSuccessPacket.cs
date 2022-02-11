@@ -11,7 +11,7 @@ namespace ProtocolLib340.Packets.Server.Login
         public string Username { get; set; }
         public void Read(MinecraftStream stream)
         {
-            UUID = stream.ReadUUID();
+            UUID = stream.ReadGuid();
             Username = stream.ReadString();
         }
 

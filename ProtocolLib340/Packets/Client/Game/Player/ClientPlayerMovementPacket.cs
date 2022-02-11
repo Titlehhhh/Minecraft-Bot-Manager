@@ -11,7 +11,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
         public bool OnGround { get; set; }        
         public void Write(MinecraftStream stream)
         {
-            stream.WriteBooleanean(OnGround);
+            stream.WriteBoolean(OnGround);
         }
 
         public void Read(MinecraftStream stream)

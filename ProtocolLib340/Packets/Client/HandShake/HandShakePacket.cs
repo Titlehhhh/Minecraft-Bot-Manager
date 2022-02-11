@@ -20,7 +20,7 @@ namespace ProtocolLib340.Packets.Client.HandShake
         {
             stream.WriteVarInt(ProtocolVersion);
             stream.WriteString(Host);
-            stream.WriteUShort((ushort)Port);
+            stream.WriteUnsignedShort((ushort)Port);
             stream.WriteVarInt((int)Intent);
         }
 
