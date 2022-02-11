@@ -9,8 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Protocol\MinecraftLibrary.Networking.csproj" />
-    <ProjectReference Include="..\PacketPallete340\ProtocolLib340.csproj" />
+    <ProjectReference Include="..\ProtocolLib340\ProtocolLib340.csproj" />
   </ItemGroup>
 
 </Project>

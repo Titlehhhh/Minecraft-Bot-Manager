@@ -23,6 +23,15 @@ namespace MinecraftLibrary.Utils
         {
             ZlibStream stream = new ZlibStream(new System.IO.MemoryStream(to_decompress, false), CompressionMode.Decompress);
             byte[] packetData_decompressed = new byte[size_uncompressed];
+            
+            stream.Read(packetData_decompressed, 0, size_uncompressed);
+            stream.Close();
+            return packetData_decompressed;
+        }
+        public static byte[] Decompress(Stream stream1, int size_uncompressed)
+        {
+            ZlibStream stream = new ZlibStream(stream1, CompressionMode.Decompress);
+            byte[] packetData_decompressed = new byte[size_uncompressed];
             stream.Read(packetData_decompressed, 0, size_uncompressed);
             stream.Close();
             return packetData_decompressed;

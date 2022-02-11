@@ -27,5 +27,9 @@ namespace ProtocolLib340.Packets.Client.Login
         {
             Nickname = nickname;
         }
+        public LoginStartPacket()
+        {
+
+        }
     }
 }

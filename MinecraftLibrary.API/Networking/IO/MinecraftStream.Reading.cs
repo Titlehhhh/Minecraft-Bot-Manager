@@ -22,7 +22,7 @@ namespace MinecraftLibrary.API.Networking.IO
             Span<byte> buffer = stackalloc byte[len * 8];
             this.Read(buffer);
             Span<ulong> result = MemoryMarshal.Cast<byte, ulong>(buffer);
-            return result.ToArray();            
+            return result.ToArray();
         }
         public byte ReadUnsignedByte()
         {
@@ -34,7 +34,11 @@ namespace MinecraftLibrary.API.Networking.IO
         public async Task<byte> ReadUnsignedByteAsync()
         {
             var buffer = new byte[1];
-            await this.ReadAsync(buffer);
+            int read = 0;
+            while (read < 1)
+            {
+                read += await ReadAsync(buffer, 0 + read, 1 - read);
+            }
             return buffer[0];
         }
 

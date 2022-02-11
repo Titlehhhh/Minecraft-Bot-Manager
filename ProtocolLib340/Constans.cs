@@ -8,5 +8,4 @@
         public const int POSITION_Y_SHIFT = 0xFFF;
         public const int POSITION_WRITE_SHIFT = 0x3FFFFFF;
     }
-
 }

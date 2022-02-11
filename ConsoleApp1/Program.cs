@@ -1,7 +1,18 @@
-﻿
+﻿using MinecraftLibrary.Core;
+using System;
 
-string[] list = {"BANANA","CARS","HOUSE","WOMEN","UNITED","HAPPY","CUPBOARD" };
-var query = list.GroupBy(x => x.Length).OrderBy(x => x.Key)
-.SelectMany(x => x.OrderByDescending(c => c)).ToArray();
-Console.WriteLine(string.Join("\n",query));
-Console.ReadLine();
+namespace TestApp
+{
+    public partial class Program
+    {
+        public static void Main()
+        {
+            Console.WriteLine("Start");
+            MinecraftClient client = new MinecraftClient();
+            client.Host = "192.168.1.153";
+            client.Port = 63405;
+            client.StartClient();
+            Console.ReadLine();
+        }
+    }
+}

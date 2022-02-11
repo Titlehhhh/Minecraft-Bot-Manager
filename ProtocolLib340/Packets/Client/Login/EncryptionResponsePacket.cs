@@ -14,7 +14,7 @@ namespace ProtocolLib340.Packets.Client.Login
     {
         public byte[] VerifyToken { get; set; }
         public byte[] SharedKey { get; set; }
-
+        
         public EncryptionResponsePacket(byte[] verifyToken, byte[] sharedKey)
         {
             VerifyToken = verifyToken;
