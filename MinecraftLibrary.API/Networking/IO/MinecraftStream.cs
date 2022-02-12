@@ -1,14 +1,4 @@
-﻿
-using MinecraftLibrary.API.Helpers;
-using MinecraftLibrary.NBT.Tags;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinecraftLibrary.API.Networking.IO
+﻿namespace MinecraftLibrary.API.Networking.IO
 {
     public partial class MinecraftStream : Stream
     {

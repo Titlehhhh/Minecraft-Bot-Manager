@@ -1,27 +1,58 @@
-﻿using MinecraftLibrary.API.Networking.Attributes;
+﻿using MinecraftLibrary.API.Common;
+using MinecraftLibrary.API.Interfaces;
+using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Networking.Attributes;
 using System.Reflection;
 
 namespace ProtocolLib340
 {
-    public static class PacketPallete340
+    public class PacketPallete340 : IPacketProvider
     {
+        private static readonly List<PacketInfo> clientpackets = new();
+        private static readonly List<PacketInfo> serverpackets = new();
+
         static PacketPallete340()
         {
-            var Server = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && t.Namespace.StartsWith("ProtocolLib340.Packets.Server"));
-            var Client = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && t.Namespace.StartsWith("ProtocolLib340.Packets.Client"));
+            Assembly.GetExecutingAssembly().GetTypes().ToList().ForEach(x =>
+              {
+                  if (!x.IsAssignableFrom(typeof(IPacket)))
+                      return;
 
-            ServerLoginPackets = Server.Where(k => k.GetCustomAttribute<PacketHeaderAttribute>().Category == PacketCategory.Login).ToDictionary(x => x.GetCustomAttribute<PacketHeaderAttribute>().ID, v => v);
-            ServerGamePackets = Server.Where(k => k.GetCustomAttribute<PacketHeaderAttribute>().Category == PacketCategory.Game).ToDictionary(x => x.GetCustomAttribute<PacketHeaderAttribute>().ID, v => v);
+                  PacketHeaderAttribute packetHeader = x.GetCustomAttribute<PacketHeaderAttribute>();
+                  if (packetHeader != null)
+                  {
+                      if (packetHeader.Side == PacketSide.Client)
+                      {
+                          clientpackets.Add(new PacketInfo(packetHeader.ID, x, packetHeader.Category));
+                      }
+                      else
+                      {
+                          serverpackets.Add(new PacketInfo(packetHeader.ID, x, packetHeader.Category));
+                      }
+                  }
+              });
 
-            ClientHandShakePackets = Client.Where(k => k.GetCustomAttribute<PacketHeaderAttribute>().Category == PacketCategory.HandShake).ToDictionary(x => x, v => v.GetCustomAttribute<PacketHeaderAttribute>().ID);
-            ClientLoginPackets = Client.Where(k => k.GetCustomAttribute<PacketHeaderAttribute>().Category == PacketCategory.Login).ToDictionary(x => x, v => v.GetCustomAttribute<PacketHeaderAttribute>().ID);
-            ClientGamePAckets = Client.Where(k => k.GetCustomAttribute<PacketHeaderAttribute>().Category == PacketCategory.Game).ToDictionary(x => x, v => v.GetCustomAttribute<PacketHeaderAttribute>().ID);
         }
 
-        public static Dictionary<Type, int> ClientHandShakePackets { get; }
-        public static Dictionary<Type, int> ClientLoginPackets { get; }
-        public static Dictionary<Type, int> ClientGamePAckets { get; }
-        public static Dictionary<int, Type> ServerLoginPackets { get; }
-        public static Dictionary<int, Type> ServerGamePackets { get; }
+        public List<PacketInfo> GetClientPackets()
+        {
+
+            return clientpackets;
+        }
+
+        public Dictionary<Type, int> GetClientPackets(PacketCategory category)
+        {
+            return clientpackets.Where(t => t.Category == category).ToDictionary(k => k.TPacket, v => v.ID);
+        }
+
+        public List<PacketInfo> GetServerPackets()
+        {
+            return serverpackets;
+        }
+
+        public Dictionary<int, Type> GetServerPackets(PacketCategory category)
+        {
+            return clientpackets.Where(t => t.Category == category).ToDictionary(k => k.ID, v => v.TPacket);
+        }
     }
 }

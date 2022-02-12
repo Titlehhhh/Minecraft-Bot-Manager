@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game
 {
     [PacketHeader(0x0F, 340, PacketSide.Server, PacketCategory.Game)]
-    public class ServerChatPacket : IPacket
+    public class ServerChatMessagePacket : IPacket
     {               
 
         public void Read(MinecraftStream stream)

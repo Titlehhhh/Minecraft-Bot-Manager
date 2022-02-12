@@ -74,12 +74,7 @@ namespace MinecraftLibrary.Core
         {
 
 
-            ServerLoginPackets = PacketPallete340.ServerLoginPackets;
-            ServerGamePackets = PacketPallete340.ServerGamePackets;
-
-            ClientHandShakePackets = PacketPallete340.ClientHandShakePackets;
-            ClientLoginPackets = PacketPallete340.ClientLoginPackets;
-            ClientGamePAckets = PacketPallete340.ClientGamePAckets;
+            
 
 
         }

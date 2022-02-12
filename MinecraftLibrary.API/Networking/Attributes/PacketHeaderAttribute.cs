@@ -7,14 +7,14 @@ namespace MinecraftLibrary.API.Networking.Attributes
     {
         public int ID { get; private set; }
         public int TargetProtocol { get; private set; }
-        public PacketSide PacketState { get; private set; } = PacketSide.Client;
+        public PacketSide Side { get; private set; } = PacketSide.Client;
         public PacketCategory Category { get; private set; } = PacketCategory.HandShake;
 
         public PacketHeaderAttribute(int iD,int protocol,PacketSide state , PacketCategory  category )
         {
             ID = iD;
             TargetProtocol = protocol;
-            PacketState = state;
+            Side = state;
             Category = category;
         }
 
