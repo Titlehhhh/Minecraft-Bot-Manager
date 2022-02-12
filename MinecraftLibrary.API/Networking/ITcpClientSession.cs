@@ -1,7 +1,9 @@
-﻿using MinecraftLibrary.API.Networking.IO;
+﻿
+using MinecraftLibrary.API.Networking.IO;
 using MinecraftLibrary.API.Networking.Proxy;
 
-namespace MinecraftLibrary.API.Protocol
+
+namespace MinecraftLibrary.API.Networking
 {
     public interface ITcpClientSession : IDisposable
     {
@@ -17,5 +19,4 @@ namespace MinecraftLibrary.API.Protocol
         int Port { get; set; }
         ProxyInfo? Proxy { get; set; }
     }
-
 }

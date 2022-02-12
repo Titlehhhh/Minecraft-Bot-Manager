@@ -1,6 +1,4 @@
-﻿using MinecraftLibrary.API.Networking;
-
-namespace MinecraftLibrary.API.Protocol
+﻿namespace MinecraftLibrary.API.Networking
 {
     public interface IPacketFilter
     {
@@ -22,5 +20,4 @@ namespace MinecraftLibrary.API.Protocol
 
 
     }
-
 }

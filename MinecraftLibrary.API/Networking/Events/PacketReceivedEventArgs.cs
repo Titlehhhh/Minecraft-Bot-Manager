@@ -1,15 +1,21 @@
-﻿using System;
+﻿using MinecraftLibrary.API.Networking.IO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Networking.Events
+namespace MinecraftLibrary.API.Protocol.Events
 {
     public class PacketReceivedEventArgs : EventArgs
     {
-        public ByteBlock Data{ get; private set; }
+        public MinecraftStream DataStream{ get; private set; }
+        public int PacketID { get; private set; }
 
-        public PacketReceivedEventArgs(ByteBlock data)
+        public PacketReceivedEventArgs(MinecraftStream dataStream, int packetID)
         {
-            Data = data;
+            DataStream = dataStream;
+            PacketID = packetID;
         }
-    }    
+    }
 }
-
