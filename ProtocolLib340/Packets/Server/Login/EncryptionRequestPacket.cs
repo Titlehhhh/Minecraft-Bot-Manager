@@ -11,7 +11,7 @@ namespace ProtocolLib340.Packets.Server.Login
         public byte[] PublicKey { get; set; }
         public byte[] VerifyToken { get; set; }
         public void Read(MinecraftStream stream)
-        {
+        {           
             ServerID = stream.ReadString();
             PublicKey = stream.ReadUInt8Array();
             VerifyToken = stream.ReadUInt8Array();

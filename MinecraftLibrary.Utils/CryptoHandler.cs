@@ -1,10 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace MinecraftLibrary.API.Networking.Crypto
+namespace MinecraftLibrary.Utils
 {
     public class CryptoHandler
     {
@@ -82,7 +79,7 @@ namespace MinecraftLibrary.API.Networking.Crypto
 
         private static int ReadASNLength(System.IO.BinaryReader reader)
         {
-            
+
             int length = reader.ReadByte();
             if ((length & 0x00000080) == 0x00000080) //is the length greater than 1 byte
             {
@@ -97,9 +94,11 @@ namespace MinecraftLibrary.API.Networking.Crypto
 
         public static byte[] GenerateAESPrivateKey()
         {
-            AesManaged AES = new AesManaged();
-            AES.KeySize = 128; AES.GenerateKey();
-            return AES.Key;
+            using (AesManaged AES = new())
+            {
+                AES.KeySize = 128; AES.GenerateKey();
+                return AES.Key;
+            }
         }
 
         public static string getServerHash(string serverID, byte[] PublicKey, byte[] SecretKey)
@@ -112,7 +111,7 @@ namespace MinecraftLibrary.API.Networking.Crypto
             return result;
         }
 
-       
+
         private static byte[] digest(byte[][] tohash)
         {
             SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
@@ -122,7 +121,7 @@ namespace MinecraftLibrary.API.Networking.Crypto
             return sha1.Hash;
         }
 
-       
+
 
         private static string GetHexString(byte[] p)
         {
@@ -152,6 +151,6 @@ namespace MinecraftLibrary.API.Networking.Crypto
                 }
             }
             return p;
-        }        
+        }
     }
 }

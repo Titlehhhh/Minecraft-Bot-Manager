@@ -34,11 +34,7 @@ namespace MinecraftLibrary.API.Networking.IO
         public async Task<byte> ReadUnsignedByteAsync()
         {
             var buffer = new byte[1];
-            int read = 0;
-            while (read < 1)
-            {
-                read += await ReadAsync(buffer, 0 + read, 1 - read);
-            }
+            await this.ReadAsync(buffer);
             return buffer[0];
         }
 
@@ -203,6 +199,14 @@ namespace MinecraftLibrary.API.Networking.IO
             return value;
         }
 
+        public byte[] ReadByteArray()
+        {
+            int len = ReadVarInt();
+            byte[] buf = new byte[len];
+            Read(buf, 0, len);
+            return buf;
+        }
+
         public Guid ReadGuid()
         {
             return Guid.Parse(ReadString());
@@ -215,6 +219,7 @@ namespace MinecraftLibrary.API.Networking.IO
             do
             {
                 read = this.ReadUnsignedByte();
+
                 int value = read & 0b01111111;
                 result |= value << (7 * numRead);
 
@@ -236,6 +241,7 @@ namespace MinecraftLibrary.API.Networking.IO
             do
             {
                 read = await this.ReadUnsignedByteAsync();
+                Console.WriteLine("asd");
                 int value = read & 0b01111111;
                 result |= value << (7 * numRead);
 

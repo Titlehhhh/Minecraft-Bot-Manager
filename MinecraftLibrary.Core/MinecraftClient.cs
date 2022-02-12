@@ -1,4 +1,5 @@
 ﻿using Ionic.Zlib;
+using MinecraftLibrary.API.Helpers;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Attributes;
 using MinecraftLibrary.API.Networking.IO;
@@ -6,6 +7,7 @@ using MinecraftLibrary.Utils;
 using ProtocolLib340;
 using ProtocolLib340.Packets.Client.HandShake;
 using ProtocolLib340.Packets.Client.Login;
+using ProtocolLib340.Packets.Server.Login;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +15,6 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Core
@@ -64,7 +65,7 @@ namespace MinecraftLibrary.Core
                 }
             }
         }
-        public MinecraftStream NetStream { get; private set; }
+        private MinecraftStream NetStream;
 
         private TcpClient tcpClient;
         private ProtocolState state;
@@ -82,21 +83,14 @@ namespace MinecraftLibrary.Core
 
 
         }
-        private async Task<(int, MinecraftStream)> ReadPacketAsync()
+        private async Task<(int, MinecraftStream)> ReadDataAsync()
         {
-
             int len = await NetStream.ReadVarIntAsync();
-           // int len = 0;
-           
-            //Console.WriteLine(len);
+            Console.WriteLine("len " + len);
             byte[] receivedata = new byte[len];
-
-           // tcpClient.Client.Receive(receivedata, 0, 1, SocketFlags.None);
-           // Console.WriteLine("sad");
             await NetStream.ReadAsync(receivedata.AsMemory(0, len));
             int id = 0;
-             var ms = new MinecraftStream(receivedata);
-
+            var ms = new MinecraftStream(receivedata);
             if (CompressionThreshold > 0)
             {
                 int sizeUncompressed = ms.ReadVarInt();
@@ -106,37 +100,30 @@ namespace MinecraftLibrary.Core
                     //ms.Write(receivedata);
                     ZlibStream zlibStream = new ZlibStream(ms.BaseStream, CompressionMode.Decompress);
                     ms.BaseStream = zlibStream;
-                    id = ms.ReadVarInt();
                 }
+
+            }
+            id = ms.ReadVarInt();
+            return (id, ms);
+        }
+
+        private async Task ReadPacketAsync()
+        {
+
+            (int id, MinecraftStream stream) = await ReadDataAsync();
+            if (ServerPackets.ContainsKey(id))
+            {
+                IPacket packet = CreatePAcket(ServerPackets[id]);
+                packet.Read(stream);
+                stream.Close();
+                HandlePacket(packet);
+
             }
             else
             {
-                id = ms.ReadVarInt();
+                Console.WriteLine("Nor packet: " + id);
             }
-            return (id, ms);
 
-        }
-
-        private async Task ReadLoop()
-        {
-            while (true)
-            {
-                Console.WriteLine("Read");
-                (int id, MinecraftStream stream) = await ReadPacketAsync();
-                if (ServerPackets.ContainsKey(id))
-                {
-                    Console.Write("Пакет: " + id);
-                    IPacket packet = CreatePAcket(ServerPackets[id]);
-                    packet.Read(stream);
-                    stream.Close();
-                    HandlePacket(packet);
-                }
-                else
-                {
-                    Console.WriteLine("Пакет не найден!");
-                }
-
-            }
         }
 
         private static IPacket CreatePAcket(Type t)
@@ -146,20 +133,72 @@ namespace MinecraftLibrary.Core
 
         private void HandlePacket(IPacket packet)
         {
-            Console.WriteLine(" " + packet.GetType().Name);
+            Console.WriteLine(packet.GetType().Name);
+            if (packet is EncryptionRequestPacket)
+            {
+                var request = packet as EncryptionRequestPacket;
+                var rsaservice = CryptoHandler.DecodeRSAPublicKey(request.PublicKey);
+
+                byte[] SecretKey = CryptoHandler.GenerateAESPrivateKey();
+
+                EncryptionResponsePacket encryptionResponse = new EncryptionResponsePacket(rsaservice.Encrypt(request.VerifyToken, false), rsaservice.Encrypt(SecretKey, false));
+
+
+                SendPacket(0x01,encryptionResponse);
+
+                NetStream = new AesStream(tcpClient.GetStream(), SecretKey);
+                Console.WriteLine("dd");
+               
+
+            }
+            else if (packet is LoginSetCompressionPacket)
+            {
+                var compress = packet as LoginSetCompressionPacket;
+                CompressionThreshold = compress.Threshold;
+            }
+            else if (packet is LoginSuccessPacket)
+            {
+                State = ProtocolState.Game;
+                Console.WriteLine("Login Succes!");
+            }
+
+        }
+
+        private void ReadLoop()
+        {
+            Task.Run(async () =>
+            {
+                while (true && tcpClient.Connected)
+                {
+                    Console.WriteLine(NetStream.GetType().Name);
+                    (int id, MinecraftStream stream) = await ReadDataAsync();
+                    if (ServerPackets.ContainsKey(id))
+                    {
+                        IPacket packet = CreatePAcket(ServerPackets[id]);
+                        packet.Read(stream);
+                        stream.Close();
+                        HandlePacket(packet);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nor packet: " + id);
+                    }
+                }
+                Console.WriteLine("stop");
+            });
         }
 
         private void PacketSend(IPacket packet)
         {
-            Console.WriteLine(" " + packet.GetType().Name);
+            //Console.WriteLine(" " + packet.GetType().Name);
         }
         private void PacketSent(IPacket packet)
         {
-            Console.WriteLine(" " + packet.GetType().Name);
+            Console.WriteLine("Отправленный пакет " + packet.GetType().Name);
             if (packet is HandShakePacket)
             {
-                // State = ProtocolState.Login;
-                //SendPacket(new LoginStartPacket("Title_"));
+                //State = ProtocolState.Login;
+               // SendPacket(new LoginStartPacket("Title_"));
             }
         }
 
@@ -168,20 +207,18 @@ namespace MinecraftLibrary.Core
         public async void StartClient()
         {
             State = ProtocolState.HandShake;
-            tcpClient = new TcpClient(Host,Port);
-            //tcpClient.ReceiveTimeout = 30 * 1000;
-            //tcpClient.ReceiveBufferSize = 1024 * 1024;            
+            tcpClient = new TcpClient(Host, Port);
+            tcpClient.ReceiveTimeout = 1000;
+            //tcpClient.ReceiveBufferSize = 1024 * 1024;
             Console.WriteLine("Connect");
-            NetStream = new MinecraftStream(new NetworkStream(tcpClient.Client));
-            //ReadLoop();
+            NetStream = new MinecraftStream(tcpClient.GetStream());
+
             HandShakePacket handShakePacket = new HandShakePacket(HandShakeIntent.LOGIN, 340, Port, Host);
             State = ProtocolState.Login;
             SendPacket(0x00, handShakePacket);
-            LoginStartPacket loginStart = new LoginStartPacket("GHaf");
+            LoginStartPacket loginStart = new LoginStartPacket("Title_");
             SendPacket(0x00, loginStart);
-
-            (int id, MinecraftStream stream) = await ReadPacketAsync();
-            Console.WriteLine(id);
+            ReadLoop();
         }
         public void Discconect()
         {
@@ -202,13 +239,13 @@ namespace MinecraftLibrary.Core
             }
             catch
             {
-
+                Console.WriteLine("Error");
             }
         }
         public void SendPacket(int id, IPacket packet)
         {
-            
-            PacketSend(packet);
+
+            //PacketSend(packet);
             if (CompressionThreshold > 0)
             {
                 using (MinecraftStream packetStream = new MinecraftStream())
@@ -229,29 +266,30 @@ namespace MinecraftLibrary.Core
             {
                 DisableCompress(packet, id);
             }
-            PacketSent(packet);
+            NetStream.Flush();
+           // PacketSent(packet);
         }
 
         private void DisableCompress(IPacket packet, int id)
         {
-            MemoryStream memory = new MemoryStream();
+            Console.WriteLine("dis");
             using (MinecraftStream packetStream = new MinecraftStream())
             {
-                
                 packet.Write(packetStream);
                 int Packetlength = (int)packetStream.Length;
 
+                NetStream.Lock.Wait();
                 NetStream.WriteVarInt(GetVarIntLength(id) + Packetlength);
                 NetStream.WriteVarInt(id);
-
-                //MinecraftStream ms2 = new MinecraftStream();
                 packetStream.Position = 0;
                 packetStream.CopyTo(NetStream);
+                NetStream.Lock.Release();
             }
         }
 
         private void LongPacket(MinecraftStream packetStream, int to_Packetlength)
         {
+            Console.WriteLine("Long");
             using (MemoryStream memstream = new MemoryStream())
             {
                 using (ZlibStream stream = new ZlibStream(memstream, CompressionMode.Compress))
@@ -268,6 +306,7 @@ namespace MinecraftLibrary.Core
         }
         private void ShortPacket(MinecraftStream packetStream)
         {
+            Console.WriteLine("short");
             int fullSize = (int)packetStream.Length + ZERO_VARLENGTH;
             NetStream.WriteVarInt(fullSize);
             NetStream.WriteVarInt(0);

@@ -22,7 +22,9 @@ namespace ProtocolLib340.Packets.Client.Login
         }
         public void Write(MinecraftStream stream)
         {
+            stream.WriteVarInt(SharedKey.Length);
             stream.WriteByteArray(SharedKey);
+            stream.WriteVarInt(VerifyToken.Length);
             stream.WriteByteArray(VerifyToken);
         }
 

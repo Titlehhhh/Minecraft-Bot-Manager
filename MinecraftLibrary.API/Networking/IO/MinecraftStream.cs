@@ -13,6 +13,7 @@ namespace MinecraftLibrary.API.Networking.IO
     public partial class MinecraftStream : Stream
     {
         public Stream BaseStream { get;  set; }
+        public SemaphoreSlim Lock { get; } = new SemaphoreSlim(1, 1);
 
         public override bool CanRead => BaseStream.CanRead;
 
