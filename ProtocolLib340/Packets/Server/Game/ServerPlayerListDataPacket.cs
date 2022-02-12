@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game
 {
 
-    [PacketInfo(0x4A, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x4A, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerPlayerListDataPacket : IPacket
     {
         //this.header = Message.fromString(in.readString());

@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x21, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x21, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerPlayEffectPacket : IPacket
     {
         //this.effect = MagicValues.key(WorldEffect.class, in.readInt());

@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Client.Game.Player
 {
 
-    [PacketInfo(0x13, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketHeader(0x13, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientPlayerAbilitiesPacket : IPacket
     {
         public void Read(MinecraftStream stream)

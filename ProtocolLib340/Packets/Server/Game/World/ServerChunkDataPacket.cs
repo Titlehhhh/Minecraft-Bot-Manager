@@ -9,7 +9,7 @@ using ProtocolLib340.Data.World;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x20, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x20, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerChunkDataPacket : IPacket
     {
         public IChunkColumn Column { get; set; }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Client.Login
 {
-    [PacketInfo(0x00,340,PacketSide.Client,PacketCategory.Login)]
+    [PacketHeader(0x00,340,PacketSide.Client,PacketCategory.Login)]
     public class LoginStartPacket : IPacket
     {
         public string Nickname { get; set; }

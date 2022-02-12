@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Scoreboard
 {
 
-    [PacketInfo(0x3B, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x3B, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerDisplayScoreboardPacket : IPacket
     {
         //this.position = MagicValues.key(ScoreboardPosition.class, in.readByte());

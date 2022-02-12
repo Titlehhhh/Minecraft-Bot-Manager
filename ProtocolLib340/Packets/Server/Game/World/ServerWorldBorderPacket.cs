@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x38, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x38, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerWorldBorderPacket : IPacket
     {
         //this.action = MagicValues.key(WorldBorderAction.class, in.readVarInt());

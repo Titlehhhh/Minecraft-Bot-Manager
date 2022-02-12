@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x2A, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x2A, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerOpenTileEntityEditorPacket : IPacket
     {
         //this.position = NetUtil.readPosition(in);

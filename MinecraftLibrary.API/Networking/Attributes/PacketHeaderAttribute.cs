@@ -3,14 +3,14 @@
 namespace MinecraftLibrary.API.Networking.Attributes
 {
     [AttributeUsage(AttributeTargets.Class,Inherited =true)]
-    public sealed class PacketInfoAttribute : Attribute
+    public sealed class PacketHeaderAttribute : Attribute
     {
         public int ID { get; private set; }
         public int TargetProtocol { get; private set; }
         public PacketSide PacketState { get; private set; } = PacketSide.Client;
         public PacketCategory Category { get; private set; } = PacketCategory.HandShake;
 
-        public PacketInfoAttribute(int iD,int protocol,PacketSide state , PacketCategory  category )
+        public PacketHeaderAttribute(int iD,int protocol,PacketSide state , PacketCategory  category )
         {
             ID = iD;
             TargetProtocol = protocol;

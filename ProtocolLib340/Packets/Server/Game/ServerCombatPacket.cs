@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game
 {
 
-    [PacketInfo(0x2D, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x2D, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerCombatPacket : IPacket
     {
         //this.state = MagicValues.key(CombatState.class, in.readVarInt());

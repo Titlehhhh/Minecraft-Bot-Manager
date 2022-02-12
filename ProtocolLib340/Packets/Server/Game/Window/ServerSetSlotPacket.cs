@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Window
 {
 
-    [PacketInfo(0x16, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x16, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerSetSlotPacket : IPacket
     {
         //this.windowId = in.readUnsignedByte();

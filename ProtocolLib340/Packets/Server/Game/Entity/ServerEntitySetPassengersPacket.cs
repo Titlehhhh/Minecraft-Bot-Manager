@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
-    [PacketInfo(0x43, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x43, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerEntitySetPassengersPacket : IPacket
     {
         //this.entityId = in.readVarInt();

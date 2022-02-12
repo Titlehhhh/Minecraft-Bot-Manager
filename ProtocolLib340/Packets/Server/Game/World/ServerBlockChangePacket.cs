@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x0B, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x0B, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerBlockChangePacket : IPacket
     {
         //this.record = new BlockChangeRecord(NetUtil.readPosition(in), NetUtil.readBlockState(in));

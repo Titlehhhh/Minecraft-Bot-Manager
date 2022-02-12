@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x10, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x10, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerMultiBlockChangePacket : IPacket
     {
         //int chunkX = in.readInt();

@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game
 {
 
-    [PacketInfo(0x07, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x07, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerStatisticsPacket : IPacket
     {
         //int length = in.readVarInt();

@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
-    [PacketInfo(0x40, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x40, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerPlayerSetExperiencePacket : IPacket
     {
         //this.experience = in.readFloat();

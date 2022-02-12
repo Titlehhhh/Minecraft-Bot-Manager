@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketInfo(0x0B, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketHeader(0x0B, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientKeepAlivePacket : IPacket
     {
         public long ID { get; set; }

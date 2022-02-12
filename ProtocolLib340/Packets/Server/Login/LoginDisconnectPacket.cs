@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Server.Login
 {
-    [PacketInfo(0x00, 340, PacketSide.Server, PacketCategory.Login)]
+    [PacketHeader(0x00, 340, PacketSide.Server, PacketCategory.Login)]
     public class LoginDisconnectPacket : IPacket
     {
         public string Message { get; set; }

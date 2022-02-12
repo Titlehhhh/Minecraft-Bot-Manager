@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
-    [PacketInfo(0x28, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x28, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerEntityRotationPacket : IPacket
     {
         //protected ServerEntityRotationPacket() {

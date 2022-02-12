@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
-    [PacketInfo(0x2F, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x2F, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerPlayerPositionRotationPacket : IPacket
     {
         //this.x = in.readDouble();

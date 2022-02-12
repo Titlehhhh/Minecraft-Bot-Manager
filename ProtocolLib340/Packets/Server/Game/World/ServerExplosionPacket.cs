@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketInfo(0x1C, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x1C, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerExplosionPacket : IPacket
     {
         //this.x = in.readFloat();

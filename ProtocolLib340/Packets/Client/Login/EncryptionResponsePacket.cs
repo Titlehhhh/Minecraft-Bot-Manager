@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Client.Login
 {
-    [PacketInfo(0x01, 340, PacketSide.Client, PacketCategory.Login)]
+    [PacketHeader(0x01, 340, PacketSide.Client, PacketCategory.Login)]
     public class EncryptionResponsePacket : IPacket
     {
         public byte[] VerifyToken { get; set; }

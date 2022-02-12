@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Scoreboard
 {
 
-    [PacketInfo(0x44, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x44, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerTeamPacket : IPacket
     {
         //this.name = in.readString();

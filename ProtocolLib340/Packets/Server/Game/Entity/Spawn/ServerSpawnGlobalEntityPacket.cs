@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
 {
 
-    [PacketInfo(0x02, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x02, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerSpawnGlobalEntityPacket : IPacket
     {
         //this.entityId = in.readVarInt();

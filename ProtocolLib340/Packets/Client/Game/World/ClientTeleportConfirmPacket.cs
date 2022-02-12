@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Client.Game.World
 {
 
-    [PacketInfo(0x00, 340, PacketSide.Client, PacketCategory.Game)]
+    [PacketHeader(0x00, 340, PacketSide.Client, PacketCategory.Game)]
     public class ClientTeleportConfirmPacket : IPacket
     {
         public int ID { get; set; }

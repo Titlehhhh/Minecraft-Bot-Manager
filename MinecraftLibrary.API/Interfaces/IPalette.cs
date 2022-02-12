@@ -1,5 +1,9 @@
-﻿using System;
+﻿using MinecraftLibrary.API.Common;
+using MinecraftLibrary.API.Networking.Attributes;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,4 +20,15 @@ namespace MinecraftLibrary.API.Interfaces
 
         public IPalette<T> Clone();
     }
+    public interface IPacketProvider
+    {
+        List<PacketInfo> GetServerPackets();
+        List<PacketInfo> GetClientPackets();
+
+        Dictionary<int,Type> GetServerPackets(PacketCategory category);
+        Dictionary<Type,int> GetClientPackets(PacketCategory category);
+
+
+    }
+
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Client.HandShake
 {
-    [PacketInfo(0x00,340,PacketSide.Client,PacketCategory.HandShake)]
+    [PacketHeader(0x00,340,PacketSide.Client,PacketCategory.HandShake)]
     public class HandShakePacket : IPacket
     {
         public HandShakeIntent Intent { get; set; }

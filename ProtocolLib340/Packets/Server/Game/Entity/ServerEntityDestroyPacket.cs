@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity
 {
 
-    [PacketInfo(0x32, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x32, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerEntityDestroyPacket : IPacket
     {
         //this.entityIds = new int[in.readVarInt()];

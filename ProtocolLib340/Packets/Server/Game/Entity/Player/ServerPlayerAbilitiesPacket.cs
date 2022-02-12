@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking.IO;
 namespace ProtocolLib340.Packets.Server.Game.Entity.Player
 {
 
-    [PacketInfo(0x2C, 340, PacketSide.Server, PacketCategory.Game)]
+    [PacketHeader(0x2C, 340, PacketSide.Server, PacketCategory.Game)]
     public class ServerPlayerAbilitiesPacket : IPacket
     {
         //byte flags = in.readByte();

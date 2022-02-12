@@ -4,7 +4,7 @@ using MinecraftLibrary.API.Networking.IO;
 
 namespace ProtocolLib340.Packets.Server.Login
 {
-    [PacketInfo(0x02, 340, PacketSide.Server, PacketCategory.Login)]
+    [PacketHeader(0x02, 340, PacketSide.Server, PacketCategory.Login)]
     public class LoginSuccessPacket : IPacket
     {
         public Guid UUID { get; set; }
