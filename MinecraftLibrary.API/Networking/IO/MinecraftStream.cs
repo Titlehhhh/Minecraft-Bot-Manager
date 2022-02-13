@@ -13,18 +13,21 @@
 
         public override long Length => BaseStream.Length;
 
+        public CancellationTokenSource Cancellation { get;  set; }
+
         public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
-        public MinecraftStream()
+        public MinecraftStream(CancellationTokenSource tokenSource) : this(new MemoryStream(),tokenSource)
         {
-            BaseStream = new MemoryStream();
+            
         }
-        public MinecraftStream(Stream stream)
+        public MinecraftStream(Stream stream, CancellationTokenSource tokenSource)
         {
             BaseStream = stream;
+            Cancellation = tokenSource;
         }
-        public MinecraftStream(byte[] data)
-        {
-            this.BaseStream = new MemoryStream(data);
+        public MinecraftStream(byte[] data, CancellationTokenSource tokenSource) : this(new MemoryStream(data),tokenSource)
+        {          
+           
         }
         public override void Flush()
         {
@@ -49,9 +52,9 @@
         public override void Write(byte[] buffer, int offset, int count)
         {
             BaseStream.Write(buffer, offset, count);
-        }
+        }      
 
-        
+
     }
     public static class GuidExtensions
     {        

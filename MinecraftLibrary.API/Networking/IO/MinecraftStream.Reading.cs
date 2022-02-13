@@ -14,7 +14,7 @@ namespace MinecraftLibrary.API.Networking.IO
     {
         public sbyte ReadSignedByte() => (sbyte)this.ReadUnsignedByte();
 
-        public async Task<sbyte> ReadByteAsync() => (sbyte)await this.ReadUnsignedByteAsync();
+        public async Task<sbyte> ReadByteAsync(CancellationToken cancellationToken = default) => (sbyte)await this.ReadUnsignedByteAsync(cancellationToken);
 
         public ulong[] ReadULongArray()
         {
@@ -31,10 +31,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return buffer[0];
         }
 
-        public async Task<byte> ReadUnsignedByteAsync()
+        public async Task<byte> ReadUnsignedByteAsync(CancellationToken cancellationToken = default)
         {
             var buffer = new byte[1];
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return buffer[0];
         }
 
@@ -44,15 +44,16 @@ namespace MinecraftLibrary.API.Networking.IO
             return ReadUnsignedByte() == 0x01;
         }
 
-        public async Task<bool> ReadBooleanAsync()
+        public async Task<bool> ReadBooleanAsync(CancellationToken cancellationToken = default)
         {
-            var value = (int)await this.ReadByteAsync();
+            var value = (int)await this.ReadByteAsync(cancellationToken);
             if (value == 0x00)
             {
                 return false;
             }
             else if (value == 0x01)
             {
+
                 return true;
             }
             else
@@ -69,10 +70,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadUInt16BigEndian(buffer);
         }
 
-        public async Task<ushort> ReadUnsignedShortAsync()
+        public async Task<ushort> ReadUnsignedShortAsync(CancellationToken cancellationToken = default)
         {
             var buffer = new byte[2];
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadUInt16BigEndian(buffer);
         }
 
@@ -84,10 +85,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadInt16BigEndian(buffer);
         }
 
-        public async Task<short> ReadShortAsync()
+        public async Task<short> ReadShortAsync(CancellationToken cancellationToken = default)
         {
             using var buffer = new RentedArray<byte>(sizeof(short));
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadInt16BigEndian(buffer);
         }
 
@@ -99,10 +100,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadInt32BigEndian(buffer);
         }
 
-        public async Task<int> ReadIntAsync()
+        public async Task<int> ReadIntAsync(CancellationToken cancellationToken = default)
         {
             using var buffer = new RentedArray<byte>(sizeof(int));
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadInt32BigEndian(buffer);
         }
 
@@ -114,10 +115,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadInt64BigEndian(buffer);
         }
 
-        public async Task<long> ReadLongAsync()
+        public async Task<long> ReadLongAsync(CancellationToken cancellationToken = default)
         {
             using var buffer = new RentedArray<byte>(sizeof(long));
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadInt64BigEndian(buffer);
         }
 
@@ -129,10 +130,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadUInt64BigEndian(buffer);
         }
 
-        public async Task<ulong> ReadUnsignedLongAsync()
+        public async Task<ulong> ReadUnsignedLongAsync(CancellationToken cancellationToken = default)
         {
             using var buffer = new RentedArray<byte>(sizeof(ulong));
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadUInt64BigEndian(buffer);
         }
 
@@ -144,10 +145,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadSingleBigEndian(buffer);
         }
 
-        public async Task<float> ReadFloatAsync()
+        public async Task<float> ReadFloatAsync(CancellationToken cancellationToken = default)
         {
             using var buffer = new RentedArray<byte>(sizeof(float));
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadSingleBigEndian(buffer);
         }
 
@@ -159,10 +160,10 @@ namespace MinecraftLibrary.API.Networking.IO
             return BinaryPrimitives.ReadDoubleBigEndian(buffer);
         }
 
-        public async Task<double> ReadDoubleAsync()
+        public async Task<double> ReadDoubleAsync(CancellationToken cancellationToken = default)
         {
             using var buffer = new RentedArray<byte>(sizeof(double));
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
             return BinaryPrimitives.ReadDoubleBigEndian(buffer);
         }
 
@@ -181,15 +182,15 @@ namespace MinecraftLibrary.API.Networking.IO
             return value;
         }
 
-        public async Task<string> ReadStringAsync(int maxLength = 32767)
+        public async Task<string> ReadStringAsync(int maxLength = 32767, CancellationToken cancellationToken = default)
         {
-            var length = await this.ReadVarIntAsync();
+            var length = await this.ReadVarIntAsync(cancellationToken);
             using var buffer = new RentedArray<byte>(length);
             if (BitConverter.IsLittleEndian)
             {
                 buffer.Span.Reverse();
             }
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer, cancellationToken);
 
             var value = Encoding.UTF8.GetString(buffer);
             if (maxLength > 0 && value.Length > maxLength)
@@ -233,14 +234,14 @@ namespace MinecraftLibrary.API.Networking.IO
             return result;
         }
 
-        public virtual async Task<int> ReadVarIntAsync()
+        public virtual async Task<int> ReadVarIntAsync(CancellationToken cancellationToken = default)
         {
             int numRead = 0;
             int result = 0;
             byte read;
             do
             {
-                read = await this.ReadUnsignedByteAsync();
+                read = await this.ReadUnsignedByteAsync(cancellationToken);
                 Console.WriteLine("asd");
                 int value = read & 0b01111111;
                 result |= value << (7 * numRead);
@@ -275,27 +276,27 @@ namespace MinecraftLibrary.API.Networking.IO
             return result;
         }
 
-        public async Task<byte[]> ReadUInt8ArrayAsync(int length = 0)
+        public async Task<byte[]> ReadUInt8ArrayAsync(int length = 0, CancellationToken cancellationToken = default)
         {
             if (length == 0)
-                length = await this.ReadVarIntAsync();
+                length = await this.ReadVarIntAsync(cancellationToken);
 
             var result = new byte[length];
             if (length == 0)
                 return result;
 
             int n = length;
-            while (true)
+            while (true && !cancellationToken.IsCancellationRequested)
             {
-                n -= await this.ReadAsync(result, length - n, n);
+                n -= await this.ReadAsync(result, length - n, n, cancellationToken);
                 if (n == 0)
                     break;
             }
             return result;
         }
-        public async Task<byte> ReadUInt8Async()
+        public async Task<byte> ReadUInt8Async(CancellationToken cancellationToken = default)
         {
-            int value = await this.ReadByteAsync();
+            int value = await this.ReadByteAsync(cancellationToken);
             if (value == -1)
                 throw new EndOfStreamException();
             return (byte)value;
@@ -321,14 +322,14 @@ namespace MinecraftLibrary.API.Networking.IO
             return result;
         }
 
-        public async Task<long> ReadVarLongAsync()
+        public async Task<long> ReadVarLongAsync(CancellationToken cancellationToken = default)
         {
             int numRead = 0;
             long result = 0;
             byte read;
             do
             {
-                read = await this.ReadUnsignedByteAsync();
+                read = await this.ReadUnsignedByteAsync(cancellationToken);
                 int value = (read & 0b01111111);
                 result |= (long)value << (7 * numRead);
 
@@ -337,7 +338,7 @@ namespace MinecraftLibrary.API.Networking.IO
                 {
                     throw new InvalidOperationException("VarLong is too big");
                 }
-            } while ((read & 0b10000000) != 0);
+            } while ((read & 0b10000000) != 0 && !cancellationToken.IsCancellationRequested);
 
             return result;
         }

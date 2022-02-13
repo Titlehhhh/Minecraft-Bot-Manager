@@ -1,4 +1,5 @@
 ﻿
+using MinecraftLibrary.API.Networking.Events;
 using MinecraftLibrary.API.Networking.IO;
 using MinecraftLibrary.API.Networking.Proxy;
 
@@ -18,5 +19,7 @@ namespace MinecraftLibrary.API.Networking
         string Host { get; set; }
         int Port { get; set; }
         ProxyInfo? Proxy { get; set; }
+
+        event EventHandler<PacketReceivedEventArgs> PacketReceived;
     }
 }

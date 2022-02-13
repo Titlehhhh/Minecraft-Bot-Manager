@@ -15,7 +15,7 @@ namespace MinecraftLibrary.API.Networking.IO
     {
         private IBufferedCipher EncryptCipher { get; set; }
         private IBufferedCipher DecryptCipher { get; set; }
-        public AesStream(byte[] key)
+        public AesStream(byte[] key, CancellationTokenSource tokenSource) : base(tokenSource)
         {
             EncryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesEngine(), 8));
             EncryptCipher.Init(true, new ParametersWithIV(new KeyParameter(key), key, 0, 16));
@@ -27,7 +27,7 @@ namespace MinecraftLibrary.API.Networking.IO
             this.BaseStream = new CipherStream(oldStream, DecryptCipher, EncryptCipher);
         }
 
-        public AesStream(Stream stream, byte[] key) : base(stream)
+        public AesStream(Stream stream, byte[] key, CancellationTokenSource tokenSource) : base(stream,tokenSource)
         {
             EncryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesEngine(), 8));
             EncryptCipher.Init(true, new ParametersWithIV(new KeyParameter(key), key, 0, 16));
@@ -39,7 +39,7 @@ namespace MinecraftLibrary.API.Networking.IO
             this.BaseStream = new CipherStream(oldStream, DecryptCipher, EncryptCipher);
         }
 
-        public AesStream(byte[] data, byte[] key) : base(data)
+        public AesStream(byte[] data, byte[] key,CancellationTokenSource tokenSource) : base(new MemoryStream(data),tokenSource)
         {
             EncryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesEngine(), 8));
             EncryptCipher.Init(true, new ParametersWithIV(new KeyParameter(key), key, 0, 16));
