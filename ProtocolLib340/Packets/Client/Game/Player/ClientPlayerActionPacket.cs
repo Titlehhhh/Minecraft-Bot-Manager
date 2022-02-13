@@ -1,4 +1,4 @@
-using MinecraftLibrary.API;
+using MinecraftLibrary.API.Enums;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Attributes;
 using MinecraftLibrary.API.Networking.IO;

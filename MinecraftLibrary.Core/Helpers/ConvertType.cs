@@ -1,11 +1,11 @@
-﻿
+﻿using MinecraftLibrary.API.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Helpers
+namespace MinecraftLibrary.Core.Helpers
 {
     public static class ConvertType
     {

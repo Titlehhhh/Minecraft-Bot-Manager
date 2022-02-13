@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.World;
-using MinecraftLibrary.API;
 using System.Collections.Generic;
+using MinecraftLibrary.API.Enums;
 
 namespace MinecraftLibrary.Core.BlockPalletes
 {

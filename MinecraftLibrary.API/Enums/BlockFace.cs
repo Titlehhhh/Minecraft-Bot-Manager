@@ -1,4 +1,4 @@
-﻿namespace MinecraftLibrary.API
+﻿namespace MinecraftLibrary.API.Enums
 {
     public enum BlockFace : byte
     {
@@ -10,5 +10,5 @@
         EAST = 5,
         SPECIAL = 255
     }
-    
+
 }

@@ -1,4 +1,4 @@
-﻿using MinecraftLibrary.API;
+﻿using MinecraftLibrary.API.Enums;
 
 namespace MinecraftLibrary.Core.Helpers
 {

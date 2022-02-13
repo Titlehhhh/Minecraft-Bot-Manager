@@ -16,16 +16,16 @@
         public CancellationTokenSource Cancellation { get;  set; }
 
         public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
-        public MinecraftStream(CancellationTokenSource tokenSource) : this(new MemoryStream(),tokenSource)
+        public MinecraftStream() : this(new MemoryStream())
         {
             
         }
-        public MinecraftStream(Stream stream, CancellationTokenSource tokenSource)
+        public MinecraftStream(Stream stream)
         {
             BaseStream = stream;
-            Cancellation = tokenSource;
+            
         }
-        public MinecraftStream(byte[] data, CancellationTokenSource tokenSource) : this(new MemoryStream(data),tokenSource)
+        public MinecraftStream(byte[] data) : this(new MemoryStream(data))
         {          
            
         }

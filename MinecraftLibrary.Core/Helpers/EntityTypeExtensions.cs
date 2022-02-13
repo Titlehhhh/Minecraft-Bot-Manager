@@ -1,4 +1,6 @@
-﻿namespace MinecraftLibrary.API.Helpers
+﻿using MinecraftLibrary.API.Enums;
+
+namespace MinecraftLibrary.Core.Helpers
 {
     public static class EntityTypeExtensions
     {

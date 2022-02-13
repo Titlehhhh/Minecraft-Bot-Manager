@@ -4,13 +4,13 @@ namespace MinecraftLibrary.API.Networking.Events
 {
     public class PacketReceivedEventArgs : EventArgs
     {
-        public MinecraftStream DataStream{ get; private set; }
-        public int PacketID { get; private set; }
+        public int ID { get; private set; }
+        public IPacket packet{ get; private set; }
 
-        public PacketReceivedEventArgs(MinecraftStream dataStream, int packetID)
+        public PacketReceivedEventArgs(int iD, IPacket packet)
         {
-            DataStream = dataStream;
-            PacketID = packetID;
+            ID = iD;
+            this.packet = packet;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MinecraftLibrary.API
+﻿namespace MinecraftLibrary.API.Enums
 {
     public class VillagerInfo
     {

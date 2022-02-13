@@ -1,4 +1,4 @@
-﻿using MinecraftLibrary.API;
+﻿using MinecraftLibrary.API.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.World
 {
-   public interface IBlockPallete
+    public interface IBlockPallete
     {
         Material FromId(int id);
         bool IdHasMeta { get; }
