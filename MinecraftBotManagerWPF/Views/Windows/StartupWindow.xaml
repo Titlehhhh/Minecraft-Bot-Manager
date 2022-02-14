@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
         mc:Ignorable="d"
+       
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -16,13 +18,13 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ProgressBar}">
                         <Grid MinHeight="10" MinWidth="200">
-                            <Border x:Name="PART_Track" CornerRadius="5" BorderThickness="2" Background="#FF717176" BorderBrush="#FF8B8888">
+                            <Border x:Name="PART_Track" CornerRadius="5" BorderThickness="2" Background="#FF38383A" BorderBrush="#FF8B8888">
 
                             </Border>
                             <Border x:Name="PART_Indicator"
                                                      HorizontalAlignment="Left"
                                                      Width="0"
-                                                     CornerRadius="5" Background="#FF27292E">
+                                                     CornerRadius="5" Background="#FFD8D8D8">
 
                             </Border>
 
@@ -32,12 +34,23 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Border Background="GhostWhite" CornerRadius="5">
+    <Border Background="#FF1A1A1A" CornerRadius="5" BorderBrush="DarkGray" BorderThickness="2">
         <DockPanel Margin="0,40" HorizontalAlignment="Center" LastChildFill="False">
-            <TextBlock VerticalAlignment="Center" TextAlignment="Center" DockPanel.Dock="Top" Text="Minecraft Bot Manager" FontSize="25" FontFamily="JetBrains Mono" Foreground="Black"/>
-            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" />
-                <ProgressBar Value="50" Width="350"/>
+            <mat:PackIcon Kind="CubeOutline" 
+                          Foreground="White" 
+                          Height="50" 
+                          Width="50" 
+                          DockPanel.Dock="Top" 
+                          HorizontalAlignment="Center"/>
+            <TextBlock VerticalAlignment="Center" 
+                       TextAlignment="Center" 
+                       DockPanel.Dock="Top" 
+                       Text="Minecraft Bot Manager" 
+                       FontSize="25" 
+                       FontFamily="JetBrains Mono"
+                       Foreground="White"/>
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center">                
+                <ProgressBar Value="{Binding Progress}" Width="350"/>
             </StackPanel>
         </DockPanel>
     </Border>

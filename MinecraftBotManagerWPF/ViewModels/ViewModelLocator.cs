@@ -13,11 +13,12 @@ namespace MinecraftBotManagerWPF.ViewModels
         public ViewModelLocator()
         {
             var services = new ServiceCollection();
-            //services.AddSingleton<>()
-
+            services.AddSingleton<StartupVM>();
             Ioc.Default.ConfigureServices(services.BuildServiceProvider());
         }
-        
+
+        public StartupVM Startup => Ioc.Default.GetService<StartupVM>();
+
     }
-    
+
 }

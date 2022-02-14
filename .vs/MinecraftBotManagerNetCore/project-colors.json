@@ -100,7 +100,12 @@
       "ProjectGuid": "9d44e0f7-83ae-4f1d-b635-07b2073f46f2",
       "DisplayName": "PacketGenerator",
       "ColorIndex": 2
+    },
+    "cde458f9-c740-4cc9-9c0e-d7826f0cd188": {
+      "ProjectGuid": "cde458f9-c740-4cc9-9c0e-d7826f0cd188",
+      "DisplayName": "MinecraftLibrary.MVVM",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }

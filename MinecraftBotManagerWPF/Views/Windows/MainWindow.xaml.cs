@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MaterialDesignExtensions.Controls;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,31 @@ namespace MinecraftBotManagerWPF.Views.Windows
             InitializeComponent();
             
             
+        }
+
+        private void HideButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ResizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if(WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                (button.Content as PackIcon).Kind = PackIconKind.WindowRestore;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+                (button.Content as PackIcon).Kind = PackIconKind.WindowMinimize;
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
