@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
         mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Style="{StaticResource CustomWindowStyle}"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
@@ -54,24 +55,104 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <DockPanel LastChildFill="False">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" WindowChrome.IsHitTestVisibleInChrome="True">
-                <Button x:Name="HideButton" Click="HideButton_Click" Style="{StaticResource HeaderButtonStyle}">
-                    <mat:PackIcon Kind="Minus" Foreground="White"/>
-                </Button>
-                <Button x:Name="ResizeButton" Click="ResizeButton_Click" Style="{StaticResource HeaderButtonStyle}">
-                    <mat:PackIcon Kind="WindowMaximize" Foreground="White"/>
-                </Button>
-                <Button x:Name="CloseButton" Click="CloseButton_Click" Style="{StaticResource HeaderButtonStyle}">
-                    <mat:PackIcon Kind="Close" Foreground="White"/>
-                </Button>
-            </StackPanel>
-        </DockPanel>
-    </Grid>
+    <Border Background="#FF1F1F1F">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DockPanel LastChildFill="False">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" WindowChrome.IsHitTestVisibleInChrome="True">
+                    <Button x:Name="HideButton" Click="HideButton_Click" Style="{StaticResource HeaderButtonStyle}">
+                        <mat:PackIcon Kind="Minus" Foreground="White"/>
+                    </Button>
+                    <Button x:Name="ResizeButton" Click="ResizeButton_Click" Style="{StaticResource HeaderButtonStyle}">
+                        <mat:PackIcon Kind="WindowMaximize" Foreground="White"/>
+                    </Button>
+                    <Button x:Name="CloseButton" Click="CloseButton_Click" Style="{StaticResource HeaderButtonStyle}">
+                        <mat:PackIcon Kind="Close" Foreground="White"/>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+            <Grid Margin="0,5" Grid.Row="1" WindowChrome.IsHitTestVisibleInChrome="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <GridSplitter ResizeBehavior="PreviousAndNext" Grid.Column="1" VerticalAlignment="Stretch" Width="6">
+                    <GridSplitter.Style>
+                        <Style TargetType="GridSplitter">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GridSplitter}">
+                                        <Border Width="{TemplateBinding Width}" Background="Transparent">
+                                            <Rectangle Width="1.5"  Fill="#FF525252"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GridSplitter.Style>
+                </GridSplitter>
+                <Border x:Name="BorderBotList" Margin="0,0,3,0" Grid.Column="2" BorderThickness="1.3" BorderBrush="#FF4A4A4A">
+                    <StackPanel>
+                        <Border BorderBrush="{Binding ElementName=BorderBotList,Path=BorderBrush}" Background="{Binding ElementName=BorderBotList,Path=BorderBrush}">
+                            <TextBlock FontFamily="Verdana" FontSize="16" Text="Боты" Foreground="#F5F2E7" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ListBox>
+                            <ListBox.Style>
+                                <Style TargetType="ListBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBox}">
+                                                <ScrollViewer Style="{StaticResource LeftScrollViewer}">
+                                                    <StackPanel IsItemsHost="True">
+                                                        
+                                                    </StackPanel>
+                                                </ScrollViewer>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="ItemTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}"/>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="ItemContainerStyle">
+                                        <Setter.Value>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                            <Border>
+                                                                <ContentPresenter/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.Style>
+                            <sys:String>Title_</sys:String>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="0">
+                    
+                </Border>
+            </Grid>
+            <Border Height="20" Background="#FF3E3E46" Grid.Row="2">
+
+            </Border>
+        </Grid>
+    </Border>
 </Window>
 

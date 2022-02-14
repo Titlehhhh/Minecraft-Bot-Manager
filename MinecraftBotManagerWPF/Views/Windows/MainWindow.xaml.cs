@@ -24,8 +24,20 @@ namespace MinecraftBotManagerWPF.Views.Windows
         public MainWindow()
         {
             InitializeComponent();
-            
-            
+
+            this.StateChanged += MainWindow_StateChanged;
+        }
+
+        private void MainWindow_StateChanged(object? sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowRestore;
+            }
+            else if (WindowState == WindowState.Normal)
+            {
+                (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowMaximize;
+            }
         }
 
         private void HideButton_Click(object sender, RoutedEventArgs e)
@@ -36,17 +48,18 @@ namespace MinecraftBotManagerWPF.Views.Windows
         private void ResizeButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            if(WindowState == WindowState.Maximized)
+            if (WindowState == WindowState.Maximized)
             {
                 WindowState = WindowState.Normal;
-                (button.Content as PackIcon).Kind = PackIconKind.WindowRestore;
+                // (button.Content as PackIcon).Kind = PackIconKind.WindowMaximize;
             }
-            else
+            else if (WindowState == WindowState.Normal)
             {
                 WindowState = WindowState.Maximized;
-                (button.Content as PackIcon).Kind = PackIconKind.WindowMinimize;
+                //(button.Content as PackIcon).Kind = PackIconKind.WindowRestore;
             }
         }
+
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
