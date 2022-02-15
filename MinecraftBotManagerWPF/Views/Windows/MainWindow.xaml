@@ -120,7 +120,7 @@
                                     <Setter Property="ItemTemplate">
                                         <Setter.Value>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding}"/>
+                                                <TextBlock  Foreground="White" Text="{Binding}"/>
                                             </DataTemplate>
                                         </Setter.Value>
                                     </Setter>

@@ -1,111 +1,11 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "afeb3991-7c6b-482f-a230-1eef8b3c6872": {
-      "ProjectGuid": "afeb3991-7c6b-482f-a230-1eef8b3c6872",
-      "DisplayName": "MinecraftLibrary.Core",
-      "ColorIndex": 0
-    },
-    "353c5e7c-5ed9-4675-85b4-e20f4f28c838": {
-      "ProjectGuid": "353c5e7c-5ed9-4675-85b4-e20f4f28c838",
-      "DisplayName": "ProtocolLib340",
-      "ColorIndex": 1
-    },
-    "35e36f97-cf7f-4db0-93b2-045bf54540f4": {
-      "ProjectGuid": "35e36f97-cf7f-4db0-93b2-045bf54540f4",
-      "DisplayName": "MinecraftLibrary.API",
-      "ColorIndex": 2
-    },
-    "e8a65665-a5fa-4ff1-a48f-ba1c534623cb": {
-      "ProjectGuid": "e8a65665-a5fa-4ff1-a48f-ba1c534623cb",
-      "DisplayName": "MinecraftBotManager",
-      "ColorIndex": 3
-    },
     "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Прочие файлы",
       "ColorIndex": -1
-    },
-    "f0f61389-b74a-4f72-a4bb-8ab2d4917e88": {
-      "ProjectGuid": "f0f61389-b74a-4f72-a4bb-8ab2d4917e88",
-      "DisplayName": "ConsoleApp1",
-      "ColorIndex": 4
-    },
-    "f15995c1-90cb-4b30-a9e4-e8586567c6f2": {
-      "ProjectGuid": "f15995c1-90cb-4b30-a9e4-e8586567c6f2",
-      "DisplayName": "App1",
-      "ColorIndex": 5
-    },
-    "a19e1c05-0a40-4ff8-bf78-7174bc8ba910": {
-      "ProjectGuid": "a19e1c05-0a40-4ff8-bf78-7174bc8ba910",
-      "DisplayName": "MinecraftBotManager",
-      "ColorIndex": 6
-    },
-    "633ef701-ba22-41e9-82ca-39516b5a8866": {
-      "ProjectGuid": "633ef701-ba22-41e9-82ca-39516b5a8866",
-      "DisplayName": "MinecraftBotManagerWPF",
-      "ColorIndex": 7
-    },
-    "2837164d-432c-46f9-b6b5-df86d84f5751": {
-      "ProjectGuid": "2837164d-432c-46f9-b6b5-df86d84f5751",
-      "DisplayName": "MinecraftLibrary.NBT",
-      "ColorIndex": 8
-    },
-    "c64c628a-b1d5-4254-b225-113462225a82": {
-      "ProjectGuid": "c64c628a-b1d5-4254-b225-113462225a82",
-      "DisplayName": "MinecraftBotManagerWPF",
-      "ColorIndex": 9
-    },
-    "3e4748d4-9c50-4efa-9f5f-fc7c852cd3dc": {
-      "ProjectGuid": "3e4748d4-9c50-4efa-9f5f-fc7c852cd3dc",
-      "DisplayName": "MinecraftBotManagerWinUI (Package)",
-      "ColorIndex": 10
-    },
-    "5b401f2f-109a-4b86-83d1-c7d21a145f6c": {
-      "ProjectGuid": "5b401f2f-109a-4b86-83d1-c7d21a145f6c",
-      "DisplayName": "MinecraftBotManagerWinUI",
-      "ColorIndex": 11
-    },
-    "1f95c2b0-1929-4854-8147-96ae3a2dcac4": {
-      "ProjectGuid": "1f95c2b0-1929-4854-8147-96ae3a2dcac4",
-      "DisplayName": "MinecraftBotManagerWinUI (Package)",
-      "ColorIndex": 12
-    },
-    "ec32a300-edd8-470c-a143-a2fd3985eb5f": {
-      "ProjectGuid": "ec32a300-edd8-470c-a143-a2fd3985eb5f",
-      "DisplayName": "MinecraftBotManagerWinUI",
-      "ColorIndex": 13
-    },
-    "222c5603-de5d-423b-a60a-ddefa3175070": {
-      "ProjectGuid": "222c5603-de5d-423b-a60a-ddefa3175070",
-      "DisplayName": "TestGG",
-      "ColorIndex": 14
-    },
-    "16d53b4d-627e-453f-ae29-ba8025e482f2": {
-      "ProjectGuid": "16d53b4d-627e-453f-ae29-ba8025e482f2",
-      "DisplayName": "MinecraftBotManagerWPF",
-      "ColorIndex": 15
-    },
-    "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27": {
-      "ProjectGuid": "2fe2cdc9-e5d8-4299-aee7-eb4a9acbcd27",
-      "DisplayName": "MinecraftLibrary.Networking",
-      "ColorIndex": 0
-    },
-    "97a38703-32db-4596-a1a7-051a145fecfa": {
-      "ProjectGuid": "97a38703-32db-4596-a1a7-051a145fecfa",
-      "DisplayName": "MinecraftLibrary.Utils",
-      "ColorIndex": 1
-    },
-    "9d44e0f7-83ae-4f1d-b635-07b2073f46f2": {
-      "ProjectGuid": "9d44e0f7-83ae-4f1d-b635-07b2073f46f2",
-      "DisplayName": "PacketGenerator",
-      "ColorIndex": 2
-    },
-    "cde458f9-c740-4cc9-9c0e-d7826f0cd188": {
-      "ProjectGuid": "cde458f9-c740-4cc9-9c0e-d7826f0cd188",
-      "DisplayName": "MinecraftLibrary.MVVM",
-      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 0
 }

@@ -1,14 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ProjectGuid>{F0F61389-B74A-4F72-A4BB-8AB2D4917E88}</ProjectGuid>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MinecraftLibrary.Core\MinecraftLibrary.Core.csproj" />
-  </ItemGroup>
-
 </Project>

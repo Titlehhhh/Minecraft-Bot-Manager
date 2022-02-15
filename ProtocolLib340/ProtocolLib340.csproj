@@ -8,8 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Protocol\MinecraftLibrary.Networking.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />    
   </ItemGroup>
 
 </Project>
