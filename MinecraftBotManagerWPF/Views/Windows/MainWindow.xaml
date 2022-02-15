@@ -109,7 +109,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListBox}">
-                                                <ScrollViewer Style="{StaticResource LeftScrollViewer}">
+                                                <ScrollViewer>
                                                     <StackPanel IsItemsHost="True">
                                                         
                                                     </StackPanel>
@@ -146,7 +146,27 @@
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="0">
-                    
+                    <ScrollViewer>
+                        <StackPanel>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
+                            
+                        </StackPanel>
+                    </ScrollViewer>
                 </Border>
             </Grid>
             <Border Height="20" Background="#FF3E3E46" Grid.Row="2">
