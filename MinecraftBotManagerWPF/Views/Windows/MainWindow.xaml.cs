@@ -24,6 +24,7 @@ namespace MinecraftBotManagerWPF.Views.Windows
         public MainWindow()
         {
             InitializeComponent();
+            
 
             this.StateChanged += MainWindow_StateChanged;
         }

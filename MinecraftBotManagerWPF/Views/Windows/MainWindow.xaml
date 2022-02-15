@@ -103,16 +103,14 @@
                         <Border BorderBrush="{Binding ElementName=BorderBotList,Path=BorderBrush}" Background="{Binding ElementName=BorderBotList,Path=BorderBrush}">
                             <TextBlock FontFamily="Verdana" FontSize="16" Text="Боты" Foreground="#F5F2E7" HorizontalAlignment="Center"/>
                         </Border>
-                        <ListBox>
+                        <ListBox SelectedIndex="0">
                             <ListBox.Style>
                                 <Style TargetType="ListBox">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListBox}">
                                                 <ScrollViewer>
-                                                    <StackPanel IsItemsHost="True">
-                                                        
-                                                    </StackPanel>
+                                                    <StackPanel IsItemsHost="True"/>
                                                 </ScrollViewer>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -127,12 +125,30 @@
                                     <Setter Property="ItemContainerStyle">
                                         <Setter.Value>
                                             <Style TargetType="ListBoxItem">
+                                                <Setter Property="BorderThickness" Value="1"/>
                                                 <Setter Property="Template">
                                                     <Setter.Value>
                                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                            <Border>
+                                                            <Border Background="{TemplateBinding Background}" 
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"                                                                    
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    Padding="5,0">
                                                                 <ContentPresenter/>
                                                             </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsSelected" Value="True">
+                                                                    <Setter Property="Background">
+                                                                        <Setter.Value>
+                                                                            <SolidColorBrush Opacity="0.4" Color="#FFC073FB"/>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Setter Property="BorderBrush">
+                                                                        <Setter.Value>
+                                                                            <SolidColorBrush Opacity="0.5" Color="#FFB098C0"/>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
                                                         </ControlTemplate>
                                                     </Setter.Value>
                                                 </Setter>
@@ -142,29 +158,15 @@
                                 </Style>
                             </ListBox.Style>
                             <sys:String>Title_</sys:String>
+                            <sys:String>Ookla</sys:String>
                         </ListBox>
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="0">
                     <ScrollViewer>
                         <StackPanel>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            <TextBlock Text="ASdadssad" FontSize="20" Foreground="White"/>
-                            
+
+
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
