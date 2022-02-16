@@ -24,8 +24,15 @@ namespace MinecraftBotManagerWPF.Views.Windows
         public MainWindow()
         {
             InitializeComponent();
-            
 
+            if (WindowState == WindowState.Maximized)
+            {
+                (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowRestore;
+            }
+            else if (WindowState == WindowState.Normal)
+            {
+                (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowMaximize;
+            }
             this.StateChanged += MainWindow_StateChanged;
         }
 
