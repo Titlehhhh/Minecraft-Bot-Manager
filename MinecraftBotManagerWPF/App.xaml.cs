@@ -1,4 +1,5 @@
-﻿using MinecraftBotManagerWPF.Views.Windows;
+﻿using MinecraftBotManagerWPF.ViewModels;
+using MinecraftBotManagerWPF.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,9 +15,23 @@ namespace MinecraftBotManagerWPF
     /// </summary>
     public partial class App : Application
     {
-        
-        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            StartupWindow start = new StartupWindow();
+            start.DataContext = new StartupVM(() =>
+            {
+                
+                MainWindow main = new MainWindow();
+                main.DataContext = new MainViewModel();
 
+                this.MainWindow = main;
+                main.Show();
+                start.Close();
+            });
+            this.MainWindow = start;
+            start.Show();
 
+            base.OnStartup(e);
+        }
     }
 }

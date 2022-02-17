@@ -11,7 +11,7 @@ namespace MinecraftBotManagerWPF.Interfaces
         string Username { get; set; }
         string Host { get; set; }
         string Port { get; set; }
-        bool ProxyEnabled { get; set; }
+        
 
 
     }

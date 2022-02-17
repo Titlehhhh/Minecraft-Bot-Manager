@@ -10,8 +10,13 @@
         xmlns:controls="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Style="{StaticResource CustomWindowStyle}"
+        xmlns:vms="clr-namespace:MinecraftBotManagerWPF.ViewModels"
+        DataContext="{Binding MainViewModel,Source={StaticResource Locator}}"
         WindowState="Maximized"
+        
+        xmlns:converters ="clr-namespace:MinecraftBotManagerWPF.Converters"
         Title="MainWindow" Height="900" Width="1440">
+    
     <Window.Resources>
         <Style x:Key="HeaderButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -60,6 +65,8 @@
         <Style x:Key="SubHeaderButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="ToolTipService.VerticalOffset" Value="5"/>
+            <Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -160,7 +167,162 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="VSBorderBrushColor" Color="#3d3d3d" Opacity="1"/>
+
+        <Style x:Key="HintTextBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
+            <Setter Property="BorderThickness" Value="1.2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Padding="1,2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <TextBlock Visibility="Hidden" x:Name="BackText" FontSize="{TemplateBinding FontSize}" Text="{Binding Path=(mat:HintAssist.Hint),RelativeSource={RelativeSource Self}}" >
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="LightGray"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="Disabled"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="False"/>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
+
+                                <Setter Property="Visibility" TargetName="BackText" Value="Visible"/>
+                            </MultiTrigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="Transparent" Opacity="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BorderBrush">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <converters:EmptyStringConverter x:Key="EmptyStrinConvert"/>
+        <DataTemplate DataType="{x:Type vms:BotViewModel}">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Background="{StaticResource VSBorderBrushColor}" BorderThickness="0,2.5,0,0" BorderBrush="#9477ff">
+                    <StackPanel Margin="10,5,10,5">
+                        <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding Username,UpdateSourceTrigger=PropertyChanged}" FontSize="17">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="CaretBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="FontFamily" Value="JetBrains Mono"/>
+                                    <Setter Property="Template" >
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                <StackPanel>
+                                                    <Border BorderThickness="0.8">
+                                                        <Border.Background>
+                                                            <SolidColorBrush Color="#191919"/>
+                                                        </Border.Background>
+                                                        <Border.BorderBrush>
+                                                            <SolidColorBrush Color="White" Opacity="0.8"/>
+                                                        </Border.BorderBrush>
+                                                        <ScrollViewer Margin="3" VerticalScrollBarVisibility="Disabled" x:Name="PART_ContentHost">
+
+
+                                                        </ScrollViewer>
+                                                    </Border>
+                                                </StackPanel>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <DockPanel LastChildFill="False" Margin="0,5,0,0">
+                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" >
+                                <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <mat:PackIcon Kind="Play" Height="27" Width="27" Margin="3" Foreground="#0ed145"/>
+                                    <Button.ToolTip>
+                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                            <TextBlock Text="Запустить" Foreground="Black"/>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <mat:PackIcon Kind="Reload" Height="27" Width="27" Margin="3" Foreground="GhostWhite"/>
+                                    <Button.ToolTip>
+                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                            <TextBlock Text="Перезапустить" Foreground="Black"/>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                <Button Margin="0,0,10,0"  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <mat:PackIcon Kind="AccountsAdd" Height="27" Width="27" Margin="3" Foreground="#d5cc23"/>
+                                    <Button.ToolTip>
+                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                            <TextBlock Text="Создание полной копии бота" Foreground="Black"/>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
+                                    <Button.ToolTip>
+                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                            <TextBlock Text="Удалить" Foreground="Black"/>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+
+                        </DockPanel>
+
+
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="1" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.2"/>
+                    </Border.Background>
+                    <ScrollViewer>
+                        <Grid VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBox x:Name="HostTextBox" Validation.ErrorTemplate="{x:Null}" Style="{StaticResource HintTextBox}" Width="100" FontSize="17" mat:HintAssist.Hint="Хост"/>
+                                <StackPanel Margin="2,0" VerticalAlignment="Center">
+                                    <Ellipse Width="4" Margin="0,0,0,7" Height="4" Fill="White"/>
+                                    <Ellipse Width="4" Height="4" Fill="White"/>
+                                </StackPanel>
+                                <TextBox x:Name="PortTextBox" Validation.ErrorTemplate="{x:Null}" Style="{StaticResource HintTextBox}" FontSize="17" Width="70" mat:HintAssist.Hint="Порт"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
     <Border Background="#FF1F1F1F">
         <Grid>
@@ -201,23 +363,107 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Border>
-                        
+                    <Border Background="{StaticResource VSBorderBrushColor}">
+                        <TextBlock Text="Боты" Margin="5,2,0,2" FontSize="15" FontFamily="JetBrains Mono" Foreground="White"/>
                     </Border>
-                    <Border Grid.Row="1" Padding="1" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
+                    <Border Padding="1,2" Grid.Row="1" BorderThickness="1,0" BorderBrush="{StaticResource VSBorderBrushColor}">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Command="{Binding CreateNewBotCommand}" Style="{StaticResource SubHeaderButtonStyle}"  >
+                                <mat:PackIcon Kind="Add" Height="20" Width="20" Foreground="White"/>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Создать"/>
+                                </Button.ToolTip>
+                            </Button>
+                            <Button Style="{StaticResource SubHeaderButtonStyle}" ToolTipService.VerticalOffset="5">
+                                <mat:PackIcon Kind="PlaylistPlay" Height="20" Width="20" Foreground="White"/>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Запустить всех"/>
+                                </Button.ToolTip>
+                            </Button>
+                            <Button Style="{StaticResource SubHeaderButtonStyle}" ToolTipService.VerticalOffset="5">
+                                <mat:PackIcon Kind="PlaylistRemove" Height="20" Width="20" Foreground="White"/>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Остановить всех"/>
+                                </Button.ToolTip>
+                            </Button>
+                            <Button Style="{StaticResource SubHeaderButtonStyle}" ToolTipService.VerticalOffset="5">
+                                <mat:PackIcon Kind="CircleArrows" Height="20" Width="20" Foreground="White"/>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Перезапустить всех"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                    <TextBox Grid.Row="2">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="CaretBrush" Value="White"/>
+                                <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
+                                <Setter Property="BorderThickness" Value="1.2"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border Padding="1,2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                <Grid>
+                                                    <TextBlock Visibility="Hidden" x:Name="BackText" Text="Поиск">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="LightGray"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="Disabled"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsFocused" Value="False"/>
+                                                        <Condition Property="Text" Value=""/>
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
+
+                                                    <Setter Property="Visibility" TargetName="BackText" Value="Visible"/>
+                                                </MultiTrigger>
+
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" >
+                                                        <Setter.Value>
+                                                            <SolidColorBrush Color="Transparent" Opacity="0.5"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="BorderBrush">
+                                                        <Setter.Value>
+                                                            <SolidColorBrush Color="White" Opacity="0.5"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Border Grid.Row="3" Padding="1,2" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
                         <Border.Background>
                             <SolidColorBrush Color="Black" Opacity="0.2"/>
                         </Border.Background>
                         <Grid>
-                            <ListBox SelectedIndex="0" x:Name="BotListBox">
+                            <ListBox VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding BotsCollection}" SelectedIndex="0" x:Name="BotListBox">
                                 <ListBox.Style>
-                                    <Style TargetType="ListBox">
+                                    <Style TargetType="{x:Type ListBox}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBox}">
-                                                    <StackPanel IsItemsHost="True" />
+                                                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                                        <StackPanel IsItemsHost="True" />
+                                                    </ScrollViewer>                                                    
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -225,7 +471,7 @@
                                             <Setter.Value>
                                                 <Style TargetType="{x:Type ListBoxItem}">
                                                     <Setter Property="OverridesDefaultStyle" Value="True"/>
-                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                    <Setter Property="BorderThickness" Value="1.5"/>
                                                     <Setter Property="Background" Value="Transparent"/>
                                                     <Setter Property="Template">
                                                         <Setter.Value>
@@ -244,12 +490,12 @@
                                                                     <Trigger Property="IsSelected" Value="True">
                                                                         <Setter Property="Background">
                                                                             <Setter.Value>
-                                                                                <SolidColorBrush Color="Gray" Opacity="0.3"/>
+                                                                                <SolidColorBrush Color="#714afe" Opacity="0.8"/>
                                                                             </Setter.Value>
                                                                         </Setter>
                                                                         <Setter Property="BorderBrush">
                                                                             <Setter.Value>
-                                                                                <SolidColorBrush Color="White" Opacity="0.3"/>
+                                                                                <SolidColorBrush Color="#9477ff" Opacity="1"/>
                                                                             </Setter.Value>
                                                                         </Setter>
                                                                     </Trigger>
@@ -262,116 +508,23 @@
                                         </Setter>
                                         <Setter Property="ItemTemplate">
                                             <Setter.Value>
-                                                <DataTemplate>
-                                                    <TextBlock Foreground="White" FontSize="16" FontFamily="JetBrains Mono" Text="{Binding}"/>
+                                                <DataTemplate DataType="{x:Type vms:BotViewModel}">
+                                                    <TextBlock Foreground="White" FontSize="16" Text="{Binding Username,Converter={StaticResource EmptyStrinConvert},ConverterParameter='Новый бот'}" FontFamily="JetBrains Mono">
+                                                        
+                                                    </TextBlock>
                                                 </DataTemplate>
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
-                                </ListBox.Style>
-                                <sys:String>Title_</sys:String>
-                                <sys:String>Ookla</sys:String>
-                                <sys:String>Bot123</sys:String>
+                                </ListBox.Style>                                
                             </ListBox>
 
 
                         </Grid>
                     </Border>
                 </Grid>
-                
-                <Grid Grid.Column="2"  Grid.RowSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Border Background="{StaticResource VSBorderBrushColor}" BorderThickness="0,2,0,0" BorderBrush="#4f6bf6">
-                        <StackPanel Margin="10,5,10,5">
-                            <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding ElementName=BotListBox,Path=SelectedItem}" FontSize="17">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Foreground" Value="White"/>
-                                        <Setter Property="CaretBrush" Value="White"/>
-                                        <Setter Property="BorderBrush">
-                                            <Setter.Value>
-                                                <SolidColorBrush Color="Transparent" Opacity="0.9"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Setter Property="BorderThickness" Value="0"/>
-                                        <Setter Property="FontFamily" Value="JetBrains Mono"/>
-                                        <Setter Property="Template" >
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type TextBox}">
-                                                    <StackPanel>
-                                                        <Border Padding="2">
-                                                            <ScrollViewer BorderThickness="0" VerticalScrollBarVisibility="Disabled" x:Name="PART_ContentHost">
-                                                                <ScrollViewer.Background>
-                                                                    <SolidColorBrush Color="#191919"/>
-                                                                </ScrollViewer.Background>
-                                                            </ScrollViewer>
-                                                        </Border>
-                                                    </StackPanel>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-                            <DockPanel LastChildFill="False" Margin="0,5,0,0">
-                                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" >
-                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                        <mat:PackIcon Kind="Play" Height="27" Width="27" Margin="3" Foreground="#0ed145"/>
-                                        <Button.ToolTip>
-                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                                <TextBlock Text="Запустить" Foreground="Black"/>
-                                            </ToolTip>
-                                        </Button.ToolTip>
-                                    </Button>
-                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                        <mat:PackIcon Kind="Reload" Height="27" Width="27" Margin="3" Foreground="GhostWhite"/>
-                                        <Button.ToolTip>
-                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                                <TextBlock Text="Перезапустить" Foreground="Black"/>
-                                            </ToolTip>
-                                        </Button.ToolTip>
-                                    </Button>
-                                </StackPanel>
-                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                    <Button Margin="0,0,10,0"  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                        <mat:PackIcon Kind="AccountsAdd" Height="27" Width="27" Margin="3" Foreground="#d5cc23"/>
-                                        <Button.ToolTip>
-                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                                <TextBlock Text="Создание полной копии бота" Foreground="Black"/>
-                                            </ToolTip>
-                                        </Button.ToolTip>
-                                    </Button>
-
-                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                        <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
-                                        <Button.ToolTip>
-                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                                <TextBlock Text="Удалить" Foreground="Black"/>
-                                            </ToolTip>
-                                        </Button.ToolTip>
-                                    </Button>
-                                </StackPanel>
-
-                            </DockPanel>
-
-
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Row="1" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
-                        <Border.Background>
-                            <SolidColorBrush Color="Black" Opacity="0.2"/>
-                        </Border.Background>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                        </Grid>
-                    </Border>
-                </Grid>
+                <ContentControl Content="{Binding ElementName=BotListBox,Path=SelectedItem}" Grid.Column="2" Grid.RowSpan="2"/>
+               
             </Grid>
 
 
