@@ -18,20 +18,18 @@ namespace MinecraftBotManagerWPF
         protected override void OnStartup(StartupEventArgs e)
         {
             StartupWindow start = new StartupWindow();
+            start.Show();
+            this.MainWindow = start;
             start.DataContext = new StartupVM(() =>
             {
                 
                 MainWindow main = new MainWindow();
                 main.DataContext = new MainViewModel();
-
-                this.MainWindow = main;
                 main.Show();
+                this.MainWindow = main;
+                
                 start.Close();
             });
-            this.MainWindow = start;
-            start.Show();
-
-            base.OnStartup(e);
         }
     }
 }

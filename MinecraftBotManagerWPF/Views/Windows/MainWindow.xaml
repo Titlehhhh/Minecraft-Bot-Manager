@@ -332,11 +332,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <DockPanel LastChildFill="False">
-                <Menu DockPanel.Dock="Left" WindowChrome.IsHitTestVisibleInChrome="True">
-                    <MenuItem IsSubmenuOpen="True" Header="Вид">
-                        <MenuItem Header="Чат"/>
-                    </MenuItem>
-                </Menu>
+                
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" WindowChrome.IsHitTestVisibleInChrome="True">
                     <Button x:Name="HideButton" Click="HideButton_Click" Style="{StaticResource HeaderButtonStyle}">

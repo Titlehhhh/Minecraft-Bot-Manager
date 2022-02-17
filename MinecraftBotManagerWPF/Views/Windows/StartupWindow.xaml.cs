@@ -22,12 +22,7 @@ namespace MinecraftBotManagerWPF.Views.Windows
     {
         public StartupWindow()
         {
-            InitializeComponent();
-            DataContext = new StartupVM(() =>
-            {
-                new MainWindow().Show();
-                Close();
-            });
+            InitializeComponent();            
 
         }
     }

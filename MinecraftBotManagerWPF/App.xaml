@@ -132,46 +132,7 @@
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
 
-            <Style x:Key="HeaderMenu" TargetType="{x:Type Menu}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <Border>
-                            <StackPanel Orientation="Horizontal" IsItemsHost="True" ClipToBounds="True">
-
-                            </StackPanel>
-                        </Border>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="{x:Type MenuItem}"
-       TargetType="{x:Type MenuItem}">
-                <Setter Property="OverridesDefaultStyle"
-          Value="True" />
-                <Style.Triggers>
-                    <Trigger Property="Role"
-             Value="TopLevelHeader">
-                        <Setter Property="Template"
-              Value="{DynamicResource MenuItemTopLevelHeaderTemplate}" />
-                        <Setter Property="Grid.IsSharedSizeScope"
-              Value="true" />
-                    </Trigger>
-                    <Trigger Property="Role"
-             Value="TopLevelItem">
-                        <Setter Property="Template"
-              Value="{DynamicResource TopLevelItemTemplate}" />
-                    </Trigger>
-                    <Trigger Property="Role"
-             Value="SubmenuHeader">
-                        <Setter Property="Template"
-              Value="{DynamicResource SubmenuItemTemplate}" />
-                    </Trigger>
-                    <Trigger Property="Role"
-             Value="SubmenuItem">
-                        <Setter Property="Template"
-              Value="{DynamicResource SubmenuHeaderTemplate}" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
+           
 
 
 
