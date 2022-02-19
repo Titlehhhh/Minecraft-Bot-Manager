@@ -16,209 +16,13 @@
         
         xmlns:converters ="clr-namespace:MinecraftBotManagerWPF.Converters"
         Title="MainWindow" Height="900" Width="1440">
-    
+
     <Window.Resources>
-        <Style x:Key="HeaderButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Padding="10,8"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="DarkGray" Opacity="0.3"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="BorderBrush">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="DarkGray" Opacity="0.5"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="DarkGray" Opacity="0.4"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="BorderBrush">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="DarkGray" Opacity="0.5"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
 
-        <Style x:Key="SubHeaderButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="ToolTipService.VerticalOffset" Value="5"/>
-            <Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border 
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="Gray" Opacity="0.3"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="DarkGray" Opacity="0.4"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="Black" Opacity="0.3"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="BorderBrush">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="GhostWhite" Opacity="0.5"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="MouseOverBorder" TargetType="Border">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Padding" Value="10,10,0,10"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <SolidColorBrush Color="Gray" Opacity="0.3"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Margin" Value="0,5"/>
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <SolidColorBrush Color="#5f5f5f" Opacity="0.4"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="BorderBrush" >
-                <Setter.Value>
-                    <SolidColorBrush Color="Transparent" Opacity="0.7"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="BorderThickness" Value="0.8"/>
-            <Setter Property="MinHeight" Value="20"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="CaretBrush" Value="White"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="MinWidth" Value="180"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="JetBrains Mono"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                        <Border Padding="1" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="Black" Opacity="0.3"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="BorderBrush" >
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="White" Opacity="0.7"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="HintTextBox" TargetType="TextBox">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="CaretBrush" Value="White"/>
-            <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
-            <Setter Property="BorderThickness" Value="1.2"/>
-            <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Padding="1,2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid>
-                                <TextBlock Visibility="Hidden" x:Name="BackText" FontSize="{TemplateBinding FontSize}" Text="{Binding Path=(mat:HintAssist.Hint),RelativeSource={RelativeSource Self}}" >
-                                    <TextBlock.Foreground>
-                                        <SolidColorBrush Color="LightGray"/>
-                                    </TextBlock.Foreground>
-                                </TextBlock>
-                                <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="Disabled"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsFocused" Value="False"/>
-                                    <Condition Property="Text" Value=""/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
-                                <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
-
-                                <Setter Property="Visibility" TargetName="BackText" Value="Visible"/>
-                            </MultiTrigger>
-
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" >
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="Transparent" Opacity="0.5"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="BorderBrush">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="White" Opacity="0.5"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <converters:EmptyStringConverter x:Key="EmptyStrinConvert"/>
         <DataTemplate DataType="{x:Type vms:BotViewModel}">
-            <Grid >
+            <Grid Grid.IsSharedSizeScope="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -299,27 +103,208 @@
 
                     </StackPanel>
                 </Border>
-                <Border Grid.Row="1" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
-                    <Border.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.2"/>
-                    </Border.Background>
-                    <ScrollViewer>
-                        <Grid VerticalAlignment="Top">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" Margin="0,5">
-                                <TextBox x:Name="HostTextBox" Validation.ErrorTemplate="{x:Null}" Style="{StaticResource HintTextBox}" Width="100" FontSize="17" mat:HintAssist.Hint="Хост"/>
-                                <StackPanel Margin="2,0" VerticalAlignment="Center">
-                                    <Ellipse Width="4" Margin="0,0,0,7" Height="4" Fill="White"/>
-                                    <Ellipse Width="4" Height="4" Fill="White"/>
-                                </StackPanel>
-                                <TextBox x:Name="PortTextBox" Validation.ErrorTemplate="{x:Null}" Style="{StaticResource HintTextBox}" FontSize="17" Width="70" mat:HintAssist.Hint="Порт"/>
+                <Border Grid.Row="1" BorderBrush="{StaticResource VSBorderBrushColor}" Background="{StaticResource CommonColor}" BorderThickness="1,0,1,1">
 
-                            </StackPanel>
-                        </Grid>
-                    </ScrollViewer>
+                    <TabControl Margin="1" SelectedIndex="0">
+                        <TabControl.Style>
+                            <Style TargetType="TabControl">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TabControl}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel IsItemsHost="True">
+
+                                                </StackPanel>
+                                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Grid.Column="1"/>
+
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Setter Property="ItemContainerStyle">
+                                    <Setter.Value>
+                                        <Style TargetType="{x:Type TabItem}">
+                                            <Setter Property="Margin" Value="0,0,0,1"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="FontSize" Value="16"/>
+                                            <Setter Property="BorderThickness" Value="1.5"/>
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+
+                                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                Padding="5,5,20,5">
+                                                            <ContentPresenter ContentSource="Header"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background">
+                                                                    <Setter.Value>
+                                                                        <SolidColorBrush Color="Gray" Opacity="0.4"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                                <Setter Property="BorderBrush">
+                                                                    <Setter.Value>
+                                                                        <SolidColorBrush Color="Gray" Opacity="0.4"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background">
+                                                                    <Setter.Value>
+                                                                        <SolidColorBrush Color="#714afe" Opacity="0.8"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                                <Setter Property="BorderBrush">
+                                                                    <Setter.Value>
+                                                                        <SolidColorBrush Color="#9477ff" Opacity="1"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Style>
+                        <TabItem Header="Свойства">
+                            <ScrollViewer Grid.IsSharedSizeScope="True">
+                                <StackPanel Margin="0,0,0,0">
+                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="BorderContent"/>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox Background="#0ed145" VerticalAlignment="Center" IsChecked="True">
+                                                        <CheckBox.ToolTip>
+                                                            <TextBlock Text="При включении"/>
+                                                        </CheckBox.ToolTip>
+                                                    </CheckBox>
+                                                    <TextBlock Margin="7,0,0,0" Text="Авторизация" VerticalAlignment="Center" Foreground="White" FontWeight="SemiBold"/>
+                                                </StackPanel>
+
+                                                <TextBlock Text="Тип аккаунта:" Foreground="DarkGray"/>
+                                                <ComboBox Margin="0,7,0,0" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200" mat:ThemeAssist.Theme="Dark">
+                                                    <ComboBoxItem Content="Mojang"/>
+                                                    <ComboBoxItem Content="Microsoft"/>
+                                                </ComboBox>
+                                                <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                                    <PasswordBox mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
+                                                    <CheckBox  Margin="5,0,0,0">
+                                                        <CheckBox.Style>
+                                                            <Style TargetType="CheckBox">
+                                                                <Setter Property="Background" Value="Gray"/>
+
+                                                                <Setter Property="Template">
+                                                                    <Setter.Value>
+                                                                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                                                                            <Border Background="Transparent">
+                                                                                <mat:PackIcon Foreground="{TemplateBinding Background}" x:Name="Icon" VerticalAlignment="Center" Height="20" Width="20" Kind="EyeOff"/>
+                                                                            </Border>
+                                                                            <ControlTemplate.Triggers>
+                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                    <Setter Property="Background" Value="White"/>
+                                                                                </Trigger>
+                                                                                <Trigger Property="IsChecked" Value="True">
+                                                                                    <Setter TargetName="Icon" Property="Kind" Value="Eye"/>
+                                                                                </Trigger>
+                                                                            </ControlTemplate.Triggers>
+                                                                        </ControlTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </CheckBox.Style>
+                                                    </CheckBox>
+
+                                                </StackPanel>
+
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition  SharedSizeGroup="BorderContent"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <TextBlock Margin="0,0,0,0" Text="Сервер" Foreground="White" FontWeight="SemiBold"/>
+                                                <Grid Margin="0,7,0,0" MinWidth="200" HorizontalAlignment="Left">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="15*"/>
+                                                        <ColumnDefinition Width="Auto" MinWidth="13"/>
+                                                        <ColumnDefinition Width="6*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox mat:HintAssist.Hint="Хост" Style="{StaticResource HintTextBox}"/>
+                                                    <StackPanel Grid.Column="1" Margin="2,6,2,6">
+                                                        <Ellipse Margin="0,0,0,4" Height="4" Width="4" Fill="White" />
+                                                        <Ellipse Margin="0,4,0,0" Height="4" Width="4" Fill="White" />
+                                                    </StackPanel>
+                                                    <TextBox Grid.Column="2" Text="25565" mat:HintAssist.Hint="Порт" Style="{StaticResource HintTextBox}" />
+                                                </Grid>
+                                                <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition  SharedSizeGroup="BorderContent"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <CheckBox Background="#0ed145" FontWeight="SemiBold" Content="Прокси" FontFamily="JetBrains Mono" VerticalAlignment="Center" IsChecked="True">
+                                                    <CheckBox.ToolTip>
+                                                        <TextBlock Text="При включении"/>
+                                                    </CheckBox.ToolTip>
+                                                </CheckBox>
+
+                                                <CheckBox Margin="0,7" Content="Выбрать оптимальный сервер"/>
+                                                <Grid MinWidth="200" HorizontalAlignment="Left">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="15*"/>
+                                                        <ColumnDefinition Width="Auto" MinWidth="13"/>
+                                                        <ColumnDefinition Width="6*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox mat:HintAssist.Hint="Хост" Style="{StaticResource HintTextBox}"/>
+                                                    <StackPanel Grid.Column="1" Margin="2,6,2,6">
+                                                        <Ellipse Margin="0,0,0,4" Height="4" Width="4" Fill="White" />
+                                                        <Ellipse Margin="0,4,0,0" Height="4" Width="4" Fill="White" />
+                                                    </StackPanel>
+                                                    <TextBox Grid.Column="2" Text="25565" mat:HintAssist.Hint="Порт" Style="{StaticResource HintTextBox}" />
+                                                </Grid>
+                                                <TextBox Margin="0,7,0,0" mat:HintAssist.Hint="Логин" Style="{StaticResource HintTextBox}" MinWidth="200" HorizontalAlignment="Left" />
+                                            </StackPanel>
+
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </TabItem>
+                        <TabItem Header="Чат">
+
+                        </TabItem>
+                    </TabControl>
                 </Border>
             </Grid>
         </DataTemplate>
@@ -332,7 +317,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <DockPanel LastChildFill="False">
-                
+
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" WindowChrome.IsHitTestVisibleInChrome="True">
                     <Button x:Name="HideButton" Click="HideButton_Click" Style="{StaticResource HeaderButtonStyle}">
@@ -446,10 +431,8 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
-                    <Border Grid.Row="3" Padding="1,2" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
-                        <Border.Background>
-                            <SolidColorBrush Color="Black" Opacity="0.2"/>
-                        </Border.Background>
+                    <Border Background="{StaticResource CommonColor}" Grid.Row="3" Padding="1,2" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
+
                         <Grid>
                             <ListBox VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding BotsCollection}" SelectedIndex="0" x:Name="BotListBox">
                                 <ListBox.Style>
@@ -459,7 +442,7 @@
                                                 <ControlTemplate TargetType="{x:Type ListBox}">
                                                     <ScrollViewer VerticalScrollBarVisibility="Hidden">
                                                         <StackPanel IsItemsHost="True" />
-                                                    </ScrollViewer>                                                    
+                                                    </ScrollViewer>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -506,13 +489,13 @@
                                             <Setter.Value>
                                                 <DataTemplate DataType="{x:Type vms:BotViewModel}">
                                                     <TextBlock Foreground="White" FontSize="16" Text="{Binding Username,Converter={StaticResource EmptyStrinConvert},ConverterParameter='Новый бот'}" FontFamily="JetBrains Mono">
-                                                        
+
                                                     </TextBlock>
                                                 </DataTemplate>
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
-                                </ListBox.Style>                                
+                                </ListBox.Style>
                             </ListBox>
 
 
@@ -520,7 +503,7 @@
                     </Border>
                 </Grid>
                 <ContentControl Content="{Binding ElementName=BotListBox,Path=SelectedItem}" Grid.Column="2" Grid.RowSpan="2"/>
-               
+
             </Grid>
 
 
