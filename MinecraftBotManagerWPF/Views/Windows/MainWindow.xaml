@@ -18,7 +18,19 @@
         Title="MainWindow" Height="900" Width="1440">
 
     <Window.Resources>
-        
+        <Style x:Key="MouseOverBorder" TargetType="Border">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="10,10,0,10"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="Gray" Opacity="0.2"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
         <converters:EmptyStringConverter x:Key="EmptyStrinConvert"/>
         <DataTemplate DataType="{x:Type vms:BotViewModel}">
@@ -28,18 +40,79 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Border Background="{StaticResource VSBorderBrushColor}" BorderThickness="0,2.5,0,0" BorderBrush="#9477ff">
-                    <StackPanel Margin="10,5,10,5">
-                        <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding Username,UpdateSourceTrigger=PropertyChanged}" FontSize="17">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="CaretBrush" Value="White"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="FontFamily" Value="JetBrains Mono"/>
-                                    <Setter Property="Template" >
+                    
+                    <StackPanel>
+                        <ProgressBar RenderOptions.EdgeMode="Aliased" Margin="0" IsIndeterminate="True" Background="Transparent" BorderThickness="0" Foreground="#9477ff">
+                            <ProgressBar.Style>
+                                <Style TargetType="{x:Type ProgressBar}">
+                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="Height" Value="2"/>
+                                    <Setter Property="Template">
                                         <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type TextBox}">
-                                                <StackPanel>
+                                            <ControlTemplate TargetType="{x:Type ProgressBar}">                                                
+                                                <Grid x:Name="TemplateRoot" RenderTransformOrigin="0,0.5">                                                    
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Determinate"/>
+                                                            <VisualState x:Name="Indeterminate">
+                                                                <Storyboard RepeatBehavior="Forever">
+                                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Animation">
+                                                                        <EasingDoubleKeyFrame KeyTime="0" Value="0.05"/>
+                                                                        <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0.05"/>
+                                                                        <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0.05"/>
+                                                                    </DoubleAnimationUsingKeyFrames>
+                                                                    <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="Animation">
+                                                                        <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
+                                                                        <EasingPointKeyFrame KeyTime="0:0:1.5" Value="0.5,0.5"/>
+                                                                        <EasingPointKeyFrame KeyTime="0:0:3" Value="1.5,0.5"/>
+                                                                    </PointAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+                                                    <Rectangle x:Name="PART_Track"/>
+                                                    <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
+                                                        <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
+                                                        <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                                                            <Rectangle.RenderTransform>
+                                                                <TransformGroup>
+                                                                    <ScaleTransform/>
+                                                                    <SkewTransform/>
+                                                                    <RotateTransform/>
+                                                                    <TranslateTransform/>
+                                                                </TransformGroup>
+                                                            </Rectangle.RenderTransform>
+                                                        </Rectangle>
+                                                    </Grid>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>                                                  
+                                                   
+                                                    <Trigger Property="IsIndeterminate" Value="true">
+                                                        <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ProgressBar.Style>
+                        </ProgressBar>
+                        
+                        <StackPanel Margin="10,5,10,5">
+                            <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding Username,UpdateSourceTrigger=PropertyChanged}" FontSize="17">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="CaretBrush" Value="White"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="FontFamily" Value="JetBrains Mono"/>
+                                        <Setter Property="Template" >
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type TextBox}">
                                                     <Border BorderThickness="0.8">
                                                         <Border.Background>
                                                             <SolidColorBrush Color="#191919"/>
@@ -47,61 +120,87 @@
                                                         <Border.BorderBrush>
                                                             <SolidColorBrush Color="White" Opacity="0.8"/>
                                                         </Border.BorderBrush>
-                                                        <ScrollViewer Margin="3" VerticalScrollBarVisibility="Disabled" x:Name="PART_ContentHost">
-
-
-                                                        </ScrollViewer>
+                                                        <Grid>
+                                                            <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Visibility="Hidden" x:Name="BackText" FontSize="{TemplateBinding FontSize}" Text="Никнейм" >
+                                                                <TextBlock.Foreground>
+                                                                    <SolidColorBrush Color="LightGray" Opacity="0.8"/>
+                                                                </TextBlock.Foreground>
+                                                            </TextBlock>
+                                                            <ScrollViewer Margin="3" VerticalScrollBarVisibility="Disabled" x:Name="PART_ContentHost"/>
+                                                        </Grid>
                                                     </Border>
-                                                </StackPanel>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                        <DockPanel LastChildFill="False" Margin="0,5,0,0">
-                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" >
-                                <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                    <mat:PackIcon Kind="Play" Height="27" Width="27" Margin="3" Foreground="#0ed145"/>
-                                    <Button.ToolTip>
-                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                            <TextBlock Text="Запустить" Foreground="Black"/>
-                                        </ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                                <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                    <mat:PackIcon Kind="Reload" Height="27" Width="27" Margin="3" Foreground="GhostWhite"/>
-                                    <Button.ToolTip>
-                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                            <TextBlock Text="Перезапустить" Foreground="Black"/>
-                                        </ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                <Button Margin="0,0,10,0"  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                    <mat:PackIcon Kind="AccountsAdd" Height="27" Width="27" Margin="3" Foreground="#d5cc23"/>
-                                    <Button.ToolTip>
-                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                            <TextBlock Text="Создание полной копии бота" Foreground="Black"/>
-                                        </ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
+                                                    <ControlTemplate.Triggers>
+                                                        <MultiTrigger>
+                                                            <MultiTrigger.Conditions>
+                                                                <Condition Property="IsFocused" Value="False"/>
+                                                                <Condition Property="Text" Value=""/>
+                                                            </MultiTrigger.Conditions>
+                                                            <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
+                                                            <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
 
-                                <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
-                                    <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
-                                    <Button.ToolTip>
-                                        <ToolTip VerticalOffset="0" HorizontalOffset="0">
-                                            <TextBlock Text="Удалить" Foreground="Black"/>
-                                        </ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
+                                                            <Setter Property="Visibility" TargetName="BackText" Value="Visible"/>
+                                                        </MultiTrigger>
 
-                        </DockPanel>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource CommonColor}"/>
+                                                            <Setter Property="BorderBrush">
+                                                                <Setter.Value>
+                                                                    <SolidColorBrush Color="White" Opacity="0.5"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <DockPanel LastChildFill="False" Margin="0,5,0,0">
+                                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" >
+                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                        <mat:PackIcon Kind="Play" Height="27" Width="27" Margin="3" Foreground="#0ed145"/>
+                                        <Button.ToolTip>
+                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                                <TextBlock Text="Запустить" Foreground="Black"/>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                        <mat:PackIcon Kind="Reload" Height="27" Width="27" Margin="3" Foreground="GhostWhite"/>
+                                        <Button.ToolTip>
+                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                                <TextBlock Text="Перезапустить" Foreground="Black"/>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                    <Button Margin="0,0,10,0"  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                        <mat:PackIcon Kind="AccountsAdd" Height="27" Width="27" Margin="3" Foreground="#d5cc23"/>
+                                        <Button.ToolTip>
+                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                                <TextBlock Text="Создание полной копии бота" Foreground="Black"/>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                        <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
+                                        <Button.ToolTip>
+                                            <ToolTip VerticalOffset="0" HorizontalOffset="0">
+                                                <TextBlock Text="Удалить" Foreground="Black"/>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                            </DockPanel>
 
 
+                        </StackPanel>
                     </StackPanel>
+                    
                 </Border>
                 <Border Grid.Row="1" BorderBrush="{StaticResource VSBorderBrushColor}" Background="{StaticResource CommonColor}" BorderThickness="1,0,1,1">
 
@@ -182,13 +281,18 @@
                         <TabItem Header="Свойства">
                             <ScrollViewer Grid.IsSharedSizeScope="True">
                                 <StackPanel Margin="0,0,0,0">
+                                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="Основные" Margin="10,0,0,2"/>
+
+
+                                    <Rectangle Height="0.4" RenderOptions.EdgeMode="Aliased" Fill="White" StrokeThickness="0"  Margin="10,0"/>
+
                                     <Border Margin="10" Style="{StaticResource MouseOverBorder}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel>
+                                            <StackPanel Grid.Column="0">
                                                 <StackPanel Orientation="Horizontal">
                                                     <CheckBox Background="#0ed145" VerticalAlignment="Center" IsChecked="True">
                                                         <CheckBox.ToolTip>
@@ -199,68 +303,40 @@
                                                 </StackPanel>
 
                                                 <TextBlock Text="Тип аккаунта:" Foreground="DarkGray"/>
-                                                <ComboBox Margin="0,7,0,0" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200" mat:ThemeAssist.Theme="Dark">
+                                                <ComboBox Style="{StaticResource VSComboBoxStyle}" Margin="0,7,0,0" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200" mat:ThemeAssist.Theme="Dark">
                                                     <ComboBoxItem Content="Mojang"/>
                                                     <ComboBoxItem Content="Microsoft"/>
                                                 </ComboBox>
-                                                <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
-                                                    <PasswordBox mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
-                                                    <CheckBox  Margin="5,0,0,0">
-                                                        <CheckBox.Style>
-                                                            <Style TargetType="CheckBox">
-                                                                <Setter Property="Background" Value="Gray"/>
-
-                                                                <Setter Property="Template">
-                                                                    <Setter.Value>
-                                                                        <ControlTemplate TargetType="{x:Type CheckBox}">
-                                                                            <Border Background="Transparent">
-                                                                                <mat:PackIcon Foreground="{TemplateBinding Background}" x:Name="Icon" VerticalAlignment="Center" Height="20" Width="20" Kind="EyeOff"/>
-                                                                            </Border>
-                                                                            <ControlTemplate.Triggers>
-                                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                                    <Setter Property="Background" Value="White"/>
-                                                                                </Trigger>
-                                                                                <Trigger Property="IsChecked" Value="True">
-                                                                                    <Setter TargetName="Icon" Property="Kind" Value="Eye"/>
-                                                                                </Trigger>
-                                                                            </ControlTemplate.Triggers>
-                                                                        </ControlTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </Style>
-                                                        </CheckBox.Style>
-                                                    </CheckBox>
-
-                                                </StackPanel>
-
+                                                <TextBox Margin="0,7,0,0" Style="{StaticResource HintTextBox}" mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
                                             </StackPanel>
                                         </Grid>
                                     </Border>
 
                                     <Border Margin="10" Style="{StaticResource MouseOverBorder}">
-                                        <Grid >
+                                        <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition  SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
                                             <StackPanel>
                                                 <TextBlock Margin="0,0,0,0" Text="Сервер" Foreground="White" FontWeight="SemiBold"/>
-                                                <Grid Margin="0,7,0,0" MinWidth="200" HorizontalAlignment="Left">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="15*"/>
-                                                        <ColumnDefinition Width="Auto" MinWidth="13"/>
-                                                        <ColumnDefinition Width="6*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBox mat:HintAssist.Hint="Хост" Style="{StaticResource HintTextBox}"/>
-                                                    <StackPanel Grid.Column="1" Margin="2,6,2,6">
-                                                        <Ellipse Margin="0,0,0,4" Height="4" Width="4" Fill="White" />
-                                                        <Ellipse Margin="0,4,0,0" Height="4" Width="4" Fill="White" />
-                                                    </StackPanel>
-                                                    <TextBox Grid.Column="2" Text="25565" mat:HintAssist.Hint="Порт" Style="{StaticResource HintTextBox}" />
-                                                </Grid>
-                                                <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                                <Grid>
+                                                    <Grid Background="Transparent" x:Name="IPGrid" Margin="0,7,0,0" MinWidth="200" HorizontalAlignment="Left">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="15*"/>
+                                                            <ColumnDefinition Width="Auto" MinWidth="13"/>
+                                                            <ColumnDefinition Width="6*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox mat:HintAssist.Hint="Хост" Style="{StaticResource HintTextBox}"/>
+                                                        <StackPanel Grid.Column="1" Margin="2,6,2,6">
+                                                            <Ellipse Margin="0,0,0,4" Height="4" Width="4" Fill="White" />
+                                                            <Ellipse Margin="0,4,0,0" Height="4" Width="4" Fill="White" />
+                                                        </StackPanel>
+                                                        <TextBox Grid.Column="2" Text="25565" mat:HintAssist.Hint="Порт" Style="{StaticResource HintTextBox}" />
+                                                    </Grid>
 
-                                                </StackPanel>
+                                                </Grid>
+
                                             </StackPanel>
 
                                         </Grid>
@@ -272,7 +348,7 @@
                                                 <ColumnDefinition  SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel>
+                                            <StackPanel Grid.Column="0">
                                                 <CheckBox Background="#0ed145" FontWeight="SemiBold" Content="Прокси" FontFamily="JetBrains Mono" VerticalAlignment="Center" IsChecked="True">
                                                     <CheckBox.ToolTip>
                                                         <TextBlock Text="При включении"/>
@@ -291,13 +367,41 @@
                                                         <Ellipse Margin="0,0,0,4" Height="4" Width="4" Fill="White" />
                                                         <Ellipse Margin="0,4,0,0" Height="4" Width="4" Fill="White" />
                                                     </StackPanel>
-                                                    <TextBox Grid.Column="2" Text="25565" mat:HintAssist.Hint="Порт" Style="{StaticResource HintTextBox}" />
+                                                    <TextBox Grid.Column="2" mat:HintAssist.Hint="Порт" Style="{StaticResource HintTextBox}" />
                                                 </Grid>
+                                                <TextBlock Text="Тип прокси:" Foreground="DarkGray"/>
+                                                <ComboBox Style="{StaticResource VSComboBoxStyle}" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200">
+                                                    <ComboBoxItem Content="HTTP"/>
+                                                    <ComboBoxItem Content="HTTPS"/>
+                                                    <ComboBoxItem Content="SOCKS4"/>
+                                                    <ComboBoxItem Content="SOCKS5"/>
+                                                </ComboBox>
+
                                                 <TextBox Margin="0,7,0,0" mat:HintAssist.Hint="Логин" Style="{StaticResource HintTextBox}" MinWidth="200" HorizontalAlignment="Left" />
+                                                <TextBox Margin="0,7,0,0" Style="{StaticResource HintTextBox}" mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
                                             </StackPanel>
 
                                         </Grid>
                                     </Border>
+                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="BorderContent"/>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="Версия" VerticalAlignment="Center" Foreground="White" FontWeight="SemiBold"/>
+                                                <ComboBox Style="{StaticResource VSComboBoxStyle}" Margin="0,7,0,0" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200" mat:ThemeAssist.Theme="Dark">
+                                                    <ComboBoxItem Content="1.12.2"/>
+                                                    <ComboBoxItem Content="1.16.5"/>
+                                                </ComboBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+
+                                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="Дополнительные" Margin="10,0,0,2"/>
+                                    <Rectangle Height="1" RenderOptions.EdgeMode="Aliased" Fill="White" StrokeThickness="0" Margin="10,0"/>
+
                                 </StackPanel>
                             </ScrollViewer>
                         </TabItem>

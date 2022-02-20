@@ -11,7 +11,7 @@
         <ResourceDictionary>
             <vms:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
             <SolidColorBrush Color="#191919" x:Key="CommonColor"/>
-            
+
             <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
                 <Setter Property="WindowChrome.WindowChrome">
                     <Setter.Value>
@@ -154,19 +154,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="MouseOverBorder" TargetType="Border">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Padding" Value="10,10,0,10"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background">
-                            <Setter.Value>
-                                <SolidColorBrush Color="Gray" Opacity="0.2"/>
-                            </Setter.Value>
-                        </Setter>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
+            
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="0,5"/>
                 <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -289,7 +277,7 @@
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
 
-           
+
 
 
 
@@ -299,48 +287,161 @@
                  TargetType="{x:Type MenuItem}">
                 <Grid>
                     <Border>
-                        
+
                     </Border>
-                    
+
                 </Grid>
-                
+
             </ControlTemplate>
 
             <!-- TopLevelItem -->
             <ControlTemplate x:Key="TopLevelItemTemplate"
                  TargetType="{x:Type MenuItem}">
-                
+
             </ControlTemplate>
 
             <!-- SubmenuItem -->
             <ControlTemplate x:Key="SubmenuItemTemplate"
                  TargetType="{x:Type MenuItem}">
-                
+
             </ControlTemplate>
 
             <ControlTemplate x:Key="SubmenuHeaderTemplate"
                  TargetType="{x:Type MenuItem}">
-               
+
             </ControlTemplate>
 
 
-
+            <ControlTemplate x:Key="ComboBoxTextBox"
+                 TargetType="{x:Type TextBox}">
+                <Border x:Name="PART_ContentHost"
+          Focusable="False"
+          Background="{TemplateBinding Background}" />
+            </ControlTemplate>
 
             <Style TargetType="ComboBox" x:Key="VSComboBoxStyle">
-                
+                <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ComboBox}">
+                            <Grid >
+                                <Border x:Name="Root" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.7">
+                                    <Grid>                                        
+                                        <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"                                                                
+                                                              VerticalAlignment="Center"
+                                                          Margin="2"/>
+                                        <ToggleButton x:Name="Arrow"
+                                                      Grid.Column="2"
+                                                      Background="Transparent"
+                                                      Focusable="false"
+                                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                                                      ClickMode="Press"/>
+                                    </Grid>
+                                </Border>
+                                <Popup Placement="Bottom"
+                                       VerticalOffset="-0.7"
+                                       PlacementTarget="{Binding ElementName=Root}"
+                                       Focusable="False"
+                                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       AllowsTransparency="True">
+                                    <Grid x:Name="DropDown"
+                                          SnapsToDevicePixels="True"
+                                          MinWidth="{TemplateBinding ActualWidth}"
+                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border x:Name="DropDownBorder"
+                                                BorderThickness="0.7,0,0.7,0.7"
+                                                BorderBrush="White"
+                                                Background="{StaticResource CommonColor}">
+                                            <ScrollViewer Margin="1"                                                      >
+                                                <StackPanel IsItemsHost="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Popup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CommonColor}"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Foreground" TargetName="Arrow" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsDropDownOpen" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CommonColor}"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Foreground" TargetName="Arrow" Value="White"/>
+                                    <Setter Property="BorderThickness" TargetName="Root" Value="0.7,0.7,0.7,0"/>
+                                    <Setter Property="Margin" TargetName="Root" Value="0,0,0,0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                        <Border Background="{TemplateBinding Background}" Padding="2" Margin="0,1">
+                                            <ContentPresenter/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="LightGray" Opacity="0.2"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="LightGray" Opacity="0.4"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style TargetType="{x:Type ToggleButton}">
+                <Setter Property="Foreground" Value="Gray"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate>
-                            
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="Transparent" BorderThickness="0.7" Grid.ColumnSpan="2"/>
+                                <Border Grid.Column="0" BorderThickness="0.7" Background="Transparent"/>
+                                <mat:PackIcon 
+                                    Grid.Column="1"
+                                    VerticalAlignment="Stretch" 
+                                    HorizontalAlignment="Stretch" 
+                                    Kind="ArrowDropDown" 
+                                    Foreground="{TemplateBinding Foreground}"/>
+                            </Grid>
+
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
-            
-            
+
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
