@@ -1,15 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ProjectGuid>{F0F61389-B74A-4F72-A4BB-8AB2D4917E88}</ProjectGuid>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Hawezo.MojangSharp" Version="0.5.1" />
+    <Folder Include="Data\" />
+    <Folder Include="Packets\Client\Status\" />
+    <Folder Include="Packets\Client\Game\" />
+    <Folder Include="Packets\Server\" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
   </ItemGroup>
+
 </Project>

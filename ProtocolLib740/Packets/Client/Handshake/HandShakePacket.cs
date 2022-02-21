@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtocolLib340.Packets.Client.HandShake
+namespace ProtocolLib740.Packets.Client.Handshake
 {
-    [PacketHeader(0x00, 340, PacketSide.Client, PacketCategory.HandShake)]
+    [PacketHeader(0x00, 740, PacketSide.Client, PacketCategory.HandShake)]
     public class HandShakePacket : IPacket
     {
         public HandShakeIntent Intent { get; set; }
@@ -29,7 +29,7 @@ namespace ProtocolLib340.Packets.Client.HandShake
         {
 
         }
-        public HandShakePacket() { }
+
         public HandShakePacket(HandShakeIntent intent, int protocolVersion, int port, string host)
         {
             Intent = intent;

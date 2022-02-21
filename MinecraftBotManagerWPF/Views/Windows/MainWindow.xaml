@@ -18,6 +18,8 @@
         Title="MainWindow" Height="900" Width="1440">
 
     <Window.Resources>
+        <ext:BoolToVisibilityConverter TrueValue="Visible" FalseValue="Hidden" x:Key="BoolToVisConverter" />
+
         <Style x:Key="MouseOverBorder" TargetType="Border">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Padding" Value="10,10,0,10"/>
@@ -42,66 +44,8 @@
                 <Border Background="{StaticResource VSBorderBrushColor}" BorderThickness="0,2.5,0,0" BorderBrush="#9477ff">
                     
                     <StackPanel>
-                        <ProgressBar RenderOptions.EdgeMode="Aliased" Margin="0" IsIndeterminate="True" Background="Transparent" BorderThickness="0" Foreground="#9477ff">
-                            <ProgressBar.Style>
-                                <Style TargetType="{x:Type ProgressBar}">
-                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Height" Value="2"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ProgressBar}">                                                
-                                                <Grid x:Name="TemplateRoot" RenderTransformOrigin="0,0.5">                                                    
-                                                    <VisualStateManager.VisualStateGroups>
-                                                        <VisualStateGroup x:Name="CommonStates">
-                                                            <VisualState x:Name="Determinate"/>
-                                                            <VisualState x:Name="Indeterminate">
-                                                                <Storyboard RepeatBehavior="Forever">
-                                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Animation">
-                                                                        <EasingDoubleKeyFrame KeyTime="0" Value="0.05"/>
-                                                                        <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0.05"/>
-                                                                        <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0.05"/>
-                                                                    </DoubleAnimationUsingKeyFrames>
-                                                                    <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="Animation">
-                                                                        <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
-                                                                        <EasingPointKeyFrame KeyTime="0:0:1.5" Value="0.5,0.5"/>
-                                                                        <EasingPointKeyFrame KeyTime="0:0:3" Value="1.5,0.5"/>
-                                                                    </PointAnimationUsingKeyFrames>
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
-                                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
-                                                    <Rectangle x:Name="PART_Track"/>
-                                                    <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
-                                                        <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
-                                                        <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
-                                                            <Rectangle.RenderTransform>
-                                                                <TransformGroup>
-                                                                    <ScaleTransform/>
-                                                                    <SkewTransform/>
-                                                                    <RotateTransform/>
-                                                                    <TranslateTransform/>
-                                                                </TransformGroup>
-                                                            </Rectangle.RenderTransform>
-                                                        </Rectangle>
-                                                    </Grid>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>                                                  
-                                                   
-                                                    <Trigger Property="IsIndeterminate" Value="true">
-                                                        <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ProgressBar.Style>
-                        </ProgressBar>
-                        
+                        <ProgressBar RenderOptions.EdgeMode="Aliased" Margin="0" IsIndeterminate="True" Background="Transparent" BorderThickness="0" Foreground="#9477ff"/>
+
                         <StackPanel Margin="10,5,10,5">
                             <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding Username,UpdateSourceTrigger=PropertyChanged}" FontSize="17">
                                 <TextBox.Style>
@@ -286,13 +230,14 @@
 
                                     <Rectangle Height="0.4" RenderOptions.EdgeMode="Aliased" Fill="White" StrokeThickness="0"  Margin="10,0"/>
 
-                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                    <Border Margin="10,10,10,0" Style="{StaticResource MouseOverBorder}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="AdvancedSettings"/>
                                                 <ColumnDefinition SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0">
+                                            <StackPanel Grid.Column="1">
                                                 <StackPanel Orientation="Horizontal">
                                                     <CheckBox Background="#0ed145" VerticalAlignment="Center" IsChecked="True">
                                                         <CheckBox.ToolTip>
@@ -312,13 +257,34 @@
                                         </Grid>
                                     </Border>
 
-                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                    <Border Margin="10,0" Style="{StaticResource MouseOverBorder}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="AdvancedSettings"/>
                                                 <ColumnDefinition  SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel>
+                                            <StackPanel Margin="0,0,5,0">
+                                                <Button ToolTip="Локальные миры"
+                                                        ToolTipService.InitialShowDelay="0"
+                                                        ToolTipService.HorizontalOffset="0"                                                        
+                                                        ToolTipService.VerticalOffset="-4"
+                                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=Border},Converter={StaticResource BoolToVisConverter},Mode=OneWay,Path=IsMouseOver}"
+                                                        Style="{StaticResource PropertiesButtonStyle}">
+                                                    <mat:PackIcon Margin="1" Kind="LocalAreaNetworkConnect" Foreground="White"/>
+                                                    <Button.ContextMenu>
+                                                        <ContextMenu>
+                                                            <Border>
+                                                                <StackPanel>
+                                                                    <TextBlock Foreground="White" Text="192.168.1.0:34565"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </ContextMenu>
+                                                    </Button.ContextMenu>
+                                                </Button>
+                                            </StackPanel>
+                                            
+                                            <StackPanel Grid.Column="1">
                                                 <TextBlock Margin="0,0,0,0" Text="Сервер" Foreground="White" FontWeight="SemiBold"/>
                                                 <Grid>
                                                     <Grid Background="Transparent" x:Name="IPGrid" Margin="0,7,0,0" MinWidth="200" HorizontalAlignment="Left">
@@ -342,13 +308,14 @@
                                         </Grid>
                                     </Border>
 
-                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                    <Border Margin="10,0" Style="{StaticResource MouseOverBorder}">
                                         <Grid >
                                             <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="AdvancedSettings"/>
                                                 <ColumnDefinition  SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0">
+                                            <StackPanel Grid.Column="1">
                                                 <CheckBox Background="#0ed145" FontWeight="SemiBold" Content="Прокси" FontFamily="JetBrains Mono" VerticalAlignment="Center" IsChecked="True">
                                                     <CheckBox.ToolTip>
                                                         <TextBlock Text="При включении"/>
@@ -383,13 +350,14 @@
 
                                         </Grid>
                                     </Border>
-                                    <Border Margin="10" Style="{StaticResource MouseOverBorder}">
+                                    <Border Margin="10,0,10,10" Style="{StaticResource MouseOverBorder}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="AdvancedSettings"/>
                                                 <ColumnDefinition SharedSizeGroup="BorderContent"/>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0">
+                                            <StackPanel Grid.Column="1">
                                                 <TextBlock Text="Версия" VerticalAlignment="Center" Foreground="White" FontWeight="SemiBold"/>
                                                 <ComboBox Style="{StaticResource VSComboBoxStyle}" Margin="0,7,0,0" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="200" mat:ThemeAssist.Theme="Dark">
                                                     <ComboBoxItem Content="1.12.2"/>
