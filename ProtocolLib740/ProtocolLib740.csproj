@@ -10,7 +10,6 @@
     <Folder Include="Data\" />
     <Folder Include="Packets\Client\Status\" />
     <Folder Include="Packets\Client\Game\" />
-    <Folder Include="Packets\Server\Login\" />
     <Folder Include="Packets\Server\Game\" />
     <Folder Include="Packets\Server\Status\" />
   </ItemGroup>
