@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="MinecraftBotManagerWPF.Views.UserControls.CheckStatusControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
+             mc:Ignorable="d" 
+             xmlns:mat ="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Grid.Column="2" VerticalAlignment="Top" Orientation="Horizontal">
+        <Grid>
+            <ProgressBar x:Name="ProgressBar" Foreground="White" Visibility="Hidden" Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="True"/>
+            <mat:PackIcon x:Name="OkIcon" Visibility="Visible" Height="Auto" Width="Auto" Kind="Close" Foreground="OrangeRed" VerticalAlignment="Center"/>
+            <mat:PackIcon x:Name="ErrorIcon" Kind="Check" Height="Auto" Width="Auto" Visibility="Hidden" Foreground="Green" VerticalAlignment="Center"/>
+        </Grid>
+        <TextBlock VerticalAlignment="Top" Margin="3,0,0,0" FontSize="18" Text="{Binding Message}" Foreground="White"/>
+    </StackPanel>
+</UserControl>

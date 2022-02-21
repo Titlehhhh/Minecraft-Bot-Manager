@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
@@ -25,10 +26,38 @@ namespace MinecraftBotManagerWPF.ViewModels
         {
             get => createCommand ??= new RelayCommand(() =>
             {
-                BotsCollection.Add(new BotViewModel());
+                BotsCollection.Add(CreateBot());
             });
         }
 
+        
 
+
+        private BotViewModel CreateBot()
+        {
+            BotViewModel botvm = new BotViewModel();
+
+
+
+
+            return botvm;
+        }
+    }
+    internal class CloneBotCommand : ICommand
+    {
+        
+        
+
+        public event EventHandler? CanExecuteChanged;
+
+        public bool CanExecute(object? parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object? parameter)
+        {
+            
+        }
     }
 }

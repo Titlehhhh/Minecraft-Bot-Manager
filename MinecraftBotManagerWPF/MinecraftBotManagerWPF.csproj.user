@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\UserControls\CheckStatusControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UserControls\IPAddressControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,6 +21,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\UserControls\CheckStatusControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\UserControls\IPAddressControl.xaml">
       <SubType>Designer</SubType>
     </Page>

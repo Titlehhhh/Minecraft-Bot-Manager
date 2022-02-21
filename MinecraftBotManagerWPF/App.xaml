@@ -287,11 +287,12 @@
                 <Setter Property="CaretBrush" Value="White"/>
                 <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
                 <Setter Property="BorderThickness" Value="1.2"/>
+                <Setter Property="Opacity" Value="1"/>
                 <Setter Property="BorderBrush" Value="{StaticResource VSBorderBrushColor}"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TextBox}">
-                            <Border RenderOptions.EdgeMode="Aliased" Padding="1,2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Opacity="{TemplateBinding Opacity}" RenderOptions.EdgeMode="Aliased" Padding="1,2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                                 <Grid>
                                     <TextBlock Margin="2,0,0,0" Visibility="Hidden" x:Name="BackText" FontSize="{TemplateBinding FontSize}" Text="{Binding Path=(mat:HintAssist.Hint),RelativeSource={RelativeSource Self}}" >
                                         <TextBlock.Foreground>
@@ -320,6 +321,10 @@
                                             <SolidColorBrush Color="White" Opacity="0.5"/>
                                         </Setter.Value>
                                     </Setter>
+                                </Trigger>
+
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.7"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -402,12 +407,13 @@
             <Style TargetType="ComboBox" x:Key="VSComboBoxStyle">
                 <Setter Property="Background" Value="{StaticResource VSBorderBrushColor}"/>
                 <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Opacity" Value="1"/>
                 <Setter Property="SnapsToDevicePixels" Value="True"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ComboBox}">
-                            <Grid >
+                            <Grid Opacity="{TemplateBinding Opacity}">
                                 <Border x:Name="Root" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.7">
                                     <Grid>
                                         <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
@@ -457,6 +463,10 @@
                                     <Setter Property="Foreground" TargetName="Arrow" Value="White"/>
                                     <Setter Property="BorderThickness" TargetName="Root" Value="0.7,0.7,0.7,0"/>
                                     <Setter Property="Margin" TargetName="Root" Value="0,0,0,0.7"/>
+                                </Trigger>
+
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.7"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
