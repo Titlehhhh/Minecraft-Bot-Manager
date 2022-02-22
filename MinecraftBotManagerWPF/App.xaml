@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              d1p1:Ignorable="d"
+             xmlns:ext="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
              xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vms="clr-namespace:MinecraftBotManagerWPF.ViewModels"
              xmlns:local="clr-namespace:MinecraftBotManagerWPF">
     <Application.Resources>
         <ResourceDictionary>
+            <ext:BoolToVisibilityConverter TrueValue="Visible" FalseValue="Hidden" x:Key="BoolToVisConverter" />
             <vms:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
             <SolidColorBrush Color="#191919" x:Key="CommonColor"/>
             <Style TargetType="{x:Type ProgressBar}">

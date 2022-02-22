@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -72,46 +74,11 @@ namespace MinecraftBotManagerWPF.ViewModels
         }
         #endregion
 
-        #region Errors
-        private string auth;
-
-        public string AuthorizationError
-        {
-            get { return auth; }
-            set
-            {
-                auth = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string iperror;
-
-        public string IPAddresError
-        {
-            get { return iperror; }
-            set
-            {
-                iperror = value;
-                OnPropertyChanged();
-            }
-        }
-        private string proxyerr;
-
-        public string ProxyError
-        {
-            get { return proxyerr; }
-            set
-            {
-                proxyerr = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-
-
-
+        #region Errors        
+        public CheckStatus AuthStatus { get; set; } = new();
+        public CheckStatus IPStatus { get; set; } = new();
+        public CheckStatus ProxyStatus { get; set; } = new();
+        public CheckStatus VersionStatus { get; set; } = new();
         #endregion
 
         #region Команды
@@ -120,8 +87,40 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public RelayCommand StartCommand
         {
-            get => start ??= new RelayCommand(() =>
+            get => start ??= new RelayCommand(async () =>
             {
+
+                ReturnToOrgignalStateStatuses();
+
+                AuthStatus.IsEnabled = true;
+                AuthStatus.Message = "Авторизация";
+                AuthStatus.Status = StatusCheck.Init;
+                await Auth();
+                AuthStatus.Status = StatusCheck.Error;
+                AuthStatus.Message = "Неверный логин или пароль";
+
+                
+                return;
+
+                IPStatus.IsEnabled = true;
+
+                IPStatus.Message = "Проверка ip адреса";
+                IPStatus.Status = StatusCheck.Init;
+                await Task.Delay(2000);
+                IPStatus.Message = "IP адрес корректен";
+                IPStatus.Status = StatusCheck.Ok;
+
+                ProxyStatus.IsEnabled = true;
+                ProxyStatus.Status = StatusCheck.Init;
+                ProxyStatus.Message = "Ищем оптимальный сервер";
+                await Task.Delay(2000);
+
+                ProxyStatus.Status = StatusCheck.Ok;
+                ProxyStatus.Message = "Оптимальный сервер найден!\n145.4.2.14:34565\nГонконг";
+
+                VersionStatus.IsEnabled = true;
+                VersionStatus.Status = StatusCheck.Ok;
+                VersionStatus.Message = "Ок";
 
             }, () => BotState == State.None);
         }
@@ -161,15 +160,18 @@ namespace MinecraftBotManagerWPF.ViewModels
             set { copy = value; }
         }
 
+        private async Task Auth()
+        {
+            await Task.Delay(2000);
+        }
 
         #endregion
-        private void ClearErrorProperties()
+        private void ReturnToOrgignalStateStatuses()
         {
-            AuthorizationError = "";
-            IPAddresError = "";
-            ProxyError = "";
-
-            Step = StepCheck.None;
+            AuthStatus.IsEnabled = false;
+            IPStatus.IsEnabled = false;
+            ProxyStatus.IsEnabled = false;
+            VersionStatus.IsEnabled = false;
         }
 
         private StepCheck step;
@@ -185,11 +187,56 @@ namespace MinecraftBotManagerWPF.ViewModels
         }
 
 
-        
+
         public object Clone()
         {
             return new BotViewModel();
         }
     }
-    
+    public class CheckStatus : INotifyPropertyChanged
+    {
+        private StatusCheck status;
+
+        public StatusCheck Status
+        {
+            get { return status; }
+            set
+            {
+                status = value;
+                OnPropertyChanged();
+            }
+        }
+        private string message;
+
+        public string Message
+        {
+            get { return message; }
+            set
+            {
+                message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool enabled;
+
+        public bool IsEnabled
+        {
+            get { return enabled; }
+            set
+            {
+                enabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+    }
 }

@@ -18,7 +18,7 @@
         Title="MainWindow" Height="900" Width="1440">
 
     <Window.Resources>
-        <ext:BoolToVisibilityConverter TrueValue="Visible" FalseValue="Hidden" x:Key="BoolToVisConverter" />
+        
 
         <Style x:Key="MouseOverBorder" TargetType="Border">
             <Setter Property="Background" Value="Transparent"/>
@@ -102,7 +102,7 @@
                             </TextBox>
                             <DockPanel LastChildFill="False" Margin="0,5,0,0">
                                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" >
-                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <Button Command="{Binding StartCommand}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
                                         <mat:PackIcon Kind="Play" Height="27" Width="27" Margin="3" Foreground="#0ed145"/>
                                         <Button.ToolTip>
                                             <ToolTip VerticalOffset="0" HorizontalOffset="0">
@@ -251,7 +251,7 @@
                                                 </ComboBox>
                                                 <TextBox IsEnabled="{Binding ElementName=AuthCheckBox,Path=IsChecked,Mode=OneWay}" Margin="0,7,0,0" Style="{StaticResource HintTextBox}" mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
                                             </StackPanel>
-                                            <controls:CheckStatusControl Grid.Column="2"/>
+                                            <controls:CheckStatusControl DataContext="{Binding AuthStatus}" Grid.Column="2"/>
 
                                         </Grid>
                                     </Border>
@@ -304,7 +304,7 @@
                                                 </Grid>
 
                                             </StackPanel>
-                                            <TextBlock Text="{Binding IPAddresError}" VerticalAlignment="Center" Foreground="OrangeRed" Grid.Column="2"/>
+                                            <controls:CheckStatusControl Grid.Column="2" DataContext="{Binding IPStatus}"/>
                                         </Grid>
                                     </Border>
 
@@ -348,7 +348,9 @@
                                                     <TextBox Margin="0,7,0,0" Style="{StaticResource HintTextBox}" mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
                                                 </StackPanel>
                                             </StackPanel>
-
+                                            
+                                            
+                                            <controls:CheckStatusControl Grid.Column="2" DataContext="{Binding ProxyStatus}"/>
                                         </Grid>
                                     </Border>
                                     <Border Margin="10,0,10,10" Style="{StaticResource MouseOverBorder}">
@@ -365,6 +367,8 @@
                                                     <ComboBoxItem Content="1.16.5"/>
                                                 </ComboBox>
                                             </StackPanel>
+
+                                            <controls:CheckStatusControl Grid.Column="2" DataContext="{Binding VersionStatus}"/>
                                         </Grid>
                                     </Border>
 

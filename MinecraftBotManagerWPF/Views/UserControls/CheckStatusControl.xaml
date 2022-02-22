@@ -4,14 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Visibility="{Binding Converter={StaticResource BoolToVisConverter},Path=IsEnabled}"
+             xmlns:ext="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
              xmlns:mat ="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Grid.Column="2" VerticalAlignment="Top" Orientation="Horizontal">
-        <Grid>
-            <ProgressBar x:Name="ProgressBar" Foreground="White" Visibility="Hidden" Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="True"/>
-            <mat:PackIcon x:Name="OkIcon" Visibility="Visible" Height="Auto" Width="Auto" Kind="Close" Foreground="OrangeRed" VerticalAlignment="Center"/>
-            <mat:PackIcon x:Name="ErrorIcon" Kind="Check" Height="Auto" Width="Auto" Visibility="Hidden" Foreground="Green" VerticalAlignment="Center"/>
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+        <Grid VerticalAlignment="Top" Height="21" Width="21">
+            <ProgressBar Foreground="White" Height="21" Width="21" IsIndeterminate="True">
+                <ProgressBar.Style>
+                    <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MaterialDesignCircularProgressBar}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.Status}" Value="Init">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ProgressBar.Style>
+            </ProgressBar>
+            <mat:PackIcon Height="21" Width="21" Kind="Close" Foreground="OrangeRed" VerticalAlignment="Center">
+                <mat:PackIcon.Style>
+                    <Style TargetType="mat:PackIcon">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.Status}" Value="Error">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </mat:PackIcon.Style>
+            </mat:PackIcon>
+            <mat:PackIcon Kind="Check" Height="21" Width="21" Foreground="Green" VerticalAlignment="Center">
+                <mat:PackIcon.Style>
+                    <Style TargetType="mat:PackIcon">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.Status}" Value="Ok">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </mat:PackIcon.Style>
+            </mat:PackIcon>
         </Grid>
         <TextBlock VerticalAlignment="Top" Margin="3,0,0,0" FontSize="18" Text="{Binding Message}" Foreground="White"/>
     </StackPanel>
