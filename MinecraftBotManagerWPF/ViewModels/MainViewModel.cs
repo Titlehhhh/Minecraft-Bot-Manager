@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using MinecraftLibrary.API.Types.Chat;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
@@ -17,6 +18,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public MainViewModel()
         {
+            
             BotsCollection.Add(new BotViewModel());
         }
 

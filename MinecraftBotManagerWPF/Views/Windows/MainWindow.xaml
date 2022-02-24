@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Style="{StaticResource CustomWindowStyle}"
@@ -18,7 +19,7 @@
         Title="MainWindow" Height="900" Width="1440">
 
     <Window.Resources>
-        
+
 
         <Style x:Key="MouseOverBorder" TargetType="Border">
             <Setter Property="Background" Value="Transparent"/>
@@ -348,8 +349,8 @@
                                                     <TextBox Margin="0,7,0,0" Style="{StaticResource HintTextBox}" mat:HintAssist.Hint="Пароль" HorizontalAlignment="Left" MinWidth="200"/>
                                                 </StackPanel>
                                             </StackPanel>
-                                            
-                                            
+
+
                                             <controls:CheckStatusControl Grid.Column="2" DataContext="{Binding ProxyStatus}"/>
                                         </Grid>
                                     </Border>
@@ -378,8 +379,76 @@
                                 </StackPanel>
                             </ScrollViewer>
                         </TabItem>
-                        <TabItem Header="Чат">
+                        <TabItem IsSelected="{Binding IsSelectedChat}">
+                            <TabItem.Header>
+                                <DockPanel LastChildFill="False">
+                                    <TextBlock Text="Чат"/>
+                                    <TextBlock DockPanel.Dock="Right">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CountUnReadMessages}" Value="0">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DockPanel>
+                            </TabItem.Header>
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Margin="0,0,0,10">
+                                    <Border BorderThickness="0.7">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.1"/>
+                                        </Border.Background>
+                                        <Border.BorderBrush>
+                                            <SolidColorBrush Color="#714afe"/>
+                                        </Border.BorderBrush>
+                                        <ListBox VerticalAlignment="Bottom">
 
+
+                                        </ListBox>
+                                    </Border>
+                                </Grid>
+                                <TextBox Text="{Binding CurrentMessage,UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" FontSize="17">
+                                    <TextBox.InputBindings>
+                                        <KeyBinding Key="Enter" Command="{Binding SendChatCommand}"/>
+                                    </TextBox.InputBindings>
+                                        
+                                    
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="CaretBrush" Value="White"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="FontFamily" Value="JetBrains Mono"/>
+                                            <Setter Property="Template" >
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                                        <Border BorderThickness="0,0,0,0.7">
+                                                            <Border.Background>
+                                                                <SolidColorBrush Color="Black" Opacity="0.1"/>
+                                                            </Border.Background>
+                                                            <Border.BorderBrush>
+                                                                <SolidColorBrush Color="#714afe"/>
+                                                            </Border.BorderBrush>
+                                                            <ScrollViewer Margin="3"
+                                                                      VerticalScrollBarVisibility="Disabled"
+                                                                      x:Name="PART_ContentHost"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Border>

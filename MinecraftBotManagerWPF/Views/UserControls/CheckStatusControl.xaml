@@ -12,7 +12,7 @@
     <UserControl.Resources>
         
     </UserControl.Resources>
-    <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+    <StackPanel Margin="10,0,0,0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Left">
         <Grid VerticalAlignment="Top" Height="21" Width="21">
             <ProgressBar Foreground="White" Height="21" Width="21" IsIndeterminate="True">
                 <ProgressBar.Style>
@@ -51,6 +51,6 @@
                 </mat:PackIcon.Style>
             </mat:PackIcon>
         </Grid>
-        <TextBlock VerticalAlignment="Top" Margin="3,0,0,0" FontSize="18" Text="{Binding Message}" Foreground="White"/>
+        <TextBlock VerticalAlignment="Top" Margin="5,0,0,0" FontSize="18" Text="{Binding Message}" Foreground="White"/>
     </StackPanel>
 </UserControl>

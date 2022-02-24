@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using MinecraftBotManagerWPF.Enums;
+using MinecraftLibrary.API.Types.Chat;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
@@ -18,8 +18,90 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public BotViewModel()
         {
+            chatqueue = new ObservableCollection<ChatMessage>();
+            chatqueue_readonly = new ReadOnlyObservableCollection<ChatMessage>(chatqueue);
+
 
         }
+
+        private bool isselected;
+
+        public bool IsSelectedChat
+        {
+            get { return isselected; }
+            set
+            {
+                isselected = value;
+                CountUnReadMessages = 0;
+                OnPropertyChanged();
+            }
+        }
+
+
+        #region Чат
+
+
+        private readonly ObservableCollection<ChatMessage> chatqueue;
+        private readonly ReadOnlyObservableCollection<ChatMessage> chatqueue_readonly;
+        public ReadOnlyObservableCollection<ChatMessage> ChatQueue => chatqueue_readonly;
+
+        private int unreadmessages;
+
+        public int CountUnReadMessages
+        {
+            get { return unreadmessages; }
+            set
+            {
+                if (!(IsSelectedChat || value == unreadmessages))
+                {
+                    unreadmessages = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private int unviewmessages;
+
+        public int CountUnViewMessages
+        {
+            get { return unviewmessages; }
+            set
+            {
+                unviewmessages = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string message;
+
+        public string CurrentMessage
+        {
+            get { return message; }
+            set
+            {
+                message = value;                
+            }
+        }
+
+        private void ClearMessage()
+        {
+            CurrentMessage = "";
+            OnPropertyChanged(nameof(CurrentMessage));
+        }
+
+        private RelayCommand send;
+
+        public RelayCommand SendChatCommand
+        {
+            get => send ??= new RelayCommand(() =>
+            {
+                ClearMessage();
+            });
+
+        }
+
+
+
+        #endregion
 
         #region Свойства
 
@@ -89,18 +171,16 @@ namespace MinecraftBotManagerWPF.ViewModels
         {
             get => start ??= new RelayCommand(async () =>
             {
-
                 ReturnToOrgignalStateStatuses();
 
                 AuthStatus.IsEnabled = true;
                 AuthStatus.Message = "Авторизация";
                 AuthStatus.Status = StatusCheck.Init;
                 await Auth();
-                AuthStatus.Status = StatusCheck.Error;
-                AuthStatus.Message = "Неверный логин или пароль";
+                AuthStatus.Status = StatusCheck.Ok;
+                AuthStatus.Message = "Авторизация успешна";
 
-                
-                return;
+
 
                 IPStatus.IsEnabled = true;
 
@@ -174,69 +254,13 @@ namespace MinecraftBotManagerWPF.ViewModels
             VersionStatus.IsEnabled = false;
         }
 
-        private StepCheck step;
-
-        public StepCheck Step
-        {
-            get { return step; }
-            private set
-            {
-                step = value;
-                OnPropertyChanged();
-            }
-        }
 
 
 
         public object Clone()
         {
+
             return new BotViewModel();
-        }
-    }
-    public class CheckStatus : INotifyPropertyChanged
-    {
-        private StatusCheck status;
-
-        public StatusCheck Status
-        {
-            get { return status; }
-            set
-            {
-                status = value;
-                OnPropertyChanged();
-            }
-        }
-        private string message;
-
-        public string Message
-        {
-            get { return message; }
-            set
-            {
-                message = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool enabled;
-
-        public bool IsEnabled
-        {
-            get { return enabled; }
-            set
-            {
-                enabled = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
