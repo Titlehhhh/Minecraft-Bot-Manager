@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib340.Packets.Client.Login
 {
-    [PacketHeader(0x01, 340, PacketSide.Client, PacketCategory.Login)]
+    
     public class EncryptionResponsePacket : IPacket
     {
         public byte[] VerifyToken { get; set; }
@@ -20,7 +20,7 @@ namespace ProtocolLib340.Packets.Client.Login
             VerifyToken = verifyToken;
             SharedKey = sharedKey;
         }
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteVarInt(SharedKey.Length);
             stream.WriteByteArray(SharedKey);
@@ -28,7 +28,7 @@ namespace ProtocolLib340.Packets.Client.Login
             stream.WriteByteArray(VerifyToken);
         }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }

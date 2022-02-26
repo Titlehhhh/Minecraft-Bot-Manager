@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketHeader(0x49, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerPlayBuiltinSoundPacket : IPacket
     {
         //this.sound = MagicValues.key(BuiltinSound.class, in.readVarInt());
@@ -15,12 +15,12 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //this.z = in.readInt() / 8D;
        //this.volume = in.readFloat();
        //this.pitch = in.readFloat();
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

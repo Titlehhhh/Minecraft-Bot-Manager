@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
 {
 
-    [PacketHeader(0x00, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerSpawnObjectPacket : IPacket
     {
         //this.entityId = in.readVarInt();
@@ -38,12 +38,12 @@ namespace ProtocolLib340.Packets.Server.Game.Entity.Spawn
        //this.motX = in.readShort() / 8000D;
        //this.motY = in.readShort() / 8000D;
        //this.motZ = in.readShort() / 8000D;
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

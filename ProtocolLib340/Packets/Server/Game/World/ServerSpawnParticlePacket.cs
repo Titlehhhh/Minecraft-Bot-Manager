@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketHeader(0x22, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerSpawnParticlePacket : IPacket
     {
         //this.particle = MagicValues.key(Particle.class, in.readInt());
@@ -22,12 +22,12 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //for(int index = 0; index < this.data.length; index++) {
        //this.data[index] = in.readVarInt();
        //}
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

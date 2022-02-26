@@ -1,21 +1,19 @@
-using MinecraftLibrary.API.Enums;
+using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+using static ProtocolLib340.Constans;
 using MinecraftLibrary.Geometry;
 
-using static ProtocolLib340.Constans;
-
-namespace ProtocolLib340.Packets.Client.Game.Player
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x14, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientPlayerActionPacket : IPacket
     {
         public PlayerAction Action { get; set; }
         public Point3_Int Position { get; set; }
-        public BlockFace Face { get; set; }
-        public void Write(MinecraftStream stream)
+        public GeoBlockFace Face { get; set; }
+        public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteVarInt((int)Action);
             long x = Position.X & POSITION_WRITE_SHIFT;
@@ -24,15 +22,15 @@ namespace ProtocolLib340.Packets.Client.Game.Player
 
             stream.WriteLong(x << POSITION_X_SIZE | y << POSITION_Y_SIZE | z);
 
-            stream.WriteByte((byte)Face);
+            stream.WriteByte((sbyte)Face);
         }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public ClientPlayerActionPacket(PlayerAction action, Point3_Int position, BlockFace face)
+        public ClientPlayerActionPacket(PlayerAction action, Point3_Int position, GeoBlockFace face)
         {
             Action = action;
             Position = position;

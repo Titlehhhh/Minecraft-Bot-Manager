@@ -1,14 +1,14 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Window
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x05, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientConfirmTransactionPacket : IPacket
     {
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
@@ -16,7 +16,7 @@ namespace ProtocolLib340.Packets.Client.Game.Window
         //out.writeByte(this.windowId);
         //out.writeShort(this.actionId);
         //out.WriteBooleanean(this.accepted);
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

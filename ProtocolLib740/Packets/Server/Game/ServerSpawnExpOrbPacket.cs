@@ -1,17 +1,17 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib740.Packets.Server.Game
 {
-    [PacketHeader(0x01, 740, PacketSide.Server, PacketCategory.Login)]
+    
     public class ServerSpawnExpOrbPacket : IPacket
     {        
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
 
         }

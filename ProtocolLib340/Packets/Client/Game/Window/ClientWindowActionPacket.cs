@@ -1,14 +1,14 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Window
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x07, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientWindowActionPacket : IPacket
     {
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
@@ -36,7 +36,7 @@ namespace ProtocolLib340.Packets.Client.Game.Window
         //out.writeShort(this.actionId);
         //out.writeByte(MagicValues.value(Integer.class, this.action));
         //NetUtil.writeItem(out, this.clicked);
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

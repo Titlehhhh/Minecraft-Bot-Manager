@@ -1,6 +1,6 @@
 ﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 using System;
 using System.CodeDom;
 
@@ -128,19 +128,19 @@ namespace ConsoleApp1
         static string GenerateClass(string name, string id)
         {
             return $@"using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib740.Packets.Server.Game
 {{
     [PacketHeader({id}, 740, PacketSide.Server, PacketCategory.Login)]
     public class {name} : IPacket
     {{        
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {{
             
         }}
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {{
 
         }}

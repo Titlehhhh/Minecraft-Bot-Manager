@@ -308,5 +308,10 @@ namespace MinecraftLibrary.IO
             var writer = new NbtWriter(BaseStream, compound.Name);
             writer.WriteTag(compound);
         }
+
+        public void Write(byte[] buffer)
+        {
+            this.Write(buffer);
+        }
     }
 }

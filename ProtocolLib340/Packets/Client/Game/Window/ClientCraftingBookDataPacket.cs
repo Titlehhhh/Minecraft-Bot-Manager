@@ -1,14 +1,14 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Window
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x17, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientCraftingBookDataPacket : IPacket
     {
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
@@ -25,7 +25,7 @@ namespace ProtocolLib340.Packets.Client.Game.Window
         //default:
         //throw new IOException("Unknown crafting book data type: " + this.type);
         //}
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

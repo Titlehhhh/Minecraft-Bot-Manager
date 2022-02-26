@@ -1,6 +1,6 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 using MinecraftLibrary.API.World;
 using MinecraftLibrary.API.World.Implements;
 using MinecraftLibrary.Geometry;
@@ -9,7 +9,7 @@ using ProtocolLib340.Data.World;
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketHeader(0x20, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerChunkDataPacket : IPacket
     {
         public IChunkColumn Column { get; set; }
@@ -24,7 +24,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
         //}
         //
         //this.column = NetUtil.readColumn(data, x, z, fullChunk, false, chunkMask, tileEntities);
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             int x = stream.ReadInt();
             int z = stream.ReadInt();
@@ -133,7 +133,7 @@ namespace ProtocolLib340.Packets.Server.Game.World
             Column = column;
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

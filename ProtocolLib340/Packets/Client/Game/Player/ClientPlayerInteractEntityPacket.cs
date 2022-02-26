@@ -1,14 +1,14 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Player
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x0A, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientPlayerInteractEntityPacket : IPacket
     {
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
@@ -24,7 +24,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
         //if(this.action == InteractAction.INTERACT || this.action == InteractAction.INTERACT_AT) {
         //out.writeVarInt(MagicValues.value(Integer.class, this.hand));
         //}
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

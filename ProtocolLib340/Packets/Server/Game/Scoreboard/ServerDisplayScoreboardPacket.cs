@@ -1,21 +1,21 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game.Scoreboard
 {
 
-    [PacketHeader(0x3B, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerDisplayScoreboardPacket : IPacket
     {
         //this.position = MagicValues.key(ScoreboardPosition.class, in.readByte());
        //this.name = in.readString();
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

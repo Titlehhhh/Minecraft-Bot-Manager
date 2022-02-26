@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Networking.IO
+namespace MinecraftLibrary.Crypto
 {
     public class AesStream : MinecraftStream
     {

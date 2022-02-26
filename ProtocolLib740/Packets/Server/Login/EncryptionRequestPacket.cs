@@ -1,17 +1,17 @@
 ﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib740.Packets.Server.Login
 {
-    [PacketHeader(0x01, 740, PacketSide.Server, PacketCategory.Game)]
+    
     public class EncryptionRequestPacket : IPacket
     {
         public string ServerID { get; set; }
         public byte[] PublicKey { get; set; }
         public byte[] VerifyToken { get; set; }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             ServerID = stream.ReadString();
 
@@ -20,7 +20,7 @@ namespace ProtocolLib740.Packets.Server.Login
 
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

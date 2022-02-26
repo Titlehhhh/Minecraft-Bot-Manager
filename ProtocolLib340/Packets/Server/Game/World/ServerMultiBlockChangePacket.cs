@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game.World
 {
 
-    [PacketHeader(0x10, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerMultiBlockChangePacket : IPacket
     {
         //int chunkX = in.readInt();
@@ -19,12 +19,12 @@ namespace ProtocolLib340.Packets.Server.Game.World
        //int z = (chunkZ << 4) + (pos >> 8 & 15);
        //this.records[index] = new BlockChangeRecord(new Position(x, y, z), block);
        //}
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

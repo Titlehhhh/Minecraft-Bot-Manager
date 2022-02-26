@@ -1,25 +1,25 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Player
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x0F, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientPlayerRotationPacket : IPacket
     {
         public float Yaw { get; set; }
         public float Pitch { get; set; }
         public bool OnGround { get; set; }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteFloat(Yaw);
             stream.WriteFloat(Pitch);
             stream.WriteBoolean(OnGround);
         }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }

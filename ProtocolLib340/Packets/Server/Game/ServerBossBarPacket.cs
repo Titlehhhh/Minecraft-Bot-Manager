@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game
 {
 
-    [PacketHeader(0x0C, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerBossBarPacket : IPacket
     {
         //this.uuid = in.readUUID();
@@ -29,12 +29,12 @@ namespace ProtocolLib340.Packets.Server.Game
        //this.darkenSky = (flags & 0x1) == 0x1;
        //this.dragonBar = (flags & 0x2) == 0x2;
        //}
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

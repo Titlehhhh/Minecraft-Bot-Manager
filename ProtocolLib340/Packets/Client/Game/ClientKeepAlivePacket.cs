@@ -1,21 +1,21 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x0B, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientKeepAlivePacket : IPacket
     {
         public long ID { get; set; }
         //out.writeLong(this.id);
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteLong(ID);
         }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }

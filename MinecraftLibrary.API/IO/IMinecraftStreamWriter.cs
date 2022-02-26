@@ -1,7 +1,10 @@
-﻿namespace MinecraftLibrary.API.IO
+﻿using MinecraftLibrary.NBT;
+
+namespace MinecraftLibrary.API.IO
 {
     public interface IMinecraftStreamWriter
     {
+        void Write(byte[] buffer);
         void Write(byte[] buffer, int offset, int count);
         void WriteBoolean(bool value);
         Task WriteBooleanAsync(bool value);

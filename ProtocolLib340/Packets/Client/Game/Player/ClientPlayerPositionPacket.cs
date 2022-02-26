@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Player
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x0D, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientPlayerPositionPacket : IPacket
     {
         public double X { get; set; }
@@ -13,7 +13,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
         public double Z { get; set; }
         public bool OnGround { get; set; }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteDouble(X);
             stream.WriteDouble(Y);
@@ -21,7 +21,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
             stream.WriteBoolean(OnGround);
         }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }

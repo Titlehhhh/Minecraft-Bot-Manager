@@ -1,17 +1,17 @@
-using MinecraftLibrary.API.Enums;
+using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Player
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x20, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientPlayerUseItemPacket : IPacket
     {
         public HAND Hand { get; set; }
         public int MyProperty { get; set; }        
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             switch (Hand)
             {
@@ -24,7 +24,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
             }
         }
 
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }

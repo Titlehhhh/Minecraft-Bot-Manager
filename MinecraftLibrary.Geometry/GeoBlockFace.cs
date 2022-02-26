@@ -3,7 +3,7 @@
     /// <summary>
     /// Enumerates the directions of block faces.
     /// </summary>
-    public enum GeoBlockFace
+    public enum GeoBlockFace : sbyte
     {
         /// <summary>
         /// The block face points towards -Y.

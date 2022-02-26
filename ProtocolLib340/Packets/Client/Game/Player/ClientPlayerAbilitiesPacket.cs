@@ -1,14 +1,14 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Player
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x13, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientPlayerAbilitiesPacket : IPacket
     {
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
@@ -33,7 +33,7 @@ namespace ProtocolLib340.Packets.Client.Game.Player
         //out.writeByte(flags);
         //out.writeFloat(this.flySpeed);
         //out.writeFloat(this.walkSpeed);
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }

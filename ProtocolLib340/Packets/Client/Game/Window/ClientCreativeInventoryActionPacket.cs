@@ -1,21 +1,21 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Client.Game.Window
+
+namespace ProtocolLib340.Packets.Client.Game
 {
 
-    [PacketHeader(0x1B, 340, PacketSide.Client, PacketCategory.Game)]
+    
     public class ClientCreativeInventoryActionPacket : IPacket
     {
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
         //out.writeShort(this.slot);
         //NetUtil.writeItem(out, this.clicked);
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
 
         }

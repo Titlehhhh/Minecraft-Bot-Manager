@@ -1,11 +1,11 @@
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Attributes;
-using MinecraftLibrary.API.Networking.IO;
+using MinecraftLibrary.API.IO;
+
 
 namespace ProtocolLib340.Packets.Server.Game.Scoreboard
 {
 
-    [PacketHeader(0x44, 340, PacketSide.Server, PacketCategory.Game)]
+    
     public class ServerTeamPacket : IPacket
     {
         //this.name = in.readString();
@@ -33,12 +33,12 @@ namespace ProtocolLib340.Packets.Server.Game.Scoreboard
        //this.players[index] = in.readString();
        //}
        //}
-        public void Read(MinecraftStream stream)
+        public void Read(IMinecraftStreamReader stream)
         {
             
         }
 
-        public void Write(MinecraftStream stream)
+        public void Write(IMinecraftStreamWriter stream)
         {
             
         }
