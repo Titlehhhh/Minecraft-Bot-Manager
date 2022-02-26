@@ -16,6 +16,8 @@ namespace MinecraftBotManagerWPF.ViewModels
     {
 
 
+
+
         public BotViewModel()
         {
             chatqueue = new ObservableCollection<ChatMessage>();
@@ -78,7 +80,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             get { return message; }
             set
             {
-                message = value;                
+                message = value;
             }
         }
 
@@ -173,37 +175,17 @@ namespace MinecraftBotManagerWPF.ViewModels
             {
                 ReturnToOrgignalStateStatuses();
 
-                AuthStatus.IsEnabled = true;
-                AuthStatus.Message = "Авторизация";
-                AuthStatus.Status = StatusCheck.Init;
-                await Auth();
-                AuthStatus.Status = StatusCheck.Ok;
-                AuthStatus.Message = "Авторизация успешна";
+                CheckServer();
 
-
-
-                IPStatus.IsEnabled = true;
-
-                IPStatus.Message = "Проверка ip адреса";
-                IPStatus.Status = StatusCheck.Init;
-                await Task.Delay(2000);
-                IPStatus.Message = "IP адрес корректен";
-                IPStatus.Status = StatusCheck.Ok;
-
-                ProxyStatus.IsEnabled = true;
-                ProxyStatus.Status = StatusCheck.Init;
-                ProxyStatus.Message = "Ищем оптимальный сервер";
-                await Task.Delay(2000);
-
-                ProxyStatus.Status = StatusCheck.Ok;
-                ProxyStatus.Message = "Оптимальный сервер найден!\n145.4.2.14:34565\nГонконг";
-
-                VersionStatus.IsEnabled = true;
-                VersionStatus.Status = StatusCheck.Ok;
-                VersionStatus.Message = "Ок";
 
             }, () => BotState == State.None);
         }
+
+        private void CheckServer()
+        {
+
+        }
+
         private RelayCommand stop;
 
         public RelayCommand StopCommand

@@ -1,6 +1,5 @@
-﻿using MinecraftLibrary.API.Networking.IO;
-
-namespace MinecraftLibrary.API.Networking.Events
+﻿
+namespace MinecraftLibrary.API.Networking
 {
     public class PacketReceivedEventArgs : EventArgs
     {

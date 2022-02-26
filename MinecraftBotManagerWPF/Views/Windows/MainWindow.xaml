@@ -410,9 +410,21 @@
                                         <Border.BorderBrush>
                                             <SolidColorBrush Color="#714afe"/>
                                         </Border.BorderBrush>
-                                        <ListBox VerticalAlignment="Bottom">
-
-
+                                        <ListBox  VirtualizingPanel.IsVirtualizing="True" ItemsSource="{Binding ChatQueue}" VerticalAlignment="Bottom">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style TargetType="ListBoxItem">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                                <Border>
+                                                                    <ContentPresenter/>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                            
                                         </ListBox>
                                     </Border>
                                 </Grid>
@@ -420,8 +432,8 @@
                                     <TextBox.InputBindings>
                                         <KeyBinding Key="Enter" Command="{Binding SendChatCommand}"/>
                                     </TextBox.InputBindings>
-                                        
-                                    
+
+
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
                                             <Setter Property="Foreground" Value="White"/>

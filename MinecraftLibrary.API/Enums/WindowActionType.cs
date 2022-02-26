@@ -1,4 +1,4 @@
-﻿namespace MinecraftLibrary.API.Enums
+﻿namespace MinecraftLibrary.API
 {
     public enum WindowActionType
     {

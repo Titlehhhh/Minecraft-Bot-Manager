@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Networking.Events
+namespace MinecraftLibrary.API.Networking
 {
     public class PacketSendEventArgs : EventArgs
     {

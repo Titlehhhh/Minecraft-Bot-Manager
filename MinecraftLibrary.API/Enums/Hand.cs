@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Enums
+namespace MinecraftLibrary.API
 {
     public enum HAND
     {

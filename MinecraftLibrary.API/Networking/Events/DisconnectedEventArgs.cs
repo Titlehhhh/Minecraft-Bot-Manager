@@ -1,11 +1,11 @@
-﻿using MinecraftLibrary.API.Enums;
+﻿using MinecraftLibrary.API
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.API.Networking.Events
+namespace MinecraftLibrary.API.Networking
 {
     public class DisconnectedEventArgs : EventArgs
     {

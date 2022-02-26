@@ -1,6 +1,6 @@
 ﻿using Ionic.Zlib;
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Events;
+using MinecraftLibrary.Networking;
 using MinecraftLibrary.API.Networking.IO;
 using MinecraftLibrary.API.Networking.Proxy;
 using System;

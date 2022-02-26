@@ -1,5 +1,5 @@
 ﻿
-using MinecraftLibrary.API.Enums;
+using MinecraftLibrary.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;

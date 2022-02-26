@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MinecraftLibrary.API.Networking.Events
+namespace MinecraftLibrary.API.Networking
 {
     public class ConnectedEventArgs : EventArgs
     {

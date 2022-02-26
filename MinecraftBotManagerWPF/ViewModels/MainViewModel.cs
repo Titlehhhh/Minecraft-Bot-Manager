@@ -17,8 +17,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
 
         public MainViewModel()
-        {
-            
+        {            
             BotsCollection.Add(new BotViewModel());
         }
 
@@ -32,7 +31,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             });
         }
 
-        
+
 
 
         private BotViewModel CreateBot()
@@ -47,8 +46,8 @@ namespace MinecraftBotManagerWPF.ViewModels
     }
     internal class CloneBotCommand : ICommand
     {
-        
-        
+
+
 
         public event EventHandler? CanExecuteChanged;
 
@@ -59,7 +58,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public void Execute(object? parameter)
         {
-            
+
         }
     }
 }
