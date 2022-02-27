@@ -1,4 +1,4 @@
-﻿namespace MinecraftLibrary.IO
+﻿namespace MinecraftLibrary.Core.IO
 {
     public partial class MinecraftStream : Stream
     {

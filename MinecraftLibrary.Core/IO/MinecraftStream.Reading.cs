@@ -1,6 +1,5 @@
 ﻿using MinecraftLibrary.API.IO;
-
-using MinecraftLibrary.Utils;
+using MinecraftLibrary.Core.Utils;
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.IO
+namespace MinecraftLibrary.Core.IO
 {   
 
     public partial class MinecraftStream : IMinecraftStreamReader

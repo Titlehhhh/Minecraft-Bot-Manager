@@ -13,11 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManagerWPF", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtocolLib740", "ProtocolLib740\ProtocolLib740.csproj", "{E1D6E2BF-F57F-4457-86AC-31C985AA0400}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary", "MinecraftLibrary\MinecraftLibrary.csproj", "{FAC59F9F-B6FE-40EF-B81C-207907A0CE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Client", "MinecraftLibrary.Client\MinecraftLibrary.Client.csproj", "{FAC59F9F-B6FE-40EF-B81C-207907A0CE42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.NBT", "MinecraftLibrary.NBT\MinecraftLibrary.NBT.csproj", "{A204135D-794B-4391-A947-255A1798544E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Geometry", "MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj", "{31BE1A0D-66D9-4983-A0B7-5EE360FD4ABA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Geometry", "MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj", "{31BE1A0D-66D9-4983-A0B7-5EE360FD4ABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Core", "MinecraftLibrary.Core\MinecraftLibrary.Core.csproj", "{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -193,6 +195,26 @@ Global
 		{31BE1A0D-66D9-4983-A0B7-5EE360FD4ABA}.Release|x64.Build.0 = Release|Any CPU
 		{31BE1A0D-66D9-4983-A0B7-5EE360FD4ABA}.Release|x86.ActiveCfg = Release|Any CPU
 		{31BE1A0D-66D9-4983-A0B7-5EE360FD4ABA}.Release|x86.Build.0 = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|x64.Build.0 = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Debug|x86.Build.0 = Debug|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|ARM.Build.0 = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|ARM64.Build.0 = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|x64.ActiveCfg = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|x64.Build.0 = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|x86.ActiveCfg = Release|Any CPU
+		{1B0D6B61-310E-4DFC-A8F9-4677B38A0EA6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

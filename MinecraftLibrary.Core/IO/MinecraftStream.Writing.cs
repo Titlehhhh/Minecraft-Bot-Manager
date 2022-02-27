@@ -1,11 +1,12 @@
 ﻿
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.Core.Utils;
 using MinecraftLibrary.NBT;
-using MinecraftLibrary.Utils;
+
 using System.Buffers.Binary;
 using System.Text;
 
-namespace MinecraftLibrary.IO
+namespace MinecraftLibrary.Core.IO
 {    
 
     public partial class MinecraftStream : IMinecraftStreamWriter

@@ -1,8 +1,7 @@
 ﻿using Ionic.Zlib;
-using MinecraftLibrary.Crypto;
-using MinecraftLibrary.IO;
+using MinecraftLibrary.Core.Crypto;
+using MinecraftLibrary.Core.IO;
 using MinecraftLibrary.Networking.Proxy;
-using System.Collections.Concurrent;
 using System.Net.Sockets;
 
 namespace MinecraftLibrary.API.Networking
@@ -17,8 +16,8 @@ namespace MinecraftLibrary.API.Networking
         public ProxyInfo? Proxy { get; set; }
 
 
-        public ConcurrentDictionary<int, IPacket> ServerPackets { get; set; }
-        public ConcurrentDictionary<Type, int> ClientPackets { get; set; }
+        public Dictionary<int, ILazyPacket<IPacket>> ServerPackets = new Dictionary<int, ILazyPacket<IPacket>>();
+        public Dictionary<Type, int> ClientPackets = new Dictionary<Type, int>();
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
@@ -69,9 +68,7 @@ namespace MinecraftLibrary.API.Networking
                     (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
                     if (ServerPackets.ContainsKey(id))
                     {
-                        IPacket packet = ServerPackets[id];
-                        if (packet is null)
-                            throw new NullReferenceException("При считывании произошла проблема");
+                        IPacket packet = ServerPackets[id].PacketValue;                       
                         packet.Read(dataStream);
                         PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet));
                     }

@@ -111,18 +111,11 @@ namespace ConsoleApp1
 
         public static void Main()
         {
-            foreach(var item in Names)
-            {
-                string path = Path.Combine(@"C:\Users\Title\Desktop\Minecraft-Bot-Manager\ProtocolLib740\Packets\Server\Game\", item.Value+".cs");
-                string id = "0x"+item.Key.ToString("X2");
-
-                string name = item.Value;
-                string source = GenerateClass(name,id);
-                using(StreamWriter sw = new StreamWriter(path))
-                {
-                    sw.WriteLine(source);
-                }
-            }
+            
+        }
+        private static void F(TestClass test)
+        {
+            test = null;
         }
 
         static string GenerateClass(string name, string id)
@@ -147,6 +140,15 @@ namespace ProtocolLib740.Packets.Server
         public {name}() {{ }}
     }}
 }}";
+        }
+    }
+    public class TestClass
+    {
+        public int MyProperty { get; set; }
+        public TestClass()
+        {
+            MyProperty = 5;
+
         }
     }
     

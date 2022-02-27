@@ -1,4 +1,4 @@
-﻿using MinecraftLibrary.IO;
+﻿using MinecraftLibrary.Core.IO;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.IO;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.Crypto
+namespace MinecraftLibrary.Core.Crypto
 {
     public class AesStream : MinecraftStream
     {

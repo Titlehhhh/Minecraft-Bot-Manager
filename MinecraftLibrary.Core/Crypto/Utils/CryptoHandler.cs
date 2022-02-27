@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.Crypto
+namespace MinecraftLibrary.Core.Crypto
 {
     public class CryptoHandler
     {
