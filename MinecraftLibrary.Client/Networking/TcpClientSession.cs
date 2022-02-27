@@ -19,11 +19,9 @@ namespace MinecraftLibrary.Client.Networking
         public ProxyInfo? Proxy { get; set; }
 
 
-        private IPacketRepository ServerPackets;
-
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
-        public IPacketRepository InputPackets { set => ServerPackets = value; }
+        public IPacketRepository InputPackets { get; set; }
 
         public event Action<ITcpClientSession>? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
@@ -69,7 +67,7 @@ namespace MinecraftLibrary.Client.Networking
                 {
                     (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
                     IPacket packet = null;
-                    if (ServerPackets.TryGetPacket(id, out packet))
+                    if (InputPackets.TryGetPacket(id, out packet))
                     {
                         packet.Read(dataStream);
                         PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet));

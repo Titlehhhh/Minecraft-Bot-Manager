@@ -1,4 +1,4 @@
-﻿namespace MinecraftLibrary
+﻿namespace MinecraftLibrary.API
 {
     public enum BlockFace : byte
     {

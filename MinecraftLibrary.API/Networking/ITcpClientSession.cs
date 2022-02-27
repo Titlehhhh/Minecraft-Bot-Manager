@@ -6,11 +6,11 @@ namespace MinecraftLibrary.API.Networking
     public interface ITcpClientSession
     {
         int CompressionThreshold { set; }
-        string Host {  set; }        
-        int Port { set; }
-        ProxyInfo? Proxy {  set; }
+        string Host { get; set; }        
+        int Port { get; set; }
+        ProxyInfo? Proxy { get; set; }
 
-        IPacketRepository InputPackets { set; }
+        IPacketRepository InputPackets { get; set; }
 
         event Action<ITcpClientSession>? Connected;
         event EventHandler<DisconnectedEventArgs>? Disconnected;
