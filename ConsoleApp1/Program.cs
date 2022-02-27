@@ -131,7 +131,7 @@ namespace ConsoleApp1
 using MinecraftLibrary.API.IO;
 
 
-namespace ProtocolLib740.Packets.Server.Game
+namespace ProtocolLib740.Packets.Server
 {{
     [PacketHeader({id}, 740, PacketSide.Server, PacketCategory.Login)]
     public class {name} : IPacket

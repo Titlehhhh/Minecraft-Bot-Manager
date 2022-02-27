@@ -2,7 +2,7 @@ using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
 
 
-namespace ProtocolLib340.Packets.Server.Game.World
+namespace ProtocolLib340.Packets.Server
 {
 
     

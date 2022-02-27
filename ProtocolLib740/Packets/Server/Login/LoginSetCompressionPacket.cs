@@ -2,7 +2,7 @@
 using MinecraftLibrary.API.IO;
 
 
-namespace ProtocolLib740.Packets.Server.Login
+namespace ProtocolLib740.Packets.Server
 {
     
     public class LoginSetCompressionPacket : IPacket

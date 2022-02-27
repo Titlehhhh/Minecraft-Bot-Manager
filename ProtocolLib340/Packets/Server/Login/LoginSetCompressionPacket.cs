@@ -1,7 +1,7 @@
 ﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
 
-namespace ProtocolLib340.Packets.Server.Login
+namespace ProtocolLib340.Packets.Server
 {
     
     public class LoginSetCompressionPacket : IPacket

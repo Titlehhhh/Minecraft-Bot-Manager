@@ -6,7 +6,7 @@ using MinecraftLibrary.API.World.Implements;
 using MinecraftLibrary.Geometry;
 using ProtocolLib340.Data.World;
 
-namespace ProtocolLib340.Packets.Server.Game.World
+namespace ProtocolLib340.Packets.Server
 {
 
     

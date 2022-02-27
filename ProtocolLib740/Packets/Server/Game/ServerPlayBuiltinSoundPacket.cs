@@ -2,7 +2,7 @@ using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
 
 
-namespace ProtocolLib740.Packets.Server.Game
+namespace ProtocolLib740.Packets.Server
 {
     
     public class ServerPlayBuiltinSoundPacket : IPacket

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtocolLib340.Packets.Server.Login
+namespace ProtocolLib340.Packets.Server
 {
     
     public class LoginDisconnectPacket : IPacket

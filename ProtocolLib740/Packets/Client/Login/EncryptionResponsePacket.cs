@@ -2,7 +2,7 @@
 using MinecraftLibrary.API.IO;
 
 
-namespace ProtocolLib740.Packets.Client.Login
+namespace ProtocolLib740.Packets.Client
 {
     
     public class EncryptionResponsePacket : IPacket

@@ -3,7 +3,7 @@ using MinecraftLibrary.API;
 using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 
-namespace ProtocolLib740.Packets.Client.Handshake
+namespace ProtocolLib740.Packets.Client
 {
 
     public class HandShakePacket : IPacket

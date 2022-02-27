@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtocolLib740.Packets.Client.Login
+namespace ProtocolLib740.Packets.Client
 {
     
     public class LoginPluginResponsePacket : IPacket
