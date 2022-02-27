@@ -1,12 +1,15 @@
 ﻿using Ionic.Zlib;
+using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Networking.Proxy;
+using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Core.Crypto;
 using MinecraftLibrary.Core.IO;
-using MinecraftLibrary.Networking.Proxy;
 using System.Net.Sockets;
 
-namespace MinecraftLibrary.API.Networking
+namespace MinecraftLibrary.Client.Networking
 {
-    public class TcpClientSession : IDisposable
+
+    public class TcpClientSession : IDisposable, ITcpClientSession
     {
         private static readonly int ZERO_VARLENGTH = GetVarIntLength(0);
         public MinecraftStream NetStream { get; private set; }
@@ -16,14 +19,13 @@ namespace MinecraftLibrary.API.Networking
         public ProxyInfo? Proxy { get; set; }
 
 
-        public Dictionary<int, ILazyPacket<IPacket>> ServerPackets = new Dictionary<int, ILazyPacket<IPacket>>();
-        public Dictionary<Type, int> ClientPackets = new Dictionary<Type, int>();
+        private IPacketRepository ServerPackets;
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
+        public IPacketRepository InputPackets { set => ServerPackets = value; }
 
-
-        public event Action<TcpClientSession>? Connected;
+        public event Action<ITcpClientSession>? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
         public event EventHandler<PacketReceivedEventArgs>? PacketReceived;
         public event EventHandler<PacketSendEventArgs>? PacketSend;
@@ -66,9 +68,9 @@ namespace MinecraftLibrary.API.Networking
                 while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
                 {
                     (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
-                    if (ServerPackets.ContainsKey(id))
+                    IPacket packet = null;
+                    if (ServerPackets.TryGetPacket(id, out packet))
                     {
-                        IPacket packet = ServerPackets[id].PacketValue;                       
                         packet.Read(dataStream);
                         PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet));
                     }
@@ -80,7 +82,7 @@ namespace MinecraftLibrary.API.Networking
             }
             catch (Exception e)
             {
-                
+
             }
             finally
             {
@@ -91,13 +93,12 @@ namespace MinecraftLibrary.API.Networking
 
         public void Disconnect()
         {
-            Cancellation.Cancel();            
+            Cancellation.Cancel();
         }
-        public void SendPacket(IPacket packet)
+        public void SendPacket(IPacket packet, int id)
         {
             ArgumentNullException.ThrowIfNull(packet, nameof(packet));
             PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
-            int id = ClientPackets[packet.GetType()];
             if (CompressionThreshold > 0)
             {
                 using (MinecraftStream packetStream = new MinecraftStream())
@@ -209,5 +210,5 @@ namespace MinecraftLibrary.API.Networking
             Dispose();
         }
     }
-    
+
 }

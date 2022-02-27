@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.Networking.Proxy
+namespace MinecraftLibrary.API.Networking.Proxy
 {
     public struct ProxyInfo
     {

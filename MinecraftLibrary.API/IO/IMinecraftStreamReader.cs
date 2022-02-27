@@ -9,7 +9,6 @@ namespace MinecraftLibrary.API.IO
     public interface IMinecraftStreamReader
     {
         long Length { get; }
-
         int Read(byte[] buffer, int offset, int count);
         bool ReadBoolean();
         Task<bool> ReadBooleanAsync(CancellationToken cancellationToken = default);

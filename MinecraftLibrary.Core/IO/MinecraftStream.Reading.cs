@@ -343,6 +343,5 @@ namespace MinecraftLibrary.Core.IO
 
             return result;
         }
-
     }
 }
