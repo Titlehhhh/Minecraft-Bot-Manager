@@ -7,7 +7,5 @@ using System.Threading.Tasks;
 
 namespace ProtocolLib740
 {
-    public class PacketRepository740 : IPacketRepository
-    {
-    }
+    
 }

@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftLibrary.Core.Utils
+namespace MinecraftLibrary.API.Utils
 {
     public readonly struct RentedArray<T> : IDisposable
     {

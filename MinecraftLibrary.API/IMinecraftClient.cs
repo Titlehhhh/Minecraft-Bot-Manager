@@ -14,7 +14,7 @@ namespace MinecraftLibrary.API
         string Nickname { get; set; }
         string Host { get; set; }
         ushort Port { get; set; }
-        ITcpClientSession Session { get; }
+        //TcpClientSession Session { get; }
 
         ProtocolState SubProtocol { get; }
 

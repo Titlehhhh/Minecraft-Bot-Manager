@@ -1,6 +1,4 @@
-﻿using MinecraftLibrary.API.Networking.Proxy;
-using MinecraftLibrary.API.Protocol;
-using Org.BouncyCastle.Crypto;
+﻿using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.IO;
 using Org.BouncyCastle.Crypto.Modes;
@@ -11,7 +9,6 @@ namespace MinecraftLibrary.API.Networking
 {
     /// <summary>
     ///  <see cref="System.Net.Sockets.NetworkStream"/>
-    /// 
     /// </summary>
     public sealed class NetworkMinecraftStream : Stream
     {
@@ -78,6 +75,8 @@ namespace MinecraftLibrary.API.Networking
             }
             while (unsigned != 0);
         }
+
+
 
         #region Приватные
         private async Task<byte> ReadUnsignedByteAsync()

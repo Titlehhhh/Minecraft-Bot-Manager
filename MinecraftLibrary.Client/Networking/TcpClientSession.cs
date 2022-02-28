@@ -3,13 +3,11 @@ using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
-using MinecraftLibrary.Core.Crypto;
 using System.Net.Sockets;
 
 namespace MinecraftLibrary.Client.Networking
 {
-
-    public class TcpClientSession : IDisposable
+    public class TcpClientSession : IDisposable, ITcpClientSession
     {
         private static readonly int ZERO_VARLENGTH = GetVarIntLength(0);
         public NetworkMinecraftStream NetStream { get; private set; }
