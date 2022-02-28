@@ -1,17 +1,11 @@
-﻿using MinecraftLibrary.API.IO;
-using MinecraftLibrary.Core.Utils;
-using System;
-using System.Buffers.Binary;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Buffers.Binary;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace MinecraftLibrary.Core.IO
-{   
+namespace MinecraftLibrary.API.IO
+{
 
-    public partial class MinecraftStream : IMinecraftStreamReader
+    public sealed partial class MinecraftStream 
     {
         public sbyte ReadSignedByte() => (sbyte)this.ReadUnsignedByte();
 
@@ -235,7 +229,7 @@ namespace MinecraftLibrary.Core.IO
             return result;
         }
 
-        public virtual async Task<int> ReadVarIntAsync(CancellationToken cancellationToken = default)
+        public async Task<int> ReadVarIntAsync(CancellationToken cancellationToken = default)
         {
             int numRead = 0;
             int result = 0;
@@ -243,7 +237,7 @@ namespace MinecraftLibrary.Core.IO
             do
             {
                 read = await this.ReadUnsignedByteAsync(cancellationToken);
-                Console.WriteLine("asd");
+                
                 int value = read & 0b01111111;
                 result |= value << (7 * numRead);
 

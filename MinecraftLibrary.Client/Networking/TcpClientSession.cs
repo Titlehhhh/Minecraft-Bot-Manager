@@ -1,18 +1,18 @@
 ﻿using Ionic.Zlib;
+using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Core.Crypto;
-using MinecraftLibrary.Core.IO;
 using System.Net.Sockets;
 
 namespace MinecraftLibrary.Client.Networking
 {
 
-    public class TcpClientSession : IDisposable, ITcpClientSession
+    public class TcpClientSession : IDisposable
     {
         private static readonly int ZERO_VARLENGTH = GetVarIntLength(0);
-        public MinecraftStream NetStream { get; private set; }
+        public NetworkMinecraftStream NetStream { get; private set; }
 
         public string Host { get; set; }
         public int Port { get; set; }
@@ -35,7 +35,7 @@ namespace MinecraftLibrary.Client.Networking
         {
             tcpClient = new TcpClient(Host, Port);
             Connected?.Invoke(this);
-            NetStream = new MinecraftStream(tcpClient.GetStream());
+            NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
             ReadLoop();
         }
         private async Task<(int, MinecraftStream)> ReadNextPacketAsync()
@@ -123,7 +123,7 @@ namespace MinecraftLibrary.Client.Networking
             PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
 
         }
-        private void SendPacketWithoutCompression(IPacket packet, int id)
+        private async void SendPacketWithoutCompression(IPacket packet, int id)
         {
             Console.WriteLine("dis");
             using (MinecraftStream packetStream = new MinecraftStream())
@@ -131,16 +131,16 @@ namespace MinecraftLibrary.Client.Networking
                 packet.Write(packetStream);
                 int Packetlength = (int)packetStream.Length;
 
-                NetStream.Lock.Wait();
-                NetStream.WriteVarInt(GetVarIntLength(id) + Packetlength);
-                NetStream.WriteVarInt(id);
+                //NetStream.Lock.Wait();
+                await NetStream.WriteVarIntAsync(GetVarIntLength(id) + Packetlength);
+                await NetStream.WriteVarIntAsync(id);
                 packetStream.Position = 0;
                 packetStream.CopyTo(NetStream);
-                NetStream.Lock.Release();
+                //NetStream.Lock.Release();
             }
         }
 
-        private void SendLongPacket(MinecraftStream packetStream, int to_Packetlength)
+        private async void SendLongPacket(MinecraftStream packetStream, int to_Packetlength)
         {
             Console.WriteLine("Long");
             using (MemoryStream memstream = new MemoryStream())
@@ -152,17 +152,17 @@ namespace MinecraftLibrary.Client.Networking
                 packetStream.BaseStream = memstream;
             }
             int fullSize = (int)packetStream.Length + GetVarIntLength(to_Packetlength);
-            NetStream.WriteVarInt(fullSize);
-            NetStream.WriteVarInt(to_Packetlength);
+            await NetStream.WriteVarIntAsync(fullSize);
+            await NetStream.WriteVarIntAsync(to_Packetlength);
             packetStream.Position = 0;
             packetStream.CopyTo(NetStream);
         }
-        private void SendShortPacket(MinecraftStream packetStream)
+        private async void SendShortPacket(MinecraftStream packetStream)
         {
             Console.WriteLine("short");
             int fullSize = (int)packetStream.Length + ZERO_VARLENGTH;
-            NetStream.WriteVarInt(fullSize);
-            NetStream.WriteVarInt(0);
+            await NetStream.WriteVarIntAsync(fullSize);
+            await NetStream.WriteVarIntAsync(0);
             packetStream.Position = 0;
             packetStream.CopyTo(NetStream);
         }
@@ -170,8 +170,7 @@ namespace MinecraftLibrary.Client.Networking
 
         public void SwitchEncryption(byte[] key)
         {
-            NetStream.Lock.Wait();
-            NetStream = new AesStream(tcpClient.GetStream(), key);
+            NetStream.SwitchEncryption(key);
         }
 
 

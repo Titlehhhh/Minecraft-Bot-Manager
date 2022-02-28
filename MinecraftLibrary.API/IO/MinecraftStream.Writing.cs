@@ -1,15 +1,11 @@
-﻿
-using MinecraftLibrary.API.IO;
-using MinecraftLibrary.Core.Utils;
-using MinecraftLibrary.NBT;
-
+﻿using MinecraftLibrary.NBT;
 using System.Buffers.Binary;
 using System.Text;
 
-namespace MinecraftLibrary.Core.IO
-{    
+namespace MinecraftLibrary.API.IO
+{
 
-    public partial class MinecraftStream : IMinecraftStreamWriter
+    public sealed partial class MinecraftStream 
     {
 
         public void WriteByte(sbyte value)

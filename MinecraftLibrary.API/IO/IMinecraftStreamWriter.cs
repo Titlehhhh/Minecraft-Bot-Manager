@@ -41,5 +41,10 @@ namespace MinecraftLibrary.API.IO
         void WriteVarLong(long value);
         Task WriteVarLongAsync(long value);
     }
+
+    public interface IMinecraftStream : IMinecraftStreamReader, IMinecraftStreamWriter
+    {
+
+    }
     
 }

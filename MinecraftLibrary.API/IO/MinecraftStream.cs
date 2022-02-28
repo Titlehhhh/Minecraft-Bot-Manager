@@ -1,6 +1,7 @@
-﻿namespace MinecraftLibrary.Core.IO
-{
-    public partial class MinecraftStream : Stream
+﻿namespace MinecraftLibrary.API.IO
+{  
+
+    public sealed partial class MinecraftStream : Stream, IMinecraftStreamReader,IMinecraftStreamWriter
     {
         public Stream BaseStream { get;  set; }
         public SemaphoreSlim Lock { get; } = new SemaphoreSlim(1, 1);

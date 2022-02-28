@@ -13,6 +13,7 @@ namespace MinecraftLibrary.API.Protocol
 
         event EventHandler<RegisterPacketEventArgs> PacketRegistered;
         event EventHandler<UnRegisterPacketEventArgs> UnregisterPacket;
-    }   
+    }
+    
 
 }
