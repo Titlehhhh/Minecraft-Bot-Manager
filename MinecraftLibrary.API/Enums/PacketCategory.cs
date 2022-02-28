@@ -1,7 +1,8 @@
 ﻿namespace MinecraftLibrary.API
 {
-    public enum ProtocolState
+    public enum PacketCategory
     {
+        Status,
         HandShake,
         Login,
         Game

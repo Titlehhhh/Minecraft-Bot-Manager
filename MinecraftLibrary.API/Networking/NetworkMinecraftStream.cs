@@ -27,6 +27,7 @@ namespace MinecraftLibrary.API.Networking
         public override long Length => BaseStream.Length;
 
         public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
+        public SemaphoreSlim Lock { get; } = new SemaphoreSlim(1, 1);
 
         public NetworkMinecraftStream(NetworkStream networkStream)
         {

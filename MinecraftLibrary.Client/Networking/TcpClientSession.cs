@@ -129,12 +129,12 @@ namespace MinecraftLibrary.Client.Networking
                 packet.Write(packetStream);
                 int Packetlength = (int)packetStream.Length;
 
-                //NetStream.Lock.Wait();
+                NetStream.Lock.Wait();
                 await NetStream.WriteVarIntAsync(GetVarIntLength(id) + Packetlength);
                 await NetStream.WriteVarIntAsync(id);
                 packetStream.Position = 0;
                 packetStream.CopyTo(NetStream);
-                //NetStream.Lock.Release();
+                NetStream.Lock.Release();
             }
         }
 
@@ -170,9 +170,6 @@ namespace MinecraftLibrary.Client.Networking
         {
             NetStream.SwitchEncryption(key);
         }
-
-
-
         public void Dispose()
         {
             Cancellation.Dispose();

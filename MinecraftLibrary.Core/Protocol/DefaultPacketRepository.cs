@@ -12,12 +12,12 @@ namespace MinecraftLibrary.Core.Protocol
     {
         private  Dictionary<int, Lazy<IPacket>> packets = new Dictionary<int, Lazy<IPacket>>();
 
-        public Dictionary<int, Lazy<IPacket>> Packets => packets ??= new Dictionary<int, Lazy<IPacket>>();
+        public Dictionary<int, Lazy<IPacket>> InputPackets => packets ??= new Dictionary<int, Lazy<IPacket>>();
 
         public event EventHandler<RegisterPacketEventArgs> PacketRegistered;
         public event EventHandler<UnRegisterPacketEventArgs> UnregisterPacket;
 
-        public void RegisterPacket<TPacket>(int id) where TPacket : IPacket,new()
+        public void RegisterInputPacket<TPacket>(int id) where TPacket : IPacket,new()
         {
             Lazy<IPacket> packet = new Lazy<IPacket>(() => new TPacket());
             packets.Add(id, packet);
@@ -28,7 +28,7 @@ namespace MinecraftLibrary.Core.Protocol
         {
             if (packets.ContainsKey(id))
             {
-                packet = Packets[id].Value;
+                packet = InputPackets[id].Value;
                 return true;
             }
             packet = null;
@@ -37,7 +37,7 @@ namespace MinecraftLibrary.Core.Protocol
 
         public void UnRegisterPacket(int id)
         {
-            Packets.Remove(id);
+            InputPackets.Remove(id);
         }
     }
 }

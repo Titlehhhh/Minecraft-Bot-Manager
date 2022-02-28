@@ -51,7 +51,6 @@ namespace MinecraftLibrary.Client
             Session = new TcpClientSession();
             Session.Host = this.Host;
             Session.Port = this.Port;
-
             RegisterEvents();
             SubProtocol = ProtocolState.HandShake;
             Session.Connect();
@@ -72,11 +71,11 @@ namespace MinecraftLibrary.Client
 
             IPacketRepository LoginPackets = new DefaultPacketRepository();
 
-            LoginPackets.RegisterPacket<LoginDisconnectPacket>(0x00);
-            LoginPackets.RegisterPacket<EncryptionRequestPacket>(0x01);
-            LoginPackets.RegisterPacket<LoginSuccessPacket>(0x02);
-            LoginPackets.RegisterPacket<LoginSetCompressionPacket>(0x03);
-            LoginPackets.RegisterPacket<LoginPluginRequestPacket>(0x04);
+            LoginPackets.RegisterInputPacket<LoginDisconnectPacket>(0x00);
+            LoginPackets.RegisterInputPacket<EncryptionRequestPacket>(0x01);
+            LoginPackets.RegisterInputPacket<LoginSuccessPacket>(0x02);
+            LoginPackets.RegisterInputPacket<LoginSetCompressionPacket>(0x03);
+            LoginPackets.RegisterInputPacket<LoginPluginRequestPacket>(0x04);
 
             Session.InputPackets = LoginPackets;
         }

@@ -8,6 +8,7 @@ namespace MinecraftLibrary.API.Networking
         int CompressionThreshold { get; set; }
         string Host { get; set; }
         IPacketRepository InputPackets { get; set; }
+
         NetworkMinecraftStream NetStream { get; }
         int Port { get; set; }
         ProxyInfo? Proxy { get; set; }

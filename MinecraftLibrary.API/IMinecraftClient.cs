@@ -14,7 +14,7 @@ namespace MinecraftLibrary.API
         string Nickname { get; set; }
         string Host { get; set; }
         ushort Port { get; set; }
-        //TcpClientSession Session { get; }
+        ITcpClientSession Session { get; }
 
         ProtocolState SubProtocol { get; }
 
@@ -44,5 +44,14 @@ namespace MinecraftLibrary.API
         void LookHead(Vector3 vector);
 
         event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;        
+    }
+
+    public sealed class PacketInfoAttribute : Attribute
+    {
+        public PacketCategory Category { get; private set; }
+        public PacketInfoAttribute(PacketCategory category)
+        {
+            Category = category;    
+        }
     }
 }
