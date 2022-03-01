@@ -7,7 +7,7 @@ namespace MinecraftLibrary.API.Networking
     {
         int CompressionThreshold { get; set; }
         string Host { get; set; }
-        IPacketRepository InputPackets { get; set; }
+        IPacketProducer Packets { get; set; }
 
         NetworkMinecraftStream NetStream { get; }
         int Port { get; set; }
@@ -23,6 +23,7 @@ namespace MinecraftLibrary.API.Networking
         void Disconnect();
         void Dispose();
         void SendPacket(IPacket packet, int id);
+        void SendPacket(IPacket packet);
         void SwitchEncryption(byte[] key);
     }
 }

@@ -69,7 +69,7 @@ namespace MinecraftLibrary.Client
             ClientPackets.Add(typeof(EncryptionResponsePacket), 0x01);
             ClientPackets.Add(typeof(LoginPluginResponsePacket), 0x02);
 
-            IPacketRepository LoginPackets = new DefaultPacketRepository();
+            IPacketManager LoginPackets = new DefaultPacketManager();
 
             LoginPackets.RegisterInputPacket<LoginDisconnectPacket>(0x00);
             LoginPackets.RegisterInputPacket<EncryptionRequestPacket>(0x01);
@@ -77,7 +77,7 @@ namespace MinecraftLibrary.Client
             LoginPackets.RegisterInputPacket<LoginSetCompressionPacket>(0x03);
             LoginPackets.RegisterInputPacket<LoginPluginRequestPacket>(0x04);
 
-            Session.InputPackets = LoginPackets;
+            Session.Packets = LoginPackets;
         }
 
 

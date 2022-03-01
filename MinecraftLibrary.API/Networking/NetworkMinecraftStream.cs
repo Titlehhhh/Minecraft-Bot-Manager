@@ -110,7 +110,7 @@ namespace MinecraftLibrary.API.Networking
 
             DecryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesEngine(), 8));
             DecryptCipher.Init(false, new ParametersWithIV(new KeyParameter(privatekey), privatekey, 0, 16));
-
+            
             this.BaseStream = new CipherStream(NetStream, DecryptCipher, EncryptCipher);
         }
 

@@ -11,5 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
+    <ProjectReference Include="..\ProtocolLib740\ProtocolLib740.csproj" />
   </ItemGroup>
 </Project>

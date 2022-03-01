@@ -1,6 +1,8 @@
 ﻿namespace MinecraftLibrary.API.IO
 {  
-
+    /// <summary>
+    /// Поток обеспечивающий работу с примитивными данными протокола Майкрафт    /// 
+    /// </summary>
     public sealed partial class MinecraftStream : Stream, IMinecraftStreamReader,IMinecraftStreamWriter
     {
         public Stream BaseStream { get;  set; }        

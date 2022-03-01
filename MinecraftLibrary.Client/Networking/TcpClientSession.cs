@@ -19,7 +19,9 @@ namespace MinecraftLibrary.Client.Networking
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
-        public IPacketRepository InputPackets { get; set; }
+
+        public IPacketProducer InputPackets { get; set; }
+        public IPacketProducer Packets { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event Action<ITcpClientSession>? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
@@ -43,19 +45,24 @@ namespace MinecraftLibrary.Client.Networking
             byte[] receivedata = new byte[len];
             await NetStream.ReadAsync(receivedata.AsMemory(0, len));
             int id = 0;
-            var ms = new MinecraftStream(receivedata);
+
+            var mcs = new MinecraftStream(receivedata);
             if (CompressionThreshold > 0)
             {
-                int sizeUncompressed = ms.ReadVarInt();
+
+                int sizeUncompressed = mcs.ReadVarInt();
                 if (sizeUncompressed != 0)
                 {
-                    ZlibStream zlibStream = new ZlibStream(ms.BaseStream, CompressionMode.Decompress);
-                    ms.BaseStream = zlibStream;
+                    ZlibStream zlibStream = new ZlibStream(mcs.BaseStream, CompressionMode.Decompress);
+                    byte[] uncompressdata = new byte[sizeUncompressed];
+                    zlibStream.Read(uncompressdata);
+                    zlibStream.Close();
+                    mcs.BaseStream = new MemoryStream(uncompressdata);
                 }
 
             }
-            id = ms.ReadVarInt();
-            return (id, ms);
+            id = mcs.ReadVarInt();
+            return (id, mcs);
         }
         private async void ReadLoop()
         {
@@ -64,11 +71,11 @@ namespace MinecraftLibrary.Client.Networking
                 while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
                 {
                     (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
-                    IPacket packet = null;
-                    if (InputPackets.TryGetPacket(id, out packet))
+                    Lazy<IPacket> packet = null;
+                    if (InputPackets.TryGetInputPacket(id, out packet))
                     {
-                        packet.Read(dataStream);
-                        PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet));
+                        packet.Value.Read(dataStream);
+                        PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
                     }
                 }
             }
@@ -140,7 +147,7 @@ namespace MinecraftLibrary.Client.Networking
 
         private async void SendLongPacket(MinecraftStream packetStream, int to_Packetlength)
         {
-            Console.WriteLine("Long");
+
             using (MemoryStream memstream = new MemoryStream())
             {
                 using (ZlibStream stream = new ZlibStream(memstream, CompressionMode.Compress))
@@ -197,6 +204,15 @@ namespace MinecraftLibrary.Client.Networking
 
             return amount;
         }
+
+        public void SendPacket(IPacket packet)
+        {            
+            if (Packets.TryGetOutputId(packet.GetType(), out int id))
+            {
+                this.SendPacket(packet, id);
+            }
+        }
+
         ~TcpClientSession()
         {
             Dispose();

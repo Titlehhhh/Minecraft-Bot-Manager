@@ -3,6 +3,7 @@ using MinecraftLibrary.API.IO;
 
 using System;
 using System.CodeDom;
+using ProtocolLib740.Packets.Client;
 
 namespace ConsoleApp1
 {
@@ -112,6 +113,10 @@ namespace ConsoleApp1
         public static void Main()
         {
             
+            Console.WriteLine(handShakePacket.GetType().IsAssignableTo(typeof(IPacket)));
+
+
+
         }
         private static void F(TestClass test)
         {
