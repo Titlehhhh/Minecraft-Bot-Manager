@@ -19,9 +19,8 @@ namespace MinecraftLibrary.Client.Networking
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
-
-        public IPacketProducer InputPackets { get; set; }
-        public IPacketProducer Packets { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
+        public IPacketProducer Packets { get ; set ; }
 
         public event Action<ITcpClientSession>? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
@@ -72,7 +71,7 @@ namespace MinecraftLibrary.Client.Networking
                 {
                     (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
                     Lazy<IPacket> packet = null;
-                    if (InputPackets.TryGetInputPacket(id, out packet))
+                    if (Packets.TryGetInputPacket(id, out packet))
                     {
                         packet.Value.Read(dataStream);
                         PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
