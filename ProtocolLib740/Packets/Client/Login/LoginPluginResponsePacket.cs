@@ -1,15 +1,10 @@
-﻿using MinecraftLibrary.API.Networking;
+﻿using MinecraftLibrary.API;
 using MinecraftLibrary.API.IO;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MinecraftLibrary.API.Networking;
 
 namespace ProtocolLib740.Packets.Client
 {
-    
+    [MinecraftLibrary.API.Protocol.PacketInfo(0x02, 740, PacketCategory.Login, PacketSide.Client)]
     public class LoginPluginResponsePacket : IPacket
     {
         public int MessageID { get; set; }

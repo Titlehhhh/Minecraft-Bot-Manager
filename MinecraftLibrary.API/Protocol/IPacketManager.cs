@@ -23,5 +23,5 @@ namespace MinecraftLibrary.API.Protocol
         void ClearInputPackets();
         event EventHandler<RegisterPacketEventArgs> PacketRegistered;
         event EventHandler<UnRegisterPacketEventArgs> UnregisterPacket;
-    } 
+    }
 }

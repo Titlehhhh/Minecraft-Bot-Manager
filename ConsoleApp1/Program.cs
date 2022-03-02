@@ -113,7 +113,7 @@ namespace ConsoleApp1
         public static void Main()
         {
             
-            Console.WriteLine(handShakePacket.GetType().IsAssignableTo(typeof(IPacket)));
+           // Console.WriteLine(handShakePacket.GetType().IsAssignableTo(typeof(IPacket)));
 
 
 
