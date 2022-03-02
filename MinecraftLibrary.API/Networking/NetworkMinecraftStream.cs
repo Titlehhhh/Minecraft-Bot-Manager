@@ -8,7 +8,7 @@ using System.Net.Sockets;
 namespace MinecraftLibrary.API.Networking
 {
     /// <summary>
-    ///  <see cref="System.Net.Sockets.NetworkStream"/> 5
+    ///  <see cref="System.Net.Sockets.NetworkStream"/> 5d
     /// </summary>
     public sealed class NetworkMinecraftStream : Stream
     {
