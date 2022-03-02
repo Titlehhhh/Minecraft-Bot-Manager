@@ -4,6 +4,7 @@ using MinecraftLibrary.API.IO;
 using System;
 using System.CodeDom;
 using ProtocolLib740.Packets.Client;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
@@ -112,51 +113,47 @@ namespace ConsoleApp1
 
         public static void Main()
         {
-            
-           // Console.WriteLine(handShakePacket.GetType().IsAssignableTo(typeof(IPacket)));
+            Console.WriteLine("Hello");
+            string path = @"C:\Users\Title\Desktop\Minecraft-Bot-Manager\ProtocolLib740\Packets\Server\Game\";
 
+            Dictionary<string, int> reverse = Names.ToDictionary(item => item.Value, item => item.Key);
 
+            Regex regex = new Regex(@"    public class (?<name>[a-zA-Z]+) : IPacket");
+            foreach (var file in Directory.GetFiles(path, "*.cs"))
+            {
+                string source = "";
+                using (StreamReader sr = new StreamReader(file))
+                {
+                    string content = sr.ReadToEnd();
+                    Match match = regex.Match(content);
+                    int id = reverse[match.Groups["name"].Value];
+                    string attrstr = atrr("0x" + id.ToString("X2"));
 
+                    source = content.Replace(match.Value, $"    {attrstr}\n\r{match.Value}");
+                    if(source.IndexOf("using MinecraftLibrary.API;") == -1)
+                    {
+                        source = "using MinecraftLibrary.API;" + Environment.NewLine + source;
+
+                    }
+                    if (source.IndexOf("using MinecraftLibrary.API.Protocol;") == -1)
+                    {
+                        source = "using MinecraftLibrary.API.Protocol;" + Environment.NewLine + source;
+
+                    }
+                }
+                using (StreamWriter sw = new StreamWriter(file))
+                {
+                    sw.WriteLine(source);
+                }
+            }
+            Console.ReadKey();
         }
-        private static void F(TestClass test)
+        static string atrr(string id)
         {
-            test = null;
-        }
-
-        static string GenerateClass(string name, string id)
-        {
-            return $@"using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.IO;
-
-
-namespace ProtocolLib740.Packets.Server
-{{
-    [PacketHeader({id}, 740, PacketSide.Server, PacketCategory.Login)]
-    public class {name} : IPacket
-    {{        
-        public void Write(IMinecraftStreamWriter stream)
-        {{
-            
-        }}
-        public void Read(IMinecraftStreamReader stream)
-        {{
-
-        }}
-        public {name}() {{ }}
-    }}
-}}";
+            return $"[PacketInfo("+id+", 740, PacketCategory.Game, PacketSide.Server)]";
         }
     }
-    public class TestClass
-    {
-        public int MyProperty { get; set; }
-        public TestClass()
-        {
-            MyProperty = 5;
 
-        }
-    }
-    
 }
 
 

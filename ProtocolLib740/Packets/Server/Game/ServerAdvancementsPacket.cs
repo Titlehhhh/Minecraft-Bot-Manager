@@ -1,3 +1,5 @@
+using MinecraftLibrary.API.Protocol;
+using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
 
@@ -5,7 +7,8 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    public class ServerAdvancementsPacket : IPacket
+    [PacketInfo(0x57, 740, PacketCategory.Game, PacketSide.Server)]
+    public class ServerAdvancementsPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {
@@ -18,3 +21,4 @@ namespace ProtocolLib740.Packets.Server
         public ServerAdvancementsPacket() { }
     }
 }
+
