@@ -24,6 +24,8 @@ namespace MinecraftLibrary.Client
         public ushort Port { get; set; }
         public ITcpClientSession Session { get; private set; }
 
+        
+
         private Dictionary<Type, int> ClientPackets = new Dictionary<Type, int>();
 
         public IContainer CurrentContainer { get; private set; }
@@ -46,11 +48,15 @@ namespace MinecraftLibrary.Client
 
         public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
 
+
+        private readonly IPacketManager packetManager = new DefaultPacketManager();
+
         public void Connect()
         {
             Session = new TcpClientSession();
             Session.Host = this.Host;
             Session.Port = this.Port;
+            Session.Packets = packetManager;
             RegisterEvents();
             SubProtocol = ProtocolState.HandShake;
             Session.Connect();
@@ -58,26 +64,39 @@ namespace MinecraftLibrary.Client
         }
 
         private void RegisterHandShakePackets()
-        {
-            ClientPackets.Clear();
-            ClientPackets.Add(typeof(HandShakePacket), 0x00);
+        {            
+            packetManager.ClearAll();
+            packetManager.RegisterOutputPacket<HandShakePacket>(0x00);
+
         }
         private void RegisterLoginPackets()
         {
-            ClientPackets.Clear();
-            ClientPackets.Add(typeof(LoginStartPacket),0x00);
-            ClientPackets.Add(typeof(EncryptionResponsePacket), 0x01);
-            ClientPackets.Add(typeof(LoginPluginResponsePacket), 0x02);
+            packetManager.ClearAll();
 
-            IPacketManager LoginPackets = new DefaultPacketManager();
+            packetManager.RegisterOutputPacket(typeof(LoginStartPacket),0x00);
+            packetManager.RegisterOutputPacket(typeof(EncryptionResponsePacket), 0x01);
+            packetManager.RegisterOutputPacket(typeof(LoginPluginResponsePacket), 0x02);
 
-            LoginPackets.RegisterInputPacket<LoginDisconnectPacket>(0x00);
-            LoginPackets.RegisterInputPacket<EncryptionRequestPacket>(0x01);
-            LoginPackets.RegisterInputPacket<LoginSuccessPacket>(0x02);
-            LoginPackets.RegisterInputPacket<LoginSetCompressionPacket>(0x03);
-            LoginPackets.RegisterInputPacket<LoginPluginRequestPacket>(0x04);
 
-            Session.Packets = LoginPackets;
+
+            packetManager.RegisterInputPacket<LoginDisconnectPacket>(0x00);
+            packetManager.RegisterInputPacket<EncryptionRequestPacket>(0x01);
+            packetManager.RegisterInputPacket<LoginSuccessPacket>(0x02);
+            packetManager.RegisterInputPacket<LoginSetCompressionPacket>(0x03);
+            packetManager.RegisterInputPacket<LoginPluginRequestPacket>(0x04);
+            
+        }
+
+        private void RegisterGamePackets()
+        {
+            packetManager.ClearAll();
+
+            packetManager.RegisterOutputPacket<ClientKeepAlivePacket>(0x10);
+            packetManager.RegisterOutputPacket<ClientTeleportConfirmPacket>(0x00);
+            packetManager.RegisterOutputPacket<ClientChatPacket>(0x03);
+
+            packetManager.RegisterInputPacket<ServerKeepAlivePacket>(0x1F);
+            packetManager.RegisterInputPacket<ServerChatPacket>(0x0E);
         }
 
 
