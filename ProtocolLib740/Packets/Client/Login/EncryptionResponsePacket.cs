@@ -1,10 +1,10 @@
 ﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
-using MinecraftLibrary.API;
+
 
 namespace ProtocolLib740.Packets.Client
 {
-    [MinecraftLibrary.API.Protocol.PacketInfo(0x01, 740, PacketCategory.Login, PacketSide.Client)]
+    
     public class EncryptionResponsePacket : IPacket
     {
         public byte[] VerifyToken { get; set; }

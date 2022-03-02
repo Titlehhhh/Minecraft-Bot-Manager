@@ -5,7 +5,7 @@ using MinecraftLibrary.API.Networking;
 
 namespace ProtocolLib740.Packets.Client
 {
-    [MinecraftLibrary.API.Protocol.PacketInfo(0x00,740,PacketCategory.HandShake,PacketSide.Client)]
+
     public class HandShakePacket : IPacket
     {
         public HandShakeIntent Intent { get; set; }

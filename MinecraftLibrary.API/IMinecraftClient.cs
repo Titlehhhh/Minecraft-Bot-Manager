@@ -45,5 +45,13 @@ namespace MinecraftLibrary.API
 
         event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;        
     }
-    
+
+    public sealed class PacketInfoAttribute : Attribute
+    {
+        public PacketCategory Category { get; private set; }
+        public PacketInfoAttribute(PacketCategory category)
+        {
+            Category = category;    
+        }
+    }
 }
