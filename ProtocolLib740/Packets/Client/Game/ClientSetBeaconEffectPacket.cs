@@ -7,7 +7,8 @@ using MinecraftLibrary.API.Protocol;
 namespace ProtocolLib740.Packets.Client
 {
 
-    [PacketInfo(0x24, 740, PacketCategory.Game, PacketSide.Client)]    public class ClientSetBeaconEffectPacket : IPacket
+    [PacketInfo(0x24, 740, PacketCategory.Game, PacketSide.Client)]
+    public class ClientSetBeaconEffectPacket : IPacket
     {
         public void Write(IMinecraftStreamWriter stream)
         {

@@ -7,7 +7,8 @@ using MinecraftLibrary.API.Protocol;
 namespace ProtocolLib740.Packets.Client
 {
 
-    [PacketInfo(0x0C, 740, PacketCategory.Game, PacketSide.Client)]    public class ClientEditBookPacket : IPacket
+    [PacketInfo(0x0C, 740, PacketCategory.Game, PacketSide.Client)]
+    public class ClientEditBookPacket : IPacket
     {
         public void Write(IMinecraftStreamWriter stream)
         {

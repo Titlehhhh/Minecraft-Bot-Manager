@@ -7,7 +7,8 @@ using MinecraftLibrary.API.Protocol;
 namespace ProtocolLib740.Packets.Client
 {
 
-    [PacketInfo(0x18, 740, PacketCategory.Game, PacketSide.Client)]    public class ClientMoveItemToHotbarPacket : IPacket
+    [PacketInfo(0x18, 740, PacketCategory.Game, PacketSide.Client)]
+    public class ClientMoveItemToHotbarPacket : IPacket
     {
         public void Write(IMinecraftStreamWriter stream)
         {
