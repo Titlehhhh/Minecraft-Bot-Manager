@@ -13,7 +13,6 @@ namespace MinecraftBotManagerWPF.Views.Windows
         public MainWindow()
         {
 
-
             InitializeComponent();
 
             if (WindowState == WindowState.Maximized)

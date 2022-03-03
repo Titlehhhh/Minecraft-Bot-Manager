@@ -5,6 +5,7 @@ using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Client.Networking;
 using MinecraftLibrary.Core.Protocol;
 using MinecraftLibrary.Geometry;
+using ProtocolLib740;
 using ProtocolLib740.Packets.Client;
 using ProtocolLib740.Packets.Server;
 
@@ -21,8 +22,6 @@ namespace MinecraftLibrary.Client
 
 
 
-        private Dictionary<Type, int> ClientPackets = new Dictionary<Type, int>();
-
         public IContainer CurrentContainer { get; private set; }
 
         public Point3 Location { get; private set; }
@@ -36,6 +35,18 @@ namespace MinecraftLibrary.Client
             get { return subProtocol; }
             private set
             {
+                switch (value)
+                {
+                    case ProtocolState.HandShake:
+                        RegisterHandShakePackets();
+                        break;
+                    case ProtocolState.Login:
+                        RegisterLoginPackets();
+                        break;
+                    case ProtocolState.Game:
+                        RegisterGamePackets();
+                        break;
+                }
 
                 subProtocol = value;
             }
@@ -44,65 +55,25 @@ namespace MinecraftLibrary.Client
         public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
 
 
-        private readonly IPacketManager packetManager = new DefaultPacketManager();
+        private readonly IPacketManager PacketManager = new DefaultPacketManager();
+
+        private IPacketProvider PacketProvider;
 
         public void Connect()
         {
+            PacketProvider = new PacketProvider740();
+
             Session = new TcpClientSession();
             Session.Host = this.Host;
             Session.Port = this.Port;
-            Session.Packets = packetManager;
+            Session.Packets = PacketManager;
             RegisterEvents();
             SubProtocol = ProtocolState.HandShake;
             Session.Connect();
 
         }
 
-        private void RegisterHandShakePackets()
-        {
-            packetManager.ClearAll();
-            packetManager.RegisterOutputPacket<HandShakePacket>(0x00);
-
-        }
-        private void RegisterLoginPackets()
-        {
-            packetManager.ClearAll();
-
-            packetManager.RegisterOutputPacket(typeof(LoginStartPacket), 0x00);
-            packetManager.RegisterOutputPacket(typeof(EncryptionResponsePacket), 0x01);
-            packetManager.RegisterOutputPacket(typeof(LoginPluginResponsePacket), 0x02);
-
-
-
-            packetManager.RegisterInputPacket<LoginDisconnectPacket>(0x00);
-            packetManager.RegisterInputPacket<EncryptionRequestPacket>(0x01);
-            packetManager.RegisterInputPacket<LoginSuccessPacket>(0x02);
-            packetManager.RegisterInputPacket<LoginSetCompressionPacket>(0x03);
-            packetManager.RegisterInputPacket<LoginPluginRequestPacket>(0x04);
-
-        }
-
-        private void RegisterGamePackets()
-        {
-            packetManager.ClearAll();
-
-            packetManager.RegisterOutputPacket<ClientKeepAlivePacket>(0x10);
-            packetManager.RegisterOutputPacket<ClientTeleportConfirmPacket>(0x00);
-            packetManager.RegisterOutputPacket<ClientChatPacket>(0x03);
-
-            packetManager.RegisterInputPacket<ServerKeepAlivePacket>(0x1F);
-            packetManager.RegisterInputPacket<ServerChatPacket>(0x0E);
-        }
-
-
-        private void RegisterEvents()
-        {
-            Session.Connected += Session_Connected;
-            Session.Disconnected += Session_Disconnected;
-            Session.PacketReceived += Session_PacketReceived;
-            Session.PacketSend += Session_PacketSend;
-            Session.PacketSent += Session_PacketSent;
-        }
+        
         private void UnRegisterEvents()
         {
             Session.Connected -= Session_Connected;
@@ -111,10 +82,18 @@ namespace MinecraftLibrary.Client
             Session.PacketSend -= Session_PacketSend;
             Session.PacketSent -= Session_PacketSent;
         }
+        private void Session_Connected(ITcpClientSession obj)
+        {
+            SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 740, Port, Host));
+        }
 
         private void Session_PacketSent(object? sender, PacketSentEventArgs e)
         {
-
+            if(e.Packet is HandShakePacket)
+            {
+                this.SubProtocol = ProtocolState.Login;
+                SendPacket(new LoginStartPacket(Nickname));
+            }
         }
 
         private void Session_PacketSend(object? sender, PacketSendEventArgs e)
@@ -124,7 +103,7 @@ namespace MinecraftLibrary.Client
 
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
         {
-
+            Console.WriteLine(e.Packet.GetType().Name);
         }
 
         private void Session_Disconnected(object? sender, DisconnectedEventArgs e)
@@ -133,10 +112,12 @@ namespace MinecraftLibrary.Client
             Disconnected?.Invoke(this, new ProtocolClientDisconnectEventArg(e.Message, e.Exception));
         }
 
-        private void Session_Connected(ITcpClientSession obj)
+        private void SendPacket(IPacket packet)
         {
-
+            Session.SendPacket(packet);
         }
+
+        
 
         public void Disconnect()
         {
@@ -186,6 +167,36 @@ namespace MinecraftLibrary.Client
         public void SendLocation(Vector3 body, Vector3 head, bool isGround)
         {
 
+        }
+
+        private void RegisterHandShakePackets()
+        {
+            PacketManager.ClearAll();
+            PacketManager.LoadInputPackets(PacketProvider.ClientPackets.HandShakePackets);
+        }
+        private void RegisterLoginPackets()
+        {
+            PacketManager.ClearAll();
+
+            PacketManager.LoadInputPackets(PacketProvider.ClientPackets.LoginPackets);
+
+            PacketManager.LoadOutputPackets(PacketProvider.ServerPackets.LoginPackets);
+        }
+        private void RegisterGamePackets()
+        {
+            PacketManager.ClearAll();
+
+            PacketManager.LoadInputPackets(PacketProvider.ClientPackets.GamePackets);
+
+            PacketManager.LoadOutputPackets(PacketProvider.ServerPackets.GamePackets);
+        }
+        private void RegisterEvents()
+        {
+            Session.Connected += Session_Connected;
+            Session.Disconnected += Session_Disconnected;
+            Session.PacketReceived += Session_PacketReceived;
+            Session.PacketSend += Session_PacketSend;
+            Session.PacketSent += Session_PacketSent;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using MinecraftLibrary.Client;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
@@ -63,39 +64,14 @@ namespace ConsoleApp1
 
         public static void Main()
         {
-            Console.WriteLine("Hello");
-            string path = @"C:\Users\Title\Desktop\Minecraft-Bot-Manager\ProtocolLib740\Packets\Client\Game\";
-
+            Console.WriteLine("StartProgramm");
+            MinecraftClient client = new MinecraftClient();
+            client.Host = "nexus1.su";
+            client.Port = 25565;
             
-
-            Regex regex = new Regex(@"    public class (?<name>[a-zA-Z]+) : IPacket");
-            foreach (var file in Directory.GetFiles(path, "*.cs"))
-            {
-                string source = "";
-                using (StreamReader sr = new StreamReader(file))
-                {
-                    string content = sr.ReadToEnd();
-                    Match match = regex.Match(content);
-                    int id = Names[match.Groups["name"].Value];
-                    string attrstr = atrr("0x" + id.ToString("X2"));
-
-                    source = content.Replace(match.Value, $"    {attrstr}\n\r{match.Value}");
-                    if (source.IndexOf("using MinecraftLibrary.API;") == -1)
-                    {
-                        source = "using MinecraftLibrary.API;" + Environment.NewLine + source;
-
-                    }
-                    if (source.IndexOf("using MinecraftLibrary.API.Protocol;") == -1)
-                    {
-                        source = "using MinecraftLibrary.API.Protocol;" + Environment.NewLine + source;
-                    }
-                }
-                using (StreamWriter sw = new StreamWriter(file))
-                {
-                    sw.WriteLine(source);
-                }
-            }
-            Console.ReadKey();
+            client.Connect();
+            Console.WriteLine("Ok");
+            Console.ReadLine();
         }
         static string atrr(string id)
         {

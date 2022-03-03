@@ -18,10 +18,13 @@ namespace MinecraftLibrary.API.Protocol
         void UnRegisterInputPacket<TPacket>() where TPacket : IPacket;
         void UnRegisterInputPacket(int id);
 
+        void LoadInputPackets(Dictionary<int, Type> packets);
+        void LoadOutputPackets(Dictionary<int, Type> packets);
+
         void ClearAll();
         void ClearOutputPackets();
         void ClearInputPackets();
-        event EventHandler<RegisterPacketEventArgs> PacketRegistered;
-        event EventHandler<UnRegisterPacketEventArgs> UnregisterPacket;
+        event EventHandler<RegisterPacketsEventArgs> PacketsRegistered;
+        event EventHandler<UnRegisterPacketEventArgs> PacketsUnregister;
     }
 }

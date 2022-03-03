@@ -10,13 +10,13 @@ namespace ProtocolLib740.Packets.Client
     {
         public HandShakeIntent Intent { get; set; }
         public int ProtocolVersion { get; set; }
-        public int Port { get; set; }
+        public ushort Port { get; set; }
         public string Host { get; set; }
         public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteVarInt(ProtocolVersion);
             stream.WriteString(Host);
-            stream.WriteUnsignedShort((ushort)Port);
+            stream.WriteUnsignedShort(Port);
             stream.WriteVarInt((int)Intent);
         }
 
@@ -25,7 +25,7 @@ namespace ProtocolLib740.Packets.Client
 
         }
 
-        public HandShakePacket(HandShakeIntent intent, int protocolVersion, int port, string host)
+        public HandShakePacket(HandShakeIntent intent, int protocolVersion, ushort port, string host)
         {
             Intent = intent;
             ProtocolVersion = protocolVersion;

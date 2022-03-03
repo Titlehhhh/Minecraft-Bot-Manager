@@ -9,10 +9,13 @@ namespace MinecraftLibrary.Core.Protocol
 
         public Dictionary<int, Lazy<IPacket>> InputPackets => packets ??= new Dictionary<int, Lazy<IPacket>>();
 
-        public Dictionary<Type, int> OutputPackets => throw new NotImplementedException();
+        private Dictionary<Type, int> outPackets;
 
-        public event EventHandler<RegisterPacketEventArgs> PacketRegistered;
-        public event EventHandler<UnRegisterPacketEventArgs> UnregisterPacket;
+        public Dictionary<Type, int> OutputPackets => outPackets ??= new Dictionary<Type, int>();
+
+
+        public event EventHandler<RegisterPacketsEventArgs> PacketsRegistered;
+        public event EventHandler<UnRegisterPacketEventArgs> PacketsUnregister;
 
         public void ClearAll()
         {
@@ -34,7 +37,7 @@ namespace MinecraftLibrary.Core.Protocol
         {
             Lazy<IPacket> packet = new Lazy<IPacket>(() => new TPacket());
             packets.Add(id, packet);
-            PacketRegistered?.Invoke(this, new RegisterPacketEventArgs(typeof(TPacket)));
+            PacketsRegistered?.Invoke(this, new RegisterPacketsEventArgs(new List<Type>() { typeof(TPacket) }));
         }
 
         public void RegisterInputPacket(Type Tpacket, int id)
@@ -114,6 +117,31 @@ namespace MinecraftLibrary.Core.Protocol
         public void UnRegisterPacket(int id)
         {
             InputPackets.Remove(id);
+        }
+
+        public void LoadInputPackets(Dictionary<int, Type> packets)
+        {
+            foreach (var item in packets)
+            {
+                if (!item.Value.IsAssignableTo(typeof(IPacket)))
+                {
+                    throw new InvalidOperationException($"Элемент {nameof(item)} не является производным от {nameof(IPacket)}");
+                }
+                Lazy<IPacket> packet = new Lazy<IPacket>(() => (IPacket)Activator.CreateInstance(item.Value));
+                InputPackets.Add(item.Key, packet);
+            }
+        }
+
+        public void LoadOutputPackets(Dictionary<int, Type> packets)
+        {
+            foreach (var item in packets)
+            {
+                if (!item.Value.IsAssignableTo(typeof(IPacket)))
+                {
+                    throw new InvalidOperationException($"Элемент {nameof(item)} не является производным от {nameof(IPacket)}");
+                }
+                OutputPackets.Add(item.Value, item.Key);
+            }
         }
     }
 }

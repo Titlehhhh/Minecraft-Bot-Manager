@@ -28,6 +28,12 @@ namespace MinecraftLibrary.API.Protocol
             GamePackets = gamePackets;
 
         }
+        public DefaultPacketProviderServer()
+        {
+            StatusPackets = new Dictionary<int, Type>();
+            LoginPackets = new Dictionary<int, Type>();
+            GamePackets = new Dictionary<int, Type>();
+        }
         private static void CheckAssignable(Dictionary<int, Type> collection, string name)
         {
             bool result = collection.All(item => item.Value.IsAssignableTo(typeof(IPacket)));

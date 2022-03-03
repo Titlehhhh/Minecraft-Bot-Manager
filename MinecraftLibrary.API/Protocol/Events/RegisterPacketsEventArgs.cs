@@ -1,10 +1,10 @@
 ﻿namespace MinecraftLibrary.API.Protocol
 {
-    public class UnRegisterPacketEventArgs : EventArgs
+    public class RegisterPacketsEventArgs : EventArgs
     {
         public IList<Type> Packets { get; private set; }
 
-        public UnRegisterPacketEventArgs(IList<Type> packets)
+        public RegisterPacketsEventArgs(IList<Type> packets)
         {
             Packets = packets;
         }
