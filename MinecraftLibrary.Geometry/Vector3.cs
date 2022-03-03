@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace MinecraftLibrary.Geometry
 {
@@ -35,7 +34,7 @@ namespace MinecraftLibrary.Geometry
         {
             X = Y = Z = value;
         }
-        public Vector3 (Point3 location1,Point3 location2)
+        public Vector3(Point3 location1, Point3 location2)
         {
             X = location2.X - location1.X;
             Y = location2.Y - location1.Y;
@@ -140,7 +139,7 @@ namespace MinecraftLibrary.Geometry
             else
                 return Vector3.Zero;
         }
-        public float Magnitude => (float)Math.Sqrt(X*X+Y*Y+Z*Z);
+        public float Magnitude => (float)Math.Sqrt(X * X + Y * Y + Z * Z);
 
         /// <summary>
         /// Finds the distance of this vector from Vector3.Zero

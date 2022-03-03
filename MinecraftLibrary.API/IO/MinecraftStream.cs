@@ -1,11 +1,11 @@
 ﻿namespace MinecraftLibrary.API.IO
-{  
+{
     /// <summary>
     /// Поток обеспечивающий работу с примитивными данными протокола Майкрафт    /// 
     /// </summary>
-    public sealed partial class MinecraftStream : Stream, IMinecraftStreamReader,IMinecraftStreamWriter
+    public sealed partial class MinecraftStream : Stream, IMinecraftStreamReader, IMinecraftStreamWriter
     {
-        public Stream BaseStream { get;  set; }        
+        public Stream BaseStream { get; set; }
 
         public override bool CanRead => BaseStream.CanRead;
 
@@ -15,25 +15,25 @@
 
         public override long Length => BaseStream.Length;
 
-        public CancellationTokenSource Cancellation { get;  set; }
+        public CancellationTokenSource Cancellation { get; set; }
 
         public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
         public MinecraftStream() : this(new MemoryStream())
         {
-            
+
         }
         public MinecraftStream(Stream stream)
         {
             BaseStream = stream;
-            
+
         }
         public MinecraftStream(byte[] data) : this(new MemoryStream(data))
-        {          
-           
+        {
+
         }
         public override void Flush()
         {
-            BaseStream.Flush();            
+            BaseStream.Flush();
         }
 
         public override long Seek(long offset, SeekOrigin origin)
@@ -54,12 +54,12 @@
         public override void Write(byte[] buffer, int offset, int count)
         {
             BaseStream.Write(buffer, offset, count);
-        }      
+        }
 
 
     }
     public static class GuidExtensions
-    {        
+    {
         public static Guid ToLittleEndian(this Guid javaGuid)
         {
             byte[] net = new byte[16];

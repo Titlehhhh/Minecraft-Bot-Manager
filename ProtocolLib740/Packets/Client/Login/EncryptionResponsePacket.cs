@@ -1,6 +1,6 @@
-﻿using MinecraftLibrary.API.Networking;
+﻿using MinecraftLibrary.API;
 using MinecraftLibrary.API.IO;
-using MinecraftLibrary.API;
+using MinecraftLibrary.API.Networking;
 
 namespace ProtocolLib740.Packets.Client
 {

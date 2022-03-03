@@ -1,12 +1,12 @@
 using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientRequestPacket : IPacket
     {
         public ClientRequest Request { get; set; }
@@ -18,7 +18,7 @@ namespace ProtocolLib340.Packets.Client.Game
 
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         public ClientRequestPacket()

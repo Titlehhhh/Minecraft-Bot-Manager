@@ -1,15 +1,15 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Server
 {
 
-    
+
     public class ServerKeepAlivePacket : IPacket
     {
         public long ID { get; set; }
-        
+
         public void Read(IMinecraftStreamReader stream)
         {
             ID = stream.ReadLong();
@@ -17,7 +17,7 @@ namespace ProtocolLib340.Packets.Server
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
 
         public ServerKeepAlivePacket(long iD)
@@ -25,7 +25,7 @@ namespace ProtocolLib340.Packets.Server
             ID = iD;
         }
 
-        public ServerKeepAlivePacket() {}
+        public ServerKeepAlivePacket() { }
     }
 
 }

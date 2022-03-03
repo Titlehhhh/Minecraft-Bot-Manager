@@ -1,13 +1,13 @@
 using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
-using static ProtocolLib340.Constans;
+using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.Geometry;
+using static ProtocolLib340.Constans;
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientPlayerActionPacket : IPacket
     {
         public PlayerAction Action { get; set; }
@@ -27,7 +27,7 @@ namespace ProtocolLib340.Packets.Client.Game
 
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         public ClientPlayerActionPacket(PlayerAction action, Point3_Int position, GeoBlockFace face)

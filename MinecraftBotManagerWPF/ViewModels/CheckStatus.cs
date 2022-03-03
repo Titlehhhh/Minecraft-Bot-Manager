@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using MinecraftBotManagerWPF.Enums;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MinecraftBotManagerWPF.Enums;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
@@ -41,7 +41,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             }
         }
 
-        
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -1,16 +1,10 @@
 ﻿using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MinecraftLibrary.API.Networking;
 
 namespace ProtocolLib340.Packets.Client.HandShake
 {
-    
+
     public class HandShakePacket : IPacket
     {
         public HandShakeIntent Intent { get; set; }

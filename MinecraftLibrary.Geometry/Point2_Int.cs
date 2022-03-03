@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MinecraftLibrary.Geometry
+﻿namespace MinecraftLibrary.Geometry
 {
     public struct Point2_Int : IEquatable<Point2_Int>
     {

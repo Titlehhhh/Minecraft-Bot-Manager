@@ -1,11 +1,11 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Server
 {
 
-    
+
     public class ServerPlayerPositionRotationPacket : IPacket
     {
         //this.x = in.readDouble();
@@ -30,7 +30,7 @@ namespace ProtocolLib340.Packets.Server
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
 
         public ServerPlayerPositionRotationPacket() { }

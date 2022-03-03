@@ -1,10 +1,10 @@
-﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.IO;
+﻿using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib740.Packets.Server
 {
-    
+
     public class EncryptionRequestPacket : IPacket
     {
         public string ServerID { get; set; }
@@ -22,7 +22,7 @@ namespace ProtocolLib740.Packets.Server
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
         public EncryptionRequestPacket()
         {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System;
 using System.Threading.Tasks;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
@@ -29,12 +26,12 @@ namespace MinecraftBotManagerWPF.ViewModels
         }
         private async void Load()
         {
-            for(int i = 1; i <= 100; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 await Task.Delay(10);
                 Progress = i;
             }
-            
+
             LoadingSucces.Invoke();
         }
     }

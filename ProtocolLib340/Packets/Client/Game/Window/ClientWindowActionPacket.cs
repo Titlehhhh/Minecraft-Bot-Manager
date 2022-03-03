@@ -1,16 +1,16 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientWindowActionPacket : IPacket
     {
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         //out.writeByte(this.windowId);
@@ -38,7 +38,7 @@ namespace ProtocolLib340.Packets.Client.Game
         //NetUtil.writeItem(out, this.clicked);
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
     }
 }

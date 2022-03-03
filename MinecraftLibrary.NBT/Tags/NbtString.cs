@@ -1,30 +1,32 @@
-﻿using System;
-using System.Text;
-
-using MinecraftLibrary.NBT;
+﻿using System.Text;
 
 namespace MinecraftLibrary.NBT
 {
     /// <summary> A tag containing a single string. String is stored in UTF-8 encoding. </summary>
-    public sealed class NbtString : NbtTag {
+    public sealed class NbtString : NbtTag
+    {
         /// <summary> Type of this tag (String). </summary>
-        public override NbtTagType TagType {
+        public override NbtTagType TagType
+        {
             get { return NbtTagType.String; }
         }
 
         /// <summary> Value/payload of this tag (a single string). May not be <c>null</c>. </summary>
-        
-        public string Value {
+
+        public string Value
+        {
             get { return stringVal; }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     throw new ArgumentNullException(nameof(value));
                 }
                 stringVal = value;
             }
         }
 
-       
+
         string stringVal = "";
 
 
@@ -35,7 +37,7 @@ namespace MinecraftLibrary.NBT
         /// <summary> Creates an unnamed NbtString tag with the given value. </summary>
         /// <param name="value"> String value to assign to this tag. May not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
-        public NbtString( string value)
+        public NbtString(string value)
             : this(null, value) { }
 
 
@@ -43,7 +45,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="tagName"> Name to assign to this tag. May be <c>null</c>. </param>
         /// <param name="value"> String value to assign to this tag. May not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
-        public NbtString( string tagName,  string value) {
+        public NbtString(string tagName, string value)
+        {
             if (value == null) throw new ArgumentNullException(nameof(value));
             name = tagName;
             Value = value;
@@ -53,7 +56,8 @@ namespace MinecraftLibrary.NBT
         /// <summary> Creates a copy of given NbtString tag. </summary>
         /// <param name="other"> Tag to copy. May not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="other"/> is <c>null</c>. </exception>
-        public NbtString( NbtString other) {
+        public NbtString(NbtString other)
+        {
             if (other == null) throw new ArgumentNullException(nameof(other));
             name = other.name;
             Value = other.Value;
@@ -62,8 +66,10 @@ namespace MinecraftLibrary.NBT
 
         #region Reading / Writing
 
-        internal override bool ReadTag(NbtBinaryReader readStream) {
-            if (readStream.Selector != null && !readStream.Selector(this)) {
+        internal override bool ReadTag(NbtBinaryReader readStream)
+        {
+            if (readStream.Selector != null && !readStream.Selector(this))
+            {
                 readStream.SkipString();
                 return false;
             }
@@ -72,12 +78,14 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        internal override void SkipTag(NbtBinaryReader readStream) {
+        internal override void SkipTag(NbtBinaryReader readStream)
+        {
             readStream.SkipString();
         }
 
 
-        internal override void WriteTag(NbtBinaryWriter writeStream) {
+        internal override void WriteTag(NbtBinaryWriter writeStream)
+        {
             writeStream.Write(NbtTagType.String);
             if (Name == null) throw new NbtFormatException("Name is null");
             writeStream.Write(Name);
@@ -85,7 +93,8 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        internal override void WriteData(NbtBinaryWriter writeStream) {
+        internal override void WriteData(NbtBinaryWriter writeStream)
+        {
             writeStream.Write(Value);
         }
 
@@ -93,17 +102,21 @@ namespace MinecraftLibrary.NBT
 
 
         /// <inheritdoc />
-        public override object Clone() {
+        public override object Clone()
+        {
             return new NbtString(this);
         }
 
 
-        internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+        internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel)
+        {
+            for (int i = 0; i < indentLevel; i++)
+            {
                 sb.Append(indentString);
             }
             sb.Append("TAG_String");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!String.IsNullOrEmpty(Name))
+            {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": \"");

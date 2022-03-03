@@ -12,7 +12,7 @@ namespace MinecraftLibrary.API.Networking
     /// </summary>
     public sealed class NetworkMinecraftStream : Stream
     {
-        public NetworkStream NetStream { get;private set; }
+        public NetworkStream NetStream { get; private set; }
 
         public bool EncryptionEnabled { get; private set; } = false;
 
@@ -110,7 +110,7 @@ namespace MinecraftLibrary.API.Networking
 
             DecryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesEngine(), 8));
             DecryptCipher.Init(false, new ParametersWithIV(new KeyParameter(privatekey), privatekey, 0, 16));
-            
+
             this.BaseStream = new CipherStream(NetStream, DecryptCipher, EncryptCipher);
         }
 

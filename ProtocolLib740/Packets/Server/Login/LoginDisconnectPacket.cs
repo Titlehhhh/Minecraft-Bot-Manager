@@ -1,10 +1,10 @@
-﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.IO;
+﻿using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib740.Packets.Server
 {
-   
+
     public class LoginDisconnectPacket : IPacket
     {
         public string Message { get; set; }

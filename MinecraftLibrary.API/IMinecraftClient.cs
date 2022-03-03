@@ -1,15 +1,10 @@
 ﻿using MinecraftLibrary.API.Inventory;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API
 {
-    public interface IMinecraftClient 
+    public interface IMinecraftClient
     {
         string Nickname { get; set; }
         string Host { get; set; }
@@ -32,18 +27,18 @@ namespace MinecraftLibrary.API
 
         void SendChat(string msg);
 
-        void SendLocation(bool isGround);        
+        void SendLocation(bool isGround);
         void SendLocation(Point3 position, bool isGround);
         void SendLocation(Vector3 vector, bool isGround);
 
-        void SendLocation(Point3 position,float yaw,float pitch, bool isGround);
-        void SendLocation(Vector3 body,Vector3 head, bool isGround);
+        void SendLocation(Point3 position, float yaw, float pitch, bool isGround);
+        void SendLocation(Vector3 body, Vector3 head, bool isGround);
 
         void LookHead(float yaw, float pitch);
         void LookHead(Point3 targetBlock);
         void LookHead(Vector3 vector);
 
-        event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;        
+        event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
     }
-    
+
 }

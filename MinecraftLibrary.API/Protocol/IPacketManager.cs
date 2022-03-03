@@ -4,9 +4,9 @@ namespace MinecraftLibrary.API.Protocol
 {
     public interface IPacketManager : IPacketProducer
     {
-        Dictionary<int,Lazy<IPacket>> InputPackets { get; }
-        Dictionary<Type,int> OutputPackets { get; }
-        
+        Dictionary<int, Lazy<IPacket>> InputPackets { get; }
+        Dictionary<Type, int> OutputPackets { get; }
+
         void RegisterOutputPacket<TPacket>(int id) where TPacket : IPacket;
         void RegisterOutputPacket(Type Tpacket, int id);
 
@@ -15,9 +15,9 @@ namespace MinecraftLibrary.API.Protocol
 
         void RegisterInputPacket<TPacket>(int id) where TPacket : IPacket, new();
         void RegisterInputPacket(Type Tpacket, int id);
-        void UnRegisterInputPacket<TPacket>() where TPacket : IPacket;        
+        void UnRegisterInputPacket<TPacket>() where TPacket : IPacket;
         void UnRegisterInputPacket(int id);
-        
+
         void ClearAll();
         void ClearOutputPackets();
         void ClearInputPackets();

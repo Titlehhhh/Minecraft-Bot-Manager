@@ -1,11 +1,5 @@
 ﻿using MinecraftBotManagerWPF.ViewModels;
 using MinecraftBotManagerWPF.Views.Windows;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MinecraftBotManagerWPF
@@ -22,12 +16,12 @@ namespace MinecraftBotManagerWPF
             this.MainWindow = start;
             start.DataContext = new StartupVM(() =>
             {
-                
+
                 MainWindow main = new MainWindow();
                 main.DataContext = new MainViewModel();
                 main.Show();
                 this.MainWindow = main;
-                
+
                 start.Close();
             });
         }

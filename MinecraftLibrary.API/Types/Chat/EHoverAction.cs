@@ -1,9 +1,9 @@
 ﻿namespace MinecraftLibrary.API.Types.Chat
 {
     public enum EHoverAction
-    {        
-        ShowText,        
-        ShowItem,        
+    {
+        ShowText,
+        ShowItem,
         ShowEntity
     }
 }

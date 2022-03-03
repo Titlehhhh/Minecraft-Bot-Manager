@@ -1,26 +1,26 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Server
 {
 
-    
+
     public class ServerEntityHeadLookPacket : IPacket
     {
         //this.entityId = in.readVarInt();
-       //this.headYaw = in.readByte() * 360 / 256f;
+        //this.headYaw = in.readByte() * 360 / 256f;
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
 
-        public ServerEntityHeadLookPacket() {}
+        public ServerEntityHeadLookPacket() { }
     }
 
 }

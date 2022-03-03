@@ -1,11 +1,11 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientTeleportConfirmPacket : IPacket
     {
         public int ID { get; set; }
@@ -17,7 +17,7 @@ namespace ProtocolLib340.Packets.Client.Game
 
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         public ClientTeleportConfirmPacket(int iD)

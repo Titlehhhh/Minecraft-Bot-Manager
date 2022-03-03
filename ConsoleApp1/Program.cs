@@ -1,10 +1,4 @@
-﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.IO;
-
-using System;
-using System.CodeDom;
-using ProtocolLib740.Packets.Client;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
@@ -130,7 +124,7 @@ namespace ConsoleApp1
                     string attrstr = atrr("0x" + id.ToString("X2"));
 
                     source = content.Replace(match.Value, $"    {attrstr}\n\r{match.Value}");
-                    if(source.IndexOf("using MinecraftLibrary.API;") == -1)
+                    if (source.IndexOf("using MinecraftLibrary.API;") == -1)
                     {
                         source = "using MinecraftLibrary.API;" + Environment.NewLine + source;
 
@@ -150,7 +144,7 @@ namespace ConsoleApp1
         }
         static string atrr(string id)
         {
-            return $"[PacketInfo("+id+", 740, PacketCategory.Game, PacketSide.Server)]";
+            return $"[PacketInfo(" + id + ", 740, PacketCategory.Game, PacketSide.Server)]";
         }
     }
 

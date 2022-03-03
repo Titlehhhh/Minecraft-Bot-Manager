@@ -1,9 +1,4 @@
 ﻿using MinecraftLibrary.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinecraftLibrary.API.World.Implements
 {
@@ -22,11 +17,11 @@ namespace MinecraftLibrary.API.World.Implements
         //private static IBlock UnkownBlock = new IBlock(0, 0, new Point3_Int(0));
         public IBlock GetBlock(int x, int y, int z)
         {
-            if (IsValidPos(x,SizeX-1) && IsValidPos(y,SizeY-1) && IsValidPos(z,SizeZ-1))
+            if (IsValidPos(x, SizeX - 1) && IsValidPos(y, SizeY - 1) && IsValidPos(z, SizeZ - 1))
                 return Blocks[x, y, z];
             return new UnkownBlock();
         }
-        private static bool IsValidPos(int value,int max)
+        private static bool IsValidPos(int value, int max)
         {
             return value >= 0 && value <= max;
         }
@@ -40,7 +35,7 @@ namespace MinecraftLibrary.API.World.Implements
         {
             if (block is null)
                 throw new ArgumentNullException(nameof(block));
-            if (IsValidPos(x,SizeX-1) && IsValidPos(y,SizeY-1) && IsValidPos(z,SizeZ-1))
+            if (IsValidPos(x, SizeX - 1) && IsValidPos(y, SizeY - 1) && IsValidPos(z, SizeZ - 1))
                 Blocks[x, y, z] = block;
         }
 
@@ -49,7 +44,7 @@ namespace MinecraftLibrary.API.World.Implements
             SetBlock(position.X, position.Y, position.Z, block);
         }
 
-        public Chunk(int sizeX=16, int sizeY=16, int sizeZ=16)
+        public Chunk(int sizeX = 16, int sizeY = 16, int sizeZ = 16)
         {
             SizeX = sizeX;
             SizeY = sizeY;

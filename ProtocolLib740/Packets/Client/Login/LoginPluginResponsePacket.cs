@@ -18,7 +18,7 @@ namespace ProtocolLib740.Packets.Client
         public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteVarInt(MessageID);
-            if(Data!=null)
+            if (Data != null)
             {
                 stream.WriteBoolean(true);
                 stream.Write(Data);

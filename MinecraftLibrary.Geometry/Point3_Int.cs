@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MinecraftLibrary.Geometry
+﻿namespace MinecraftLibrary.Geometry
 {
     /// <summary>
     /// Represents a tuple of 3D coordinates.

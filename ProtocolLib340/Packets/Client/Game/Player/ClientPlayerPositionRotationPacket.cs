@@ -1,11 +1,11 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientPlayerPositionRotationPacket : IPacket
     {
         public double X { get; set; }
@@ -15,7 +15,7 @@ namespace ProtocolLib340.Packets.Client.Game
         public float Pitch { get; set; }
 
         public bool OnGround { get; set; }
-        
+
         public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteDouble(X);
@@ -28,7 +28,7 @@ namespace ProtocolLib340.Packets.Client.Game
 
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         public ClientPlayerPositionRotationPacket(double x, double y, double z, float yaw, float pitch, bool onGround)

@@ -1,5 +1,3 @@
-using MinecraftLibrary.NBT;
-
 namespace MinecraftLibrary.NBT
 {
     /// <summary> Delegate used to skip loading certain tags of an NBT stream/file. 

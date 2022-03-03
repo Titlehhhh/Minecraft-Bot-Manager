@@ -1,6 +1,7 @@
 ﻿namespace MinecraftLibrary.NBT
 {
-    internal enum NbtParseState {
+    internal enum NbtParseState
+    {
         AtStreamBeginning,
         AtCompoundBeginning,
         InCompound,

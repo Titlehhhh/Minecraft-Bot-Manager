@@ -26,7 +26,7 @@ namespace MinecraftLibrary.API.Types.Chat
 
         public List<ChatMessage> Extra { get; private set; }
 
-        
+
         public IEnumerable<ChatMessage> Extras => GetExtras();
 
         public IEnumerable<ChatMessage> GetExtras()
@@ -161,7 +161,7 @@ namespace MinecraftLibrary.API.Types.Chat
 
         public ChatMessage()
         {
-            
+
         }
         public ChatMessage(string json)
         {

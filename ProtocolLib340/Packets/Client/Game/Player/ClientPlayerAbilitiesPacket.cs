@@ -1,16 +1,16 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientPlayerAbilitiesPacket : IPacket
     {
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         //byte flags = 0;
@@ -35,7 +35,7 @@ namespace ProtocolLib340.Packets.Client.Game
         //out.writeFloat(this.walkSpeed);
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
     }
 }

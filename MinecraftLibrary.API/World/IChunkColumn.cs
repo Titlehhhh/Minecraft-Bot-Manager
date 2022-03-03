@@ -1,12 +1,4 @@
-﻿using MinecraftLibrary.API.World;
-using MinecraftLibrary.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinecraftLibrary.API.World
+﻿namespace MinecraftLibrary.API.World
 {
     public interface IChunkColumn
     {
@@ -15,9 +7,9 @@ namespace MinecraftLibrary.API.World
         int SizeY { get; }
         IChunk[] Chunks { get; }
         #region Get/Set IChunk        
-        IChunk GetChunk(int y);        
+        IChunk GetChunk(int y);
         #endregion
-        
+
 
     }
 }

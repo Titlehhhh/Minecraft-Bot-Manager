@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MinecraftLibrary.Geometry
+﻿namespace MinecraftLibrary.Geometry
 {
     /// <summary>
     /// Represents an axis-aligned bounding box.

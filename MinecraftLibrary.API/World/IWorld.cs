@@ -1,15 +1,9 @@
-﻿using MinecraftLibrary.API.World;
-using MinecraftLibrary.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MinecraftLibrary.Geometry;
 
 
 namespace MinecraftLibrary.API.World
 {
-    public interface IWorld : IDisposable 
+    public interface IWorld : IDisposable
     {
         #region Get/Set IChunkColumn
 
@@ -36,7 +30,7 @@ namespace MinecraftLibrary.API.World
         #endregion
 
         #region Свойства
-        Dictionary<long, IChunkColumn> ChunkColumns { get; }        
+        Dictionary<long, IChunkColumn> ChunkColumns { get; }
         #endregion
 
         #region Events

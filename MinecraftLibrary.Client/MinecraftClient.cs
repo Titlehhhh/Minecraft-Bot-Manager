@@ -1,17 +1,12 @@
 ﻿using MinecraftLibrary.API;
 using MinecraftLibrary.API.Inventory;
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.Client.Networking;
-using MinecraftLibrary.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProtocolLib740.Packets.Server;
-using ProtocolLib740.Packets.Client;
 using MinecraftLibrary.API.Protocol;
+using MinecraftLibrary.Client.Networking;
 using MinecraftLibrary.Core.Protocol;
+using MinecraftLibrary.Geometry;
+using ProtocolLib740.Packets.Client;
+using ProtocolLib740.Packets.Server;
 
 namespace MinecraftLibrary.Client
 {
@@ -24,7 +19,7 @@ namespace MinecraftLibrary.Client
         public ushort Port { get; set; }
         public ITcpClientSession Session { get; private set; }
 
-        
+
 
         private Dictionary<Type, int> ClientPackets = new Dictionary<Type, int>();
 
@@ -64,7 +59,7 @@ namespace MinecraftLibrary.Client
         }
 
         private void RegisterHandShakePackets()
-        {            
+        {
             packetManager.ClearAll();
             packetManager.RegisterOutputPacket<HandShakePacket>(0x00);
 
@@ -73,7 +68,7 @@ namespace MinecraftLibrary.Client
         {
             packetManager.ClearAll();
 
-            packetManager.RegisterOutputPacket(typeof(LoginStartPacket),0x00);
+            packetManager.RegisterOutputPacket(typeof(LoginStartPacket), 0x00);
             packetManager.RegisterOutputPacket(typeof(EncryptionResponsePacket), 0x01);
             packetManager.RegisterOutputPacket(typeof(LoginPluginResponsePacket), 0x02);
 
@@ -84,7 +79,7 @@ namespace MinecraftLibrary.Client
             packetManager.RegisterInputPacket<LoginSuccessPacket>(0x02);
             packetManager.RegisterInputPacket<LoginSetCompressionPacket>(0x03);
             packetManager.RegisterInputPacket<LoginPluginRequestPacket>(0x04);
-            
+
         }
 
         private void RegisterGamePackets()

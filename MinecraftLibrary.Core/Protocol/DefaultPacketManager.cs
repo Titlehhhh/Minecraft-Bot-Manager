@@ -1,16 +1,11 @@
 ﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinecraftLibrary.Core.Protocol
 {
     public class DefaultPacketManager : IPacketManager
     {
-        private  Dictionary<int, Lazy<IPacket>> packets = new Dictionary<int, Lazy<IPacket>>();
+        private Dictionary<int, Lazy<IPacket>> packets = new Dictionary<int, Lazy<IPacket>>();
 
         public Dictionary<int, Lazy<IPacket>> InputPackets => packets ??= new Dictionary<int, Lazy<IPacket>>();
 
@@ -73,9 +68,9 @@ namespace MinecraftLibrary.Core.Protocol
 
         public bool TryGetOutputId(Type Tpacket, out int id)
         {
-            foreach(var item in OutputPackets)
+            foreach (var item in OutputPackets)
             {
-                if(item.Key == Tpacket)
+                if (item.Key == Tpacket)
                 {
                     id = item.Value;
                     return true;

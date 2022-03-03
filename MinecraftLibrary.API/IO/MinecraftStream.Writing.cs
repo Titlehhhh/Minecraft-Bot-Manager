@@ -6,7 +6,7 @@ using System.Text;
 namespace MinecraftLibrary.API.IO
 {
 
-    public sealed partial class MinecraftStream 
+    public sealed partial class MinecraftStream
     {
 
         public void WriteByte(sbyte value)

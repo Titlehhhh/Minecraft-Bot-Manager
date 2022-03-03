@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MinecraftLibrary.Geometry
+﻿namespace MinecraftLibrary.Geometry
 {
     /// <summary>
     /// Represents the right-handed 4x4 doubleing point matrix, which can store translation, scale and rotation information.

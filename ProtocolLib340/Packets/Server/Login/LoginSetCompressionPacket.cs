@@ -1,9 +1,9 @@
-﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.IO;
+﻿using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 namespace ProtocolLib340.Packets.Server
 {
-    
+
     public class LoginSetCompressionPacket : IPacket
     {
         public int Threshold { get; set; }
@@ -14,7 +14,7 @@ namespace ProtocolLib340.Packets.Server
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
 
         public LoginSetCompressionPacket(int threshold)

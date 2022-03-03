@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
 
 
@@ -37,7 +36,7 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> If <paramref name="value"/> is <c>null</c>, and <c>Parent</c> tag is an NbtCompound.
         /// Name of tags inside an <c>NbtCompound</c> may not be null. </exception>
         /// <exception cref="ArgumentException"> If this tag resides in an <c>NbtCompound</c>, and a sibling tag with the name already exists. </exception>
-       
+
         public string Name
         {
             get { return name; }
@@ -70,7 +69,7 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Gets the full name of this tag, including all parent tag names, separated by dots. 
         /// Unnamed tags show up as empty strings. </summary>
-        
+
         public string Path
         {
             get
@@ -90,14 +89,14 @@ namespace MinecraftLibrary.NBT
             }
         }
 
-        internal abstract bool ReadTag( NbtBinaryReader readStream);
+        internal abstract bool ReadTag(NbtBinaryReader readStream);
 
-        internal abstract void SkipTag( NbtBinaryReader readStream);
+        internal abstract void SkipTag(NbtBinaryReader readStream);
 
-        internal abstract void WriteTag( NbtBinaryWriter writeReader);
+        internal abstract void WriteTag(NbtBinaryWriter writeReader);
 
         // WriteData does not write the tag's ID byte or the name
-        internal abstract void WriteData( NbtBinaryWriter writeStream);
+        internal abstract void WriteData(NbtBinaryWriter writeStream);
 
 
         #region Shortcuts
@@ -356,7 +355,7 @@ namespace MinecraftLibrary.NBT
         /// <param name="type"> NbtTagType to name. </param>
         /// <returns> String representing the canonical name of a tag,
         /// or null of given TagType does not have a canonical name (e.g. Unknown). </returns>
-       
+
         public static string GetCanonicalTagName(NbtTagType type)
         {
             switch (type)
@@ -412,8 +411,8 @@ namespace MinecraftLibrary.NBT
         /// <param name="indentString"> String to be used for indentation. </param>
         /// <returns> A string representing contents of this tag, and all child tags (if any). </returns>
         /// <exception cref="ArgumentNullException"> <paramref name="indentString"/> is <c>null</c>. </exception>
-        
-        public string ToString( string indentString)
+
+        public string ToString(string indentString)
         {
             if (indentString == null) throw new ArgumentNullException(nameof(indentString));
             var sb = new StringBuilder();
@@ -422,11 +421,11 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        internal abstract void PrettyPrint( StringBuilder sb,  string indentString, int indentLevel);
+        internal abstract void PrettyPrint(StringBuilder sb, string indentString, int indentLevel);
 
         /// <summary> String to use for indentation in NbtTag's and NbtFile's ToString() methods by default. </summary>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
-        
+
         public static string DefaultIndentString
         {
             get { return defaultIndentString; }

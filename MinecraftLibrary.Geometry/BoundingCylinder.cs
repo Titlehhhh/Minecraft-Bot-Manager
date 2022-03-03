@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MinecraftLibrary.Geometry
+﻿namespace MinecraftLibrary.Geometry
 {
     public struct BoundingCylinder : IEquatable<BoundingCylinder>
     {

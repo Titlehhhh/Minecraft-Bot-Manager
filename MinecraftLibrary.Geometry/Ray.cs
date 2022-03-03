@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace MinecraftLibrary.Geometry
+﻿namespace MinecraftLibrary.Geometry
 {
     public struct Ray : IEquatable<Ray>
     {

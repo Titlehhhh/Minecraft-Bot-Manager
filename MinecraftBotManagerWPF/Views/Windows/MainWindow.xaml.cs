@@ -1,18 +1,7 @@
-﻿using MaterialDesignExtensions.Controls;
-using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignThemes.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MinecraftBotManagerWPF.Views.Windows
 {
@@ -23,10 +12,10 @@ namespace MinecraftBotManagerWPF.Views.Windows
     {
         public MainWindow()
         {
-           
+
 
             InitializeComponent();
-          
+
             if (WindowState == WindowState.Maximized)
             {
                 (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowRestore;
@@ -35,10 +24,10 @@ namespace MinecraftBotManagerWPF.Views.Windows
             {
                 (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowMaximize;
             }
-                        
-            this.StateChanged += MainWindow_StateChanged;            
+
+            this.StateChanged += MainWindow_StateChanged;
         }
-        
+
 
 
         private void MainWindow_StateChanged(object? sender, EventArgs e)

@@ -1,16 +1,16 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientTabCompletePacket : IPacket
     {
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         //out.writeString(this.text);
@@ -21,7 +21,7 @@ namespace ProtocolLib340.Packets.Client.Game
         //}
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
     }
 }

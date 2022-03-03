@@ -1,40 +1,46 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Text;
-
-using MinecraftLibrary.NBT;
 
 namespace MinecraftLibrary.NBT
 {
     /// <summary> A tag containing a list of unnamed tags, all of the same kind. </summary>
-    public sealed class NbtList : NbtTag, IList<NbtTag>, IList {
+    public sealed class NbtList : NbtTag, IList<NbtTag>, IList
+    {
         /// <summary> Type of this tag (List). </summary>
-        public override NbtTagType TagType {
+        public override NbtTagType TagType
+        {
             get { return NbtTagType.List; }
         }
 
-        
+
         readonly List<NbtTag> tags = new List<NbtTag>();
 
         /// <summary> Gets or sets the tag type of this list. All tags in this NbtTag must be of the same type. </summary>
         /// <exception cref="ArgumentException"> If the given NbtTagType does not match the type of existing list items (for non-empty lists). </exception>
         /// <exception cref="ArgumentOutOfRangeException"> If the given NbtTagType is a recognized tag type. </exception>
-        public NbtTagType ListType {
+        public NbtTagType ListType
+        {
             get { return listType; }
-            set {
-                if (value == NbtTagType.End) {
+            set
+            {
+                if (value == NbtTagType.End)
+                {
                     // Empty lists may have type "End", see: https://github.com/fragmer/fNbt/issues/12
-                    if (tags.Count > 0) {
+                    if (tags.Count > 0)
+                    {
                         throw new ArgumentException("Only empty list tags may have TagType of End.");
                     }
-                } else if (value < NbtTagType.Byte || (value > NbtTagType.LongArray && value != NbtTagType.Unknown)) {
+                }
+                else if (value < NbtTagType.Byte || (value > NbtTagType.LongArray && value != NbtTagType.Unknown))
+                {
                     throw new ArgumentOutOfRangeException(nameof(value));
                 }
-                if (tags.Count > 0) {
+                if (tags.Count > 0)
+                {
                     NbtTagType actualType = tags[0].TagType;
                     // We can safely assume that ALL tags have the same TagType as the first tag.
-                    if (actualType != value) {
+                    if (actualType != value)
+                    {
                         string msg = String.Format("Given NbtTagType ({0}) does not match actual element type ({1})",
                                                    value, actualType);
                         throw new ArgumentException(msg);
@@ -54,7 +60,7 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Creates an NbtList with given name, empty contents, and undefined ListType. </summary>
         /// <param name="tagName"> Name to assign to this tag. May be <c>null</c>. </param>
-        public NbtList( string tagName)
+        public NbtList(string tagName)
             : this(tagName, null, NbtTagType.Unknown) { }
 
 
@@ -64,8 +70,9 @@ namespace MinecraftLibrary.NBT
         /// ListType is inferred from the first tag. List may be empty, but may not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> If given tags are of mixed types. </exception>
-        public NbtList( IEnumerable<NbtTag> tags)
-            : this(null, tags, NbtTagType.Unknown) {
+        public NbtList(IEnumerable<NbtTag> tags)
+            : this(null, tags, NbtTagType.Unknown)
+        {
             // the base constructor will allow null "tags," but we don't want that in this constructor
             if (tags == null) throw new ArgumentNullException(nameof(tags));
         }
@@ -87,8 +94,9 @@ namespace MinecraftLibrary.NBT
         /// ListType is inferred from the first tag. List may be empty, but may not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> If given tags are of mixed types. </exception>
-        public NbtList( string tagName,  IEnumerable<NbtTag> tags)
-            : this(tagName, tags, NbtTagType.Unknown) {
+        public NbtList(string tagName, IEnumerable<NbtTag> tags)
+            : this(tagName, tags, NbtTagType.Unknown)
+        {
             // the base constructor will allow null "tags," but we don't want that in this constructor
             if (tags == null) throw new ArgumentNullException(nameof(tags));
         }
@@ -102,8 +110,9 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="givenListType"/> is not a valid tag type. </exception>
         /// <exception cref="ArgumentException"> If given tags do not match <paramref name="givenListType"/>, or are of mixed types. </exception>
-        public NbtList( IEnumerable<NbtTag> tags, NbtTagType givenListType)
-            : this(null, tags, givenListType) {
+        public NbtList(IEnumerable<NbtTag> tags, NbtTagType givenListType)
+            : this(null, tags, givenListType)
+        {
             // the base constructor will allow null "tags," but we don't want that in this constructor
             if (tags == null) throw new ArgumentNullException(nameof(tags));
         }
@@ -114,7 +123,7 @@ namespace MinecraftLibrary.NBT
         /// <param name="givenListType"> Name to assign to this tag.
         /// If givenListType is Unknown, ListType will be inferred from the first tag added to this NbtList. </param>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="givenListType"/> is not a valid tag type. </exception>
-        public NbtList( string tagName, NbtTagType givenListType)
+        public NbtList(string tagName, NbtTagType givenListType)
             : this(tagName, null, givenListType) { }
 
 
@@ -125,12 +134,14 @@ namespace MinecraftLibrary.NBT
         /// <param name="givenListType"> Name to assign to this tag. May be Unknown (to infer type from the first element of tags). </param>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="givenListType"/> is not a valid tag type. </exception>
         /// <exception cref="ArgumentException"> If given tags do not match <paramref name="givenListType"/>, or are of mixed types. </exception>
-        public NbtList( string tagName, IEnumerable<NbtTag> tags, NbtTagType givenListType) {
+        public NbtList(string tagName, IEnumerable<NbtTag> tags, NbtTagType givenListType)
+        {
             name = tagName;
             ListType = givenListType;
 
             if (tags == null) return;
-            foreach (NbtTag tag in tags) {
+            foreach (NbtTag tag in tags)
+            {
                 Add(tag);
             }
         }
@@ -139,11 +150,13 @@ namespace MinecraftLibrary.NBT
         /// <summary> Creates a deep copy of given NbtList. </summary>
         /// <param name="other"> An existing NbtList to copy. May not be <c>null</c>. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="other"/> is <c>null</c>. </exception>
-        public NbtList( NbtList other) {
+        public NbtList(NbtList other)
+        {
             if (other == null) throw new ArgumentNullException(nameof(other));
             name = other.name;
             listType = other.listType;
-            foreach (NbtTag tag in other.tags) {
+            foreach (NbtTag tag in other.tags)
+            {
                 tags.Add((NbtTag)tag.Clone());
             }
         }
@@ -155,20 +168,30 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="tagIndex"/> is not a valid index in the NbtList. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> Given tag's type does not match ListType. </exception>
-        
-        public override NbtTag this[int tagIndex] {
+
+        public override NbtTag this[int tagIndex]
+        {
             get { return tags[tagIndex]; }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     throw new ArgumentNullException(nameof(value));
-                } else if (value.Parent != null) {
+                }
+                else if (value.Parent != null)
+                {
                     throw new ArgumentException("A tag may only be added to one compound/list at a time.");
-                } else if (value == this || value == Parent) {
+                }
+                else if (value == this || value == Parent)
+                {
                     throw new ArgumentException("A list tag may not be added to itself or to its child tag.");
-                } else if (value.Name != null) {
+                }
+                else if (value.Name != null)
+                {
                     throw new ArgumentException("Named tag given. A list may only contain unnamed tags.");
                 }
-                if (listType != NbtTagType.Unknown && value.TagType != listType) {
+                if (listType != NbtTagType.Unknown && value.TagType != listType)
+                {
                     throw new ArgumentException("Items must be of type " + listType);
                 }
                 tags[tagIndex] = value;
@@ -183,9 +206,10 @@ namespace MinecraftLibrary.NBT
         /// <returns> The tag with the specified key. </returns>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="tagIndex"/> is not a valid index in the NbtList. </exception>
         /// <exception cref="InvalidCastException"> If tag could not be cast to the desired tag. </exception>
-        
-        
-        public T Get<T>(int tagIndex) where T : NbtTag {
+
+
+        public T Get<T>(int tagIndex) where T : NbtTag
+        {
             return (T)tags[tagIndex];
         }
 
@@ -194,9 +218,11 @@ namespace MinecraftLibrary.NBT
         /// <param name="newTags"> The collection whose elements should be added to this NbtList. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="newTags"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> If given tags do not match ListType, or are of mixed types. </exception>
-        public void AddRange( IEnumerable<NbtTag> newTags) {
+        public void AddRange(IEnumerable<NbtTag> newTags)
+        {
             if (newTags == null) throw new ArgumentNullException(nameof(newTags));
-            foreach (NbtTag tag in newTags) {
+            foreach (NbtTag tag in newTags)
+            {
                 Add(tag);
             }
         }
@@ -204,10 +230,11 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Copies all tags in this NbtList to an array. </summary>
         /// <returns> Array of NbtTags. </returns>
-        
-        
+
+
         // ReSharper disable ReturnTypeCanBeEnumerable.Global
-        public NbtTag[] ToArray() {
+        public NbtTag[] ToArray()
+        {
             // ReSharper restore ReturnTypeCanBeEnumerable.Global
             return tags.ToArray();
         }
@@ -217,11 +244,13 @@ namespace MinecraftLibrary.NBT
         /// <typeparam name="T"> Type to cast every member of NbtList to. Must derive from NbtTag. </typeparam>
         /// <returns> Array of NbtTags cast to the desired type. </returns>
         /// <exception cref="InvalidCastException"> If contents of this list cannot be cast to the given type. </exception>
-        
-        
-        public T[] ToArray<T>() where T : NbtTag {
+
+
+        public T[] ToArray<T>() where T : NbtTag
+        {
             var result = new T[tags.Count];
-            for (int i = 0; i < result.Length; i++) {
+            for (int i = 0; i < result.Length; i++)
+            {
                 result[i] = (T)tags[i];
             }
             return result;
@@ -230,8 +259,10 @@ namespace MinecraftLibrary.NBT
 
         #region Reading / Writing
 
-        internal override bool ReadTag(NbtBinaryReader readStream) {
-            if (readStream.Selector != null && !readStream.Selector(this)) {
+        internal override bool ReadTag(NbtBinaryReader readStream)
+        {
+            if (readStream.Selector != null && !readStream.Selector(this))
+            {
                 SkipTag(readStream);
                 return false;
             }
@@ -239,13 +270,16 @@ namespace MinecraftLibrary.NBT
             ListType = readStream.ReadTagType();
 
             int length = readStream.ReadInt32();
-            if (length < 0) {
+            if (length < 0)
+            {
                 throw new NbtFormatException("Negative list size given.");
             }
 
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++)
+            {
                 NbtTag newTag;
-                switch (ListType) {
+                switch (ListType)
+                {
                     case NbtTagType.Byte:
                         newTag = new NbtByte();
                         break;
@@ -287,7 +321,8 @@ namespace MinecraftLibrary.NBT
                         throw new NbtFormatException("Unsupported tag type found in a list: " + ListType);
                 }
                 newTag.Parent = this;
-                if (newTag.ReadTag(readStream)) {
+                if (newTag.ReadTag(readStream))
+                {
                     tags.Add(newTag);
                 }
             }
@@ -295,16 +330,19 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        internal override void SkipTag(NbtBinaryReader readStream) {
+        internal override void SkipTag(NbtBinaryReader readStream)
+        {
             // read list type, and make sure it's defined
             ListType = readStream.ReadTagType();
 
             int length = readStream.ReadInt32();
-            if (length < 0) {
+            if (length < 0)
+            {
                 throw new NbtFormatException("Negative list size given.");
             }
 
-            switch (ListType) {
+            switch (ListType)
+            {
                 case NbtTagType.Byte:
                     readStream.Skip(length);
                     break;
@@ -324,8 +362,10 @@ namespace MinecraftLibrary.NBT
                     readStream.Skip(length * sizeof(double));
                     break;
                 default:
-                    for (int i = 0; i < length; i++) {
-                        switch (listType) {
+                    for (int i = 0; i < length; i++)
+                    {
+                        switch (listType)
+                        {
                             case NbtTagType.ByteArray:
                                 new NbtByteArray().SkipTag(readStream);
                                 break;
@@ -348,7 +388,8 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        internal override void WriteTag(NbtBinaryWriter writeStream) {
+        internal override void WriteTag(NbtBinaryWriter writeStream)
+        {
             writeStream.Write(NbtTagType.List);
             if (Name == null) throw new NbtFormatException("Name is null");
             writeStream.Write(Name);
@@ -356,13 +397,16 @@ namespace MinecraftLibrary.NBT
         }
 
 
-        internal override void WriteData(NbtBinaryWriter writeStream) {
-            if (ListType == NbtTagType.Unknown) {
+        internal override void WriteData(NbtBinaryWriter writeStream)
+        {
+            if (ListType == NbtTagType.Unknown)
+            {
                 throw new NbtFormatException("NbtList had no elements and an Unknown ListType");
             }
             writeStream.Write(ListType);
             writeStream.Write(tags.Count);
-            foreach (NbtTag tag in tags) {
+            foreach (NbtTag tag in tags)
+            {
                 tag.WriteData(writeStream);
             }
         }
@@ -374,12 +418,14 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Returns an enumerator that iterates through all tags in this NbtList. </summary>
         /// <returns> An IEnumerator&gt;NbtTag&lt; that can be used to iterate through the list. </returns>
-        public IEnumerator<NbtTag> GetEnumerator() {
+        public IEnumerator<NbtTag> GetEnumerator()
+        {
             return tags.GetEnumerator();
         }
 
 
-        IEnumerator IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return tags.GetEnumerator();
         }
 
@@ -391,7 +437,8 @@ namespace MinecraftLibrary.NBT
         /// <summary> Determines the index of a specific tag in this NbtList </summary>
         /// <returns> The index of tag if found in the list; otherwise, -1. </returns>
         /// <param name="tag"> The tag to locate in this NbtList. </param>
-        public int IndexOf( NbtTag tag) {
+        public int IndexOf(NbtTag tag)
+        {
             if (tag == null) return -1;
             return tags.IndexOf(tag);
         }
@@ -402,17 +449,23 @@ namespace MinecraftLibrary.NBT
         /// <param name="newTag"> The tag to insert into this NbtList. </param>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="tagIndex"/> is not a valid index in this NbtList. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="newTag"/> is <c>null</c>. </exception>
-        public void Insert(int tagIndex,  NbtTag newTag) {
-            if (newTag == null) {
+        public void Insert(int tagIndex, NbtTag newTag)
+        {
+            if (newTag == null)
+            {
                 throw new ArgumentNullException(nameof(newTag));
             }
-            if (listType != NbtTagType.Unknown && newTag.TagType != listType) {
+            if (listType != NbtTagType.Unknown && newTag.TagType != listType)
+            {
                 throw new ArgumentException("Items must be of type " + listType);
-            } else if (newTag.Parent != null) {
+            }
+            else if (newTag.Parent != null)
+            {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
             }
             tags.Insert(tagIndex, newTag);
-            if (listType == NbtTagType.Unknown) {
+            if (listType == NbtTagType.Unknown)
+            {
                 listType = newTag.TagType;
             }
             newTag.Parent = this;
@@ -422,7 +475,8 @@ namespace MinecraftLibrary.NBT
         /// <summary> Removes a tag at the specified index from this NbtList. </summary>
         /// <param name="index"> The zero-based index of the item to remove. </param>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="index"/> is not a valid index in the NbtList. </exception>
-        public void RemoveAt(int index) {
+        public void RemoveAt(int index)
+        {
             NbtTag tag = this[index];
             tags.RemoveAt(index);
             tag.Parent = null;
@@ -433,31 +487,43 @@ namespace MinecraftLibrary.NBT
         /// <param name="newTag"> The tag to add to this NbtList. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="newTag"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> If <paramref name="newTag"/> does not match ListType. </exception>
-        public void Add( NbtTag newTag) {
-            if (newTag == null) {
+        public void Add(NbtTag newTag)
+        {
+            if (newTag == null)
+            {
                 throw new ArgumentNullException(nameof(newTag));
-            } else if (newTag.Parent != null) {
+            }
+            else if (newTag.Parent != null)
+            {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
-            } else if (newTag == this || newTag == Parent) {
+            }
+            else if (newTag == this || newTag == Parent)
+            {
                 throw new ArgumentException("A list tag may not be added to itself or to its child tag.");
-            } else if (newTag.Name != null) {
+            }
+            else if (newTag.Name != null)
+            {
                 throw new ArgumentException("Named tag given. A list may only contain unnamed tags.");
             }
-            if (listType != NbtTagType.Unknown && newTag.TagType != listType) {
+            if (listType != NbtTagType.Unknown && newTag.TagType != listType)
+            {
                 throw new ArgumentException("Items in this list must be of type " + listType + ". Given type: " +
                                             newTag.TagType);
             }
             tags.Add(newTag);
             newTag.Parent = this;
-            if (listType == NbtTagType.Unknown) {
+            if (listType == NbtTagType.Unknown)
+            {
                 listType = newTag.TagType;
             }
         }
 
 
         /// <summary> Removes all tags from this NbtList. </summary>
-        public void Clear() {
-            for (int i = 0; i < tags.Count; i++) {
+        public void Clear()
+        {
+            for (int i = 0; i < tags.Count; i++)
+            {
                 tags[i].Parent = null;
             }
             tags.Clear();
@@ -467,7 +533,8 @@ namespace MinecraftLibrary.NBT
         /// <summary> Determines whether this NbtList contains a specific tag. </summary>
         /// <returns> true if given tag is found in this NbtList; otherwise, false. </returns>
         /// <param name="item"> The tag to locate in this NbtList. </param>
-        public bool Contains( NbtTag item) {
+        public bool Contains(NbtTag item)
+        {
             return tags.Contains(item);
         }
 
@@ -481,7 +548,8 @@ namespace MinecraftLibrary.NBT
         /// <exception cref="ArgumentException"> Given array is multidimensional; arrayIndex is equal to or greater than the length of array;
         /// the number of tags in this NbtList is greater than the available space from arrayIndex to the end of the destination array;
         /// or type NbtTag cannot be cast automatically to the type of the destination array. </exception>
-        public void CopyTo(NbtTag[] array, int arrayIndex) {
+        public void CopyTo(NbtTag[] array, int arrayIndex)
+        {
             tags.CopyTo(array, arrayIndex);
         }
 
@@ -492,9 +560,11 @@ namespace MinecraftLibrary.NBT
         /// This method also returns false if tag is not found. </returns>
         /// <param name="tag"> The tag to remove from this NbtList. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="tag"/> is <c>null</c>. </exception>
-        public bool Remove( NbtTag tag) {
+        public bool Remove(NbtTag tag)
+        {
             if (tag == null) throw new ArgumentNullException(nameof(tag));
-            if (!tags.Remove(tag)) {
+            if (!tags.Remove(tag))
+            {
                 return false;
             }
             tag.Parent = null;
@@ -504,11 +574,13 @@ namespace MinecraftLibrary.NBT
 
         /// <summary> Gets the number of tags contained in the NbtList. </summary>
         /// <returns> The number of tags contained in the NbtList. </returns>
-        public int Count {
+        public int Count
+        {
             get { return tags.Count; }
         }
 
-        bool ICollection<NbtTag>.IsReadOnly {
+        bool ICollection<NbtTag>.IsReadOnly
+        {
             get { return false; }
         }
 
@@ -517,58 +589,69 @@ namespace MinecraftLibrary.NBT
 
         #region Implementation of IList and ICollection
 
-        void IList.Remove( object value) {
+        void IList.Remove(object value)
+        {
             Remove((NbtTag)value);
         }
 
 
-        
-        object IList.this[int tagIndex] {
+
+        object IList.this[int tagIndex]
+        {
             get { return tags[tagIndex]; }
             set { this[tagIndex] = (NbtTag)value; }
         }
 
 
-        int IList.Add( object value) {
+        int IList.Add(object value)
+        {
             Add((NbtTag)value);
             return (tags.Count - 1);
         }
 
 
-        bool IList.Contains( object value) {
+        bool IList.Contains(object value)
+        {
             return tags.Contains((NbtTag)value);
         }
 
 
-        int IList.IndexOf( object value) {
+        int IList.IndexOf(object value)
+        {
             return tags.IndexOf((NbtTag)value);
         }
 
 
-        void IList.Insert(int index,  object value) {
+        void IList.Insert(int index, object value)
+        {
             Insert(index, (NbtTag)value);
         }
 
 
-        bool IList.IsFixedSize {
+        bool IList.IsFixedSize
+        {
             get { return false; }
         }
 
 
-        void ICollection.CopyTo(Array array, int index) {
+        void ICollection.CopyTo(Array array, int index)
+        {
             CopyTo((NbtTag[])array, index);
         }
 
 
-        object ICollection.SyncRoot {
+        object ICollection.SyncRoot
+        {
             get { return (tags as ICollection).SyncRoot; }
         }
 
-        bool ICollection.IsSynchronized {
+        bool ICollection.IsSynchronized
+        {
             get { return false; }
         }
 
-        bool IList.IsReadOnly {
+        bool IList.IsReadOnly
+        {
             get { return false; }
         }
 
@@ -576,28 +659,35 @@ namespace MinecraftLibrary.NBT
 
 
         /// <inheritdoc />
-        public override object Clone() {
+        public override object Clone()
+        {
             return new NbtList(this);
         }
 
 
-        internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+        internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel)
+        {
+            for (int i = 0; i < indentLevel; i++)
+            {
                 sb.Append(indentString);
             }
             sb.Append("TAG_List");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!String.IsNullOrEmpty(Name))
+            {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.AppendFormat(": {0} entries {{", tags.Count);
 
-            if (Count > 0) {
+            if (Count > 0)
+            {
                 sb.Append('\n');
-                foreach (NbtTag tag in tags) {
+                foreach (NbtTag tag in tags)
+                {
                     tag.PrettyPrint(sb, indentString, indentLevel + 1);
                     sb.Append('\n');
                 }
-                for (int i = 0; i < indentLevel; i++) {
+                for (int i = 0; i < indentLevel; i++)
+                {
                     sb.Append(indentString);
                 }
             }

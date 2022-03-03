@@ -19,8 +19,8 @@ namespace MinecraftLibrary.Client.Networking
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
-        
-        public IPacketProducer Packets { get ; set ; }
+
+        public IPacketProducer Packets { get; set; }
 
         public event Action<ITcpClientSession>? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
@@ -205,7 +205,7 @@ namespace MinecraftLibrary.Client.Networking
         }
 
         public void SendPacket(IPacket packet)
-        {            
+        {
             if (Packets.TryGetOutputId(packet.GetType(), out int id))
             {
                 this.SendPacket(packet, id);

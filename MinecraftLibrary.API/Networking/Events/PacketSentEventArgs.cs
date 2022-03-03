@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MinecraftLibrary.API.Networking
+﻿namespace MinecraftLibrary.API.Networking
 {
     public class PacketSentEventArgs : EventArgs
     {

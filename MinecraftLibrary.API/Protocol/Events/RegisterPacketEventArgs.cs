@@ -1,6 +1,4 @@
-﻿using MinecraftLibrary.API.Networking;
-
-namespace MinecraftLibrary.API.Protocol
+﻿namespace MinecraftLibrary.API.Protocol
 {
     public class RegisterPacketEventArgs : EventArgs
     {

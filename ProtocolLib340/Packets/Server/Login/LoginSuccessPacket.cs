@@ -1,10 +1,10 @@
-﻿using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.IO;
+﻿using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Server
 {
-    
+
     public class LoginSuccessPacket : IPacket
     {
         public Guid UUID { get; set; }
@@ -17,7 +17,7 @@ namespace ProtocolLib340.Packets.Server
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
 
         public LoginSuccessPacket(Guid uUID, string username)

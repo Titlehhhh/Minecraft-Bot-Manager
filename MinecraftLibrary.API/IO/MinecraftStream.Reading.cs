@@ -6,7 +6,7 @@ using System.Text;
 namespace MinecraftLibrary.API.IO
 {
 
-    public sealed partial class MinecraftStream 
+    public sealed partial class MinecraftStream
     {
         public sbyte ReadSignedByte() => (sbyte)this.ReadUnsignedByte();
 
@@ -238,7 +238,7 @@ namespace MinecraftLibrary.API.IO
             do
             {
                 read = await this.ReadUnsignedByteAsync(cancellationToken);
-                
+
                 int value = read & 0b01111111;
                 result |= value << (7 * numRead);
 

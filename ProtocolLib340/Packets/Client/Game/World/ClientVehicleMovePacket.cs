@@ -1,16 +1,16 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 
 
 namespace ProtocolLib340.Packets.Client.Game
 {
 
-    
+
     public class ClientVehicleMovePacket : IPacket
     {
         public void Read(IMinecraftStreamReader stream)
         {
-            
+
         }
 
         //out.writeDouble(this.x);
@@ -20,7 +20,7 @@ namespace ProtocolLib340.Packets.Client.Game
         //out.writeFloat(this.pitch);
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
     }
 }

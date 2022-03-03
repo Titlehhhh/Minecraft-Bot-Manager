@@ -1,6 +1,5 @@
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.IO;
-
+using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.World;
 using MinecraftLibrary.API.World.Implements;
 using MinecraftLibrary.Geometry;
@@ -9,7 +8,7 @@ using ProtocolLib340.Data.World;
 namespace ProtocolLib340.Packets.Server
 {
 
-    
+
     public class ServerChunkDataPacket : IPacket
     {
         public IChunkColumn Column { get; set; }
@@ -31,9 +30,9 @@ namespace ProtocolLib340.Packets.Server
             bool chunksContinuous = stream.ReadBoolean();
             ushort chunkMask = (ushort)stream.ReadVarInt();
             ChunkColumn column = new ChunkColumn(x, z);
-            for(int chunkY = 0;chunkY< column.SizeY; chunkY++)
+            for (int chunkY = 0; chunkY < column.SizeY; chunkY++)
             {
-                if((chunkMask & (1 << chunkY)) != 0)
+                if ((chunkMask & (1 << chunkY)) != 0)
                 {
                     byte bitsPerBlock = stream.ReadUnsignedByte();
                     bool usePalette = (bitsPerBlock <= 8);
@@ -77,19 +76,19 @@ namespace ProtocolLib340.Packets.Server
 
                                     if ((startOffset + bitsPerBlock) > 64)
                                     {
-                                       
-                                            // In MC 1.15 and lower, block IDs can overlap between Longs:
-                                            // [      LONG INTEGER      ][      LONG INTEGER      ]
-                                            // [Block][Block][Block][Blo  ck][Block][Block][Block][
 
-                                            // Detect when we reached the next Long or switch to overlap mode
-                                            if (startOffset >= 64)
-                                            {
-                                                startOffset -= 64;
-                                                longIndex++;
-                                            }
-                                            else overlap = true;
-                                        
+                                        // In MC 1.15 and lower, block IDs can overlap between Longs:
+                                        // [      LONG INTEGER      ][      LONG INTEGER      ]
+                                        // [Block][Block][Block][Blo  ck][Block][Block][Block][
+
+                                        // Detect when we reached the next Long or switch to overlap mode
+                                        if (startOffset >= 64)
+                                        {
+                                            startOffset -= 64;
+                                            longIndex++;
+                                        }
+                                        else overlap = true;
+
                                     }
 
                                     // Extract Block ID
@@ -135,7 +134,7 @@ namespace ProtocolLib340.Packets.Server
 
         public void Write(IMinecraftStreamWriter stream)
         {
-            
+
         }
 
         public ServerChunkDataPacket(IChunkColumn column)
@@ -143,7 +142,7 @@ namespace ProtocolLib340.Packets.Server
             Column = column;
         }
 
-        public ServerChunkDataPacket() {}
+        public ServerChunkDataPacket() { }
     }
 
 }
