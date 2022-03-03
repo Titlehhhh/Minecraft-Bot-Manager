@@ -7,7 +7,8 @@ using MinecraftLibrary.API.Protocol;
 namespace ProtocolLib740.Packets.Server
 {
 
-    [PacketInfo(0x39, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerRespawnPacket : IPacket
+    [PacketInfo(0x39, 740, PacketCategory.Game, PacketSide.Server)]
+    public class ServerRespawnPacket : IPacket
     {
         public void Write(IMinecraftStreamWriter stream)
         {
