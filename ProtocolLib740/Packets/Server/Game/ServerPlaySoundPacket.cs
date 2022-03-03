@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x18, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerPlaySoundPacket : IPacket
+    [PacketInfo(0x18, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerPlaySoundPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {

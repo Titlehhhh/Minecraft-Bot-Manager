@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x2F, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerPreparedCraftingGridPacket : IPacket
+    [PacketInfo(0x2F, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerPreparedCraftingGridPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {

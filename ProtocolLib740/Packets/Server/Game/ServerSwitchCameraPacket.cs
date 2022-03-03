@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x3E, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerSwitchCameraPacket : IPacket
+    [PacketInfo(0x3E, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerSwitchCameraPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {

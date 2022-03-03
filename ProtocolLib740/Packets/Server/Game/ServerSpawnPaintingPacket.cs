@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x03, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerSpawnPaintingPacket : IPacket
+    [PacketInfo(0x03, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerSpawnPaintingPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {

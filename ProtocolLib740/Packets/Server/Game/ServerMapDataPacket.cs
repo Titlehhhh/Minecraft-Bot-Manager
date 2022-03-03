@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x25, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerMapDataPacket : IPacket
+    [PacketInfo(0x25, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerMapDataPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {

@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x0D, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerDifficultyPacket : IPacket
+    [PacketInfo(0x0D, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerDifficultyPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {

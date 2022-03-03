@@ -7,8 +7,7 @@ using MinecraftLibrary.API.IO;
 namespace ProtocolLib740.Packets.Server
 {
     
-    [PacketInfo(0x34, 740, PacketCategory.Game, PacketSide.Server)]
-    public class ServerPlayerPositionRotationPacket : IPacket
+    [PacketInfo(0x34, 740, PacketCategory.Game, PacketSide.Server)]    public class ServerPlayerPositionRotationPacket : IPacket
     {        
         public void Write(IMinecraftStreamWriter stream)
         {
