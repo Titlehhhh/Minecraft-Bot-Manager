@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -26,7 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.Core\MinecraftLibrary.Core.csproj" />
-    <ProjectReference Include="..\ProtocolLib740\ProtocolLib754.csproj" />
+    <ProjectReference Include="..\ProtocolLib754\ProtocolLib754.csproj" />
   </ItemGroup>
 
 </Project>
