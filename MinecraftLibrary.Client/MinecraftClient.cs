@@ -123,6 +123,17 @@ namespace MinecraftLibrary.Client
             {
                 Session.Disconnect();
                 Console.WriteLine("Disconnect: "+(e.Packet as LoginDisconnectPacket).Message);
+            } else if(e.Packet is LoginSetCompressionPacket)
+            {
+                var compress = e.Packet as LoginSetCompressionPacket;
+                Session.CompressionThreshold = compress.Threshold;
+
+            } else if(e.Packet is EncryptionRequestPacket)
+            {
+
+            } else if(e.Packet is LoginSuccessPacket)
+            {
+                SubProtocol = ProtocolState.Game;
             }
         }
 

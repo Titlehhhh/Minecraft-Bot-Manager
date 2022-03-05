@@ -1,0 +1,29 @@
+﻿<Window x:Class="MinecraftBotManagerWPF.Views.Windows.ConfirmDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
+        mc:Ignorable="d"        
+        Background="Black"
+        Style="{StaticResource CustomWindowStyle}"
+        BorderThickness="1"
+        BorderBrush="Aqua"        
+        Title="DialogWindow" Height="130" Width="270">
+    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+        <TextBlock x:Name="QuestText" 
+                   Text="Вы точно хотите удалить?" 
+                   FontSize="16" 
+                   Foreground="White"
+                   FontFamily="JetBrains Mono"/>
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Content="Да"  />
+            <Button x:Name="CancelButton" Click="CancelButton_Click" Content="Отмена" Grid.Column="2"/>
+        </Grid>
+    </StackPanel>
+</Window>

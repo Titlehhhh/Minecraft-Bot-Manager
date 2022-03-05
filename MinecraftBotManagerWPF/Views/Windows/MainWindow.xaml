@@ -6,13 +6,12 @@
         xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
-        mc:Ignorable="d"
+        mc:Ignorable="d"        
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Style="{StaticResource CustomWindowStyle}"
-        xmlns:vms="clr-namespace:MinecraftBotManagerWPF.ViewModels"
-        DataContext="{Binding MainViewModel,Source={StaticResource Locator}}"
+        xmlns:vms="clr-namespace:MinecraftBotManagerWPF.ViewModels"        
         WindowState="Maximized"
         
         xmlns:converters ="clr-namespace:MinecraftBotManagerWPF.Converters"
@@ -592,7 +591,7 @@
                     <Border Background="{StaticResource CommonColor}" Grid.Row="3" Padding="1,2" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
 
                         <Grid>
-                            <ListBox VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding BotsCollection}" SelectedIndex="0" x:Name="BotListBox">
+                            <ListBox VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding BotsCollection}" SelectedItem="{Binding SelectedBot}" SelectedIndex="0" x:Name="BotListBox">
                                 <ListBox.Style>
                                     <Style TargetType="{x:Type ListBox}">
                                         <Setter Property="Template">

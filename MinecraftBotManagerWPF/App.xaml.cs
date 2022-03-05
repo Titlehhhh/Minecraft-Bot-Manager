@@ -1,4 +1,5 @@
-﻿using MinecraftBotManagerWPF.ViewModels;
+﻿using MinecraftBotManagerWPF.Services;
+using MinecraftBotManagerWPF.ViewModels;
 using MinecraftBotManagerWPF.Views.Windows;
 using System.Windows;
 
@@ -18,7 +19,7 @@ namespace MinecraftBotManagerWPF
             {
 
                 MainWindow main = new MainWindow();
-                main.DataContext = new MainViewModel();
+                main.DataContext = new MainViewModel(new DialogService(main));
                 main.Show();
                 this.MainWindow = main;
 

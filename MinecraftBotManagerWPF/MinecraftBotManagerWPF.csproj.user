@@ -13,6 +13,9 @@
     <Compile Update="Views\UserControls\IPAddressControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\ConfirmDialogWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +28,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UserControls\IPAddressControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\DialogWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\MainWindow.xaml">
