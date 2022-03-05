@@ -4,14 +4,14 @@ using System;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace ProtocolLib740
+namespace ProtocolLib754
 {
-    public sealed class PacketProvider740 : IPacketProvider
+    public sealed class PacketProvider754 : IPacketProvider
     {
         private static readonly IPacketProviderClient CLIENTPACKETS;
         private static readonly IPacketProviderServer SERVERPACKETS;
 
-        static PacketProvider740()
+        static PacketProvider754()
         {
             try
             {

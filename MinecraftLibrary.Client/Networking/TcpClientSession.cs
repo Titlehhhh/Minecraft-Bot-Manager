@@ -20,7 +20,7 @@ namespace MinecraftLibrary.Client.Networking
         public CancellationTokenSource Cancellation { get; private set; } = new();
         public int CompressionThreshold { get; set; } = 0;
 
-        public IPacketProducer Packets { get; set; }
+        public IPacketProducer PacketFactory { get; set; }
 
         public event Action<ITcpClientSession>? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
@@ -32,9 +32,10 @@ namespace MinecraftLibrary.Client.Networking
 
         public void Connect()
         {
-            tcpClient = new TcpClient(Host, Port);
-            Connected?.Invoke(this);
+            tcpClient = new TcpClient(Host, Port);            
             NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
+
+            Connected?.Invoke(this);
             ReadLoop();
         }
         private async Task<(int, MinecraftStream)> ReadNextPacketAsync()
@@ -71,7 +72,7 @@ namespace MinecraftLibrary.Client.Networking
                 {
                     (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
                     Lazy<IPacket> packet = null;
-                    if (Packets.TryGetInputPacket(id, out packet))
+                    if (PacketFactory.TryGetInputPacket(id, out packet))
                     {
                         packet.Value.Read(dataStream);
                         PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
@@ -206,7 +207,7 @@ namespace MinecraftLibrary.Client.Networking
 
         public void SendPacket(IPacket packet)
         {
-            if (Packets.TryGetOutputId(packet.GetType(), out int id))
+            if (PacketFactory.TryGetOutputId(packet.GetType(), out int id))
             {
                 this.SendPacket(packet, id);
             }

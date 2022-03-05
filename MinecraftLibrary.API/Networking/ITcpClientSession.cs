@@ -7,7 +7,7 @@ namespace MinecraftLibrary.API.Networking
     {
         int CompressionThreshold { get; set; }
         string Host { get; set; }
-        IPacketProducer Packets { get; set; }
+        IPacketProducer PacketFactory { get; set; }
 
         NetworkMinecraftStream NetStream { get; }
         int Port { get; set; }

@@ -2,7 +2,7 @@
 using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 
-namespace ProtocolLib740.Packets.Client
+namespace ProtocolLib754.Packets.Client
 {
     [MinecraftLibrary.API.Protocol.PacketInfo(0x00, 740, PacketCategory.Login, PacketSide.Client)]
     public class LoginStartPacket : IPacket

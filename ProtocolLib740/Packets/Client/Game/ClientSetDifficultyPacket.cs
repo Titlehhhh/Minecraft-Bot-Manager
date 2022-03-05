@@ -4,7 +4,7 @@ using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 
 
-namespace ProtocolLib740.Packets.Client
+namespace ProtocolLib754.Packets.Client
 {
 
     [PacketInfo(0x02, 740, PacketCategory.Game, PacketSide.Client)]

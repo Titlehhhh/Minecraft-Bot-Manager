@@ -5,9 +5,9 @@ using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Client.Networking;
 using MinecraftLibrary.Core.Protocol;
 using MinecraftLibrary.Geometry;
-using ProtocolLib740;
-using ProtocolLib740.Packets.Client;
-using ProtocolLib740.Packets.Server;
+using ProtocolLib754;
+using ProtocolLib754.Packets.Client;
+using ProtocolLib754.Packets.Server;
 
 namespace MinecraftLibrary.Client
 {
@@ -61,18 +61,31 @@ namespace MinecraftLibrary.Client
 
         public void Connect()
         {
-            PacketProvider = new PacketProvider740();
+            Validate();
+
+
+            PacketProvider = new PacketProvider754();
 
             Session = new TcpClientSession();
             Session.Host = this.Host;
             Session.Port = this.Port;
-            Session.Packets = PacketManager;
+            Session.PacketFactory = PacketManager;
             RegisterEvents();
             SubProtocol = ProtocolState.HandShake;
             Session.Connect();
 
         }
-
+        private void Validate()
+        {
+            if (string.IsNullOrWhiteSpace(Nickname))
+            {
+                throw new InvalidOperationException("Введите ник");
+            }
+            if (string.IsNullOrWhiteSpace(Host))
+            {
+                throw new InvalidOperationException("Введите хость");
+            }
+        }
         
         private void UnRegisterEvents()
         {
@@ -84,11 +97,13 @@ namespace MinecraftLibrary.Client
         }
         private void Session_Connected(ITcpClientSession obj)
         {
-            SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 740, Port, Host));
+            Console.WriteLine("Connected");
+            SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
         }
 
         private void Session_PacketSent(object? sender, PacketSentEventArgs e)
         {
+            Console.WriteLine("PacketSent: "+e.Packet.GetType().Name);
             if(e.Packet is HandShakePacket)
             {
                 this.SubProtocol = ProtocolState.Login;
@@ -98,12 +113,17 @@ namespace MinecraftLibrary.Client
 
         private void Session_PacketSend(object? sender, PacketSendEventArgs e)
         {
-
+            Console.WriteLine("PacketSend: " + e.Packet.GetType().Name);
         }
 
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
         {
             Console.WriteLine(e.Packet.GetType().Name);
+            if(e.Packet is LoginDisconnectPacket)
+            {
+                Session.Disconnect();
+                Console.WriteLine("Disconnect: "+(e.Packet as LoginDisconnectPacket).Message);
+            }
         }
 
         private void Session_Disconnected(object? sender, DisconnectedEventArgs e)
@@ -172,23 +192,23 @@ namespace MinecraftLibrary.Client
         private void RegisterHandShakePackets()
         {
             PacketManager.ClearAll();
-            PacketManager.LoadInputPackets(PacketProvider.ClientPackets.HandShakePackets);
+            PacketManager.LoadOutputPackets(PacketProvider.ClientPackets.HandShakePackets);
         }
         private void RegisterLoginPackets()
         {
             PacketManager.ClearAll();
 
-            PacketManager.LoadInputPackets(PacketProvider.ClientPackets.LoginPackets);
+            PacketManager.LoadOutputPackets(PacketProvider.ClientPackets.LoginPackets);
 
-            PacketManager.LoadOutputPackets(PacketProvider.ServerPackets.LoginPackets);
+            PacketManager.LoadInputPackets(PacketProvider.ServerPackets.LoginPackets);
         }
         private void RegisterGamePackets()
         {
             PacketManager.ClearAll();
 
-            PacketManager.LoadInputPackets(PacketProvider.ClientPackets.GamePackets);
+            PacketManager.LoadOutputPackets(PacketProvider.ClientPackets.GamePackets);
 
-            PacketManager.LoadOutputPackets(PacketProvider.ServerPackets.GamePackets);
+            PacketManager.LoadInputPackets(PacketProvider.ServerPackets.GamePackets);
         }
         private void RegisterEvents()
         {
