@@ -84,6 +84,6 @@ namespace ProtocolLib754
 
         public IPacketProviderServer ServerPackets => SERVERPACKETS;
 
-        public int TargetVersion => 740;
+        public int TargetVersion => 754;
     }
 }
