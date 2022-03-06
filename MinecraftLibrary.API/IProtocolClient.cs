@@ -4,7 +4,7 @@ using MinecraftLibrary.Geometry;
 
 namespace MinecraftLibrary.API
 {
-    public interface IMinecraftClient
+    public interface IProtocolClient
     {
         string Nickname { get; set; }
         string Host { get; set; }

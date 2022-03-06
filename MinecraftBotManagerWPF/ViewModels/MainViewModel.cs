@@ -28,29 +28,30 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public MainViewModel(IDialogService dialogService)
         {
-            this.dialogService = dialogService;
-            //BotsCollection.Add(new BotViewModel());
+            this.dialogService = dialogService;           
         }
 
-        private RelayCommand? createCommand;
+        private ICommand? createCommand;
 
-        public RelayCommand? CreateNewBotCommand
+        public ICommand? CreateNewBotCommand
         {
-            get => createCommand ??= new RelayCommand(async () =>
+            get => createCommand ??= new RelayCommand(() =>
             {
-
                 BotsCollection.Add(CreateBot());
-
             });
         }
 
-        private RelayCommand<BotViewModel> delete;
+        private ICommand delete;
 
-        public RelayCommand<BotViewModel> DeleteBotCommand
+        public ICommand DeleteBotCommand
         {
-            get => delete ??= new RelayCommand<BotViewModel>((p) =>
+            get => delete ??= new RelayCommand(async () =>
             {
-
+                bool b = await dialogService.ShowConfirmDialog("Вы точно хотите удалить?");
+                if (b)
+                {
+                    BotsCollection.Remove((BotViewModel)SelectedBot);
+                }
             });
 
         }

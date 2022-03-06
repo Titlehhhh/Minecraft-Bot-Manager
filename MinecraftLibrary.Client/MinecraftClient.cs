@@ -11,7 +11,7 @@ using ProtocolLib754.Packets.Server;
 
 namespace MinecraftLibrary.Client
 {
-    public class MinecraftClient : IMinecraftClient
+    public class MinecraftClient : IProtocolClient
     {
         private ProtocolState subProtocol;
 

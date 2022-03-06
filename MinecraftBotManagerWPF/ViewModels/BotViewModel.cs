@@ -203,21 +203,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             }, () => BotState == State.Running);
         }
 
-        private ICommand delete;
-
-        public ICommand DeleteCommand
-        {
-            get { return delete ??= new RelayCommand(() => { }); }
-            set { delete = value; }
-        }
-
-        private ICommand copy;
-
-        public ICommand CopyCommand
-        {
-            get { return copy ??= new RelayCommand(() => { }); }
-            set { copy = value; }
-        }
+        
 
         private async Task Auth()
         {

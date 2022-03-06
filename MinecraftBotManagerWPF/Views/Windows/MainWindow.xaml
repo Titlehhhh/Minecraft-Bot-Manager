@@ -129,7 +129,7 @@
                                         </Button.ToolTip>
                                     </Button>
 
-                                    <Button  ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <Button Command="{Binding RelativeSource={}}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
                                         <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
                                         <Button.ToolTip>
                                             <ToolTip VerticalOffset="0" HorizontalOffset="0">
