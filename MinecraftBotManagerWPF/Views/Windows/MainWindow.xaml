@@ -47,7 +47,7 @@
                         <ProgressBar RenderOptions.EdgeMode="Aliased" Margin="0" IsIndeterminate="True" Background="Transparent" BorderThickness="0" Foreground="#9477ff"/>
 
                         <StackPanel Margin="10,5,10,5">
-                            <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding Username,UpdateSourceTrigger=PropertyChanged}" FontSize="17">
+                            <TextBox HorizontalAlignment="Center" TextAlignment="Center" Width="200" Text="{Binding Nickname,UpdateSourceTrigger=PropertyChanged}" FontSize="17">
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="Foreground" Value="White"/>
@@ -129,7 +129,7 @@
                                         </Button.ToolTip>
                                     </Button>
 
-                                    <Button Command="{Binding RelativeSource={}}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=DataContext.DeleteBotCommand}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
                                         <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
                                         <Button.ToolTip>
                                             <ToolTip VerticalOffset="0" HorizontalOffset="0">
@@ -483,7 +483,7 @@
                     <Button x:Name="ResizeButton" Click="ResizeButton_Click" Style="{StaticResource HeaderButtonStyle}">
                         <mat:PackIcon Kind="WindowMaximize" Foreground="White"/>
                     </Button>
-                    <Button x:Name="CloseButton" Click="CloseButton_Click" Style="{StaticResource HeaderButtonStyle}">
+                    <Button x:Name="CloseButton" Command="{Binding CloseCommand}" Click="CloseButton_Click" Style="{StaticResource HeaderButtonStyle}">
                         <mat:PackIcon Kind="Close" Foreground="White"/>
                     </Button>
                 </StackPanel>

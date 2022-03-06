@@ -19,7 +19,7 @@ namespace MinecraftBotManagerWPF
             {
 
                 MainWindow main = new MainWindow();
-                main.DataContext = new MainViewModel(new DialogService(main));
+                main.DataContext = new MainViewModel(new DialogService(main),new DataService());
                 main.Show();
                 this.MainWindow = main;
 

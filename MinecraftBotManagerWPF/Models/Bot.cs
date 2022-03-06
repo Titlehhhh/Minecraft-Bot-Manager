@@ -1,24 +1,38 @@
 ﻿using MinecraftLibrary.Client;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System;
+using MinecraftBotManagerWPF.Enums;
 
 namespace MinecraftBotManagerWPF.Models
 {
-    public sealed class Bot : INotifyPropertyChanged
+    [Serializable]
+    public class Bot : INotifyPropertyChanged, ISerializable
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string nick;
 
-        public string Nickname
+
+        public string Nickname { get; set; }
+
+
+        public string Host { get; set; }
+
+        public ushort Port { get; set; }
+
+        private State state;
+
+        public State BotState
         {
-            get { return nick; }
-            set
+            get { return state; }
+            private set
             {
-                nick = value;
+                state = value;
                 OnPropertyChanged();
             }
         }
+
 
 
         public void StartClient()
@@ -34,5 +48,21 @@ namespace MinecraftBotManagerWPF.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Nickname), nick);
+            info.AddValue(nameof(Host), host);
+        }
+        protected Bot(SerializationInfo info, StreamingContext context)
+        {
+            Nickname = info.GetString(nameof(Nickname));
+            Host = info.GetString(nameof(Host));
+        }
+        public Bot()
+        {
+
+        }
+
     }
 }

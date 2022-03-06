@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using MinecraftBotManagerWPF.Enums;
+using MinecraftBotManagerWPF.Models;
 using MinecraftLibrary.API.Types.Chat;
 using System;
 using System.Collections.ObjectModel;
@@ -12,16 +13,24 @@ namespace MinecraftBotManagerWPF.ViewModels
     public class BotViewModel : ObservableObject, ICloneable
     {
 
+        public Bot MainBot { get; set; }
 
 
-
-        public BotViewModel()
+        public BotViewModel(Bot bot)
         {
+            MainBot = bot;
+            bot.PropertyChanged += (s,e) =>
+            {
+                OnPropertyChanged(e.PropertyName);
+            };
+
             chatqueue = new ObservableCollection<ChatMessage>();
             chatqueue_readonly = new ReadOnlyObservableCollection<ChatMessage>(chatqueue);
 
 
         }
+
+
 
         private bool isselected;
 
@@ -102,23 +111,17 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         #endregion
 
-        #region Свойства
-
         private string nick;
 
-        public string Username
+        public string Nickname
         {
-            get
-            {
-                return nick;
-            }
+            get { return nick; }
             set
             {
                 nick = value;
                 OnPropertyChanged();
             }
         }
-
         private string host;
 
         public string Host
@@ -130,16 +133,11 @@ namespace MinecraftBotManagerWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        private string port;
 
-        public string Port
+        public ushort Port
         {
-            get { return port; }
-            set
-            {
-                port = value;
-                OnPropertyChanged();
-            }
+            get;
+            set;
         }
 
         private State state;
@@ -147,13 +145,12 @@ namespace MinecraftBotManagerWPF.ViewModels
         public State BotState
         {
             get { return state; }
-            set
+            private set
             {
                 state = value;
                 OnPropertyChanged();
             }
         }
-        #endregion
 
         #region Errors        
         public CheckStatus AuthStatus { get; set; } = new();
@@ -175,7 +172,7 @@ namespace MinecraftBotManagerWPF.ViewModels
                 CheckServer();
 
 
-            }, () => BotState == State.None);
+            }, () => MainBot.BotState == State.None);
         }
 
         private void CheckServer()
@@ -190,7 +187,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             get => stop ??= new RelayCommand(() =>
             {
 
-            }, () => BotState != State.None);
+            }, () => MainBot.BotState != State.None);
         }
 
         private RelayCommand restart;
@@ -200,10 +197,10 @@ namespace MinecraftBotManagerWPF.ViewModels
             get => restart ??= new RelayCommand(() =>
             {
 
-            }, () => BotState == State.Running);
+            }, () => MainBot.BotState == State.Running);
         }
 
-        
+
 
         private async Task Auth()
         {
@@ -225,7 +222,7 @@ namespace MinecraftBotManagerWPF.ViewModels
         public object Clone()
         {
 
-            return new BotViewModel();
+            return new BotViewModel(new Bot());
         }
     }
 }

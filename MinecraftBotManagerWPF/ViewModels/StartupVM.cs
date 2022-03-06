@@ -28,7 +28,7 @@ namespace MinecraftBotManagerWPF.ViewModels
         {
             for (int i = 1; i <= 100; i++)
             {
-                await Task.Delay(10);
+                await Task.Delay(1);
                 Progress = i;
             }
 
