@@ -17,9 +17,7 @@ namespace MinecraftBotManagerWPF.Models
         public string Nickname { get; set; }
 
 
-        public string Host { get; set; }
-
-        public ushort Port { get; set; }
+        public string Host { get; set; }        
 
         private State state;
 
@@ -31,17 +29,6 @@ namespace MinecraftBotManagerWPF.Models
                 state = value;
                 OnPropertyChanged();
             }
-        }
-
-
-
-        public void StartClient()
-        {
-            MinecraftClient client = new MinecraftClient();
-        }
-        public void Stop()
-        {
-
         }
 
         private void OnPropertyChanged([CallerMemberName] string name = "")

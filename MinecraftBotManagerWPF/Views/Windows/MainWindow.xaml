@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vms:DesignMainVM,IsDesignTimeCreatable=True}"
         xmlns:bhs="clr-namespace:MinecraftBotManagerWPF.Behaviors"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
@@ -286,33 +287,7 @@
 
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Margin="0,0,0,0" Text="Сервер" Foreground="White" FontWeight="SemiBold"/>
-                                                <Grid>
-                                                    <Grid Background="Transparent" x:Name="IPGrid" Margin="0,7,0,0" MinWidth="200" HorizontalAlignment="Left">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="15*"/>
-                                                            <ColumnDefinition Width="Auto" MinWidth="13"/>
-                                                            <ColumnDefinition Width="6*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBox Text="{Binding Host,UpdateSourceTrigger=PropertyChanged}" mat:HintAssist.Hint="Хост" Style="{StaticResource HintTextBox}"/>
-                                                        <StackPanel Grid.Column="1" Margin="2,6,2,6">
-                                                            <Ellipse Margin="0,0,0,4" Height="4" Width="4" Fill="White" />
-                                                            <Ellipse Margin="0,4,0,0" Height="4" Width="4" Fill="White" />
-                                                        </StackPanel>
-                                                        <TextBox x:Name="PortTB"
-                                                                 Text="{Binding Port,UpdateSourceTrigger=PropertyChanged}"                                                                 
-                                                                 Validation.ErrorTemplate="{x:Null}"
-                                                                 Grid.Column="2"
-                                                                 mat:HintAssist.Hint="Порт"
-                                                                 Style="{StaticResource HintTextBox}" >
-                                                            <i:Interaction.Behaviors>
-                                                                <bhs:TextBoxPortBehavior/>
-                                                            </i:Interaction.Behaviors>
-                                                        </TextBox>
-
-                                                    </Grid>
-
-                                                </Grid>
-
+                                                <TextBox Margin="0,7,0,0" HorizontalAlignment="Left" MinWidth="200" Text="{Binding Host,UpdateSourceTrigger=PropertyChanged}" mat:HintAssist.Hint="IP Адрес" Style="{StaticResource HintTextBox}"/>
                                             </StackPanel>
                                             <controls:CheckStatusControl Grid.Column="2" DataContext="{Binding IPStatus}"/>
                                         </Grid>
@@ -433,7 +408,7 @@
                                                     </Setter>
                                                 </Style>
                                             </ListBox.ItemContainerStyle>
-                                            
+
                                         </ListBox>
                                     </Border>
                                 </Grid>

@@ -1,5 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
+using MinecraftBotManagerWPF.ViewModels;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +16,10 @@ namespace MinecraftBotManagerWPF.Views.Windows
         {
 
             InitializeComponent();
-
+            if (DesignerProperties.GetIsInDesignMode(this))
+            {
+                DataContext = new DesignMainVM();
+            }
             if (WindowState == WindowState.Maximized)
             {
                 (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowRestore;

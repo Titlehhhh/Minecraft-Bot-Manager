@@ -26,7 +26,7 @@
                     </Style>
                 </ProgressBar.Style>
             </ProgressBar>
-            <mat:PackIcon Height="21" Width="21" Kind="Close" Foreground="OrangeRed" VerticalAlignment="Center">
+            <mat:PackIcon Height="21" Width="21" Kind="CloseOutline" Foreground="OrangeRed" VerticalAlignment="Center">
                 <mat:PackIcon.Style>
                     <Style TargetType="mat:PackIcon">
                         <Setter Property="Visibility" Value="Hidden"/>
@@ -38,7 +38,7 @@
                     </Style>
                 </mat:PackIcon.Style>
             </mat:PackIcon>
-            <mat:PackIcon Kind="Check" Height="21" Width="21" Foreground="Green" VerticalAlignment="Center">
+            <mat:PackIcon Kind="CheckOutline" Height="21" Width="21" Foreground="Green" VerticalAlignment="Center">
                 <mat:PackIcon.Style>
                     <Style TargetType="mat:PackIcon">
                         <Setter Property="Visibility" Value="Hidden"/>

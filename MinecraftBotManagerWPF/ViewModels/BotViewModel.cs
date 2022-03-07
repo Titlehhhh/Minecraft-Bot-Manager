@@ -29,7 +29,10 @@ namespace MinecraftBotManagerWPF.ViewModels
 
 
         }
-
+        public BotViewModel()
+        {
+            MainBot = new Bot();
+        }
 
 
         private bool isselected;
@@ -131,13 +134,7 @@ namespace MinecraftBotManagerWPF.ViewModels
                 MainBot.Host = value;
                 OnPropertyChanged();
             }
-        }
-
-        public ushort Port
-        {
-            get => MainBot.Port;
-            set => MainBot.Port = value;
-        }
+        }        
 
         private State state;
 

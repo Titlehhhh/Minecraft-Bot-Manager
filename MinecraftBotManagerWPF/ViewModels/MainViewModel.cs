@@ -10,6 +10,7 @@ using System.Linq;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
+
     public class MainViewModel : ObservableObject
     {
         private object selectedbot;
@@ -31,7 +32,7 @@ namespace MinecraftBotManagerWPF.ViewModels
         private readonly IDataService dataService;
 
         public MainViewModel(IDialogService dialogService, IDataService dataService)
-        {
+        {            
             this.dialogService = dialogService;
             this.dataService = dataService;
 
@@ -39,9 +40,9 @@ namespace MinecraftBotManagerWPF.ViewModels
         }
         private void LoadBots()
         {
-            foreach(Bot bot in dataService.BotRepository.GetAllBots())
+            foreach (Bot bot in dataService.BotRepository.GetAllBots())
             {
-                BotsCollection.Add(new BotViewModel(bot));                
+                BotsCollection.Add(new BotViewModel(bot));
             }
             SelectedBot = BotsCollection.FirstOrDefault();
         }

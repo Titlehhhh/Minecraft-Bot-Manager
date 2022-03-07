@@ -18,9 +18,9 @@ namespace MinecraftBotManagerWPF.Behaviors
         {
             try
             {
-                string text = AssociatedObject.Text + e.Text;
-                System.Diagnostics.Debug.WriteLine(text);
-                Convert.ToUInt16(text);
+                //string text = AssociatedObject.Text + e.Text;
+               // System.Diagnostics.Debug.WriteLine(text);
+                //Convert.ToUInt16(text);
             }
             catch (Exception)
             {
