@@ -51,8 +51,8 @@ namespace MinecraftBotManagerWPF.Models
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue(nameof(Nickname), nick);
-            info.AddValue(nameof(Host), host);
+            info.AddValue(nameof(Nickname), Nickname);
+            info.AddValue(nameof(Host), Host);
         }
         protected Bot(SerializationInfo info, StreamingContext context)
         {

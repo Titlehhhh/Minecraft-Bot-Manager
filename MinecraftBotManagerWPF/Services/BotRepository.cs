@@ -26,9 +26,8 @@ namespace MinecraftBotManagerWPF.Services
                 }
             }
             catch (Exception e)
-            {
-                throw;
-                System.Windows.MessageBox.Show(e.ToString());
+            {               
+                //System.Windows.MessageBox.Show(e.ToString());
                 this.Bots = new List<Bot>();
             }
         }
@@ -63,9 +62,9 @@ namespace MinecraftBotManagerWPF.Services
                     bin.Serialize(fs, this.Bots);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw;
+               // throw;
                // System.Windows.MessageBox.Show(e.ToString());
             }
 

@@ -111,33 +111,32 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         #endregion
 
-        private string nick;
+        
 
         public string Nickname
         {
-            get { return nick; }
+            get { return MainBot.Nickname; }
             set
             {
-                nick = value;
+                MainBot.Nickname = value;
                 OnPropertyChanged();
             }
-        }
-        private string host;
+        }       
 
         public string Host
         {
-            get { return host; }
+            get { return MainBot.Host; }
             set
             {
-                host = value;
+                MainBot.Host = value;
                 OnPropertyChanged();
             }
         }
 
         public ushort Port
         {
-            get;
-            set;
+            get => MainBot.Port;
+            set => MainBot.Port = value;
         }
 
         private State state;
