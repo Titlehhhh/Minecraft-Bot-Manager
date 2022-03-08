@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using MinecraftBotManagerWPF.Enums;
+using MinecraftBotManagerWPF.Interfaces;
 using MinecraftBotManagerWPF.Models;
 using MinecraftLibrary.API.Types.Chat;
 using System;
@@ -13,13 +14,18 @@ namespace MinecraftBotManagerWPF.ViewModels
     public class BotViewModel : ObservableObject, ICloneable
     {
 
-        public Bot MainBot { get; set; }
+        public Bot MainBot { get; private set; }
 
+        #region Сервисы
+        
+        #endregion
 
         public BotViewModel(Bot bot)
         {
+            //this.dataService = dataService;
+
             MainBot = bot;
-            bot.PropertyChanged += (s,e) =>
+            bot.PropertyChanged += (s, e) =>
             {
                 OnPropertyChanged(e.PropertyName);
             };
@@ -114,7 +120,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         #endregion
 
-        
+
 
         public string Nickname
         {
@@ -124,7 +130,7 @@ namespace MinecraftBotManagerWPF.ViewModels
                 MainBot.Nickname = value;
                 OnPropertyChanged();
             }
-        }       
+        }
 
         public string Host
         {
@@ -134,7 +140,7 @@ namespace MinecraftBotManagerWPF.ViewModels
                 MainBot.Host = value;
                 OnPropertyChanged();
             }
-        }        
+        }
 
         private State state;
 

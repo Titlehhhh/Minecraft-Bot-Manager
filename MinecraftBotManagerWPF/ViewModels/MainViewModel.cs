@@ -54,6 +54,8 @@ namespace MinecraftBotManagerWPF.ViewModels
             dataService.BotRepository.AddBot(bot);
             BotsCollection.Add(botViewModel);
             SelectedBot = botViewModel;
+
+            dataService.BotRepository.Save();
         }
 
         private async void DeleteBotAsync()
@@ -62,6 +64,8 @@ namespace MinecraftBotManagerWPF.ViewModels
             if (b)
             {
                 BotViewModel currentbot = (BotViewModel)SelectedBot;
+
+
                 Bot bot = currentbot.MainBot;
                 this.dataService.BotRepository.RemoveBot(bot);
                 BotsCollection.Remove(currentbot);
@@ -71,7 +75,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         private void CloseWindow()
         {
-            this.dataService.BotRepository.Save();
+            this.dataService.Save();
         }
 
         private ICommand? createCommand;

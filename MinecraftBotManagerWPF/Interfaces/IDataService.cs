@@ -17,6 +17,6 @@ namespace MinecraftBotManagerWPF.Interfaces
     public interface IDataService
     {
         IBotRepository BotRepository { get; }
-
+        void Save();
     }
 }
