@@ -1,33 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
-    public class ViewModelLocator
+    public class ViewModelBase : INotifyPropertyChanged
     {
-        public ViewModelLocator()
+        protected virtual void OnPropertyChanged([CallerMemberName]string name = "")
         {
-            var services = new ServiceCollection();
-            services.AddSingleton<StartupVM>();
-            services.AddSingleton<MainViewModel>();
-            Ioc.Default.ConfigureServices(services.BuildServiceProvider());
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-        public StartupVM? Startup
-        {
-            get
-            {
-                return Ioc.Default.GetService<StartupVM>();
-            }
-        }
-
-        public MainViewModel? MainViewModel
-        {
-            get
-            {
-                return Ioc.Default.GetService<MainViewModel>();
-            }
-        }
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 
 }

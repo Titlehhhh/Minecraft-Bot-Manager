@@ -2,6 +2,10 @@
 using MinecraftBotManagerWPF.ViewModels;
 using MinecraftBotManagerWPF.Views.Windows;
 using System.Windows;
+using Microsoft.Extensions.Hosting;
+using MinecraftBotManagerWPF.HostBuilder;
+using Microsoft.Extensions.DependencyInjection;
+using MinecraftBotManagerWPF.Interfaces;
 
 namespace MinecraftBotManagerWPF
 {
@@ -10,20 +14,48 @@ namespace MinecraftBotManagerWPF
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            StartupWindow start = new StartupWindow();
-            start.Show();
-            this.MainWindow = start;
-            start.DataContext = new StartupVM(() =>
-            {
-                MainWindow main = new MainWindow();
-                main.DataContext = new MainViewModel(new DialogService(main),new DataService());
-                main.Show();
-                this.MainWindow = main;
+        private readonly IHost host;
 
-                start.Close();
-            });
+        private StartupWindow start;
+
+        public App()
+        {
+            start = new StartupWindow();
+            start.Show();
+            host = Host.CreateDefaultBuilder()
+                .AddServices()
+                .AddViewModels()
+                .AddViews()                
+                .Build();
+        }
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+             await host.StopAsync();
+
+            Window window = host.Services.GetRequiredService<MainWindow>();
+            window.DataContext = host.Services.GetRequiredService<MainViewModel>();
+            window.Show();
+            start.Close();
+            start = null;
+
+            Application.Current.MainWindow = window;
+            //this.MainWindow = start;
+            //start.DataContext = new StartupVM(() =>
+            //{
+            //    MainWindow main = new MainWindow();
+            //    main.DataContext = new MainViewModel(new DialogService(main), new DataService());
+            //    main.Show();
+            //    this.MainWindow = main;
+
+            //    start.Close();
+            //});
+        }
+        protected override void OnExit(ExitEventArgs e)
+        {
+            host.StopAsync();
+            host.Dispose();
+
+            base.OnExit(e);
         }
     }
 }

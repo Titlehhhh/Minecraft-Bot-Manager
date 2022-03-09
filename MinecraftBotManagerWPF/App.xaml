@@ -11,7 +11,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ext:BoolToVisibilityConverter TrueValue="Visible" FalseValue="Hidden" x:Key="BoolToVisConverter" />
-            <vms:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+            
             <SolidColorBrush Color="#191919" x:Key="CommonColor"/>
             <Style TargetType="{x:Type ProgressBar}">
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>

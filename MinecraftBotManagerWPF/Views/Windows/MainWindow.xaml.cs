@@ -14,7 +14,7 @@ namespace MinecraftBotManagerWPF.Views.Windows
     {
         public MainWindow()
         {
-
+            System.Diagnostics.Debug.WriteLine("MainwunCreate");
             InitializeComponent();
             if (DesignerProperties.GetIsInDesignMode(this))
             {

@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
-        Title="StartupWindow" Height="300" Width="600">
+        Title="StartupWindow" Height="350" Width="600">
     <Window.Resources>
         <Style TargetType="ProgressBar">
             <Setter Property="Template">
@@ -35,7 +35,7 @@
         </Style>
     </Window.Resources>
     <Border Background="#FF1A1A1A" CornerRadius="5" BorderBrush="DarkGray" BorderThickness="2">
-        <DockPanel Margin="0,40" HorizontalAlignment="Center" LastChildFill="False">
+        <DockPanel Margin="0,0" HorizontalAlignment="Center" VerticalAlignment="Center" LastChildFill="False">
             <mat:PackIcon Kind="CubeOutline" 
                           Foreground="White" 
                           Height="50" 
@@ -50,7 +50,7 @@
                        FontFamily="JetBrains Mono"
                        Foreground="White"/>
             <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center">                
-                <ProgressBar Value="{Binding Progress}" Width="350"/>
+                <ProgressBar Visibility="Collapsed" Value="{Binding Progress}" Width="350"/>
             </StackPanel>
         </DockPanel>
     </Border>

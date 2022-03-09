@@ -11,7 +11,7 @@ using System.Linq;
 namespace MinecraftBotManagerWPF.ViewModels
 {
 
-    public class MainViewModel : ObservableObject
+    public class MainViewModel : ViewModelBase
     {
         private object selectedbot;
 
@@ -60,8 +60,8 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         private async void DeleteBotAsync()
         {
-            bool b = await dialogService.ShowConfirmDialog("Вы точно хотите удалить?");
-            if (b)
+            bool? b = await dialogService.ShowDialog("Вы точно хотите удалить?");
+            if (b.Value)
             {
                 BotViewModel currentbot = (BotViewModel)SelectedBot;
 

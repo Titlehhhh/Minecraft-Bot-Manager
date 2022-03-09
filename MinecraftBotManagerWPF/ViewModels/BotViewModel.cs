@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
-    public class BotViewModel : ObservableObject, ICloneable
+    public class BotViewModel : ViewModelBase, ICloneable
     {
 
         public Bot MainBot { get; private set; }

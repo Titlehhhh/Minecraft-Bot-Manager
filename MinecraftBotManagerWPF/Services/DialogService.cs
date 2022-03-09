@@ -9,14 +9,14 @@ namespace MinecraftBotManagerWPF.Services
 {
     public class DialogService : IDialogService
     {
-        private readonly Window mainWin;
+        private readonly Window owner;
 
-        public DialogService(Window mainWin)
+        public DialogService(Window owner)
         {
-            this.mainWin = mainWin ?? throw new ArgumentNullException(nameof(mainWin));
+            this.owner = owner;
         }
 
-        public async Task<bool> ShowConfirmDialog(string quest)
+        public async Task<bool?> ShowDialog(string quest)
         {
             if (string.IsNullOrEmpty(quest))
             {
@@ -25,8 +25,8 @@ namespace MinecraftBotManagerWPF.Services
             ConfirmDialogWindow container = new ConfirmDialogWindow();
             container.QuestText.Text = quest;
             container.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            container.Owner = mainWin;            
-            return container.ShowDialog().Value;
+            container.Owner = owner;            
+            return container.ShowDialog();
         }
 
         public object ShowDialog()
