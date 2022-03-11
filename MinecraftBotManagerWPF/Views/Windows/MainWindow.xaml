@@ -131,7 +131,7 @@
                                         </Button.ToolTip>
                                     </Button>
 
-                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=DataContext.DeleteBotCommand}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=DataContext.DeleteBotCommand}" CommandParameter="{Binding}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" Style="{StaticResource SubHeaderButtonStyle}" HorizontalAlignment="Left">
                                         <mat:PackIcon Kind="Delete" Height="27" Width="27" Margin="3" Foreground="#c85961"/>
                                         <Button.ToolTip>
                                             <ToolTip VerticalOffset="0" HorizontalOffset="0">
@@ -576,7 +576,7 @@
                     <Border Background="{StaticResource CommonColor}" Grid.Row="3" Padding="1,2" BorderBrush="{StaticResource VSBorderBrushColor}" BorderThickness="1,0,1,1">
 
                         <Grid>
-                            <ListBox VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding BotsCollection}" SelectedItem="{Binding SelectedBot}" SelectedIndex="0" x:Name="BotListBox">
+                            <ListBox VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding BotsCollection}" SelectedItem="{Binding CurrentBot}" SelectedIndex="0" x:Name="BotListBox">
                                 <ListBox.Style>
                                     <Style TargetType="{x:Type ListBox}">
                                         <Setter Property="Template">

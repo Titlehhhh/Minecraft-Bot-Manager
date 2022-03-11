@@ -7,67 +7,59 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
+using MinecraftBotManagerWPF.Commands;
+using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF.ViewModels
 {
+    public interface IMainVM
+    {
+        BotViewModelsStorage Storage { get; }
+        BotViewModel CurrentBot { set; }
+
+        ICommand CreateNewBotCommand { get; }
+        ICommand DeleteBotCommand { get; }
+        ICommand CloseCommand { get; }
+    }
+
 
     public class MainViewModel : ViewModelBase
     {
-        private BotViewModel currentbot;
+        
 
         public BotViewModel CurrentBot
         {
-            get { return currentbot; }
+            get => BotVMStorage.CurrentBot;
             set
             {
-                
-                currentbot = value;
-                OnPropertyChanged();
+                BotVMStorage.CurrentBot = value;
             }
         }
+        public BotViewModelsStorage BotVMStorage { get; }
 
+        public ObservableCollection<BotViewModel> BotsCollection => BotVMStorage.Bots;
 
-        public ObservableCollection<BotViewModel> BotsCollection { get; set; } = new();
+        
 
         private readonly IDialogService dialogService;
         private readonly IDataService dataService;
 
-        public MainViewModel(IDialogService dialogService, IDataService dataService)
-        {            
+        public MainViewModel(BotViewModelsStorage botStorage, IDialogService dialogService, IDataService dataService)
+        {
             this.dialogService = dialogService;
             this.dataService = dataService;
+            this.BotVMStorage = botStorage;
 
 
+            CreateNewBotCommand = new AddBotCommand(botStorage, dataService.BotRepository);
 
-            LoadBots();
-        }
-        private void LoadBots()
-        {
-            foreach (Bot bot in dataService.BotRepository.GetAllBots())
-            {
-                BotsCollection.Add(new BotViewModel(bot));
-            }
             CurrentBot = BotsCollection.FirstOrDefault();
         }
 
+
         private void CreateBot()
         {
-            
-        }
 
-        private async void DeleteBotAsync()
-        {
-            bool? b = await dialogService.ShowDialog("Вы точно хотите удалить?");
-            if (b.Value)
-            {
-                BotViewModel currentbot = (BotViewModel)SelectedBot;
-
-
-                Bot bot = currentbot.MainBot;
-                this.dataService.BotRepository.RemoveBot(bot);
-                BotsCollection.Remove(currentbot);
-                SelectedBot = BotsCollection.FirstOrDefault();
-            }
         }
 
         private void CloseWindow()
@@ -75,16 +67,12 @@ namespace MinecraftBotManagerWPF.ViewModels
             this.dataService.Save();
         }
 
-        private ICommand? createCommand;
 
-        public ICommand? CreateNewBotCommand { get; }
+        public ICommand CreateNewBotCommand { get; }
 
-        private ICommand delete;
+        public ICommand DeleteBotCommand { get; }
 
-        public ICommand DeleteBotCommand
-        {
-            get => delete ??= new RelayCommand(DeleteBotAsync);
-        }
+
 
         private ICommand close;
 

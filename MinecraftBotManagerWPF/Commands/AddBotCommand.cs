@@ -13,12 +13,12 @@ namespace MinecraftBotManagerWPF.Commands
     public class AddBotCommand : ICommand
     {
         private readonly IBotRepository botRepository;
-        private readonly MainViewModel mainViewModel;
+        private readonly BotViewModelsStorage botViewModels;
 
-        public AddBotCommand(IBotRepository botRepository, MainViewModel mainViewModel)
+        public AddBotCommand(BotViewModelsStorage botViewModels, IBotRepository botRepository)
         {
             this.botRepository = botRepository;
-            this.mainViewModel = mainViewModel;
+            this.botViewModels = botViewModels;
         }
 
         public AddBotCommand()
@@ -41,10 +41,11 @@ namespace MinecraftBotManagerWPF.Commands
 
             botRepository.AddBot(bot);
 
-            mainViewModel.BotsCollection.Add(botViewModel);
+            botViewModels.Bots.Add(botViewModel);
 
-            mainViewModel.CurrentBot = botViewModel;
+            botViewModels.CurrentBot = botViewModel;
 
+            botRepository.Save();
         }
     }
 }

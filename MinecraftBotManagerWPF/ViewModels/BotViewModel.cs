@@ -13,18 +13,22 @@ namespace MinecraftBotManagerWPF.ViewModels
 {
     public class BotViewModel : ViewModelBase, ICloneable
     {
-
-        public Bot MainBot { get; private set; }
+        //public MainViewModel ParentVM => _parentVM;
+        
 
         #region Сервисы
-        
+
+        private readonly Bot bot;
+        //private readonly MainViewModel _parentVM;
         #endregion
 
         public BotViewModel(Bot bot)
         {
-            //this.dataService = dataService;
+           // this._parentVM = mainViewModel;
+            this.bot = bot;
 
-            MainBot = bot;
+            //this.dataService = dataService;
+            
             bot.PropertyChanged += (s, e) =>
             {
                 OnPropertyChanged(e.PropertyName);
@@ -37,7 +41,7 @@ namespace MinecraftBotManagerWPF.ViewModels
         }
         public BotViewModel()
         {
-            MainBot = new Bot();
+            bot = new Bot();
         }
 
 
@@ -124,20 +128,20 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public string Nickname
         {
-            get { return MainBot.Nickname; }
+            get { return bot.Nickname; }
             set
             {
-                MainBot.Nickname = value;
+                bot.Nickname = value;
                 OnPropertyChanged();
             }
         }
 
         public string Host
         {
-            get { return MainBot.Host; }
+            get { return bot.Host; }
             set
             {
-                MainBot.Host = value;
+                bot.Host = value;
                 OnPropertyChanged();
             }
         }
@@ -174,7 +178,7 @@ namespace MinecraftBotManagerWPF.ViewModels
                 CheckServer();
 
 
-            }, () => MainBot.BotState == State.None);
+            }, () => bot.BotState == State.None);
         }
 
         private void CheckServer()
@@ -189,7 +193,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             get => stop ??= new RelayCommand(() =>
             {
 
-            }, () => MainBot.BotState != State.None);
+            }, () => bot.BotState != State.None);
         }
 
         private RelayCommand restart;
@@ -199,7 +203,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             get => restart ??= new RelayCommand(() =>
             {
 
-            }, () => MainBot.BotState == State.Running);
+            }, () => bot.BotState == State.Running);
         }
 
 
@@ -223,8 +227,8 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public object Clone()
         {
-
-            return new BotViewModel(new Bot());
+            return null;
+            
         }
 
         public override void Dispose()
