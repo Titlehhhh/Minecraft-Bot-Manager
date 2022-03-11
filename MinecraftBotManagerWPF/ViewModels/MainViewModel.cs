@@ -13,14 +13,15 @@ namespace MinecraftBotManagerWPF.ViewModels
 
     public class MainViewModel : ViewModelBase
     {
-        private object selectedbot;
+        private BotViewModel currentbot;
 
-        public object SelectedBot
+        public BotViewModel CurrentBot
         {
-            get { return selectedbot; }
+            get { return currentbot; }
             set
             {
-                selectedbot = value;
+                
+                currentbot = value;
                 OnPropertyChanged();
             }
         }
@@ -36,6 +37,8 @@ namespace MinecraftBotManagerWPF.ViewModels
             this.dialogService = dialogService;
             this.dataService = dataService;
 
+
+
             LoadBots();
         }
         private void LoadBots()
@@ -44,18 +47,12 @@ namespace MinecraftBotManagerWPF.ViewModels
             {
                 BotsCollection.Add(new BotViewModel(bot));
             }
-            SelectedBot = BotsCollection.FirstOrDefault();
+            CurrentBot = BotsCollection.FirstOrDefault();
         }
 
         private void CreateBot()
         {
-            Bot bot = new Bot();
-            BotViewModel botViewModel = new BotViewModel(bot);
-            dataService.BotRepository.AddBot(bot);
-            BotsCollection.Add(botViewModel);
-            SelectedBot = botViewModel;
-
-            dataService.BotRepository.Save();
+            
         }
 
         private async void DeleteBotAsync()
@@ -80,10 +77,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         private ICommand? createCommand;
 
-        public ICommand? CreateNewBotCommand
-        {
-            get => createCommand ??= new RelayCommand(CreateBot);
-        }
+        public ICommand? CreateNewBotCommand { get; }
 
         private ICommand delete;
 

@@ -226,5 +226,10 @@ namespace MinecraftBotManagerWPF.ViewModels
 
             return new BotViewModel(new Bot());
         }
+
+        public override void Dispose()
+        {
+            
+        }
     }
 }
