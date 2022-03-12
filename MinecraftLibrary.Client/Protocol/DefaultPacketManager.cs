@@ -1,7 +1,7 @@
 ﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 
-namespace MinecraftLibrary.Core.Protocol
+namespace MinecraftLibrary.Client.Protocol
 {
     public class DefaultPacketManager : IPacketManager
     {

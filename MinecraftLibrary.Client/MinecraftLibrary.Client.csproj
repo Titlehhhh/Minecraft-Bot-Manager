@@ -19,13 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Networking\Dns\" />
     <Folder Include="Inventory\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Core\MinecraftLibrary.Core.csproj" />
     <ProjectReference Include="..\ProtocolLib754\ProtocolLib754.csproj" />
   </ItemGroup>
 

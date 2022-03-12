@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Packets\Client\Status\" />
     <Folder Include="Packets\Client\Game\" />
     <Folder Include="Packets\Server\Game\" />
   </ItemGroup>

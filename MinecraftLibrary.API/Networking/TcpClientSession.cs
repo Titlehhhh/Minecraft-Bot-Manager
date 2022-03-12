@@ -32,7 +32,7 @@ public class TcpClientSession : IDisposable, ITcpClientSession
 
     public void Connect()
     {
-        tcpClient = new TcpClient(Host, Port);
+        tcpClient = new TcpClient(Host, Port);            
         NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
 
         Connected?.Invoke(this);

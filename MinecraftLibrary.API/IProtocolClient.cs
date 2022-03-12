@@ -40,5 +40,4 @@ namespace MinecraftLibrary.API
 
         event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
     }
-
 }

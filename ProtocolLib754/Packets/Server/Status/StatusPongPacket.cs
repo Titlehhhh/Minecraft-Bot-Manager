@@ -13,9 +13,4 @@ namespace ProtocolLib754.Packets.Server.Status
     {
 
     }
-    [PacketInfo(0x00,754,PacketCategory.Status,PacketSide.Server)]
-    public class StatusResponsePacket
-    {
-
-    }
 }

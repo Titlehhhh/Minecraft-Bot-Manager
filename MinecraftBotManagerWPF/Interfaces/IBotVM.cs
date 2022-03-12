@@ -1,12 +1,11 @@
-﻿namespace MinecraftBotManagerWPF
+﻿using System.Threading.Tasks;
+
+namespace MinecraftBotManagerWPF
 {
-    public interface IBotVM
+    public interface IBotService
     {
-        string Username { get; set; }
-        string Host { get; set; }
-        string Port { get; set; }
-
-
+        Task StartClient();
 
     }
+    
 }
