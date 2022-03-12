@@ -1,7 +1,6 @@
-﻿using MinecraftBotManagerWPF.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace MinecraftBotManagerWPF.Interfaces
+namespace MinecraftBotManagerWPF
 {
     public delegate void AddBotHandler(Bot newbot);
     public interface IBotRepository

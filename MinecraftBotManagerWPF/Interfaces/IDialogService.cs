@@ -1,11 +1,10 @@
-﻿using MinecraftBotManagerWPF.ViewModels;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace MinecraftBotManagerWPF.Interfaces
+namespace MinecraftBotManagerWPF
 {
     public interface IDialogService
     {
         Task<bool?> ShowDialog(string quest);
-        
+
     }
 }

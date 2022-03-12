@@ -1,22 +1,16 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using MinecraftBotManagerWPF.Enums;
-using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.Models;
-using MinecraftLibrary.API.Types.Chat;
+﻿using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
-namespace MinecraftBotManagerWPF.ViewModels
+namespace MinecraftBotManagerWPF
 {
     public class BotViewModel : ViewModelBase, ICloneable
     {
         //public MainViewModel ParentVM => _parentVM;
-        
+
 
         #region Сервисы
+
+
 
         private readonly Bot bot;
         //private readonly MainViewModel _parentVM;
@@ -24,18 +18,13 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public BotViewModel(Bot bot)
         {
-           // this._parentVM = mainViewModel;
+
             this.bot = bot;
 
-            //this.dataService = dataService;
-            
-            bot.PropertyChanged += (s, e) =>
-            {
-                OnPropertyChanged(e.PropertyName);
-            };
 
-            chatqueue = new ObservableCollection<ChatMessage>();
-            chatqueue_readonly = new ReadOnlyObservableCollection<ChatMessage>(chatqueue);
+
+
+
 
 
         }
@@ -43,88 +32,6 @@ namespace MinecraftBotManagerWPF.ViewModels
         {
             bot = new Bot();
         }
-
-
-        private bool isselected;
-
-        public bool IsSelectedChat
-        {
-            get { return isselected; }
-            set
-            {
-                isselected = value;
-                CountUnReadMessages = 0;
-                OnPropertyChanged();
-            }
-        }
-
-
-        #region Чат
-
-
-        private readonly ObservableCollection<ChatMessage> chatqueue;
-        private readonly ReadOnlyObservableCollection<ChatMessage> chatqueue_readonly;
-        public ReadOnlyObservableCollection<ChatMessage> ChatQueue => chatqueue_readonly;
-
-        private int unreadmessages;
-
-        public int CountUnReadMessages
-        {
-            get { return unreadmessages; }
-            set
-            {
-                if (!(IsSelectedChat || value == unreadmessages))
-                {
-                    unreadmessages = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private int unviewmessages;
-
-        public int CountUnViewMessages
-        {
-            get { return unviewmessages; }
-            set
-            {
-                unviewmessages = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string message;
-
-        public string CurrentMessage
-        {
-            get { return message; }
-            set
-            {
-                message = value;
-            }
-        }
-
-        private void ClearMessage()
-        {
-            CurrentMessage = "";
-            OnPropertyChanged(nameof(CurrentMessage));
-        }
-
-        private RelayCommand send;
-
-        public RelayCommand SendChatCommand
-        {
-            get => send ??= new RelayCommand(() =>
-            {
-                ClearMessage();
-            });
-
-        }
-
-
-
-        #endregion
-
-
 
         public string Nickname
         {
@@ -175,16 +82,12 @@ namespace MinecraftBotManagerWPF.ViewModels
             {
                 ReturnToOrgignalStateStatuses();
 
-                CheckServer();
+                //CheckServer();
 
 
-            }, () => bot.BotState == State.None);
+            }, () => false);
         }
 
-        private void CheckServer()
-        {
-
-        }
 
         private RelayCommand stop;
 
@@ -193,7 +96,7 @@ namespace MinecraftBotManagerWPF.ViewModels
             get => stop ??= new RelayCommand(() =>
             {
 
-            }, () => bot.BotState != State.None);
+            }, () => false);
         }
 
         private RelayCommand restart;
@@ -203,15 +106,10 @@ namespace MinecraftBotManagerWPF.ViewModels
             get => restart ??= new RelayCommand(() =>
             {
 
-            }, () => bot.BotState == State.Running);
+            }, () => false);
         }
 
 
-
-        private async Task Auth()
-        {
-            await Task.Delay(2000);
-        }
 
         #endregion
         private void ReturnToOrgignalStateStatuses()
@@ -228,12 +126,12 @@ namespace MinecraftBotManagerWPF.ViewModels
         public object Clone()
         {
             return null;
-            
+
         }
 
         public override void Dispose()
         {
-            
+
         }
     }
 }

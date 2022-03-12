@@ -1,11 +1,6 @@
-﻿using MinecraftBotManagerWPF.Services;
-using MinecraftBotManagerWPF.ViewModels;
-using MinecraftBotManagerWPF.Views.Windows;
-using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MinecraftBotManagerWPF.HostBuilder;
-using Microsoft.Extensions.DependencyInjection;
-using MinecraftBotManagerWPF.Interfaces;
+using System.Windows;
 
 namespace MinecraftBotManagerWPF
 {
@@ -25,12 +20,12 @@ namespace MinecraftBotManagerWPF
             host = Host.CreateDefaultBuilder()
                 .AddServices()
                 .AddViewModels()
-                .AddViews()                
+                .AddViews()
                 .Build();
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
-             await host.StopAsync();
+            await host.StopAsync();
 
             Window window = host.Services.GetRequiredService<MainWindow>();
             window.DataContext = host.Services.GetRequiredService<MainViewModel>();

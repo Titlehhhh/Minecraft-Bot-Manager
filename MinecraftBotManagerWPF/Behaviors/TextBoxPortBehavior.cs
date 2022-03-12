@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Controls;
 
-namespace MinecraftBotManagerWPF.Behaviors
+namespace MinecraftBotManagerWPF
 {
     public class TextBoxPortBehavior : Behavior<TextBox>
     {
@@ -19,7 +19,7 @@ namespace MinecraftBotManagerWPF.Behaviors
             try
             {
                 //string text = AssociatedObject.Text + e.Text;
-               // System.Diagnostics.Debug.WriteLine(text);
+                // System.Diagnostics.Debug.WriteLine(text);
                 //Convert.ToUInt16(text);
             }
             catch (Exception)

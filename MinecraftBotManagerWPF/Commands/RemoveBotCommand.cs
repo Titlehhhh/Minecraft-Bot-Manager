@@ -1,9 +1,7 @@
-﻿using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.ViewModels;
-using System;
+﻿using System;
 using System.Windows.Input;
 
-namespace MinecraftBotManagerWPF.Commands
+namespace MinecraftBotManagerWPF
 {
     public class RemoveBotCommand : ICommand
     {

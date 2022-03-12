@@ -1,14 +1,7 @@
-﻿using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.Models;
-using MinecraftBotManagerWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Input;
 
-namespace MinecraftBotManagerWPF.Commands
+namespace MinecraftBotManagerWPF
 {
     public class AddBotCommand : ICommand
     {

@@ -1,11 +1,10 @@
 ﻿using MaterialDesignThemes.Wpf;
-using MinecraftBotManagerWPF.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MinecraftBotManagerWPF.Views.Windows
+namespace MinecraftBotManagerWPF
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -28,10 +27,10 @@ namespace MinecraftBotManagerWPF.Views.Windows
             {
                 (ResizeButton.Content as PackIcon).Kind = PackIconKind.WindowMaximize;
             }
-            
+
             this.StateChanged += MainWindow_StateChanged;
         }
-        
+
 
 
 

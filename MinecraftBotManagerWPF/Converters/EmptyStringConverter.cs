@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MinecraftBotManagerWPF.Converters
+namespace MinecraftBotManagerWPF
 {
     internal class EmptyStringConverter : IValueConverter
     {

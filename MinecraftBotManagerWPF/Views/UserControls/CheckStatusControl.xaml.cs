@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace MinecraftBotManagerWPF.Views.UserControls
+namespace MinecraftBotManagerWPF
 {
     /// <summary>
     /// Логика взаимодействия для CheckStatusControl.xaml

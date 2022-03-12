@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Client\MinecraftLibrary.Client.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Core\MinecraftLibrary.Core.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.NBT\MinecraftLibrary.NBT.csproj" />
+    <ProjectReference Include="..\ProtocolLib754\ProtocolLib754.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\" />
+  </ItemGroup>
+
+</Project>

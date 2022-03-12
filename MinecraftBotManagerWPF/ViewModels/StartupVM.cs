@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace MinecraftBotManagerWPF.ViewModels
+namespace MinecraftBotManagerWPF
 {
     public class StartupVM : ObservableObject
     {

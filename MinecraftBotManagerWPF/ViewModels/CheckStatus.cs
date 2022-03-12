@@ -1,8 +1,7 @@
-﻿using MinecraftBotManagerWPF.Enums;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MinecraftBotManagerWPF.ViewModels
+namespace MinecraftBotManagerWPF
 {
     public class CheckStatus : INotifyPropertyChanged
     {

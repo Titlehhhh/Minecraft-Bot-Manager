@@ -1,16 +1,9 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.Models;
-using System;
+﻿using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Linq;
-using MinecraftBotManagerWPF.Commands;
-using System.Collections.Generic;
+using System.Windows.Input;
 
-namespace MinecraftBotManagerWPF.ViewModels
+namespace MinecraftBotManagerWPF
 {
     public interface IMainVM
     {
@@ -25,7 +18,7 @@ namespace MinecraftBotManagerWPF.ViewModels
 
     public class MainViewModel : ViewModelBase
     {
-        
+
 
         public BotViewModel CurrentBot
         {
@@ -39,19 +32,23 @@ namespace MinecraftBotManagerWPF.ViewModels
 
         public ObservableCollection<BotViewModel> BotsCollection => BotVMStorage.Bots;
 
-        
+
 
         private readonly IDialogService dialogService;
         private readonly IDataService dataService;
 
-        public MainViewModel(BotViewModelsStorage botStorage, IDialogService dialogService, IDataService dataService)
+        public MainViewModel(IDialogService dialogService, IDataService dataService)
         {
             this.dialogService = dialogService;
             this.dataService = dataService;
-            this.BotVMStorage = botStorage;
+
+            var bots = dataService.BotRepository
+                .GetAllBots()
+                .Select(bot => new BotViewModel(bot));
+            this.BotVMStorage = new BotViewModelsStorage(bots);
 
 
-            CreateNewBotCommand = new AddBotCommand(botStorage, dataService.BotRepository);
+            CreateNewBotCommand = new AddBotCommand(this.BotVMStorage, dataService.BotRepository);
 
             CurrentBot = BotsCollection.FirstOrDefault();
         }

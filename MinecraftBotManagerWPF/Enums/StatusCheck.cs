@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManagerWPF.Enums
+﻿namespace MinecraftBotManagerWPF
 {
     public enum StatusCheck { Init, Ok, Error }
 }

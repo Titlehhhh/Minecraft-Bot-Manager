@@ -1,11 +1,7 @@
-﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using MinecraftBotManagerWPF.ViewModels;
-using MinecraftBotManagerWPF.Views.Windows;
-using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.Services;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace MinecraftBotManagerWPF.HostBuilder
+namespace MinecraftBotManagerWPF
 {
     public static class AddViewsHostBuilderExtension
     {

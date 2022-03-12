@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManagerWPF.Interfaces
+﻿namespace MinecraftBotManagerWPF
 {
     public interface IBotVM
     {

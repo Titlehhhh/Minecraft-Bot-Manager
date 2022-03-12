@@ -1,6 +1,4 @@
-﻿using MinecraftBotManagerWPF.Interfaces;
-
-namespace MinecraftBotManagerWPF.Services
+﻿namespace MinecraftBotManagerWPF
 {
     public class DataService : IDataService
     {

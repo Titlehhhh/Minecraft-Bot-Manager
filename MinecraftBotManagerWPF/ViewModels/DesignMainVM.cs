@@ -1,7 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
-namespace MinecraftBotManagerWPF.ViewModels
+namespace MinecraftBotManagerWPF
 {
     public class DesignMainVM : ViewModelBase
     {

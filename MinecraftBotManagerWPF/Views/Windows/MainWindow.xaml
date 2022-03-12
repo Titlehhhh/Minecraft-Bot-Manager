@@ -1,22 +1,22 @@
-﻿<Window x:Class="MinecraftBotManagerWPF.Views.Windows.MainWindow"
+﻿<Window x:Class="MinecraftBotManagerWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ext="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MinecraftBotManagerWPF.Views.Windows"
+        xmlns:local="clr-namespace:MinecraftBotManagerWPF"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vms:DesignMainVM,IsDesignTimeCreatable=True}"
-        xmlns:bhs="clr-namespace:MinecraftBotManagerWPF.Behaviors"
+        xmlns:bhs="clr-namespace:MinecraftBotManagerWPF"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:controls="clr-namespace:MinecraftBotManagerWPF.Views.UserControls"
+        xmlns:controls="clr-namespace:MinecraftBotManagerWPF"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Style="{StaticResource CustomWindowStyle}"
-        xmlns:vms="clr-namespace:MinecraftBotManagerWPF.ViewModels"        
+        xmlns:vms="clr-namespace:MinecraftBotManagerWPF"        
         WindowState="Maximized"
         
-        xmlns:converters ="clr-namespace:MinecraftBotManagerWPF.Converters"
+        xmlns:converters ="clr-namespace:MinecraftBotManagerWPF"
         Title="MainWindow" Height="900" Width="1440">
 
     <Window.Resources>

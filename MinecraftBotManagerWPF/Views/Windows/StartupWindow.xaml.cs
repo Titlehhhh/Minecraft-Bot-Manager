@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MinecraftBotManagerWPF.Views.Windows
+namespace MinecraftBotManagerWPF
 {
     /// <summary>
     /// Логика взаимодействия для StartupWindow.xaml

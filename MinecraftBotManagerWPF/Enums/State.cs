@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManagerWPF.Enums
+﻿namespace MinecraftBotManagerWPF
 {
     public enum State { None, Initialized, Running }
 }

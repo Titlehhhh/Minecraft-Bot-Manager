@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManagerWPF.Services
+﻿namespace MinecraftBotManagerWPF
 {
     public class CheckServerService
     {

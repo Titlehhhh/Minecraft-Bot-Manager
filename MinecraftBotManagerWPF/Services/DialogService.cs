@@ -1,11 +1,7 @@
-﻿using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.Views.UserControls;
-using MinecraftBotManagerWPF.Views.Windows;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 
-namespace MinecraftBotManagerWPF.Services
+namespace MinecraftBotManagerWPF
 {
     public class DialogService : IDialogService
     {
@@ -25,7 +21,7 @@ namespace MinecraftBotManagerWPF.Services
             ConfirmDialogWindow container = new ConfirmDialogWindow();
             container.QuestText.Text = quest;
             container.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            container.Owner = owner;            
+            container.Owner = owner;
             return container.ShowDialog();
         }
 

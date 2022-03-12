@@ -1,11 +1,9 @@
-﻿using MinecraftBotManagerWPF.Interfaces;
-using MinecraftBotManagerWPF.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace MinecraftBotManagerWPF.Services
+namespace MinecraftBotManagerWPF
 {
     public class BotRepository : IBotRepository
     {
@@ -26,7 +24,7 @@ namespace MinecraftBotManagerWPF.Services
                 }
             }
             catch (Exception e)
-            {               
+            {
                 //System.Windows.MessageBox.Show(e.ToString());
                 this.Bots = new List<Bot>();
             }
@@ -64,8 +62,8 @@ namespace MinecraftBotManagerWPF.Services
             }
             catch
             {
-               // throw;
-               // System.Windows.MessageBox.Show(e.ToString());
+                // throw;
+                // System.Windows.MessageBox.Show(e.ToString());
             }
 
         }

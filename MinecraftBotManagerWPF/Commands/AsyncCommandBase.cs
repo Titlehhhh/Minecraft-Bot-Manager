@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MinecraftBotManagerWPF.Commands
+namespace MinecraftBotManagerWPF
 {
     public abstract class AsyncCommandBase : ICommand
     {
@@ -33,7 +30,7 @@ namespace MinecraftBotManagerWPF.Commands
         {
             IsExecuting = true;
 
-            await  ExecuteAsync(parameter);
+            await ExecuteAsync(parameter);
 
             IsExecuting = false;
         }
