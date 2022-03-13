@@ -1,36 +1,35 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MinecraftBotManagerWPF
 {
-    public class RemoveBotCommand : ICommand
+    public class RemoveBotCommand : AsyncCommandBase
     {
         private readonly IBotRepository botRepository;
-        private readonly MainViewModel mainViewModel;
+        private readonly BotViewModelsStorage vmstorage;
+        private readonly IDialogService dialogService;
 
-        public RemoveBotCommand(IBotRepository botRepository, MainViewModel mainViewModel)
+        public RemoveBotCommand(BotViewModelsStorage vmstorage, IDialogService dialogService, IBotRepository botRepository)
         {
             this.botRepository = botRepository;
-            this.mainViewModel = mainViewModel;
+            this.vmstorage = vmstorage;
+            this.dialogService = dialogService;
         }
-
-        public RemoveBotCommand()
+        public override async Task ExecuteAsync(object parameter)
         {
+            bool? b = await dialogService.ShowDialog("Вы точно хотите удалить?");
+            if (b.Value)
+            {
+                BotViewModel currentBot = (BotViewModel)parameter;
 
-        }
+                Bot bot = currentBot.Model;
 
-
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
-        {
-            BotViewModel currentBot = (BotViewModel)parameter;
-            //TODO Сделать удаление
+                vmstorage.Bots.Remove(currentBot);
+                botRepository.RemoveBot(bot);
+                vmstorage.CurrentBot = vmstorage.Bots.FirstOrDefault();
+            }
         }
     }
 }

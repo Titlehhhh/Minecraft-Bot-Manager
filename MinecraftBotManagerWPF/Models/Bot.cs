@@ -3,26 +3,24 @@ using System.Runtime.Serialization;
 
 namespace MinecraftBotManagerWPF
 {
-    [Serializable]
-    public class Bot : ISerializable
+    [DataContract]
+    public class Bot
     {
+        [DataMember(Name = "nick", EmitDefaultValue = true)]
         public string Nickname { get; set; }
+
+        [DataMember(Name = "host", EmitDefaultValue = true)]
         public string Host { get; set; }
 
+        [DataMember(Name = "pass", EmitDefaultValue = true)]
         public string Password { get; set; }
 
 
+        public async void StartBotAsync()
+        {
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue(nameof(Nickname), Nickname);
-            info.AddValue(nameof(Host), Host);
         }
-        protected Bot(SerializationInfo info, StreamingContext context)
-        {
-            Nickname = info.GetString(nameof(Nickname));
-            Host = info.GetString(nameof(Host));
-        }
+
         public Bot()
         {
 

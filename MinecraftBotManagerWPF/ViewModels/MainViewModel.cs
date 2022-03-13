@@ -47,8 +47,13 @@ namespace MinecraftBotManagerWPF
                 .Select(bot => new BotViewModel(bot));
             this.BotVMStorage = new BotViewModelsStorage(bots);
 
+            this.BotVMStorage.StateChanged += () =>
+            {
+                OnPropertyChanged(nameof(CurrentBot));
+            };
 
             CreateNewBotCommand = new AddBotCommand(this.BotVMStorage, dataService.BotRepository);
+            DeleteBotCommand = new RemoveBotCommand(this.BotVMStorage, dialogService, dataService.BotRepository);
 
             CurrentBot = BotsCollection.FirstOrDefault();
         }

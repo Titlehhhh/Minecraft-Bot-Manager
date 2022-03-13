@@ -7,6 +7,7 @@ namespace MinecraftBotManagerWPF
     {
         //public MainViewModel ParentVM => _parentVM;
 
+        public Bot Model => this.bot;
 
         #region Сервисы
 
@@ -85,7 +86,7 @@ namespace MinecraftBotManagerWPF
                 //CheckServer();
 
 
-            }, () => false);
+            }, () => true);
         }
 
 
