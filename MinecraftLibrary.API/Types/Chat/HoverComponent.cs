@@ -1,5 +1,8 @@
-﻿namespace MinecraftLibrary.API.Types.Chat
+﻿using System.Runtime.Serialization;
+
+namespace MinecraftLibrary.API.Types.Chat
 {
+    [DataContract]
     public class HoverComponent
     {
         public EHoverAction Action { get; set; }

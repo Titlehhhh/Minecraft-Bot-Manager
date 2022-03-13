@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtocolLib754.Packets.Client.Status
+namespace ProtocolLib754.Packets.Client
 {
     [PacketInfo(0x00,754,PacketCategory.Status,PacketSide.Client)]
     public class StatusQueryPacket : IPacket

@@ -1,9 +1,15 @@
-﻿namespace MinecraftLibrary.API
+﻿using System.Runtime.Serialization;
+
+namespace MinecraftLibrary.API
 {
+    [DataContract]
     public struct GameProfile
     {
-        public string UUID { get; private set; }
-        public string Nickname { get; private set; }
+        [DataMember(Name="id")]
+        public string UUID { get;  set; }
+
+        [DataMember(Name = "name")]
+        public string Nickname { get;  set; }
 
         public GameProfile(string uUID, string nickname)
         {

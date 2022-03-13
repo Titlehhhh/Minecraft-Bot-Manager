@@ -1,9 +1,14 @@
-﻿namespace MinecraftLibrary.API
+﻿using System.Runtime.Serialization;
+
+namespace MinecraftLibrary.API
 {
+    [DataContract]
     public struct VersionInfo
     {
-        public string StringVersion { get; }
-        public int ProtocolVersion { get; }
+        [DataMember(Name ="name")]
+        public string StringVersion { get; set; }
+        [DataMember(Name = "protocol")]
+        public int ProtocolVersion { get; set; }
 
         public VersionInfo(string stringVersion, int protocolVersion)
         {

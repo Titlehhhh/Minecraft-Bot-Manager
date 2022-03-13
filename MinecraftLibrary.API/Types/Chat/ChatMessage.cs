@@ -1,31 +1,51 @@
-﻿using System.Text.Json;
+﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Text.Json;
+using Utf8Json.Resolvers;
 
 namespace MinecraftLibrary.API.Types.Chat
 {
+    [DataContract]
     public class ChatMessage
     {
+        private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ChatMessage));
+
+        [DataMember(Name = "text")]
         public string Text { get; set; }
 
-        public HexColor Color { get; set; }
+        [DataMember(Name = "color")]
+        public string Color { get; set; }
 
+        [DataMember(Name = "bold")]
         public bool Bold { get; set; }
 
+        [DataMember(Name = "italic")]
         public bool Italic { get; set; }
 
+        [DataMember(Name = "underlined")]
         public bool Underlined { get; set; }
 
+        [DataMember(Name = "strikethrough")]
         public bool Strikethrough { get; set; }
 
+        [DataMember(Name = "obfuscated")]
         public bool Obfuscated { get; set; }
 
+        [DataMember(Name = "insertion")]
         public string Insertion { get; set; }
 
+        //TODO
+        //[IgnoreDataMember]
+        [DataMember(Name = "clickEvent")]
         public ClickComponent ClickEvent { get; set; }
-
+        //TODO
+       // [IgnoreDataMember]
+        [DataMember(Name = "hoverEvent")]
         public HoverComponent HoverEvent { get; set; }
 
-        public List<ChatMessage> Extra { get; private set; }
-
+        [DataMember(Name = "extra", EmitDefaultValue = true)]
+        public List<ChatMessage> Extra { get; set; } = new List<ChatMessage>();
 
         public IEnumerable<ChatMessage> Extras => GetExtras();
 
@@ -158,15 +178,20 @@ namespace MinecraftLibrary.API.Types.Chat
             }
             return this;
         }
-
         public ChatMessage()
         {
-
+            // Extra = new List<ChatMessage>();
         }
-        public ChatMessage(string json)
+
+        public static ChatMessage FromJson(string json)
         {
-
+            return (ChatMessage)serializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(json)));
         }
+        public override string ToString()
+        {
+            return string.Join("", Extra.Select(x => x.Text));
+        }
+
 
         public static ChatMessage Empty => Simple(string.Empty);
 

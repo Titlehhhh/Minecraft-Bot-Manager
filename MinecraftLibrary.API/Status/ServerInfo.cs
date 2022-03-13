@@ -1,26 +1,29 @@
 ﻿using MinecraftLibrary.API.Types.Chat;
+using System.Runtime.Serialization;
 
 namespace MinecraftLibrary.API
 {
+    [DataContract]
     public class ServerInfo
     {
-        public int MaxPlayers { get; }
-        public int OnlinePlayers { get; }
-        public GameProfile[] Players { get; }
+        [DataMember(Name = "players",EmitDefaultValue =true)]
+        public PlayerInfo Players { get; set; }
 
+        [DataMember(Name = "version")]
+        public VersionInfo TargetVersion { get; set; }
 
-        public VersionInfo TargetVersion { get; }
-        public ChatMessage Description { get; }
-        public byte[] Icon { get; }
+        [DataMember(Name = "description",EmitDefaultValue =true)]
+        public ChatMessage Description { get; set; }
 
-        public ServerInfo(int maxPlayers, int onlinePlayers, GameProfile[] players, VersionInfo targetVersion, ChatMessage description, byte[] icon)
+        [IgnoreDataMember]
+        public byte[] Icon { get; set; }
+
+        public override string ToString()
         {
-            MaxPlayers = maxPlayers;
-            OnlinePlayers = onlinePlayers;
-            Players = players;
-            TargetVersion = targetVersion;
-            Description = description;
-            Icon = icon;
+            string header = $"Сервер версия {TargetVersion.StringVersion} {Players.OnlinePlayers}/{Players.MaxPlayers}";
+            string desc ="Описание: \n"+ Description.ToString();
+            string players = "Игроки:\n" + string.Join("\n", Players.PlayerList.Select(x => x.Nickname));
+            return header + "\n" + desc + "\n" + players;
         }
     }
 }

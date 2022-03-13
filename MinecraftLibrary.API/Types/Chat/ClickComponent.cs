@@ -1,9 +1,14 @@
-﻿namespace MinecraftLibrary.API.Types.Chat
+﻿using System.Runtime.Serialization;
+
+namespace MinecraftLibrary.API.Types.Chat
 {
+    [DataContract]
     public class ClickComponent
     {
+        [DataMember(Name ="action")]
         public EClickAction Action { get; set; }
 
+        [DataMember(Name = "value")]
         public string Value { get; set; }
 
         public string Translate { get; set; }

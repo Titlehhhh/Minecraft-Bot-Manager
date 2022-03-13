@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.NBT", "Min
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Geometry", "MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj", "{31BE1A0D-66D9-4983-A0B7-5EE360FD4ABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.PluginAPI", "MinecraftLibrary.PluginAPI\MinecraftLibrary.PluginAPI.csproj", "{E8E011F0-AC7E-4AD3-9E9A-0593783C2586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.PluginAPI", "MinecraftLibrary.PluginAPI\MinecraftLibrary.PluginAPI.csproj", "{E8E011F0-AC7E-4AD3-9E9A-0593783C2586}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Tests", "MinecraftLibrary.Tests\MinecraftLibrary.Tests.csproj", "{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +217,26 @@ Global
 		{E8E011F0-AC7E-4AD3-9E9A-0593783C2586}.Release|x64.Build.0 = Release|Any CPU
 		{E8E011F0-AC7E-4AD3-9E9A-0593783C2586}.Release|x86.ActiveCfg = Release|Any CPU
 		{E8E011F0-AC7E-4AD3-9E9A-0593783C2586}.Release|x86.Build.0 = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|x64.Build.0 = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Debug|x86.Build.0 = Debug|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|ARM.Build.0 = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|ARM64.Build.0 = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|x64.ActiveCfg = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|x64.Build.0 = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|x86.ActiveCfg = Release|Any CPU
+		{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
