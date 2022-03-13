@@ -3,7 +3,7 @@ using MinecraftLibrary.API.Inventory;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Client.Networking;
-using MinecraftLibrary.Core.Protocol;
+using MinecraftLibrary.Client.Protocol;
 using MinecraftLibrary.Geometry;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
@@ -86,7 +86,7 @@ namespace MinecraftLibrary.Client
                 throw new InvalidOperationException("Введите хость");
             }
         }
-        
+
         private void UnRegisterEvents()
         {
             Session.Connected -= Session_Connected;
@@ -103,8 +103,8 @@ namespace MinecraftLibrary.Client
 
         private void Session_PacketSent(object? sender, PacketSentEventArgs e)
         {
-            Console.WriteLine("PacketSent: "+e.Packet.GetType().Name);
-            if(e.Packet is HandShakePacket)
+            Console.WriteLine("PacketSent: " + e.Packet.GetType().Name);
+            if (e.Packet is HandShakePacket)
             {
                 this.SubProtocol = ProtocolState.Login;
                 SendPacket(new LoginStartPacket(Nickname));
@@ -119,19 +119,22 @@ namespace MinecraftLibrary.Client
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
         {
             Console.WriteLine(e.Packet.GetType().Name);
-            if(e.Packet is LoginDisconnectPacket)
+            if (e.Packet is LoginDisconnectPacket)
             {
                 Session.Disconnect();
-                Console.WriteLine("Disconnect: "+(e.Packet as LoginDisconnectPacket).Message);
-            } else if(e.Packet is LoginSetCompressionPacket)
+                Console.WriteLine("Disconnect: " + (e.Packet as LoginDisconnectPacket).Message);
+            }
+            else if (e.Packet is LoginSetCompressionPacket)
             {
                 var compress = e.Packet as LoginSetCompressionPacket;
                 Session.CompressionThreshold = compress.Threshold;
 
-            } else if(e.Packet is EncryptionRequestPacket)
+            }
+            else if (e.Packet is EncryptionRequestPacket)
             {
 
-            } else if(e.Packet is LoginSuccessPacket)
+            }
+            else if (e.Packet is LoginSuccessPacket)
             {
                 SubProtocol = ProtocolState.Game;
             }
@@ -148,7 +151,7 @@ namespace MinecraftLibrary.Client
             Session.SendPacket(packet);
         }
 
-        
+
 
         public void Disconnect()
         {
