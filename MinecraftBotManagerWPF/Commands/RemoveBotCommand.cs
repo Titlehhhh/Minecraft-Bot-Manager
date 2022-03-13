@@ -26,9 +26,10 @@ namespace MinecraftBotManagerWPF
 
                 Bot bot = currentBot.Model;
 
-                vmstorage.Bots.Remove(currentBot);
-                botRepository.RemoveBot(bot);
+                vmstorage.Bots.Remove(currentBot);                
                 vmstorage.CurrentBot = vmstorage.Bots.FirstOrDefault();
+
+                await botRepository.RemoveBot(bot);
             }
         }
     }
