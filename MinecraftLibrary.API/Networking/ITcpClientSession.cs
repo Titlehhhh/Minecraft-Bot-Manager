@@ -26,4 +26,5 @@ namespace MinecraftLibrary.API.Networking
         void SendPacket(IPacket packet);
         void SwitchEncryption(byte[] key);
     }
+
 }

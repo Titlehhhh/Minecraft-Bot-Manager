@@ -10,7 +10,7 @@ namespace MinecraftLibrary.API.Networking
     /// <summary>
     ///  <see cref="System.Net.Sockets.NetworkStream"/> 5d
     /// </summary>
-    public sealed class NetworkMinecraftStream : Stream
+    public sealed class NetworkMinecraftStream : Stream, IDisposable
     {
         public NetworkStream NetStream { get; private set; }
 
@@ -137,6 +137,12 @@ namespace MinecraftLibrary.API.Networking
         public override void Write(byte[] buffer, int offset, int count)
         {
             BaseStream.Write(buffer, offset, count);
+        }
+        public void Dispose()
+        {
+            NetStream.Dispose();
+            NetStream = null;
+            
         }
     }
 }

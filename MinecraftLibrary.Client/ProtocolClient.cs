@@ -11,7 +11,7 @@ using ProtocolLib754.Packets.Server;
 
 namespace MinecraftLibrary.Client
 {
-    public class MinecraftClient : IProtocolClient
+    public class ProtocolClient : IProtocolClient
     {
         private ProtocolState subProtocol;
 
@@ -158,20 +158,7 @@ namespace MinecraftLibrary.Client
 
         }
 
-        public void LookHead(float yaw, float pitch)
-        {
-
-        }
-
-        public void LookHead(Point3 targetBlock)
-        {
-
-        }
-
-        public void LookHead(Vector3 vector)
-        {
-
-        }
+     
 
         public void SendChat(string msg)
         {
@@ -231,6 +218,16 @@ namespace MinecraftLibrary.Client
             Session.PacketReceived += Session_PacketReceived;
             Session.PacketSend += Session_PacketSend;
             Session.PacketSent += Session_PacketSent;
+        }
+
+        public void LookHead(Rotation rotation)
+        {
+           
+        }
+
+        public void LookHead(Point3 targetpos)
+        {
+           
         }
     }
 }

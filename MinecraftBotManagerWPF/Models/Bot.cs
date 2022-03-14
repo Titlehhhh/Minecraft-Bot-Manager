@@ -1,5 +1,9 @@
-﻿using System;
+﻿using MinecraftLibrary.API.Networking.Proxy;
+using MinecraftLibrary.Geometry;
+using System;
+using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
 {
@@ -15,16 +19,30 @@ namespace MinecraftBotManagerWPF
         [DataMember(Name = "pass", EmitDefaultValue = true)]
         public string Password { get; set; }
 
-
-        public async void StartBotAsync()
-        {
-
-        }
-
         public Bot()
         {
 
         }
 
+    }
+    public interface IConnectionInfo
+    {
+        string Nickname { get; }
+        string Host { get; }
+        string Password { get; }
+
+        ProxyInfo Proxy { get; }
+
+    }
+    public interface IBotRunner : INotifyPropertyChanged
+    {
+        float Yaw { get; }
+        float Pitch { get; }
+        Rotation Rotation { get; }
+
+
+
+        Task StartClientAsync();
+        Task StopClientAsync();
     }
 }

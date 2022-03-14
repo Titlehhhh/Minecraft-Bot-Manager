@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace MinecraftLibrary.Client.Crypto
+namespace MinecraftLibrary.API.Crypto
 {
     public class CryptoHandler
     {
