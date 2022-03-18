@@ -11,7 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Client\MinecraftLibrary.Client.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj" />
     <ProjectReference Include="..\ProtocolLib754\ProtocolLib754.csproj" />
   </ItemGroup>
 </Project>

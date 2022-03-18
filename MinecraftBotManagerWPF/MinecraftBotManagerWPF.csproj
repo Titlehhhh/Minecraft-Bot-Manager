@@ -25,8 +25,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Client\MinecraftLibrary.Client.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.PluginAPI\MinecraftLibrary.PluginAPI.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,6 @@
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.Json;
-using Utf8Json.Resolvers;
 
 namespace MinecraftLibrary.API.Types.Chat
 {

@@ -49,13 +49,13 @@ namespace MinecraftLibrary.Client.Networking
             {
                 while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
                 {
-                    (int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
-                    Lazy<IPacket> packet = null;
-                    if (PacketFactory.TryGetInputPacket(id, out packet))
-                    {
-                        packet.Value.Read(dataStream);
-                        PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
-                    }
+                    //(int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
+                    //Lazy<IPacket> packet = null;
+                   // if (PacketFactory.TryGetInputPacket(id, out packet))
+                   // {
+                  //      packet.Value.Read(dataStream);
+                  //      PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                 //   }
                 }
             }
             catch (SocketException e)

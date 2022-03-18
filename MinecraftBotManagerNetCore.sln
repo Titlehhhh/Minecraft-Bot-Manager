@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManagerWPF", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtocolLib754", "ProtocolLib754\ProtocolLib754.csproj", "{E1D6E2BF-F57F-4457-86AC-31C985AA0400}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Client", "MinecraftLibrary.Client\MinecraftLibrary.Client.csproj", "{FAC59F9F-B6FE-40EF-B81C-207907A0CE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary", "MinecraftLibrary\MinecraftLibrary.csproj", "{FAC59F9F-B6FE-40EF-B81C-207907A0CE42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.NBT", "MinecraftLibrary.NBT\MinecraftLibrary.NBT.csproj", "{A204135D-794B-4391-A947-255A1798544E}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Geometry",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.PluginAPI", "MinecraftLibrary.PluginAPI\MinecraftLibrary.PluginAPI.csproj", "{E8E011F0-AC7E-4AD3-9E9A-0593783C2586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Tests", "MinecraftLibrary.Tests\MinecraftLibrary.Tests.csproj", "{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Tests", "MinecraftLibrary.Tests\MinecraftLibrary.Tests.csproj", "{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

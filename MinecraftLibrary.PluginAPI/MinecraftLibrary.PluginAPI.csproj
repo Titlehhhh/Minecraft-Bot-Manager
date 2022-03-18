@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Client\MinecraftLibrary.Client.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Client\MinecraftLibrary.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.NBT\MinecraftLibrary.NBT.csproj" />
     <ProjectReference Include="..\ProtocolLib754\ProtocolLib754.csproj" />

@@ -8,6 +8,7 @@ using MinecraftLibrary.Geometry;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
+using System.ComponentModel;
 
 namespace MinecraftLibrary.Client
 {
@@ -22,7 +23,7 @@ namespace MinecraftLibrary.Client
 
 
 
-        public IContainer CurrentContainer { get; private set; }
+        //public IContainer CurrentContainer { get; private set; }
 
         public Point3 Location { get; private set; }
 
@@ -52,8 +53,17 @@ namespace MinecraftLibrary.Client
             }
         }
 
-        public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
+        public Guid UUID => throw new NotImplementedException();
 
+        public Rotation Rotation => throw new NotImplementedException();
+
+        public bool IsGround => throw new NotImplementedException();
+
+        public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
+        public event EventHandler<ServerChatEventArgs> ChatMessageEvent;
+        public event Action LoginSucces;
+        public event Action Connected;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private readonly IPacketManager PacketManager = new DefaultPacketManager();
 
@@ -228,6 +238,26 @@ namespace MinecraftLibrary.Client
         public void LookHead(Point3 targetpos)
         {
            
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendLocation(Rotation rotation, bool isGround)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendLocation(Point3 position, Rotation rotation, bool isGround)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
