@@ -8,7 +8,7 @@ namespace MinecraftLibrary.API
     /// <summary>
     /// Предоставляет свойства и методы для работы с протоколом
     /// </summary>
-    public interface IProtocolClient : INotifyPropertyChanged, IDisposable
+    public interface IProtocolClient : IDisposable
     {
         #region Свойства
 
@@ -28,10 +28,6 @@ namespace MinecraftLibrary.API
 
         Point3 Location { get; }
 
-        Point3_Int ChunkLocation { get; }
-
-        Point3_Int ChunkBlockLocation { get; }
-
         Rotation Rotation { get; }
 
         bool IsGround { get; }
@@ -50,14 +46,19 @@ namespace MinecraftLibrary.API
         void SendLocation(Rotation rotation, bool isGround);
         void SendLocation(Point3 position, Rotation rotation, bool isGround);
 
+        
         #endregion
 
 
         event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
-        event EventHandler<ServerChatEventArgs> ChatMessageEvent;
+        event EventHandler<ChatEventArgs> ChatMessageEvent;
+        
 
-
+        event Action JoiningGame;
+        event Action Respawning;
+        event Action UpdatePositionRotation;
         event Action LoginSucces;
         event Action Connected;
     }
+
 }

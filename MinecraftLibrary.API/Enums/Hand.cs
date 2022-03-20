@@ -1,9 +1,9 @@
 ﻿namespace MinecraftLibrary.API
 {
-    public enum HAND
+    public enum HAND : int
     {
-        MAINHAND,
-        OFFHAND
+        MAINHAND=0,
+        OFFHAND=1
     }
 
 }

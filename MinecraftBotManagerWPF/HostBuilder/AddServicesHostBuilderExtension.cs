@@ -11,6 +11,7 @@ namespace MinecraftBotManagerWPF
             {
                 services.AddSingleton<IDataService, DataService>();
                 services.AddSingleton<IDialogService>((s) => new DialogService(s.GetRequiredService<MainWindow>()));
+                services.AddSingleton<MinecraftBotFactory>();
             });
             return hostBuilder;
         }

@@ -20,22 +20,7 @@ namespace MinecraftLibrary
         public bool IsAuth { get; set; }
 
         #region Игровые свойства
-        public Point3 Location
-        {
-            get => location;
-            private set
-            {
-                location = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ChunkLocation));
-                OnPropertyChanged(nameof(ChunkBlockLocation));
-            }
-        }
-
-        public Point3_Int ChunkLocation => new Point3_Int(Location.ChunkX, Location.ChunkY, Location.ChunkZ);
-
-        public Point3_Int ChunkBlockLocation => new Point3_Int(Location.ChunkBlockX, Location.ChunkBlockY, Location.ChunkBlockZ);
-
+        
         public ProtocolState SubProtocol
         {
             get { return subProtocol; }
@@ -55,37 +40,17 @@ namespace MinecraftLibrary
                 }
 
                 subProtocol = value;
-                OnPropertyChanged();
+                
             }
         }
 
-        public Guid UUID
-        {
-            get => uUID;
-            private set
-            {
-                uUID = value;
-                OnPropertyChanged();
-            }
-        }
+        public Guid UUID { get; private set; }
 
-        public Rotation Rotation
-        {
-            get => rotation; private set
-            {
-                rotation = value;
-                OnPropertyChanged();
-            }
-        }
+        public Point3 Location { get; private set; }
 
-        public bool IsGround
-        {
-            get => isGround; private set
-            {
-                isGround = value;
-                OnPropertyChanged();
-            }
-        }
+        public Rotation Rotation { get; private set; }
+
+        public bool IsGround { get; private set; }
         #endregion
         #region Сервисы
 
@@ -94,23 +59,22 @@ namespace MinecraftLibrary
         public IPacketManager PacketManager { get; set; }
 
         public TcpClientSession Session { get; private set; }
+
+        
         #endregion
 
         #region События
         public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
-        public event EventHandler<ServerChatEventArgs> ChatMessageEvent;
+        public event EventHandler<ChatEventArgs> ChatMessageEvent;
         public event Action LoginSucces;
         public event Action Connected;
         public event PropertyChangedEventHandler? PropertyChanged;
+        public event Action JoiningGame;
+        public event Action Respawning;
+        public event Action UpdatePositionRotation;
         #endregion
 
-        #region Поля
-        private Point3 location;
-        private Point3_Int chunkLocation;
-        private Guid uUID;
-        private Rotation rotation;
-        private bool isGround;
-        #endregion
+
 
         #region Общие методы
         public void Disconnect()
@@ -204,8 +168,26 @@ namespace MinecraftLibrary
             }
             else if (e.Packet is LoginSuccessPacket)
             {
+                var succes = e.Packet as LoginSuccessPacket;
                 SubProtocol = ProtocolState.Game;
                 this.LoginSucces?.Invoke();
+                UUID = Guid.Parse(succes.UUID);
+
+            }
+            else if (e.Packet is ServerJoinGamePacket)
+            {
+                var join = e.Packet as ServerJoinGamePacket;
+
+            }
+            else if (e.Packet is ServerKeepAlivePacket)
+            {
+                var keepalive = e.Packet as ServerKeepAlivePacket;
+                SendPacket(new ClientKeepAlivePacket(keepalive.PingID));
+            }
+            else if(e.Packet is ServerRespawnPacket)
+            {
+                var respawn = e.Packet as ServerRespawnPacket;
+                
             }
         }
 
@@ -306,12 +288,6 @@ namespace MinecraftLibrary
         {
             UnRegisterEvents();
         }
-
-        private void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
         public void Dispose()
         {
             Close();

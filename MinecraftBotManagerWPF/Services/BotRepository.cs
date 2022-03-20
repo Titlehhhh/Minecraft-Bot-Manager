@@ -9,7 +9,7 @@ namespace MinecraftBotManagerWPF
 {
     public class BotRepository : IBotRepository
     {
-        private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(MinecraftBot[]), settings);
+        private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(BotInfo[]), settings);
         private static readonly DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings()
         {
             RootName = "Bots",
@@ -18,7 +18,7 @@ namespace MinecraftBotManagerWPF
 
         public event AddBotHandler? AddBotEvent;
 
-        private readonly List<MinecraftBot> Bots;
+        private readonly List<BotInfo> Bots;
 
         public BotRepository()
         {
@@ -29,29 +29,29 @@ namespace MinecraftBotManagerWPF
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 using (FileStream fs = File.OpenRead(path))
                 {
-                    Bots = new List<MinecraftBot>(serializer.ReadObject(fs) as IEnumerable<MinecraftBot>);
+                    Bots = new List<BotInfo>(serializer.ReadObject(fs) as IEnumerable<BotInfo>);
                 }
             }
             catch (Exception e)
             {
                 //System.Windows.MessageBox.Show(e.ToString());
-                this.Bots = new List<MinecraftBot>();
+                this.Bots = new List<BotInfo>();
             }
         }
 
-        public async Task AddBot(MinecraftBot bot)
+        public async Task AddBot(BotInfo bot)
         {
             Bots.Add(bot);
             AddBotEvent?.Invoke(bot);
             await Save();
         }
 
-        public IEnumerable<MinecraftBot> GetAllBots()
+        public IEnumerable<BotInfo> GetAllBots()
         {
-            return new List<MinecraftBot>(this.Bots);
+            return new List<BotInfo>(this.Bots);
         }
 
-        public async Task RemoveBot(MinecraftBot bot)
+        public async Task RemoveBot(BotInfo bot)
         {
             this.Bots.Remove(bot);
             await Save();

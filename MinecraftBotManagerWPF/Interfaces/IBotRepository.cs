@@ -5,11 +5,11 @@ namespace MinecraftBotManagerWPF
 {
     public interface IBotRepository
     {
-        Task AddBot(MinecraftBot bot);
-        Task RemoveBot(MinecraftBot bot);
+        Task AddBot(BotInfo bot);
+        Task RemoveBot(BotInfo bot);
         Task Save();
 
-        IEnumerable<MinecraftBot> GetAllBots();
+        IEnumerable<BotInfo> GetAllBots();
 
         event AddBotHandler AddBotEvent;
     }

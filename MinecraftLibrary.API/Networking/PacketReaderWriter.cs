@@ -6,19 +6,19 @@ namespace MinecraftLibrary.API.Networking
     public sealed class PacketReaderWriter : IPacketReaderWriter
     {
         private static readonly int ZERO_VARLENGTH = 0.GetVarIntLength();
-        private readonly NetworkMinecraftStream NetStream;
+        private readonly NetworkMinecraftStream netmcStream;
 
 
 
 
         public PacketReaderWriter(NetworkMinecraftStream netstream)
         {
-            this.NetStream = netstream;
+            this.netmcStream = netstream;
         }
 
         public int CompressionThreshold { get; set; }
 
-        public NetworkMinecraftStream IPacketReaderWriter.NetStream => NetStream;
+        public NetworkMinecraftStream NetStream => netmcStream;
 
         public void Dispose()
         {

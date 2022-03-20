@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
+using MinecraftLibrary.Geometry;
 using MinecraftLibrary.PluginAPI;
 using System;
 
@@ -7,31 +8,37 @@ namespace MinecraftBotManagerWPF
     public class BotViewModel : ViewModelBase
     {
 
+        public BotInfo BotInfoModel => botInfo;
 
+        private MinecraftBot bot;
 
-        private readonly IMinecraftBot bot;
+        private readonly BotInfo botInfo;
+        private readonly MinecraftBotFactory factory;
 
-        public BotViewModel(IMinecraftBot bot)
+        public BotViewModel(BotInfo botInfo, MinecraftBotFactory factory)
         {
-            this.bot = bot;
+            if (botInfo is null)
+                throw new ArgumentNullException(nameof(botInfo));
+            this.botInfo = botInfo;
+            this.factory = factory;
         }
 
         public string Nickname
         {
-            get { return bot.Nickname; }
+            get { return botInfo.Nickname; }
             set
             {
-                bot.Nickname = value;
+                botInfo.Nickname = value;
                 OnPropertyChanged();
             }
         }
 
         public string Host
         {
-            get { return bot.Host; }
+            get { return botInfo.Host; }
             set
             {
-                bot.Host = value;
+                botInfo.Host = value;
                 OnPropertyChanged();
             }
         }
@@ -48,6 +55,67 @@ namespace MinecraftBotManagerWPF
             }
         }
 
+        private Guid uuid;
+
+        public Guid UUID
+        {
+            get { return uuid; }
+            private set
+            {
+                uuid = value;
+                OnPropertyChanged();
+            }
+        }
+        private Point3 location;
+
+        public Point3 Location
+        {
+            get { return location; }
+            private set
+            {
+                location = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Point3_Int chunkloc;
+
+        public Point3_Int ChunkLocation
+        {
+            get { return chunkloc; }
+            private set
+            {
+                chunkloc = value;
+                OnPropertyChanged();
+            }
+        }
+        private Point3_Int chblockloc;
+
+        public Point3_Int ChunkBlockLOcation
+        {
+            get { return chblockloc; }
+            private set
+            {
+                chblockloc = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Rotation rotation;
+
+        public Rotation Rotation
+        {
+            get { return rotation; }
+            private set
+            {
+                rotation = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
         #region Errors        
         public CheckStatus AuthStatus { get; set; } = new();
         public CheckStatus IPStatus { get; set; } = new();
@@ -61,13 +129,21 @@ namespace MinecraftBotManagerWPF
 
         public RelayCommand StartCommand
         {
-            get => start ??= new RelayCommand(async () =>
-            {
-                ReturnToOrgignalStateStatuses();
+            get => start ??= new RelayCommand(() =>
+           {
+               ReturnToOrgignalStateStatuses();
 
-               
+               this.bot = factory.CreateBot(this.botInfo);
 
-            }, () => true);
+               bot.ProtocolClient.PropertyChanged += (s, e) =>
+               {
+                   this.OnPropertyChanged(e.PropertyName);
+               };
+
+               bot.StartBot();
+
+
+           }, () => true);
         }
 
 
@@ -104,16 +180,9 @@ namespace MinecraftBotManagerWPF
 
 
 
-
-        public object Clone()
-        {
-            return null;
-
-        }
-
         public override void Dispose()
         {
-            //Model.Dispose();
+            bot?.Dispose();
         }
     }
 }
