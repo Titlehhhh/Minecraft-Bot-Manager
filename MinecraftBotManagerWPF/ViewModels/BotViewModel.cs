@@ -12,15 +12,14 @@ namespace MinecraftBotManagerWPF
 
         private MinecraftBot bot;
 
-        private readonly BotInfo botInfo;
-        private readonly MinecraftBotFactory factory;
+        private readonly BotInfo botInfo;        
 
-        public BotViewModel(BotInfo botInfo, MinecraftBotFactory factory)
+        public BotViewModel(BotInfo botInfo)
         {
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
-            this.factory = factory;
+            
         }
 
         public string Nickname
@@ -133,14 +132,11 @@ namespace MinecraftBotManagerWPF
            {
                ReturnToOrgignalStateStatuses();
 
-               this.bot = factory.CreateBot(this.botInfo);
+               this.bot = App.BotFactory.CreateBot(this.botInfo);
 
-               bot.ProtocolClient.PropertyChanged += (s, e) =>
-               {
-                   this.OnPropertyChanged(e.PropertyName);
-               };
+               
 
-               bot.StartBot();
+               bot.Start();
 
 
            }, () => true);

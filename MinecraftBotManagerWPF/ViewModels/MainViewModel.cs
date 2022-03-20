@@ -34,18 +34,15 @@ namespace MinecraftBotManagerWPF
 
 
 
-        private readonly IDialogService dialogService;
+        
         private readonly IDataService dataService;
 
-        public MainViewModel(IDialogService dialogService, IDataService dataService)
-        {
-            this.dialogService = dialogService;
+        public MainViewModel(IDialogService dialogService, IDataService dataService, BotViewModelsStorage botViewModelsStorage)
+        {           
             this.dataService = dataService;
 
-            var bots = dataService.BotRepository
-                .GetAllBots()
-                .Select(bot => new BotViewModel(bot));
-            this.BotVMStorage = new BotViewModelsStorage(bots);
+
+            this.BotVMStorage = botViewModelsStorage;
 
             this.BotVMStorage.StateChanged += () =>
             {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
 
 namespace MinecraftBotManagerWPF
 {
@@ -10,6 +11,12 @@ namespace MinecraftBotManagerWPF
             hostBuilder.ConfigureServices(services =>
             {
                 services.AddSingleton<MainViewModel>();
+                services.AddSingleton<BotViewModelsStorage>((s) =>
+                {
+                    return new BotViewModelsStorage(s.GetRequiredService<IDataService>()
+                        .BotRepository.GetAllBots()
+                        .Select(b=>new BotViewModel(b)));
+                });
             });
             return hostBuilder;
         }

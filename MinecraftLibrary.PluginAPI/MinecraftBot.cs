@@ -27,7 +27,7 @@ namespace MinecraftLibrary.PluginAPI
 
         }
 
-        public void StartBot()
+        public void Start()
         {
 
             this.ProtocolClient = new ProtocolClient();
@@ -49,14 +49,14 @@ namespace MinecraftLibrary.PluginAPI
 
 
         }
-        public void StopBot()
+        public void Stop()
         {
 
         }
 
         public void Dispose()
         {
-            StopBot();
+            Stop();
             ProtocolClient.Dispose();
         }
 

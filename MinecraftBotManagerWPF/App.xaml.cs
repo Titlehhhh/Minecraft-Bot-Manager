@@ -11,6 +11,8 @@ namespace MinecraftBotManagerWPF
     {
         private readonly IHost host;
 
+        public static  MinecraftBotFactory BotFactory { get; } = new MinecraftBotFactory();
+
         private StartupWindow start;
 
         public App()
