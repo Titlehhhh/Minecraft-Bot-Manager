@@ -7,6 +7,7 @@ namespace MinecraftLibrary.PluginAPI
     {
         string Nickname { get; set; }
         string Host { get; set; }
+        ushort Port { get; set; }
         bool IsAuth { get; set; }
         bool IsProxy { get; set; }
         ProxyInfo? Proxy { get; set; }
@@ -14,10 +15,10 @@ namespace MinecraftLibrary.PluginAPI
 
         IProtocolClient ProtocolClient { get; }
 
-            
+
 
         void StartBot();
         void StopBot();
     }
-    
+
 }

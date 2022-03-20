@@ -1,9 +1,12 @@
 ﻿using System.Net;
+using System.Runtime.Serialization;
 
 namespace MinecraftLibrary.API.Networking.Proxy
 {
+    [DataContract]
     public struct ProxyInfo
     {
+        
         public IPEndPoint EndPoint { get; private set; }
         public ProxyType ProxyType { get; private set; }
         public bool Authenticated { get; private set; }

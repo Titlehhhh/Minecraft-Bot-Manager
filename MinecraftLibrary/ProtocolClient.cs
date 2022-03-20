@@ -2,13 +2,10 @@
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Geometry;
-
-using MinecraftLibrary.Protocol;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.ComponentModel;
-using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
@@ -125,7 +122,7 @@ namespace MinecraftLibrary
             Validate();
 
             Session = new TcpClientSession();
-            if(PacketManager is null)
+            if (PacketManager is null)
             {
                 throw new NullReferenceException(nameof(PacketManager) + " был null");
             }
@@ -165,13 +162,15 @@ namespace MinecraftLibrary
         #region Работа с пакетами
         private void Session_Connected()
         {
-            Console.WriteLine("Connected");
+            //Console.WriteLine("Connected");
+            this.Connected?.Invoke();
+
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
         }
 
         private void Session_PacketSent(object? sender, PacketSentEventArgs e)
         {
-            Console.WriteLine("PacketSent: " + e.Packet.GetType().Name);
+            //Console.WriteLine("PacketSent: " + e.Packet.GetType().Name);
             if (e.Packet is HandShakePacket)
             {
                 this.SubProtocol = ProtocolState.Login;
@@ -181,7 +180,7 @@ namespace MinecraftLibrary
 
         private void Session_PacketSend(object? sender, PacketSendEventArgs e)
         {
-            Console.WriteLine("PacketSend: " + e.Packet.GetType().Name);
+            //Console.WriteLine("PacketSend: " + e.Packet.GetType().Name);
         }
 
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
@@ -189,8 +188,9 @@ namespace MinecraftLibrary
             Console.WriteLine(e.Packet.GetType().Name);
             if (e.Packet is LoginDisconnectPacket)
             {
+                var disconnect = e.Packet as LoginDisconnectPacket;
                 Session.Disconnect();
-                Console.WriteLine("Disconnect: " + (e.Packet as LoginDisconnectPacket).Message);
+                Disconnected?.Invoke(this, new ProtocolClientDisconnectEventArg(disconnect.Message, null, DisconnectReason.LoginRejected));
             }
             else if (e.Packet is LoginSetCompressionPacket)
             {
@@ -200,11 +200,12 @@ namespace MinecraftLibrary
             }
             else if (e.Packet is EncryptionRequestPacket)
             {
-
+                //TODO
             }
             else if (e.Packet is LoginSuccessPacket)
             {
                 SubProtocol = ProtocolState.Game;
+                this.LoginSucces?.Invoke();
             }
         }
 
@@ -271,11 +272,11 @@ namespace MinecraftLibrary
         }
         #endregion
 
-        
 
 
 
-        
+
+
 
         private void RegisterHandShakePackets()
         {
@@ -298,14 +299,14 @@ namespace MinecraftLibrary
 
             PacketManager.LoadInputPackets(packetProvider754.ServerPackets.GamePackets);
         }
-        
+
 
 
         public void Close()
         {
             UnRegisterEvents();
         }
-        
+
         private void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
