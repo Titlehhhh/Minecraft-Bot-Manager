@@ -12,14 +12,14 @@ namespace MinecraftBotManagerWPF
 
         private MinecraftBot bot;
 
-        private readonly BotInfo botInfo;        
+        private readonly BotInfo botInfo;
 
         public BotViewModel(BotInfo botInfo)
         {
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
-            
+
         }
 
         public string Nickname
@@ -130,16 +130,25 @@ namespace MinecraftBotManagerWPF
         {
             get => start ??= new RelayCommand(() =>
            {
-               ReturnToOrgignalStateStatuses();
+               try
+               {
+                   ReturnToOrgignalStateStatuses();
+                   BotState = State.Initialized;
+                   this.bot = App.BotFactory.CreateBot(this.botInfo);
 
-               this.bot = App.BotFactory.CreateBot(this.botInfo);
-
-               
-
-               bot.Start();
+                   
 
 
-           }, () => true);
+                   bot.Start();
+               }
+               catch (Exception e)
+               {
+                   BotState = State.None;
+                   Console.WriteLine(e);
+               }
+
+
+           }, () => BotState == State.None);
         }
 
 
@@ -150,7 +159,7 @@ namespace MinecraftBotManagerWPF
             get => stop ??= new RelayCommand(() =>
             {
 
-            }, () => false);
+            }, () => BotState != State.None);
         }
 
         private RelayCommand restart;
@@ -160,7 +169,7 @@ namespace MinecraftBotManagerWPF
             get => restart ??= new RelayCommand(() =>
             {
 
-            }, () => false);
+            }, () => BotState != State.None);
         }
 
 
@@ -168,6 +177,8 @@ namespace MinecraftBotManagerWPF
         #endregion
         private void ReturnToOrgignalStateStatuses()
         {
+            BotState = State.None;
+
             AuthStatus.IsEnabled = false;
             IPStatus.IsEnabled = false;
             ProxyStatus.IsEnabled = false;

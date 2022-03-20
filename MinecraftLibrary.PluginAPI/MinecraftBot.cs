@@ -5,7 +5,7 @@ namespace MinecraftLibrary.PluginAPI
 {
     public sealed class MinecraftBot
     {
-        public IProtocolClient ProtocolClient { get; private set; }
+        public IProtocolClient ProtocolClient { get; private set; } = new ProtocolClient();
 
 
         public string Nickname { get; set; }
@@ -29,8 +29,7 @@ namespace MinecraftLibrary.PluginAPI
 
         public void Start()
         {
-
-            this.ProtocolClient = new ProtocolClient();
+           
             this.ProtocolClient.Nickname = this.Nickname;
             this.ProtocolClient.Host = this.Host;
 

@@ -182,7 +182,7 @@ namespace MinecraftLibrary.API.Types.Chat
             // Extra = new List<ChatMessage>();
         }
 
-        public static ChatMessage FromJson(string json)
+        public static ChatMessage Parse(string json)
         {
             return (ChatMessage)serializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(json)));
         }

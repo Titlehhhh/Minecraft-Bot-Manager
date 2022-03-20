@@ -13,7 +13,7 @@ namespace MinecraftBotManagerWPF
         {
             ushort port = 25565;
             string host = "";
-            var hostport = info.Host.Split(':');
+            var hostport = info.Host?.Split(':');
             if (hostport.Length == 2)
             {
                 host = hostport[0];
