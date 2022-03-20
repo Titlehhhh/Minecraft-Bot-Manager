@@ -5,11 +5,11 @@ namespace MinecraftLibrary.API
     [DataContract]
     public struct GameProfile
     {
-        [DataMember(Name="id")]
-        public string UUID { get;  set; }
+        [DataMember(Name = "id")]
+        public string UUID { get; set; }
 
         [DataMember(Name = "name")]
-        public string Nickname { get;  set; }
+        public string Nickname { get; set; }
 
         public GameProfile(string uUID, string nickname)
         {

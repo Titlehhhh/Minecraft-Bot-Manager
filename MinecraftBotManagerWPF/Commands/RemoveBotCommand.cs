@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace MinecraftBotManagerWPF
 {
@@ -24,9 +22,10 @@ namespace MinecraftBotManagerWPF
             {
                 BotViewModel currentBot = (BotViewModel)parameter;
 
-                Bot bot = currentBot.Model;
+                MinecraftBot bot = null;
+                // currentBot.Model;
 
-                vmstorage.Bots.Remove(currentBot);                
+                vmstorage.Bots.Remove(currentBot);
                 vmstorage.CurrentBot = vmstorage.Bots.FirstOrDefault();
 
                 await botRepository.RemoveBot(bot);

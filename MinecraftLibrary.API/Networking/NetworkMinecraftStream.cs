@@ -142,7 +142,7 @@ namespace MinecraftLibrary.API.Networking
         {
             NetStream.Dispose();
             NetStream = null;
-            
+
         }
     }
 }

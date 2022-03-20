@@ -1,8 +1,7 @@
-﻿using MinecraftLibrary.API.Inventory;
-using MinecraftLibrary.API.Networking;
+﻿using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Geometry;
 using System.ComponentModel;
-using MinecraftLibrary.API.Protocol;
 
 namespace MinecraftLibrary.API
 {
@@ -42,13 +41,13 @@ namespace MinecraftLibrary.API
         void SendLocation(Point3 position, bool isGround);
         void SendLocation(Rotation rotation, bool isGround);
         void SendLocation(Point3 position, Rotation rotation, bool isGround);
-        
+
         #endregion
 
 
         event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
         event EventHandler<ServerChatEventArgs> ChatMessageEvent;
-        
+
 
         event Action LoginSucces;
         event Action Connected;

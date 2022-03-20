@@ -1,8 +1,6 @@
 ﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
-using System;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace ProtocolLib754
 {
@@ -71,9 +69,10 @@ namespace ProtocolLib754
 
                     }
                 }
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
-                using(StreamWriter sw = new StreamWriter("error.txt"))
+                using (StreamWriter sw = new StreamWriter("error.txt"))
                 {
                     sw.WriteLine(e.StackTrace);
                 }

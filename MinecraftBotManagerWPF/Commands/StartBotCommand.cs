@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF.Commands
 {
-    public class StartBotCommand 
+    public class StartBotCommand : AsyncCommandBase
     {
+
+        public override async Task ExecuteAsync(object parameter)
+        {
+
+        }
     }
 }

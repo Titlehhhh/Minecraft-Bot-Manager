@@ -9,7 +9,7 @@ namespace MinecraftBotManagerWPF
 {
     public class BotRepository : IBotRepository
     {
-        private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Bot[]), settings);
+        private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(MinecraftBot[]), settings);
         private static readonly DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings()
         {
             RootName = "Bots",
@@ -18,7 +18,7 @@ namespace MinecraftBotManagerWPF
 
         public event AddBotHandler? AddBotEvent;
 
-        private readonly List<Bot> Bots;
+        private readonly List<MinecraftBot> Bots;
 
         public BotRepository()
         {
@@ -29,29 +29,29 @@ namespace MinecraftBotManagerWPF
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 using (FileStream fs = File.OpenRead(path))
                 {
-                    Bots = new List<Bot>(serializer.ReadObject(fs) as IEnumerable<Bot>);
+                    Bots = new List<MinecraftBot>(serializer.ReadObject(fs) as IEnumerable<MinecraftBot>);
                 }
             }
             catch (Exception e)
             {
                 //System.Windows.MessageBox.Show(e.ToString());
-                this.Bots = new List<Bot>();
+                this.Bots = new List<MinecraftBot>();
             }
         }
 
-        public async Task AddBot(Bot bot)
+        public async Task AddBot(MinecraftBot bot)
         {
             Bots.Add(bot);
             AddBotEvent?.Invoke(bot);
             await Save();
         }
 
-        public IEnumerable<Bot> GetAllBots()
+        public IEnumerable<MinecraftBot> GetAllBots()
         {
-            return new List<Bot>(this.Bots);
+            return new List<MinecraftBot>(this.Bots);
         }
 
-        public async Task RemoveBot(Bot bot)
+        public async Task RemoveBot(MinecraftBot bot)
         {
             this.Bots.Remove(bot);
             await Save();

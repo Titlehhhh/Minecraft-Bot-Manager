@@ -2,11 +2,6 @@
 using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
-using MinecraftLibrary.API.Types.Chat;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
@@ -23,7 +18,7 @@ namespace ProtocolLib754.Packets.Server
         {
             string debug = stream.ReadString();
 
-          
+
 
 
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(debug));

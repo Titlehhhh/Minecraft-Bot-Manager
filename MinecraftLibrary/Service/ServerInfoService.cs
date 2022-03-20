@@ -2,12 +2,11 @@
 using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Proxy;
-using MinecraftLibrary.Client.Networking;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.Net.Sockets;
 
-namespace MinecraftLibrary.Client.Service
+namespace MinecraftLibrary.Service
 {
     public class ServerInfoService : IServerInfoService
     {
@@ -58,7 +57,7 @@ namespace MinecraftLibrary.Client.Service
                 minecraftStream = new MinecraftStream(buffer);
                 int id = minecraftStream.ReadVarInt();
 
-                if(id != 0x00)
+                if (id != 0x00)
                 {
                     throw new InvalidOperationException("Id неверный");
                 }

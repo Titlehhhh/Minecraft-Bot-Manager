@@ -47,5 +47,5 @@ namespace MinecraftLibrary.API.Types.Chat
         public static readonly HexColor White = new(255, 255, 255);
     }
 
-    
+
 }

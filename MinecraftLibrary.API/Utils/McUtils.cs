@@ -47,7 +47,7 @@
             }
         }
 
-        public static int GetVarIntLength( this int val)
+        public static int GetVarIntLength(this int val)
         {
             int amount = 0;
             do

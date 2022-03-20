@@ -8,7 +8,7 @@ namespace MinecraftBotManagerWPF
         public object SelectedBot { get; set; }
         public DesignMainVM()
         {
-            var bot = new BotViewModel();
+            var bot = new BotViewModel(null);
             BotsCollection.Add(bot);
             SelectedBot = bot;
         }

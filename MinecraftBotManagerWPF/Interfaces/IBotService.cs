@@ -7,5 +7,5 @@ namespace MinecraftBotManagerWPF
         Task StartClient();
 
     }
-    
+
 }

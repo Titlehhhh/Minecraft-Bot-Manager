@@ -8,7 +8,7 @@ namespace MinecraftLibrary.API.Networking
         private static readonly int ZERO_VARLENGTH = 0.GetVarIntLength();
         private readonly NetworkMinecraftStream NetStream;
 
-        
+
 
 
         public PacketReaderWriter(NetworkMinecraftStream netstream)

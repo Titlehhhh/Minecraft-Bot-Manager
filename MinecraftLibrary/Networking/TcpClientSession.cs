@@ -1,12 +1,9 @@
-﻿using Ionic.Zlib;
-using MinecraftLibrary.API;
-using MinecraftLibrary.API.IO;
-using MinecraftLibrary.API.Networking;
+﻿using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using System.Net.Sockets;
 
-namespace MinecraftLibrary.Client.Networking
+namespace MinecraftLibrary.Networking
 {
 
     public sealed class TcpClientSession : IDisposable, ITcpClientSession
@@ -51,11 +48,11 @@ namespace MinecraftLibrary.Client.Networking
                 {
                     //(int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
                     //Lazy<IPacket> packet = null;
-                   // if (PacketFactory.TryGetInputPacket(id, out packet))
-                   // {
-                  //      packet.Value.Read(dataStream);
-                  //      PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
-                 //   }
+                    // if (PacketFactory.TryGetInputPacket(id, out packet))
+                    // {
+                    //      packet.Value.Read(dataStream);
+                    //      PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                    //   }
                 }
             }
             catch (SocketException e)

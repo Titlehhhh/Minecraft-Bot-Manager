@@ -39,7 +39,7 @@ namespace MinecraftLibrary.API.Types.Chat
         [DataMember(Name = "clickEvent")]
         public ClickComponent ClickEvent { get; set; }
         //TODO
-       // [IgnoreDataMember]
+        // [IgnoreDataMember]
         [DataMember(Name = "hoverEvent")]
         public HoverComponent HoverEvent { get; set; }
 

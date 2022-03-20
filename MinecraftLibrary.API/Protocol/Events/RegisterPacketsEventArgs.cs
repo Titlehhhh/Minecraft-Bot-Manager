@@ -1,5 +1,4 @@
 ﻿using MinecraftLibrary.API.Types.Chat;
-using MinecraftLibrary.Geometry;
 
 namespace MinecraftLibrary.API.Protocol
 {
@@ -21,5 +20,5 @@ namespace MinecraftLibrary.API.Protocol
         {
             Message = message;
         }
-    }  
+    }
 }

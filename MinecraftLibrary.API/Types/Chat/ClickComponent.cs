@@ -5,7 +5,7 @@ namespace MinecraftLibrary.API.Types.Chat
     [DataContract]
     public class ClickComponent
     {
-        [DataMember(Name ="action")]
+        [DataMember(Name = "action")]
         public EClickAction Action { get; set; }
 
         [DataMember(Name = "value")]

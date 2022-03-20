@@ -1,16 +1,15 @@
 ﻿using MinecraftLibrary.API;
-using MinecraftLibrary.API.Inventory;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
-using MinecraftLibrary.Client.Networking;
-using MinecraftLibrary.Client.Protocol;
 using MinecraftLibrary.Geometry;
+using MinecraftLibrary.Networking;
+using MinecraftLibrary.Protocol;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.ComponentModel;
 
-namespace MinecraftLibrary.Client
+namespace MinecraftLibrary
 {
     public class ProtocolClient : IProtocolClient
     {
@@ -168,7 +167,7 @@ namespace MinecraftLibrary.Client
 
         }
 
-     
+
 
         public void SendChat(string msg)
         {
@@ -232,12 +231,12 @@ namespace MinecraftLibrary.Client
 
         public void LookHead(Rotation rotation)
         {
-           
+
         }
 
         public void LookHead(Point3 targetpos)
         {
-           
+
         }
 
         public void Close()

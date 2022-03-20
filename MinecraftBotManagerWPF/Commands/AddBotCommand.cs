@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
 {
@@ -17,8 +15,9 @@ namespace MinecraftBotManagerWPF
 
         public override async Task ExecuteAsync(object parameter)
         {
-            Bot bot = new Bot();
-            BotViewModel botViewModel = new BotViewModel(bot);
+            MinecraftBot bot = new MinecraftBot();
+            BotViewModel botViewModel = null;
+            //  new BotViewModel(bot);
 
             await botRepository.AddBot(bot);
 

@@ -14,13 +14,13 @@
             Yaw = (float)(-Math.Atan2(vector.X, vector.Y) / Math.PI * 180);
             if (Yaw < 0)
                 Yaw += 360;
-            Pitch = (float)(-Math.Asin(vector.Y/r) / Math.PI * 180);
+            Pitch = (float)(-Math.Asin(vector.Y / r) / Math.PI * 180);
         }
         public Rotation(float yaw, float pitch)
         {
             this.Yaw = yaw;
             this.Pitch = pitch;
-            Vector = new Vector3(-Math.Cos(Pitch)*Math.Sin(Yaw), -Math.Sin(pitch),Math.Cos(Pitch)*Math.Cos(Yaw));
+            Vector = new Vector3(-Math.Cos(Pitch) * Math.Sin(Yaw), -Math.Sin(pitch), Math.Cos(Pitch) * Math.Cos(Yaw));
 
         }
     }

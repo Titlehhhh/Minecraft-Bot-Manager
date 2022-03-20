@@ -7,20 +7,19 @@ namespace MinecraftBotManagerWPF
     {
         //public MainViewModel ParentVM => _parentVM;
 
-        public Bot Model => this.bot;
+
 
         #region Сервисы
 
 
 
-        private readonly Bot bot;
-        //private readonly MainViewModel _parentVM;
+
+
         #endregion
 
-        public BotViewModel(Bot bot)
+        public BotViewModel(object g)
         {
 
-            this.bot = bot;
 
 
 
@@ -28,28 +27,25 @@ namespace MinecraftBotManagerWPF
 
 
 
-        }
-        public BotViewModel()
-        {
-            bot = new Bot();
+
         }
 
         public string Nickname
         {
-            get { return bot.Nickname; }
+            get { return ""; }
             set
             {
-                bot.Nickname = value;
+
                 OnPropertyChanged();
             }
         }
 
         public string Host
         {
-            get { return bot.Host; }
+            get { return ""; }
             set
             {
-                bot.Host = value;
+                //bot.Host = value;
                 OnPropertyChanged();
             }
         }
@@ -132,7 +128,7 @@ namespace MinecraftBotManagerWPF
 
         public override void Dispose()
         {
-
+            //Model.Dispose();
         }
     }
 }
