@@ -1,14 +1,17 @@
-﻿using MinecraftLibrary.API.Networking;
+﻿using MinecraftLibrary.API.IO;
+using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using System.Net.Sockets;
 
-namespace MinecraftLibrary.Networking
+namespace MinecraftLibrary.API.Networking
 {
 
-    public sealed class TcpClientSession : IDisposable, ITcpClientSession
+    public sealed class TcpClientSession : IDisposable
     {
         public NetworkMinecraftStream NetStream { get; private set; }
+        public IPacketReaderWriter PacketReaderWriter { get; private set; }
+        public IPacketProducer PacketFactory { get; set; }
 
 
         public string Host { get; set; }
@@ -17,11 +20,16 @@ namespace MinecraftLibrary.Networking
 
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
-        public int CompressionThreshold { get; set; } = 0;
 
-        public IPacketProducer PacketFactory { get; set; }
+        public int CompressionThreshold { set => PacketReaderWriter.CompressionThreshold = value; } 
 
-        public event Action<ITcpClientSession>? Connected;
+        public void SwitchEncryption(byte[] key)
+        {
+            NetStream.SwitchEncryption(key);
+        }
+
+
+        public event Action? Connected;
         public event EventHandler<DisconnectedEventArgs>? Disconnected;
         public event EventHandler<PacketReceivedEventArgs>? PacketReceived;
         public event EventHandler<PacketSendEventArgs>? PacketSend;
@@ -35,9 +43,9 @@ namespace MinecraftLibrary.Networking
 
 
             NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
+            this.PacketReaderWriter = new PacketReaderWriter(NetStream);
 
-
-            Connected?.Invoke(this);
+            Connected?.Invoke();
             ReadLoop();
         }
         private async void ReadLoop()
@@ -46,13 +54,13 @@ namespace MinecraftLibrary.Networking
             {
                 while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
                 {
-                    //(int id, MinecraftStream dataStream) = await ReadNextPacketAsync();
-                    //Lazy<IPacket> packet = null;
-                    // if (PacketFactory.TryGetInputPacket(id, out packet))
-                    // {
-                    //      packet.Value.Read(dataStream);
-                    //      PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
-                    //   }
+                    (int id, MinecraftStream dataStream) = await PacketReaderWriter.ReadNextPacketAsync();
+                    Lazy<IPacket> packet = null;
+                     if (PacketFactory.TryGetInputPacket(id, out packet))
+                     {
+                          packet.Value.Read(dataStream);
+                          PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                       }
                 }
             }
             catch (SocketException e)
@@ -84,22 +92,18 @@ namespace MinecraftLibrary.Networking
         }
 
 
-
-        public void SwitchEncryption(byte[] key)
-        {
-            NetStream.SwitchEncryption(key);
-        }
         public void Dispose()
         {
             Cancellation.Dispose();
             tcpClient?.Dispose();
-            NetStream?.Dispose();
+            PacketReaderWriter?.Dispose();
+            
 
             Connected = null;
             Disconnected = null;
 
             tcpClient = null;
-            NetStream = null;
+            PacketReaderWriter = null;
             Cancellation = null;
 
             GC.SuppressFinalize(this);

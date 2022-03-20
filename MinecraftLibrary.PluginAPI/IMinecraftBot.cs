@@ -1,12 +1,23 @@
 ﻿using MinecraftLibrary.API;
+using MinecraftLibrary.API.Networking.Proxy;
 
 namespace MinecraftLibrary.PluginAPI
 {
     public interface IMinecraftBot : IDisposable
     {
+        string Nickname { get; set; }
+        string Host { get; set; }
+        bool IsAuth { get; set; }
+        bool IsProxy { get; set; }
+        ProxyInfo? Proxy { get; set; }
+        AuthInfo? Auth { get; set; }
+
         IProtocolClient ProtocolClient { get; }
 
-        Task StartBotAsync();
-        Task StopBotAsync();
+            
+
+        void StartBot();
+        void StopBot();
     }
+    
 }

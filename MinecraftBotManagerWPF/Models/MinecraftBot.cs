@@ -12,23 +12,31 @@ namespace MinecraftBotManagerWPF
     public class MinecraftBot : IMinecraftBot
     {
         public IProtocolClient ProtocolClient { get; private set; }
-        private IConnectionInfo connectionInfo;
 
-        public IConnectionInfo ConnectionInfo { set => connectionInfo = value; }
+        public string Nickname { get; set; }
+        public string Host { get; set; }
+        public bool IsAuth { get; set; }
+        public bool IsProxy { get; set; }
+        public ProxyInfo? Proxy { get; set; }
+        public AuthInfo? Auth { get; set; }
 
-        public MinecraftBot(IConnectionInfo connectionInfo)
+        public MinecraftBot()
         {
-            this.connectionInfo = connectionInfo;
+
         }
 
-        public async Task StartBotAsync()
+        public void StartBot()
         {
-            if (connectionInfo is null)
-                throw new NullReferenceException(nameof(connectionInfo) + " был null");
 
             this.ProtocolClient = new ProtocolClient();
+            this.ProtocolClient.Nickname = this.Nickname;
+            this.ProtocolClient.Host = this.Host;
+
+            this.ProtocolClient.Connect();
+
+
         }
-        public async Task StopBotAsync()
+        public void StopBot()
         {
         }
 

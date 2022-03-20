@@ -2,12 +2,14 @@
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Geometry;
-using MinecraftLibrary.Networking;
+
 using MinecraftLibrary.Protocol;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.ComponentModel;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
 {
@@ -18,17 +20,24 @@ namespace MinecraftLibrary
         public string Nickname { get; set; }
         public string Host { get; set; }
         public ushort Port { get; set; }
-        public ITcpClientSession Session { get; private set; }
+        public bool IsAuth { get; set; }
 
+        #region Игровые свойства
+        public Point3 Location
+        {
+            get => location;
+            private set
+            {
+                location = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ChunkLocation));
+                OnPropertyChanged(nameof(ChunkBlockLocation));
+            }
+        }
 
+        public Point3_Int ChunkLocation => new Point3_Int(Location.ChunkX, Location.ChunkY, Location.ChunkZ);
 
-        //public IContainer CurrentContainer { get; private set; }
-
-        public Point3 Location { get; private set; }
-
-        public Point3_Int ChunkLocation { get; private set; }
-
-        public Point3_Int CnunkBlockLocation { get; private set; }
+        public Point3_Int ChunkBlockLocation => new Point3_Int(Location.ChunkBlockX, Location.ChunkBlockY, Location.ChunkBlockZ);
 
         public ProtocolState SubProtocol
         {
@@ -49,39 +58,78 @@ namespace MinecraftLibrary
                 }
 
                 subProtocol = value;
+                OnPropertyChanged();
             }
         }
 
-        public Guid UUID => throw new NotImplementedException();
+        public Guid UUID
+        {
+            get => uUID;
+            private set
+            {
+                uUID = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public Rotation Rotation => throw new NotImplementedException();
+        public Rotation Rotation
+        {
+            get => rotation; private set
+            {
+                rotation = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public bool IsGround => throw new NotImplementedException();
+        public bool IsGround
+        {
+            get => isGround; private set
+            {
+                isGround = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region Сервисы
 
+        private static readonly IPacketProvider packetProvider754 = new PacketProvider754();
+
+        public IPacketManager PacketManager { get; set; }
+
+        public TcpClientSession Session { get; private set; }
+        #endregion
+
+        #region События
         public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
         public event EventHandler<ServerChatEventArgs> ChatMessageEvent;
         public event Action LoginSucces;
         public event Action Connected;
         public event PropertyChangedEventHandler? PropertyChanged;
+        #endregion
 
-        private readonly IPacketManager PacketManager = new DefaultPacketManager();
+        #region Поля
+        private Point3 location;
+        private Point3_Int chunkLocation;
+        private Guid uUID;
+        private Rotation rotation;
+        private bool isGround;
+        #endregion
 
-        private IPacketProvider PacketProvider;
+        #region Общие методы
+        public void Disconnect()
+        {
 
+        }
         public void Connect()
         {
             Validate();
 
-
-            PacketProvider = new PacketProvider754();
-
             Session = new TcpClientSession();
-            Session.Host = this.Host;
-            Session.Port = this.Port;
-            Session.PacketFactory = PacketManager;
-            RegisterEvents();
-            SubProtocol = ProtocolState.HandShake;
-            Session.Connect();
+            if(PacketManager is null)
+            {
+                throw new NullReferenceException(nameof(PacketManager) + " был null");
+            }
+            Session.PacketFactory = this.PacketManager;
 
         }
         private void Validate()
@@ -101,10 +149,21 @@ namespace MinecraftLibrary
             Session.Connected -= Session_Connected;
             Session.Disconnected -= Session_Disconnected;
             Session.PacketReceived -= Session_PacketReceived;
-            Session.PacketSend -= Session_PacketSend;
             Session.PacketSent -= Session_PacketSent;
+            Session.PacketSend -= Session_PacketSend;
         }
-        private void Session_Connected(ITcpClientSession obj)
+        private void RegisterEvents()
+        {
+            Session.Connected += Session_Connected;
+            Session.Disconnected += Session_Disconnected;
+            Session.PacketReceived += Session_PacketReceived;
+            Session.PacketSent += Session_PacketSent;
+            Session.PacketSend += Session_PacketSend;
+        }
+        #endregion
+
+        #region Работа с пакетами
+        private void Session_Connected()
         {
             Console.WriteLine("Connected");
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
@@ -159,16 +218,28 @@ namespace MinecraftLibrary
         {
             Session.SendPacket(packet);
         }
+        #endregion
 
 
-
-        public void Disconnect()
+        #region Методы действий
+        public void SendLocation(Rotation rotation, bool isGround)
         {
 
         }
 
+        public void SendLocation(Point3 position, Rotation rotation, bool isGround)
+        {
 
+        }
+        public void LookHead(Rotation rotation)
+        {
 
+        }
+
+        public void LookHead(Point3 targetpos)
+        {
+
+        }
         public void SendChat(string msg)
         {
 
@@ -198,65 +269,52 @@ namespace MinecraftLibrary
         {
 
         }
+        #endregion
+
+        
+
+
+
+        
 
         private void RegisterHandShakePackets()
         {
             PacketManager.ClearAll();
-            PacketManager.LoadOutputPackets(PacketProvider.ClientPackets.HandShakePackets);
+            PacketManager.LoadOutputPackets(packetProvider754.ClientPackets.HandShakePackets);
         }
         private void RegisterLoginPackets()
         {
             PacketManager.ClearAll();
 
-            PacketManager.LoadOutputPackets(PacketProvider.ClientPackets.LoginPackets);
+            PacketManager.LoadOutputPackets(packetProvider754.ClientPackets.LoginPackets);
 
-            PacketManager.LoadInputPackets(PacketProvider.ServerPackets.LoginPackets);
+            PacketManager.LoadInputPackets(packetProvider754.ServerPackets.LoginPackets);
         }
         private void RegisterGamePackets()
         {
             PacketManager.ClearAll();
 
-            PacketManager.LoadOutputPackets(PacketProvider.ClientPackets.GamePackets);
+            PacketManager.LoadOutputPackets(packetProvider754.ClientPackets.GamePackets);
 
-            PacketManager.LoadInputPackets(PacketProvider.ServerPackets.GamePackets);
+            PacketManager.LoadInputPackets(packetProvider754.ServerPackets.GamePackets);
         }
-        private void RegisterEvents()
-        {
-            Session.Connected += Session_Connected;
-            Session.Disconnected += Session_Disconnected;
-            Session.PacketReceived += Session_PacketReceived;
-            Session.PacketSend += Session_PacketSend;
-            Session.PacketSent += Session_PacketSent;
-        }
+        
 
-        public void LookHead(Rotation rotation)
-        {
-
-        }
-
-        public void LookHead(Point3 targetpos)
-        {
-
-        }
 
         public void Close()
         {
-            throw new NotImplementedException();
+            UnRegisterEvents();
         }
-
-        public void SendLocation(Rotation rotation, bool isGround)
+        
+        private void OnPropertyChanged([CallerMemberName] string name = "")
         {
-            throw new NotImplementedException();
-        }
-
-        public void SendLocation(Point3 position, Rotation rotation, bool isGround)
-        {
-            throw new NotImplementedException();
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Close();
+
         }
     }
 }

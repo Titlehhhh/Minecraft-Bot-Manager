@@ -18,6 +18,8 @@ namespace MinecraftLibrary.API.Networking
 
         public int CompressionThreshold { get; set; }
 
+        public NetworkMinecraftStream IPacketReaderWriter.NetStream => NetStream;
+
         public void Dispose()
         {
             NetStream.Dispose();

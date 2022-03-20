@@ -2,7 +2,7 @@
 {
     public interface IAuthService
     {
-        Task<LoginResult> AuthAsync(string login, string password, out GameProfile gameProfile);
+        Task<LoginResult> AuthAsync(AuthInfo authInfo, out GameProfile gameProfile);
     }
 
 }

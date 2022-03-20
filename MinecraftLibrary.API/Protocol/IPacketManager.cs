@@ -2,6 +2,9 @@
 
 namespace MinecraftLibrary.API.Protocol
 {
+    /// <summary>
+    /// Предоставляет методы для работы с пакетами
+    /// </summary>
     public interface IPacketManager : IPacketProducer
     {
         Dictionary<int, Lazy<IPacket>> InputPackets { get; }

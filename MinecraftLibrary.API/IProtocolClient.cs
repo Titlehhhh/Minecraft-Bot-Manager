@@ -12,7 +12,15 @@ namespace MinecraftLibrary.API
     {
         #region Свойства
 
-        ITcpClientSession Session { get; }
+        string Nickname { get; set; }
+        string Host { get; set; }
+        ushort Port { get; set; }
+
+        bool IsAuth { get; set; }
+
+        TcpClientSession Session { get; }
+
+        IPacketManager PacketManager { get; set; }
 
         ProtocolState SubProtocol { get; }
 
@@ -22,7 +30,7 @@ namespace MinecraftLibrary.API
 
         Point3_Int ChunkLocation { get; }
 
-        Point3_Int CnunkBlockLocation { get; }
+        Point3_Int ChunkBlockLocation { get; }
 
         Rotation Rotation { get; }
 

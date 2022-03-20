@@ -1,51 +1,37 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
+using MinecraftLibrary.PluginAPI;
 using System;
 
 namespace MinecraftBotManagerWPF
 {
-    public class BotViewModel : ViewModelBase, ICloneable
+    public class BotViewModel : ViewModelBase
     {
-        //public MainViewModel ParentVM => _parentVM;
 
 
 
-        #region Сервисы
+        private readonly IMinecraftBot bot;
 
-
-
-
-
-        #endregion
-
-        public BotViewModel(object g)
+        public BotViewModel(IMinecraftBot bot)
         {
-
-
-
-
-
-
-
-
-
+            this.bot = bot;
         }
 
         public string Nickname
         {
-            get { return ""; }
+            get { return bot.Nickname; }
             set
             {
-
+                bot.Nickname = value;
                 OnPropertyChanged();
             }
         }
 
         public string Host
         {
-            get { return ""; }
+            get { return bot.Host; }
             set
             {
-                //bot.Host = value;
+                bot.Host = value;
                 OnPropertyChanged();
             }
         }
@@ -79,8 +65,7 @@ namespace MinecraftBotManagerWPF
             {
                 ReturnToOrgignalStateStatuses();
 
-                //CheckServer();
-
+               
 
             }, () => true);
         }
