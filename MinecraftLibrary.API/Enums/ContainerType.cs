@@ -1,32 +1,32 @@
 ﻿namespace MinecraftLibrary.API
 {
-    public enum ContainerType
+    public enum WindowType : int
     {
-        Generic_9x1,
-        Generic_9x2,
-        Generic_9x3, // chest, ender chest, minecart with chest, barrel
-        Generic_9x4,
-        Generic_9x5,
-        Generic_9x6,
-        Generic_3x3,
-        Anvil,
-        Beacon,
-        BlastFurnace,
-        BrewingStand,
-        Crafting,
-        Enchantment,
-        Furnace,
-        Grindstone,
-        Hopper,
-        Lectern,
-        Loom,
-        Merchant,
-        ShulkerBox,
-        Smoker,
-        Cartography,
-        Stonecutter,
-        // not in the wiki.vg list
-        PlayerInventory,
-        Unknown
+        GENERIC_9X1 = 0,
+        GENERIC_9X2 = 1,
+        GENERIC_9X3 = 2,
+        GENERIC_9X4 = 3,
+        GENERIC_9X5 = 4,
+        GENERIC_9X6 = 5,
+        GENERIC_3X3 = 6,
+        ANVIL = 7,
+        BEACON = 8,
+        BLAST_FURNACE = 9,
+        BREWING_STAND = 10,
+        CRAFTING = 11,
+        ENCHANTMENT = 12,
+        FURNACE = 13,
+        GRINDSTONE = 14,
+        HOPPER = 15,
+        LECTERN = 16,
+        LOOM = 17,
+        MERCHANT = 18,
+        SHULKER_BOX = 19,
+        SMITHING = 20,
+        SMOKER = 21,
+        CARTOGRAPHY = 22,
+        STONECUTTER = 23,
+
+        PlayerInventory = -1
     }
 }

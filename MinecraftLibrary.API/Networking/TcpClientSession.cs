@@ -23,7 +23,7 @@ namespace MinecraftLibrary.API.Networking
 
         public CancellationTokenSource Cancellation { get; private set; } = new();
 
-        public int CompressionThreshold { set => PacketReaderWriter.CompressionThreshold = value; } 
+        public int CompressionThreshold { set => PacketReaderWriter.CompressionThreshold = value; }
 
         public void SwitchEncryption(byte[] key)
         {
@@ -32,7 +32,8 @@ namespace MinecraftLibrary.API.Networking
 
 
         public event Action? Connected;
-        public event EventHandler<DisconnectedEventArgs>? Disconnected;
+        public event EventHandler? Disconnecting;
+        public event EventHandler<Exception>? Disconnected;
         public event EventHandler<PacketReceivedEventArgs>? PacketReceived;
         public event EventHandler<PacketSendEventArgs>? PacketSend;
         public event EventHandler<PacketSentEventArgs>? PacketSent;
@@ -58,30 +59,28 @@ namespace MinecraftLibrary.API.Networking
                 {
                     (int id, MinecraftStream dataStream) = await PacketReaderWriter.ReadNextPacketAsync();
                     Lazy<IPacket> packet = null;
-                     if (PacketFactory.TryGetInputPacket(id, out packet))
-                     {
-                          packet.Value.Read(dataStream);
-                          PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
-                       }
+                    if (PacketFactory.TryGetInputPacket(id, out packet))
+                    {
+                        packet.Value.Read(dataStream);
+                        PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                    }
                 }
-            }
-            catch (SocketException e)
-            {
-                Disconnected?.Invoke(this, new DisconnectedEventArgs("Ошибка при чтении", e));
             }
             catch (Exception e)
             {
-
+                Disconnected?.Invoke(this, e);
             }
             finally
             {
-                Cancellation.Cancel();
+                tcpClient.Close();
+                Dispose();
             }
         }
 
 
         public void Disconnect()
         {
+            Disconnecting?.Invoke(this, null);
             Cancellation.Cancel();
         }
         public void SendPacket(IPacket packet, int id)
@@ -99,7 +98,7 @@ namespace MinecraftLibrary.API.Networking
             Cancellation.Dispose();
             tcpClient?.Dispose();
             PacketReaderWriter?.Dispose();
-            
+
 
             Connected = null;
             Disconnected = null;

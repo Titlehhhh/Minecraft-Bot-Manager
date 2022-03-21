@@ -10,7 +10,7 @@ namespace MinecraftLibrary.API
     /// </summary>
     public interface IMinecraftClient : IDisposable
     {
-       
+
         bool IsConnected { get; }
 
 
@@ -30,7 +30,7 @@ namespace MinecraftLibrary.API
 
         Point3 Location { get; }
         Point3_Int ChunkLocation { get; }
-        Point3_Int ChunkBlockLOcation { get; }
+        Point3_Int ChunkBlockLocation { get; }
 
         Rotation Rotation { get; }
 
@@ -53,13 +53,14 @@ namespace MinecraftLibrary.API
         void UseBlock(Point3_Int pos);
 
 
-        public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
-        public event EventHandler<ChatEventArgs> ChatMessageEvent;
-        public event Action LoginSucces;
-        public event Action Connected;
-        public event Action JoiningGame;
-        public event Action Respawning;
-        public event Action UpdatePositionRotation;
+        event EventHandler<DisconnectedEventArgs> Disconnected;
+        event EventHandler<ChatEventArgs> ChatMessageEvent;
+        event EventHandler<LoginSuccesEventArgs> LoginSuccesed;
+
+        event Action Connected;
+        event Action JoiningGame;
+        event Action Respawning;
+        event Action UpdatePositionRotation;
 
     }
 }

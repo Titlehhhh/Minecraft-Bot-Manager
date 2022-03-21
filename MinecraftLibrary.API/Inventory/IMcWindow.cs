@@ -3,7 +3,7 @@
     public interface IMcWindow
     {
         int ID { get; }
-        ContainerType ContainerType { get; }
+        WindowType ContainerType { get; }
 
         void ClickSlot(byte slot);
 
