@@ -6,11 +6,13 @@ using System.ComponentModel;
 namespace MinecraftLibrary.API
 {
     /// <summary>
-    /// Предоставляет свойства и методы для работы с протоколом
+    /// Предоставляет свойства и методы для работы с протоколом майнкрафт
     /// </summary>
-    public interface IProtocolClient : IDisposable
+    public interface IMinecraftClient : IDisposable
     {
-        #region Свойства
+       
+        bool IsConnected { get; }
+
 
         string Nickname { get; set; }
         string Host { get; set; }
@@ -27,15 +29,14 @@ namespace MinecraftLibrary.API
         Guid UUID { get; }
 
         Point3 Location { get; }
+        Point3_Int ChunkLocation { get; }
+        Point3_Int ChunkBlockLOcation { get; }
 
         Rotation Rotation { get; }
 
         bool IsGround { get; }
 
 
-        #endregion
-
-        #region Методы
         void Connect();
         void Close();
 
@@ -45,20 +46,20 @@ namespace MinecraftLibrary.API
         void SendLocation(Point3 position, bool isGround);
         void SendLocation(Rotation rotation, bool isGround);
         void SendLocation(Point3 position, Rotation rotation, bool isGround);
+        void ClickBlock(Point3_Int pos);
+        void UseItem();
+        void UseItem(byte slot);
 
-        
-        #endregion
+        void UseBlock(Point3_Int pos);
 
 
-        event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
-        event EventHandler<ChatEventArgs> ChatMessageEvent;
-        
+        public event EventHandler<ProtocolClientDisconnectEventArg> Disconnected;
+        public event EventHandler<ChatEventArgs> ChatMessageEvent;
+        public event Action LoginSucces;
+        public event Action Connected;
+        public event Action JoiningGame;
+        public event Action Respawning;
+        public event Action UpdatePositionRotation;
 
-        event Action JoiningGame;
-        event Action Respawning;
-        event Action UpdatePositionRotation;
-        event Action LoginSucces;
-        event Action Connected;
     }
-
 }

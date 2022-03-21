@@ -1,5 +1,6 @@
 ﻿using MinecraftLibrary.API;
 using MinecraftLibrary.Service;
+using System.Net.Sockets;
 
 namespace ConsoleApp1
 {
@@ -7,6 +8,10 @@ namespace ConsoleApp1
     {
         public static void Main()
         {
+            TcpClient tcpClient = new TcpClient();
+
+            Console.WriteLine(tcpClient.GetStream());
+
             Console.WriteLine("StartProgramm");
 
             IServerInfoService serverInfoService = new ServerInfoService();

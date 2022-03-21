@@ -9,6 +9,8 @@ namespace MinecraftLibrary.API.Networking
 
     public sealed class TcpClientSession : IDisposable
     {
+        public bool IsConnected => tcpClient != null && tcpClient.Connected;
+
         public NetworkMinecraftStream NetStream { get; private set; }
         public IPacketReaderWriter PacketReaderWriter { get; private set; }
         public IPacketProducer PacketFactory { get; set; }

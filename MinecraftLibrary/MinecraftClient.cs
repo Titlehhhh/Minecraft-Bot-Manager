@@ -10,9 +10,18 @@ using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
 {
-    public class ProtocolClient : IProtocolClient
+    public class MinecraftClient : IMinecraftClient
     {
+        public bool IsConnected => Session != null && Session.IsConnected;
+
+        public MinecraftClient()
+        {
+            
+        }
+
+
         private ProtocolState subProtocol;
+        private bool eventsRegister;
 
         public string Nickname { get; set; }
         public string Host { get; set; }
@@ -20,7 +29,7 @@ namespace MinecraftLibrary
         public bool IsAuth { get; set; }
 
         #region Игровые свойства
-        
+
         public ProtocolState SubProtocol
         {
             get { return subProtocol; }
@@ -40,7 +49,7 @@ namespace MinecraftLibrary
                 }
 
                 subProtocol = value;
-                
+
             }
         }
 
@@ -60,7 +69,7 @@ namespace MinecraftLibrary
 
         public TcpClientSession Session { get; private set; }
 
-        
+
         #endregion
 
         #region События
@@ -73,16 +82,26 @@ namespace MinecraftLibrary
         public event Action Respawning;
         public event Action UpdatePositionRotation;
         #endregion
+        private readonly object eventsLock = new object();
 
-
-
-        #region Общие методы
-        public void Disconnect()
+        private bool EventsRegister
         {
-
+            get => eventsRegister;
+            set
+            {
+                lock (eventsLock)
+                { eventsRegister = value; }
+            }
         }
+
+        #region Общие методы        
         public void Connect()
         {
+            if (this.IsConnected)
+            {
+                throw new InvalidOperationException("Клинт подключен");
+            }
+            Session = new TcpClientSession();
             Validate();
 
             Session = new TcpClientSession();
@@ -91,6 +110,8 @@ namespace MinecraftLibrary
                 throw new NullReferenceException(nameof(PacketManager) + " был null");
             }
             Session.PacketFactory = this.PacketManager;
+
+            RegisterEvents();
 
         }
         private void Validate()
@@ -107,19 +128,27 @@ namespace MinecraftLibrary
 
         private void UnRegisterEvents()
         {
-            Session.Connected -= Session_Connected;
-            Session.Disconnected -= Session_Disconnected;
-            Session.PacketReceived -= Session_PacketReceived;
-            Session.PacketSent -= Session_PacketSent;
-            Session.PacketSend -= Session_PacketSend;
+            if (EventsRegister)
+            {
+                EventsRegister = false;
+                Session.Connected -= Session_Connected;
+                Session.Disconnected -= Session_Disconnected;
+                Session.PacketReceived -= Session_PacketReceived;
+                Session.PacketSent -= Session_PacketSent;
+                Session.PacketSend -= Session_PacketSend;
+            }
         }
         private void RegisterEvents()
         {
-            Session.Connected += Session_Connected;
-            Session.Disconnected += Session_Disconnected;
-            Session.PacketReceived += Session_PacketReceived;
-            Session.PacketSent += Session_PacketSent;
-            Session.PacketSend += Session_PacketSend;
+            if (!EventsRegister)
+            {
+                EventsRegister = true;
+                Session.Connected += Session_Connected;
+                Session.Disconnected += Session_Disconnected;
+                Session.PacketReceived += Session_PacketReceived;
+                Session.PacketSent += Session_PacketSent;
+                Session.PacketSend += Session_PacketSend;
+            }
         }
         #endregion
 
@@ -184,10 +213,10 @@ namespace MinecraftLibrary
                 var keepalive = e.Packet as ServerKeepAlivePacket;
                 SendPacket(new ClientKeepAlivePacket(keepalive.PingID));
             }
-            else if(e.Packet is ServerRespawnPacket)
+            else if (e.Packet is ServerRespawnPacket)
             {
                 var respawn = e.Packet as ServerRespawnPacket;
-                
+
             }
         }
 
@@ -286,7 +315,11 @@ namespace MinecraftLibrary
 
         public void Close()
         {
-            UnRegisterEvents();
+            if (Session != null)
+            {
+                UnRegisterEvents();
+                Dispose();
+            }
         }
         public void Dispose()
         {

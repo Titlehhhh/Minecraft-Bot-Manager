@@ -21,11 +21,11 @@
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 	 <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+	 <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.PluginAPI\MinecraftLibrary.PluginAPI.csproj" />
     <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj" />
   </ItemGroup>
 

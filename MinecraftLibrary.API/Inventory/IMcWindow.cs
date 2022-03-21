@@ -1,9 +1,12 @@
 ﻿namespace MinecraftLibrary.API.Inventory
 {
-    public interface IContainer
+    public interface IMcWindow
     {
         int ID { get; }
         ContainerType ContainerType { get; }
+
+        void ClickSlot(byte slot);
+
 
     }
 }

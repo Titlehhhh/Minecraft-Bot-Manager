@@ -1,7 +1,12 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
+using MinecraftLibrary;
+using MinecraftLibrary.API;
+using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
-using MinecraftLibrary.PluginAPI;
+
 using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MinecraftBotManagerWPF
 {
@@ -10,7 +15,7 @@ namespace MinecraftBotManagerWPF
 
         public BotInfo BotInfoModel => botInfo;
 
-        private MinecraftBot bot;
+        private IProtocolClient Client;
 
         private readonly BotInfo botInfo;
 
@@ -20,13 +25,14 @@ namespace MinecraftBotManagerWPF
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
 
+            Client = new ProtocolClient();
         }
 
         public string Nickname
         {
             get { return botInfo.Nickname; }
             set
-            {
+            {                
                 botInfo.Nickname = value;
                 OnPropertyChanged();
             }
@@ -49,6 +55,7 @@ namespace MinecraftBotManagerWPF
             get { return state; }
             private set
             {
+                
                 state = value;
                 OnPropertyChanged();
             }
@@ -134,12 +141,9 @@ namespace MinecraftBotManagerWPF
                {
                    ReturnToOrgignalStateStatuses();
                    BotState = State.Initialized;
-                   this.bot = App.BotFactory.CreateBot(this.botInfo);
-
+                   Client.Nickname = botInfo.Nickname;
                    
 
-
-                   bot.Start();
                }
                catch (Exception e)
                {
@@ -175,6 +179,17 @@ namespace MinecraftBotManagerWPF
 
 
         #endregion
+
+        private ICommand clearchat;
+        public ICommand ClearChatCommand
+        {
+            get => clearchat ??= new RelayCommand(() =>
+            {
+                Messages.Clear();
+            });
+        }
+
+        public ObservableCollection<ChatMessage> Messages { get; } = new ObservableCollection<ChatMessage>();
         private void ReturnToOrgignalStateStatuses()
         {
             BotState = State.None;
