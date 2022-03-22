@@ -14,9 +14,11 @@ namespace MinecraftLibrary
     {
         public bool IsConnected => Session != null && Session.IsConnected;
 
-        public MinecraftClient()
-        {
+        private readonly IPacketObserver observer;
 
+        public MinecraftClient(IPacketObserver observer)
+        {
+            this.observer = observer;
         }
 
 
@@ -76,25 +78,8 @@ namespace MinecraftLibrary
         #region События
 
         #endregion
-        private readonly object eventsLock = new object();
+       
 
-        public event EventHandler<ChatEventArgs> ChatMessageEvent;
-        public event EventHandler<LoginSuccesEventArgs> LoginSuccesed;
-        public event Action Connected;
-        public event Action JoiningGame;
-        public event Action Respawning;
-        public event Action UpdatePositionRotation;
-        public event EventHandler<DisconnectedEventArgs> Disconnected;
-
-        private bool EventsRegister
-        {
-            get => eventsRegister;
-            set
-            {
-                lock (eventsLock)
-                { eventsRegister = value; }
-            }
-        }
 
         public Point3_Int ChunkLocation => throw new NotImplementedException();
 
@@ -116,9 +101,6 @@ namespace MinecraftLibrary
                 throw new NullReferenceException(nameof(PacketManager) + " был null");
             }
             Session.PacketFactory = this.PacketManager;
-
-            RegisterEvents();
-
         }
         private void Validate()
         {
@@ -132,37 +114,13 @@ namespace MinecraftLibrary
             }
         }
 
-        private void UnRegisterEvents()
-        {
-            if (EventsRegister)
-            {
-                EventsRegister = false;
-                Session.Connected -= Session_Connected;
-                Session.Disconnected -= Session_Disconnected;
-                Session.PacketReceived -= Session_PacketReceived;
-                Session.PacketSent -= Session_PacketSent;
-                Session.PacketSend -= Session_PacketSend;
-            }
-        }
-        private void RegisterEvents()
-        {
-            if (!EventsRegister)
-            {
-                EventsRegister = true;
-                Session.Connected += Session_Connected;
-                Session.Disconnected += Session_Disconnected;
-                Session.PacketReceived += Session_PacketReceived;
-                Session.PacketSent += Session_PacketSent;
-                Session.PacketSend += Session_PacketSend;
-            }
-        }
+      
         #endregion
 
         #region Работа с пакетами
         private void Session_Connected()
         {
-
-            this.Connected?.Invoke();
+            this.observer.OnConnected();
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
         }
 

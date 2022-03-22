@@ -15,7 +15,7 @@ namespace MinecraftBotManagerWPF
 
         public BotInfo BotInfoModel => botInfo;
 
-        private IProtocolClient Client;
+        
 
         private readonly BotInfo botInfo;
 
@@ -25,7 +25,7 @@ namespace MinecraftBotManagerWPF
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
 
-            Client = new ProtocolClient();
+            
         }
 
         public string Nickname
