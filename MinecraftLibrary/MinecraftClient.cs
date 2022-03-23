@@ -10,21 +10,19 @@ using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
 {
-    public class MinecraftClient : IMinecraftClient
+    public class MinecraftClient 
     {
         public bool IsConnected => Session != null && Session.IsConnected;
 
-        private readonly IPacketObserver observer;
-
-        public MinecraftClient(IPacketObserver observer)
+        public MinecraftClient()
         {
-            this.observer = observer;
+            
         }
 
 
 
         private ProtocolState subProtocol;
-        private bool eventsRegister;
+       
 
         public string Nickname { get; set; }
         public string Host { get; set; }
@@ -120,7 +118,6 @@ namespace MinecraftLibrary
         #region Работа с пакетами
         private void Session_Connected()
         {
-            this.observer.OnConnected();
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
         }
 
