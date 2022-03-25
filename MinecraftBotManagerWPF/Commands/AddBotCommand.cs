@@ -6,13 +6,11 @@ namespace MinecraftBotManagerWPF
     {
         private readonly IBotRepository botRepository;
         private readonly BotViewModelsStorage botViewModels;
-        private readonly MinecraftBotFactory factory;
 
         public AddBotCommand(BotViewModelsStorage botViewModels, IBotRepository botRepository)
         {
             this.botRepository = botRepository;
             this.botViewModels = botViewModels;
-            this.factory = factory;
         }
 
         public override async Task ExecuteAsync(object parameter)

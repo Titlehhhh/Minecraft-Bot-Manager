@@ -1,9 +1,6 @@
 ﻿using MinecraftLibrary;
 using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking.Proxy;
-using MinecraftLibrary.PluginAPI;
-using System;
-using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -17,14 +14,24 @@ namespace MinecraftBotManagerWPF
         [DataMember]
         public bool IsAuth { get; set; }
         [DataMember]
-        public AuthInfo? Auth { get; set; }
+        public string Password { get; set; }
+        [DataMember]
+        public AccountType AccType { get; set; }
         [DataMember]
         public string Host { get; set; }
 
         [DataMember]
-        public bool IsProxy { get; set; }
+        public bool ProxyEnabled { get; set; }
         [DataMember]
-        public ProxyInfo? Proxy { get; set; }
+        public bool AutoFindProxyEnabled { get; set; }
+        [DataMember]
+        public string ProxyHost { get; set; }
+        [DataMember]
+        public ushort ProxyPort { get; set; }
+        [DataMember]
+        public ProxyType ProxyType { get; set; }
+        
+
 
 
     }

@@ -61,6 +61,8 @@ namespace MinecraftLibrary
         public Rotation Rotation { get; private set; }
 
         public bool IsGround { get; private set; }
+
+
         #endregion
         #region Сервисы
 
@@ -93,7 +95,7 @@ namespace MinecraftLibrary
             Session = new TcpClientSession();
             Validate();
 
-            Session = new TcpClientSession();
+            
             if (PacketManager is null)
             {
                 throw new NullReferenceException(nameof(PacketManager) + " был null");

@@ -3,7 +3,6 @@ using MinecraftLibrary;
 using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
-
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -15,7 +14,7 @@ namespace MinecraftBotManagerWPF
 
         public BotInfo BotInfoModel => botInfo;
 
-        
+
 
         private readonly BotInfo botInfo;
 
@@ -24,19 +23,50 @@ namespace MinecraftBotManagerWPF
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
+            botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
+            botInfo.Auth = new AuthInfo();
 
-            
         }
+        #region Свойства авторизации
+        private bool authenabled;
+
+        public bool AuthEnabled
+        {
+            get { return botInfo.IsAuth; }
+            set
+            {
+                botInfo.IsAuth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private AuthInfo pass;
+
+        public AuthInfo Password
+        {
+            get { return botInfo.Auth.Password; }
+            set
+            {
+                
+                OnPropertyChanged();
+            }
+        }
+
+
+
 
         public string Nickname
         {
             get { return botInfo.Nickname; }
             set
-            {                
+            {
+                botInfo.Auth.Login = value;
                 botInfo.Nickname = value;
                 OnPropertyChanged();
             }
         }
+        #endregion
+
 
         public string Host
         {
@@ -55,7 +85,7 @@ namespace MinecraftBotManagerWPF
             get { return state; }
             private set
             {
-                
+
                 state = value;
                 OnPropertyChanged();
             }
@@ -131,50 +161,11 @@ namespace MinecraftBotManagerWPF
 
         #region Команды
 
-        private RelayCommand start;
+        public ICommand StartBotCommand { get; private set; }
 
-        public RelayCommand StartCommand
-        {
-            get => start ??= new RelayCommand(() =>
-           {
-               try
-               {
-                   ReturnToOrgignalStateStatuses();
-                   BotState = State.Initialized;
-                   Client.Nickname = botInfo.Nickname;
-                   
+        public ICommand StopBotCommand { get; private set; }
 
-               }
-               catch (Exception e)
-               {
-                   BotState = State.None;
-                   Console.WriteLine(e);
-               }
-
-
-           }, () => BotState == State.None);
-        }
-
-
-        private RelayCommand stop;
-
-        public RelayCommand StopCommand
-        {
-            get => stop ??= new RelayCommand(() =>
-            {
-
-            }, () => BotState != State.None);
-        }
-
-        private RelayCommand restart;
-
-        public RelayCommand RestartCommand
-        {
-            get => restart ??= new RelayCommand(() =>
-            {
-
-            }, () => BotState != State.None);
-        }
+        public ICommand RestartBotCommand { get; private set; }
 
 
 
@@ -190,7 +181,7 @@ namespace MinecraftBotManagerWPF
         }
 
         public ObservableCollection<ChatMessage> Messages { get; } = new ObservableCollection<ChatMessage>();
-        private void ReturnToOrgignalStateStatuses()
+        public void ReturnToOrgignalStateStatuses()
         {
             BotState = State.None;
 
