@@ -15,21 +15,26 @@ namespace MinecraftLibrary
     {
         public bool IsConnected => Session != null && Session.IsConnected;
 
-        public MinecraftClient()
-        {
-            
-        }
+        
+
+        
 
 
 
         private ProtocolState subProtocol;
-       
 
+        public bool IsAuth { get; set; }
         public string Nickname { get; set; }
         public string Password { get; set; }
         public string Host { get; set; }
         public ushort Port { get; set; }
-        public bool IsAuth { get; set; }
+        
+
+        public bool ProxyEnabled { get; set; }
+        public string ProxyHost { get; set; }
+        public ushort ProxyPort { get; set; }
+        public string ProxyLogin { get; set; }
+        public string ProxyPassword { get; set; }
 
 
         #region Игровые свойства
@@ -88,6 +93,7 @@ namespace MinecraftLibrary
         #region Общие методы        
         public void Connect()
         {
+            
             if (this.IsConnected)
             {
                 throw new InvalidOperationException("Клинт подключен");
