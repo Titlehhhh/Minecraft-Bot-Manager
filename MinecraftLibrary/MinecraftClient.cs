@@ -2,6 +2,7 @@
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Geometry;
+using MinecraftLibrary.Protocol;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
@@ -25,9 +26,11 @@ namespace MinecraftLibrary
        
 
         public string Nickname { get; set; }
+        public string Password { get; set; }
         public string Host { get; set; }
         public ushort Port { get; set; }
         public bool IsAuth { get; set; }
+
 
         #region Игровые свойства
 
@@ -64,20 +67,17 @@ namespace MinecraftLibrary
 
 
         #endregion
-        #region Сервисы
+
+
 
         private static readonly IPacketProvider packetProvider754 = new PacketProvider754();
 
-        public IPacketManager PacketManager { get; set; }
+        public PacketManager PacketManager { get; set; }
 
         public TcpClientSession Session { get; private set; }
 
 
-        #endregion
-
-        #region События
-
-        #endregion
+       
        
 
 
@@ -95,12 +95,9 @@ namespace MinecraftLibrary
             Session = new TcpClientSession();
             Validate();
 
-            
-            if (PacketManager is null)
-            {
-                throw new NullReferenceException(nameof(PacketManager) + " был null");
-            }
-            Session.PacketFactory = this.PacketManager;
+
+
+            Session.PacketFactory = new PacketManager();
         }
         private void Validate()
         {
@@ -112,6 +109,7 @@ namespace MinecraftLibrary
             {
                 throw new InvalidOperationException("Введите хость");
             }
+          
         }
 
       
@@ -186,7 +184,7 @@ namespace MinecraftLibrary
 
         private void Session_Disconnected(object? sender, Exception e)
         {
-            UnRegisterEvents();
+            //UnRegisterEvents();
             OnDisconnect(e.Message, DisconnectReason.ConnectionLost, e);
         }
 
@@ -257,11 +255,11 @@ namespace MinecraftLibrary
         private void OnDisconnect(string message, DisconnectReason disconnectReason, Exception exception = null)
         {
             Close();
-            this.Disconnected?.Invoke(this, new DisconnectedEventArgs(
-                message,
-                disconnectReason,
-                exception
-                ));
+            //this.Disconnected?.Invoke(this, new DisconnectedEventArgs(
+            //    message,
+            //    disconnectReason,
+            //    exception
+            //    ));
         }
 
         private void RegisterHandShakePackets()
@@ -292,7 +290,7 @@ namespace MinecraftLibrary
         {
             if (Session != null)
             {
-                UnRegisterEvents();
+               // UnRegisterEvents();
                 Dispose();
             }
         }

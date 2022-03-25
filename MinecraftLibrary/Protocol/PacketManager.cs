@@ -3,7 +3,7 @@ using MinecraftLibrary.API.Protocol;
 
 namespace MinecraftLibrary.Protocol
 {
-    public class DefaultPacketManager : IPacketManager
+    public sealed class PacketManager : IPacketProducer, IPacketManager
     {
         private Dictionary<int, Lazy<IPacket>> packets = new Dictionary<int, Lazy<IPacket>>();
 

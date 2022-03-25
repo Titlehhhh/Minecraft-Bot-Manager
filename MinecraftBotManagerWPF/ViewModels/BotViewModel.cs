@@ -23,8 +23,8 @@ namespace MinecraftBotManagerWPF
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
-            botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
-            botInfo.Auth = new AuthInfo();
+            //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
+          //  botInfo.Auth = new AuthInfo();
 
         }
         #region Свойства авторизации
@@ -40,17 +40,6 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-        private AuthInfo pass;
-
-        public AuthInfo Password
-        {
-            get { return botInfo.Auth.Password; }
-            set
-            {
-                
-                OnPropertyChanged();
-            }
-        }
 
 
 
@@ -60,7 +49,6 @@ namespace MinecraftBotManagerWPF
             get { return botInfo.Nickname; }
             set
             {
-                botInfo.Auth.Login = value;
                 botInfo.Nickname = value;
                 OnPropertyChanged();
             }
@@ -195,7 +183,7 @@ namespace MinecraftBotManagerWPF
 
         public override void Dispose()
         {
-            bot?.Dispose();
+            //bot?.Dispose();
         }
     }
 }
