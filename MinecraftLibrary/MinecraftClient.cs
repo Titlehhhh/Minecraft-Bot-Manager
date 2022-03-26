@@ -124,10 +124,13 @@ namespace MinecraftLibrary
             }
 
             SubscribeEvents();
+           
 
+            this.PacketManager = new PacketManager();
+            SubProtocol = ProtocolState.HandShake;
+            Session.PacketFactory = this.PacketManager;
 
-
-            Session.PacketFactory = new PacketManager();
+            Session.Connect();
         }
         private void CheckProperties()
         {
@@ -182,6 +185,7 @@ namespace MinecraftLibrary
         #region Работа с пакетами
         private void Session_Connected()
         {
+            this.Connected?.Invoke(this);
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
         }
 
@@ -247,6 +251,10 @@ namespace MinecraftLibrary
             {
                 var respawn = e.Packet as ServerRespawnPacket;
 
+            } else if(e.Packet is ServerChatPacket)
+            {
+                var message = e.Packet as ServerChatPacket;
+                this.MessageReceived?.Invoke(this,message.Message);
             }
         }
 

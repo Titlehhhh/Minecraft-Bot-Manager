@@ -85,11 +85,11 @@ namespace MinecraftLibrary.API.Networking
             Disconnecting?.Invoke(this, null);
             Cancellation.Cancel();
         }
-        public void SendPacket(IPacket packet, int id)
+        public async void SendPacket(IPacket packet, int id)
         {
             ArgumentNullException.ThrowIfNull(packet, nameof(packet));
             PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
-
+           await PacketReaderWriter.WritePacketAsync(packet, id);
             PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
 
         }
