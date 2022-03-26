@@ -14,10 +14,10 @@ namespace ConsoleApp1
             Console.WriteLine("Start App");
             MinecraftClient client = new MinecraftClient()
             {
-                Nickname = "Title_",
+                Nickname = "Title_2",
                 IsAuth = false,
-                Host = "nexus1.su",
-                Port = 25565
+                Host = "127.0.0.1",
+                Port = 53722
             };
             client.LoginSuccesed += (s, e) =>
             {
@@ -25,7 +25,8 @@ namespace ConsoleApp1
             };
             client.LoginRejected += (s, e) =>
             {
-                Console.WriteLine("Login Failed: " + e);
+                Console.WriteLine("Login failed: " + JsonToStr(ChatMessage.Parse(e)));
+
             };
             client.GameRejected += (s, e) =>
             {
@@ -33,7 +34,7 @@ namespace ConsoleApp1
             };
             client.ConnectionLosted += (s, e) =>
             {
-                Console.WriteLine("Подключение прервано: " + e.Message);
+                Console.WriteLine("Подключение прервано: " + e.StackTrace);
             };
             client.MessageReceived += (s, e) =>
             {
@@ -43,12 +44,26 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("Connected");
             };
+            client.GameJoined += (s) =>
+            {
+                Console.WriteLine("Game Join!");
+            };
 
             client.Start();
             Console.WriteLine("Starting");
             Console.ReadLine();
 
 
+        }
+
+        private static string JsonToStr(ChatMessage message)
+        {
+            string result = message.Text;
+            foreach (var extr in message.Extra)
+            {
+                result += JsonToStr(extr);
+            }
+            return result;
         }
     }
 

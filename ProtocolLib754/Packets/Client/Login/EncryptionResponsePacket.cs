@@ -10,7 +10,7 @@ namespace ProtocolLib754.Packets.Client
         public byte[] VerifyToken { get; set; }
         public byte[] SharedKey { get; set; }
 
-        public EncryptionResponsePacket(byte[] verifyToken, byte[] sharedKey)
+        public EncryptionResponsePacket(byte[] sharedKey,byte[] verifyToken)
         {
             VerifyToken = verifyToken;
             SharedKey = sharedKey;

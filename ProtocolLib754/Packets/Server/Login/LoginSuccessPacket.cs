@@ -13,7 +13,7 @@ namespace ProtocolLib754.Packets.Server
 
         public void Read(IMinecraftStreamReader stream)
         {
-            UUID = stream.ReadString();
+            UUID = $"{stream.ReadLong()}{stream.ReadLong()}";
             Username = stream.ReadString();
         }
 

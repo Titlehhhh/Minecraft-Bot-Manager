@@ -9,6 +9,7 @@ namespace MinecraftLibrary.API.Types.Chat
     public class ChatMessage
     {
         private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ChatMessage));
+        private List<ChatMessage> extra = new List<ChatMessage>();
 
         [DataMember(Name = "text")]
         public string Text { get; set; }
@@ -44,8 +45,20 @@ namespace MinecraftLibrary.API.Types.Chat
         public HoverComponent HoverEvent { get; set; }
 
         [DataMember(Name = "extra", EmitDefaultValue = true)]
-        public List<ChatMessage> Extra { get; set; } = new List<ChatMessage>();
-
+        public List<ChatMessage> Extra
+        {
+            get
+            {
+                if (extra == null)
+                    extra = new List<ChatMessage>();
+                return extra;
+            }
+            set
+            {
+                if (value != null)
+                    extra = value;
+            }
+        }
         public IEnumerable<ChatMessage> Extras => GetExtras();
 
         public IEnumerable<ChatMessage> GetExtras()

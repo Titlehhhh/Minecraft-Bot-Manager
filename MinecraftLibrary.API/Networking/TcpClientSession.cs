@@ -42,19 +42,20 @@ namespace MinecraftLibrary.API.Networking
 
         private TcpClient tcpClient;
 
-        public void Connect()
+        public async Task Connect()
         {
+           await Task.Run(async ()=>{
             tcpClient = new TcpClient(Host, Port);
-
-
             NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
             this.PacketReaderWriter = new PacketReaderWriter(NetStream);
 
             Connected?.Invoke();
             ReadLoop();
+            });
         }
-        private async void ReadLoop()
+        private void ReadLoop()
         {
+            Task.Run(async ()=>{
             try
             {
                 while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
@@ -77,6 +78,7 @@ namespace MinecraftLibrary.API.Networking
                 tcpClient.Close();
                 Dispose();
             }
+            });
         }
 
 
@@ -87,10 +89,13 @@ namespace MinecraftLibrary.API.Networking
         }
         public async void SendPacket(IPacket packet, int id)
         {
+
             ArgumentNullException.ThrowIfNull(packet, nameof(packet));
             PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
            await PacketReaderWriter.WritePacketAsync(packet, id);
             PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
+
+            Console.WriteLine("Пакет отправлен: "+packet.GetType().Name);
 
         }
 

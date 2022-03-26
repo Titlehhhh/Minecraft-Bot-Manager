@@ -9,7 +9,10 @@ using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.ComponentModel;
 using System.Net;
+using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using MinecraftLibrary.API.Crypto;
 
 namespace MinecraftLibrary
 {
@@ -66,7 +69,7 @@ namespace MinecraftLibrary
             }
         }
 
-        public Guid UUID { get; private set; }
+        public string UUID { get; private set; }
 
         public Point3 Location { get; private set; }
 
@@ -83,7 +86,7 @@ namespace MinecraftLibrary
         public event LoginRejectedHandler? LoginRejected;
         public event LoginSucessedHandler? LoginSuccesed;
         public event GameRejectedHandler? GameRejected;
-
+        public event GameJoinedHandler? GameJoined;
         public event MessageReceivedHandler? MessageReceived;
 
         public event PacketReceivedHandler? PacketReceived;
@@ -104,7 +107,7 @@ namespace MinecraftLibrary
 
 
         #region Общие методы        
-        public void Start()
+        public async Task Start()
         {
 
             if (this.IsConnected)
@@ -127,10 +130,11 @@ namespace MinecraftLibrary
            
 
             this.PacketManager = new PacketManager();
+
             SubProtocol = ProtocolState.HandShake;
             Session.PacketFactory = this.PacketManager;
 
-            Session.Connect();
+           await Session.Connect();
         }
         private void CheckProperties()
         {
@@ -185,6 +189,7 @@ namespace MinecraftLibrary
         #region Работа с пакетами
         private void Session_Connected()
         {
+            Console.WriteLine("gg");
             this.Connected?.Invoke(this);
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
         }
@@ -205,6 +210,8 @@ namespace MinecraftLibrary
 
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
         {
+            //Console.WriteLine(e.Packet.GetType().Name);
+
             if (e.Packet is LoginDisconnectPacket)
             {
                 var disconnect = e.Packet as LoginDisconnectPacket;
@@ -223,18 +230,25 @@ namespace MinecraftLibrary
             else if (e.Packet is EncryptionRequestPacket)
             {
                 //TODO
+                var request = e.Packet as EncryptionRequestPacket;
+                var RSAService = CryptoHandler.DecodeRSAPublicKey(request.PublicKey);
+                byte[] secretKey = CryptoHandler.GenerateAESPrivateKey();
+
+                SendPacket(new EncryptionResponsePacket(RSAService.Encrypt(secretKey,false),RSAService.Encrypt(request.VerifyToken,false)));
+
+                Session.SwitchEncryption(secretKey);
             }
             else if (e.Packet is LoginSuccessPacket)
             {
                 var succes = e.Packet as LoginSuccessPacket;
                 SubProtocol = ProtocolState.Game;
-                UUID = Guid.Parse(succes.UUID);
+                UUID = succes.UUID;
                 this.LoginSuccesed?.Invoke(this, UUID);
             }
             else if (e.Packet is ServerJoinGamePacket)
             {
                 var join = e.Packet as ServerJoinGamePacket;
-
+                this.GameJoined?.Invoke(this);
             }
             else if (e.Packet is ServerDisconnectPacket)
             {
@@ -267,9 +281,16 @@ namespace MinecraftLibrary
 
         private void SendPacket(IPacket packet)
         {
-            if (this.IsConnected)
+            try
             {
-                Session.SendPacket(packet);
+                if (this.IsConnected)
+                {
+                    Session.SendPacket(packet);
+                }
+            } catch(Exception e)
+            {
+                Close();
+                ConnectionLosted?.Invoke(this,e);
             }
         }
         #endregion
