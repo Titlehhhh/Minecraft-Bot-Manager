@@ -16,8 +16,10 @@ namespace MinecraftLibrary.API.Networking
         public IPacketProducer PacketFactory { get; set; }
 
 
-        public string Host { get; set; }
-        public int Port { get; set; }
+        public string Host { get; init; }
+        public int Port { get; init; }
+
+        public bool ProxyEnabled { get; set; }
         public ProxyInfo? Proxy { get; set; }
 
 

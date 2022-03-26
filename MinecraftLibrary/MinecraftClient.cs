@@ -1,5 +1,6 @@
 ﻿using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Geometry;
 using MinecraftLibrary.Protocol;
@@ -7,38 +8,41 @@ using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.ComponentModel;
+using System.Net;
 using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
 {
-    public class MinecraftClient 
+    
+
+    public class MinecraftClient : IDisposable
     {
         public bool IsConnected => Session != null && Session.IsConnected;
 
-        
+        public bool IsAuth { get; init; }
+        public string Nickname { get; init; }
+        public string Password { get; init; }
+        public string Host { get; init; }
+        public ushort Port { get; init; } = 25565;
 
-        
+
+        public bool ProxyEnabled { get; init; }
+        public string ProxyHost { get; init; }
+        public ushort ProxyPort { get; init; }
+        public string ProxyLogin { get; init; }
+        public string ProxyPassword { get; init; }
 
 
 
-        private ProtocolState subProtocol;
 
-        public bool IsAuth { get; set; }
-        public string Nickname { get; set; }
-        public string Password { get; set; }
-        public string Host { get; set; }
-        public ushort Port { get; set; }
-        
 
-        public bool ProxyEnabled { get; set; }
-        public string ProxyHost { get; set; }
-        public ushort ProxyPort { get; set; }
-        public string ProxyLogin { get; set; }
-        public string ProxyPassword { get; set; }
+
+
+
 
 
         #region Игровые свойства
-
+        private ProtocolState subProtocol;
         public ProtocolState SubProtocol
         {
             get { return subProtocol; }
@@ -73,6 +77,18 @@ namespace MinecraftLibrary
 
         #endregion
 
+        #region События
+        public event ConnectedHandler? Connected;
+        public event EventHandler<Exception>? ConnectionLosted;
+        public event EventHandler<string>? LoginRejected;
+        public event EventHandler<Guid>? LoginSuccesed;
+        public event EventHandler<string>? GameRejected;
+
+        public event EventHandler<string> ChatMessageReceived;
+
+        
+        #endregion
+
 
 
         private static readonly IPacketProvider packetProvider754 = new PacketProvider754();
@@ -82,30 +98,41 @@ namespace MinecraftLibrary
         public TcpClientSession Session { get; private set; }
 
 
-       
-       
 
 
-        public Point3_Int ChunkLocation => throw new NotImplementedException();
 
-        public Point3_Int ChunkBlockLocation => throw new NotImplementedException();
+
+        public Point3_Int ChunkLocation => new Point3_Int(Location.ChunkX, Location.ChunkY, Location.ChunkZ);
+
+        public Point3_Int ChunkBlockLocation => new Point3_Int(Location.ChunkBlockX, Location.ChunkBlockY, Location.ChunkBlockZ);
 
         #region Общие методы        
-        public void Connect()
+        public void Start()
         {
-            
+
             if (this.IsConnected)
             {
-                throw new InvalidOperationException("Клинт подключен");
+                throw new InvalidOperationException("Клиент подключен");
             }
-            Session = new TcpClientSession();
-            Validate();
+            CheckProperties();
+
+            Session = new TcpClientSession()
+            {
+                Host = this.Host,
+                Port = this.Port,                
+            };
+            if (this.ProxyEnabled)
+            {
+                //TODO
+            }
+
+            SubscribeEvents();
 
 
 
             Session.PacketFactory = new PacketManager();
         }
-        private void Validate()
+        private void CheckProperties()
         {
             if (string.IsNullOrWhiteSpace(Nickname))
             {
@@ -113,12 +140,46 @@ namespace MinecraftLibrary
             }
             if (string.IsNullOrWhiteSpace(Host))
             {
-                throw new InvalidOperationException("Введите хость");
+                throw new InvalidOperationException("Введите хост");
             }
-          
+            if (IsAuth)
+            {
+                if (string.IsNullOrWhiteSpace(Password))
+                {
+                    throw new InvalidOperationException("Введите пароль");
+                }
+            }
+
+
+        }
+        private bool EventsSub = false;
+        private void SubscribeEvents()
+        {
+            if (!EventsSub)
+            {
+
+                Session.Connected += Session_Connected;
+                Session.Disconnected += Session_Disconnected;
+                Session.PacketReceived += Session_PacketReceived;
+                Session.PacketSend += Session_PacketSend;
+                Session.PacketSent += Session_PacketSent;
+                EventsSub = true;
+            }
+        }
+        private void UnSubscribeEvents()
+        {
+            if (EventsSub)
+            {
+                Session.Connected -= Session_Connected;
+                Session.Disconnected -= Session_Disconnected;
+                Session.PacketReceived -= Session_PacketReceived;
+                Session.PacketSend -= Session_PacketSend;
+                Session.PacketSent -= Session_PacketSent;
+                EventsSub = false;
+            }
         }
 
-      
+
         #endregion
 
         #region Работа с пакетами
@@ -142,7 +203,7 @@ namespace MinecraftLibrary
         }
 
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
-        {            
+        {
             if (e.Packet is LoginDisconnectPacket)
             {
                 var disconnect = e.Packet as LoginDisconnectPacket;
@@ -296,17 +357,10 @@ namespace MinecraftLibrary
         {
             if (Session != null)
             {
-               // UnRegisterEvents();
                 Dispose();
             }
         }
-        public void Dispose()
-        {
-            Session?.Dispose();
-            Session = null;
-
-            GC.SuppressFinalize(this);
-        }
+        
 
         public void ClickBlock(Point3_Int pos)
         {
@@ -326,6 +380,18 @@ namespace MinecraftLibrary
         public void UseBlock(Point3_Int pos)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            if (Session != null)
+            {
+                UnSubscribeEvents();
+                Session.Dispose();
+                Session = null;
+            }
+
+            GC.SuppressFinalize(this);
         }
     }
 }

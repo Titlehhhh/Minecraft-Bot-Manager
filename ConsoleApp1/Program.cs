@@ -1,33 +1,26 @@
-﻿using MinecraftLibrary.API;
+﻿using MinecraftLibrary;
+using MinecraftLibrary.API;
 using MinecraftLibrary.Service;
 using System.Net.Sockets;
 
 namespace ConsoleApp1
 {
-    public static class Program
+    public  class Program
     {
+        public string GG { get; set; }
         public static void Main()
         {
-            TcpClient tcpClient = new TcpClient();
-
-            Console.WriteLine(tcpClient.GetStream());
-
-            Console.WriteLine("StartProgramm");
-
-            IServerInfoService serverInfoService = new ServerInfoService();
-            try
+            MinecraftClient client = new MinecraftClient()
             {
-
-
-                ServerInfo info = serverInfoService.GetServerInfoAsync("nexus1.su", 25565).Result;
-                Console.WriteLine(info.ToString());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e);
-            }
-            Console.WriteLine("stop");
+                Nickname = "Title_",
+                IsAuth = false,
+                Host = "nexus1.su",
+                Port = 25565
+            };
+            client.Start();
             Console.ReadLine();
+            
+            
         }
     }
 
