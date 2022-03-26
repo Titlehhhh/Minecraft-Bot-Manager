@@ -79,12 +79,15 @@ namespace MinecraftLibrary
 
         #region События
         public event ConnectedHandler? Connected;
-        public event EventHandler<Exception>? ConnectionLosted;
-        public event EventHandler<string>? LoginRejected;
-        public event EventHandler<Guid>? LoginSuccesed;
-        public event EventHandler<string>? GameRejected;
+        public event ConnectionLostedHandler? ConnectionLosted;
+        public event LoginRejectedHandler? LoginRejected;
+        public event LoginSucessedHandler? LoginSuccesed;
+        public event GameRejectedHandler? GameRejected;
 
-        public event EventHandler<string> ChatMessageReceived;
+        public event MessageReceivedHandler? MessageReceived;
+
+        public event PacketReceivedHandler? PacketReceived;
+
 
         
         #endregion
@@ -99,12 +102,6 @@ namespace MinecraftLibrary
 
 
 
-
-
-
-        public Point3_Int ChunkLocation => new Point3_Int(Location.ChunkX, Location.ChunkY, Location.ChunkZ);
-
-        public Point3_Int ChunkBlockLocation => new Point3_Int(Location.ChunkBlockX, Location.ChunkBlockY, Location.ChunkBlockZ);
 
         #region Общие методы        
         public void Start()
@@ -207,7 +204,10 @@ namespace MinecraftLibrary
             if (e.Packet is LoginDisconnectPacket)
             {
                 var disconnect = e.Packet as LoginDisconnectPacket;
-                OnDisconnect(disconnect.Message, DisconnectReason.LoginRejected);
+
+                Close();
+
+                this.LoginRejected?.Invoke(this, disconnect.Message);
 
             }
             else if (e.Packet is LoginSetCompressionPacket)
@@ -225,7 +225,7 @@ namespace MinecraftLibrary
                 var succes = e.Packet as LoginSuccessPacket;
                 SubProtocol = ProtocolState.Game;
                 UUID = Guid.Parse(succes.UUID);
-
+                this.LoginSuccesed?.Invoke(this, UUID);
             }
             else if (e.Packet is ServerJoinGamePacket)
             {
@@ -235,7 +235,8 @@ namespace MinecraftLibrary
             else if (e.Packet is ServerDisconnectPacket)
             {
                 var disconnect = e.Packet as ServerDisconnectPacket;
-                OnDisconnect(disconnect.Message, DisconnectReason.InGameKick);
+                Close();
+                this.GameRejected?.Invoke(this, disconnect.Message);
             }
             else if (e.Packet is ServerKeepAlivePacket)
             {
@@ -252,7 +253,8 @@ namespace MinecraftLibrary
         private void Session_Disconnected(object? sender, Exception e)
         {
             //UnRegisterEvents();
-            OnDisconnect(e.Message, DisconnectReason.ConnectionLost, e);
+            Close();
+            ConnectionLosted?.Invoke(this, e);
         }
 
         private void SendPacket(IPacket packet)
@@ -319,15 +321,6 @@ namespace MinecraftLibrary
 
 
 
-        private void OnDisconnect(string message, DisconnectReason disconnectReason, Exception exception = null)
-        {
-            Close();
-            //this.Disconnected?.Invoke(this, new DisconnectedEventArgs(
-            //    message,
-            //    disconnectReason,
-            //    exception
-            //    ));
-        }
 
         private void RegisterHandShakePackets()
         {
@@ -357,29 +350,30 @@ namespace MinecraftLibrary
         {
             if (Session != null)
             {
-                Dispose();
+                Session.Disconnect();
+                UnSubscribeEvents();
             }
         }
         
 
         public void ClickBlock(Point3_Int pos)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void UseItem()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void UseItem(byte slot)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void UseBlock(Point3_Int pos)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Dispose()

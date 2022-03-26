@@ -128,6 +128,14 @@
                 return ceil & 15;
             }
         }
+        public Point3_Int ChunkPos
+        {
+            get => new Point3_Int(ChunkX, ChunkY, ChunkZ);
+        }
+        public Point3_Int ChunkBlockPos
+        {
+            get => new Point3_Int(ChunkBlockX, ChunkBlockY, ChunkBlockZ);
+        }
 
         /// <summary>
         /// Get a squared distance to the specified location
