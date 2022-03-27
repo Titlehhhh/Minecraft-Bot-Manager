@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF.Commands
 {
@@ -11,7 +7,7 @@ namespace MinecraftBotManagerWPF.Commands
         private readonly IServerResolver resolver;
         private readonly BotViewModel botViewModel;
         private readonly BotInfo botInfo;
-        public StartBotCommand(BotViewModel botViewModel,IServerResolver resolver)
+        public StartBotCommand(BotViewModel botViewModel, IServerResolver resolver)
         {
             this.botViewModel = botViewModel;
             this.botInfo = botViewModel.BotInfoModel;
@@ -41,12 +37,12 @@ namespace MinecraftBotManagerWPF.Commands
             }
             else
             {
-                
+
             }
 
-            
 
-            
+
+
         }
     }
 }

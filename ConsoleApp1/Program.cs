@@ -1,23 +1,39 @@
 ﻿using MinecraftLibrary;
-using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
-using MinecraftLibrary.Service;
-using System.Net.Sockets;
 
 namespace ConsoleApp1
 {
     public class Program
     {
         public string GG { get; set; }
+
+
+
         public static void Main()
         {
-            Console.WriteLine("Start App");
+            Console.WriteLine("StartApp");
+
+            for (int i = 0; i <= 2; i++)
+            {
+                CreateClient(("NET_BOT_0" + i)).Start();
+                //Thread.Sleep(10000);
+            }
+
+
+
+            Console.WriteLine("Starting");
+            Console.ReadLine();
+
+
+        }
+        private static MinecraftClient CreateClient(string nick)
+        {
             MinecraftClient client = new MinecraftClient()
             {
-                Nickname = "Title_2",
+                Nickname = nick,
                 IsAuth = false,
-                Host = "127.0.0.1",
-                Port = 53722
+                Host = "192.168.1.194",
+                Port = 54155
             };
             client.LoginSuccesed += (s, e) =>
             {
@@ -48,12 +64,11 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("Game Join!");
             };
-
-            client.Start();
-            Console.WriteLine("Starting");
-            Console.ReadLine();
-
-
+            client.PacketReceived += (s, p) =>
+            {
+                //Console.WriteLine("Пришел пакет: "+p.GetType().Name);
+            };
+            return client;
         }
 
         private static string JsonToStr(ChatMessage message)

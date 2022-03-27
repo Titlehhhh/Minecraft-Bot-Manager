@@ -1,22 +1,16 @@
 ﻿using MinecraftLibrary.API;
+using MinecraftLibrary.API.Crypto;
 using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using MinecraftLibrary.Geometry;
 using MinecraftLibrary.Protocol;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
-using System.ComponentModel;
-using System.Net;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using MinecraftLibrary.API.Crypto;
 
 namespace MinecraftLibrary
 {
-    
+
 
     public class MinecraftClient : IDisposable
     {
@@ -92,7 +86,7 @@ namespace MinecraftLibrary
         public event PacketReceivedHandler? PacketReceived;
 
 
-        
+
         #endregion
 
 
@@ -119,7 +113,7 @@ namespace MinecraftLibrary
             Session = new TcpClientSession()
             {
                 Host = this.Host,
-                Port = this.Port,                
+                Port = this.Port,
             };
             if (this.ProxyEnabled)
             {
@@ -127,14 +121,14 @@ namespace MinecraftLibrary
             }
 
             SubscribeEvents();
-           
+
 
             this.PacketManager = new PacketManager();
 
             SubProtocol = ProtocolState.HandShake;
             Session.PacketFactory = this.PacketManager;
 
-           await Session.Connect();
+            await Session.Connect();
         }
         private void CheckProperties()
         {
@@ -192,24 +186,24 @@ namespace MinecraftLibrary
             Console.WriteLine("gg");
             this.Connected?.Invoke(this);
             SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
+            this.SubProtocol = ProtocolState.Login;
+            SendPacket(new LoginStartPacket(Nickname));
         }
 
         private void Session_PacketSent(object? sender, PacketSentEventArgs e)
         {
-            if (e.Packet is HandShakePacket)
-            {
-                this.SubProtocol = ProtocolState.Login;
-                SendPacket(new LoginStartPacket(Nickname));
-            }
+            Console.WriteLine("SentPAcket: " + e.Packet.GetType().Name);
+
         }
 
         private void Session_PacketSend(object? sender, PacketSendEventArgs e)
         {
-
+            Console.WriteLine("SendPAcket: " + e.Packet.GetType().Name);
         }
 
         private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
         {
+            this.PacketReceived?.Invoke(this, e.Packet);
             //Console.WriteLine(e.Packet.GetType().Name);
 
             if (e.Packet is LoginDisconnectPacket)
@@ -234,7 +228,7 @@ namespace MinecraftLibrary
                 var RSAService = CryptoHandler.DecodeRSAPublicKey(request.PublicKey);
                 byte[] secretKey = CryptoHandler.GenerateAESPrivateKey();
 
-                SendPacket(new EncryptionResponsePacket(RSAService.Encrypt(secretKey,false),RSAService.Encrypt(request.VerifyToken,false)));
+                SendPacket(new EncryptionResponsePacket(RSAService.Encrypt(secretKey, false), RSAService.Encrypt(request.VerifyToken, false)));
 
                 Session.SwitchEncryption(secretKey);
             }
@@ -265,10 +259,11 @@ namespace MinecraftLibrary
             {
                 var respawn = e.Packet as ServerRespawnPacket;
 
-            } else if(e.Packet is ServerChatPacket)
+            }
+            else if (e.Packet is ServerChatPacket)
             {
                 var message = e.Packet as ServerChatPacket;
-                this.MessageReceived?.Invoke(this,message.Message);
+                this.MessageReceived?.Invoke(this, message.Message);
             }
         }
 
@@ -287,10 +282,11 @@ namespace MinecraftLibrary
                 {
                     Session.SendPacket(packet);
                 }
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Close();
-                ConnectionLosted?.Invoke(this,e);
+                ConnectionLosted?.Invoke(this, e);
             }
         }
         #endregion
@@ -383,26 +379,26 @@ namespace MinecraftLibrary
                 UnSubscribeEvents();
             }
         }
-        
+
 
         public void ClickBlock(Point3_Int pos)
         {
-            
+
         }
 
         public void UseItem()
         {
-            
+
         }
 
         public void UseItem(byte slot)
         {
-            
+
         }
 
         public void UseBlock(Point3_Int pos)
         {
-            
+
         }
 
         public void Dispose()

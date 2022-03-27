@@ -1,8 +1,6 @@
-﻿using MinecraftLibrary;
-using MinecraftLibrary.API;
+﻿using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking.Proxy;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
 {
@@ -30,7 +28,7 @@ namespace MinecraftBotManagerWPF
         public ushort ProxyPort { get; set; }
         [DataMember]
         public ProxyType ProxyType { get; set; }
-        
+
 
 
 

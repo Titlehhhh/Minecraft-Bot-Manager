@@ -2,8 +2,8 @@
 {
     public enum HAND : int
     {
-        MAINHAND=0,
-        OFFHAND=1
+        MAINHAND = 0,
+        OFFHAND = 1
     }
 
 }

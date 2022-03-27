@@ -10,7 +10,7 @@ namespace ProtocolLib754.Packets.Server
     [PacketInfo(0x34, 754, PacketCategory.Game, PacketSide.Server)]
     public class ServerPlayerPositionRotationPacket : IPacket
     {
-        public double  X { get; set; }
+        public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
 

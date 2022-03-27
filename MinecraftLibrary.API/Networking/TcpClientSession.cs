@@ -1,5 +1,4 @@
 ﻿using MinecraftLibrary.API.IO;
-using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using System.Net.Sockets;
@@ -44,41 +43,44 @@ namespace MinecraftLibrary.API.Networking
 
         public async Task Connect()
         {
-           await Task.Run(async ()=>{
-            tcpClient = new TcpClient(Host, Port);
-            NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
-            this.PacketReaderWriter = new PacketReaderWriter(NetStream);
+            await Task.Run(async () =>
+            {
+                tcpClient = new TcpClient(Host, Port);
+                NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
+                this.PacketReaderWriter = new PacketReaderWriter(NetStream);
 
-            Connected?.Invoke();
-            ReadLoop();
+                Connected?.Invoke();
+                ReadLoop();
             });
         }
         private void ReadLoop()
         {
-            Task.Run(async ()=>{
-            try
+            new Thread(async () =>
             {
-                while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
+                try
                 {
-                    (int id, MinecraftStream dataStream) = await PacketReaderWriter.ReadNextPacketAsync();
-                    Lazy<IPacket> packet = null;
-                    if (PacketFactory.TryGetInputPacket(id, out packet))
+                    while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
                     {
-                        packet.Value.Read(dataStream);
-                        PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                        (int id, MinecraftStream dataStream) = await PacketReaderWriter.ReadNextPacketAsync();
+                        Lazy<IPacket> packet = null;
+                        if (PacketFactory.TryGetInputPacket(id, out packet))
+                        {
+                            packet.Value.Read(dataStream);
+                            PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                        }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Disconnected?.Invoke(this, e);
-            }
-            finally
-            {
-                tcpClient.Close();
-                Dispose();
-            }
-            });
+                catch (Exception e)
+                {
+                    Disconnected?.Invoke(this, e);
+                }
+                finally
+                {
+                    Console.WriteLine("Close");
+                    tcpClient.Close();
+                    Dispose();
+                }
+            }).Start();
         }
 
 
@@ -89,14 +91,21 @@ namespace MinecraftLibrary.API.Networking
         }
         public async void SendPacket(IPacket packet, int id)
         {
+            try
+            {
 
-            ArgumentNullException.ThrowIfNull(packet, nameof(packet));
-            PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
-           await PacketReaderWriter.WritePacketAsync(packet, id);
-            PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
+                ArgumentNullException.ThrowIfNull(packet, nameof(packet));
+                PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
+                await PacketReaderWriter.WritePacketAsync(packet, id);
+                PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
 
-            Console.WriteLine("Пакет отправлен: "+packet.GetType().Name);
-
+                Console.WriteLine("Пакет отправлен: " + packet.GetType().Name);
+            }
+            catch (Exception e)
+            {
+                Disconnect();
+                this.Disconnected?.Invoke(this, e);
+            }
         }
 
 

@@ -1,6 +1,4 @@
-﻿using MinecraftLibrary.API.Types.Chat;
-
-namespace MinecraftLibrary.API.Protocol
+﻿namespace MinecraftLibrary.API.Protocol
 {
     public class RegisterPacketsEventArgs : EventArgs
     {
@@ -12,5 +10,5 @@ namespace MinecraftLibrary.API.Protocol
         }
     }
 
-    
+
 }

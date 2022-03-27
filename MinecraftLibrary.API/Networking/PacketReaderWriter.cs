@@ -29,7 +29,7 @@ namespace MinecraftLibrary.API.Networking
         public async Task<(int, MinecraftStream)> ReadNextPacketAsync()
         {
             int len = await NetStream.ReadVarIntAsync();
-           // Console.WriteLine("len " + len);
+            // Console.WriteLine("len " + len);
             byte[] receivedata = new byte[len];
             await NetStream.ReadAsync(receivedata.AsMemory(0, len));
 

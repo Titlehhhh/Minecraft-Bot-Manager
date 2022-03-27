@@ -1,6 +1,4 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
-using MinecraftLibrary;
-using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 using System;
@@ -24,7 +22,7 @@ namespace MinecraftBotManagerWPF
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
-          //  botInfo.Auth = new AuthInfo();
+            //  botInfo.Auth = new AuthInfo();
 
         }
         #region Свойства авторизации
