@@ -27,6 +27,18 @@ namespace MinecraftLibrary.API.IO
             return buffer[0];
         }
 
+        public Guid ReadGuid()
+        {
+            return GuidFromTwoLong(ReadLong(), ReadLong());
+        }
+        private static unsafe Guid GuidFromTwoLong(long x, long y)
+        {
+            long* ptr = stackalloc long[2];
+            ptr[0] = x;
+            ptr[1] = y;
+            return *(Guid*)ptr;
+        }
+
         public async Task<byte> ReadUnsignedByteAsync(CancellationToken cancellationToken = default)
         {
             var buffer = new byte[1];
@@ -204,10 +216,6 @@ namespace MinecraftLibrary.API.IO
             return buf;
         }
 
-        public Guid ReadGuid()
-        {
-            return Guid.Parse(ReadString());
-        }
         public int ReadVarInt()
         {
             int numRead = 0;

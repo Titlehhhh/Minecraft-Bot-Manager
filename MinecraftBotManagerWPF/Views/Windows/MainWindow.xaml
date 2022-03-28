@@ -143,8 +143,8 @@
                                             </Button.ToolTip>
                                         </Button>
                                     </Grid>
-                                    
-                                    
+
+
                                     <Button Command="{Binding RestartCommand}" ToolTipService.InitialShowDelay="0" ToolTipService.Placement="MousePoint" ToolTipService.VerticalOffset="3" ToolTipService.HorizontalOffset="3" HorizontalAlignment="Left">
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource SubHeaderButtonStyle}">
@@ -201,7 +201,7 @@
                                         <ControlTemplate TargetType="{x:Type TabControl}">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <StackPanel IsItemsHost="True">
@@ -267,7 +267,7 @@
                                 </Setter>
                             </Style>
                         </TabControl.Style>
-                        <TabItem Header="Свойства">
+                        <TabItem Header="Настройки">
                             <ScrollViewer Grid.IsSharedSizeScope="True">
                                 <StackPanel Margin="0,0,0,0">
                                     <TextBlock FontSize="18" FontWeight="SemiBold" Text="Основные" Margin="10,0,0,2"/>
@@ -406,6 +406,65 @@
                                 </StackPanel>
                             </ScrollViewer>
                         </TabItem>
+
+                        <TabItem Header="Игровые данные">
+                            <ScrollViewer>
+                                <StackPanel Margin="10,0" Grid.IsSharedSizeScope="True">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Opacity" Value="1"/>
+                                            <Setter Property="FontSize" Value="16"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Opacity" Value="0"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Property"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="UUID"/>
+                                        <TextBlock Margin="10,0" Grid.Column="1" Text="{Binding UUID}"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Property"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Health"/>
+                                        <TextBlock Margin="10,0" Grid.Column="1" Text="5"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Property"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Позиция"/>
+                                        <TextBlock Margin="10,0" Grid.Column="1" Text="{Binding Location}" />
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Property"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Чанк"/>
+                                        <TextBlock Margin="10,0" Grid.Column="1" Text="{Binding ChunkLocation}" />
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Property"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Блок чанка"/>
+                                        <TextBlock Margin="10,0" Grid.Column="1" Text="{Binding ChunkBlockLocation}" />
+                                    </Grid>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </TabItem>
+
                         <TabItem IsSelected="{Binding IsSelectedChat}">
                             <TabItem.Header>
                                 <DockPanel LastChildFill="False">

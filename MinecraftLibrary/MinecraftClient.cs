@@ -7,12 +7,14 @@ using MinecraftLibrary.Protocol;
 using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
 {
 
 
-    public class MinecraftClient : IDisposable
+    public class MinecraftClient : IDisposable, INotifyPropertyChanged
     {
         public bool IsConnected => Session != null && Session.IsConnected;
 
@@ -63,11 +65,34 @@ namespace MinecraftLibrary
             }
         }
 
-        public string UUID { get; private set; }
+        public Guid UUID
+        {
+            get => uUID;
+            private set
+            {
+                uUID = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public Point3 Location { get; private set; }
+        public Point3 Location
+        {
+            get => location;
+            private set
+            {
+                location = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public Rotation Rotation { get; private set; }
+        public Rotation Rotation
+        {
+            get => rotation; private set
+            {
+                rotation = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool IsGround { get; private set; }
 
@@ -84,6 +109,7 @@ namespace MinecraftLibrary
         public event MessageReceivedHandler? MessageReceived;
 
         public event PacketReceivedHandler? PacketReceived;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
 
@@ -101,7 +127,7 @@ namespace MinecraftLibrary
 
 
         #region Общие методы        
-        public async Task Start()
+        public async Task StartAsync()
         {
 
             if (this.IsConnected)
@@ -151,6 +177,10 @@ namespace MinecraftLibrary
 
         }
         private bool EventsSub = false;
+        private Guid uUID;
+        private Point3 location;
+        private Rotation rotation;
+
         private void SubscribeEvents()
         {
             if (!EventsSub)
@@ -399,6 +429,11 @@ namespace MinecraftLibrary
         public void UseBlock(Point3_Int pos)
         {
 
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public void Dispose()

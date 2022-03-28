@@ -4,11 +4,16 @@ using MinecraftLibrary.Geometry;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using MinecraftLibrary;
 
 namespace MinecraftBotManagerWPF
 {
     public class BotViewModel : ViewModelBase
     {
+
+
+
+        internal MinecraftClient Client { get; set; }
 
         public BotInfo BotInfoModel => botInfo;
 
@@ -23,6 +28,8 @@ namespace MinecraftBotManagerWPF
             this.botInfo = botInfo;
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
+
+            this.StartCommand = new StartBotCommand(this,null);
 
         }
         #region Свойства авторизации
@@ -69,69 +76,60 @@ namespace MinecraftBotManagerWPF
         public State BotState
         {
             get { return state; }
-            private set
+            internal set
             {
 
                 state = value;
                 OnPropertyChanged();
             }
         }
-
-        private Guid uuid;
-
-        public Guid UUID
+       
+        public Guid? UUID
         {
-            get { return uuid; }
-            private set
+            get
             {
-                uuid = value;
-                OnPropertyChanged();
+                return Client?.UUID;
             }
+            
         }
-        private Point3 location;
+       
+        
 
-        public Point3 Location
+        public Point3? Location
         {
-            get { return location; }
-            private set
+            get
             {
-                location = value;
-                OnPropertyChanged();
+                return Client?.Location;
             }
         }
 
-        private Point3_Int chunkloc;
+        
 
-        public Point3_Int ChunkLocation
+        public Point3_Int? ChunkLocation
         {
-            get { return chunkloc; }
-            private set
+            get
             {
-                chunkloc = value;
-                OnPropertyChanged();
+                return this.Location?.ChunkPos;
             }
+            
         }
-        private Point3_Int chblockloc;
+       
 
-        public Point3_Int ChunkBlockLOcation
+        public Point3_Int? ChunkBlockLocation
         {
-            get { return chblockloc; }
-            private set
+            get
             {
-                chblockloc = value;
-                OnPropertyChanged();
+                return this.Location?.ChunkBlockPos;
             }
         }
 
-        private Rotation rotation;
+       
 
-        public Rotation Rotation
+        public Rotation? Rotation
         {
-            get { return rotation; }
-            private set
+            get
             {
-                rotation = value;
-                OnPropertyChanged();
+                return this.Client?.Rotation;
             }
         }
 
@@ -147,11 +145,11 @@ namespace MinecraftBotManagerWPF
 
         #region Команды
 
-        public ICommand StartBotCommand { get; private set; }
+        public ICommand StartCommand { get; private set; }
 
-        public ICommand StopBotCommand { get; private set; }
+        public ICommand StopCommand { get; private set; }
 
-        public ICommand RestartBotCommand { get; private set; }
+        public ICommand RestartCommand { get; private set; }
 
 
 
@@ -177,7 +175,12 @@ namespace MinecraftBotManagerWPF
             VersionStatus.IsEnabled = false;
         }
 
+        public void RefreshPropertis()
+        {
+            this.OnPropertyChanged(string.Empty);
+        }
 
+       
 
         public override void Dispose()
         {

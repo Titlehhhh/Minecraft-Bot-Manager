@@ -15,7 +15,7 @@ namespace ConsoleApp1
 
             for (int i = 0; i <= 2; i++)
             {
-                CreateClient(("NET_BOT_0" + i)).Start();
+                CreateClient(("NET_BOT_0" + i)).StartAsync();
                 //Thread.Sleep(10000);
             }
 

@@ -2,7 +2,7 @@
 
 namespace MinecraftBotManagerWPF
 {
-    internal interface IServerResolver
+    public interface IServerResolver
     {
         Task<bool> ResolveAsync(ref string host, ref ushort port);
     }

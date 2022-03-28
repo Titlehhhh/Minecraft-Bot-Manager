@@ -6,9 +6,6 @@ namespace MinecraftBotManagerWPF
 {
     internal class EmptyStringConverter : IValueConverter
     {
-
-
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return string.IsNullOrEmpty((string)value) ? parameter : value;
