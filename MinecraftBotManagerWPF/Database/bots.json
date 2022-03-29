@@ -1,1 +1,26 @@
-[ ]
+[
+   {
+      "AccType": 0,
+      "AutoFindProxyEnabled": false,
+      "Host": "127.0.0.1:58929",
+      "IsAuth": false,
+      "Nickname": "asds",
+      "Password": null,
+      "ProxyEnabled": false,
+      "ProxyHost": null,
+      "ProxyPort": 0,
+      "ProxyType": 0
+   },
+   {
+      "AccType": 0,
+      "AutoFindProxyEnabled": false,
+      "Host": null,
+      "IsAuth": false,
+      "Nickname": null,
+      "Password": null,
+      "ProxyEnabled": false,
+      "ProxyHost": null,
+      "ProxyPort": 0,
+      "ProxyType": 0
+   }
+]

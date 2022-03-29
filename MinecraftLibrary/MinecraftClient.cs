@@ -240,7 +240,7 @@ namespace MinecraftLibrary
             {
                 var disconnect = e.Packet as LoginDisconnectPacket;
 
-                Close();
+                Disconnect();
 
                 this.LoginRejected?.Invoke(this, disconnect.Message);
 
@@ -277,7 +277,7 @@ namespace MinecraftLibrary
             else if (e.Packet is ServerDisconnectPacket)
             {
                 var disconnect = e.Packet as ServerDisconnectPacket;
-                Close();
+                Disconnect();
                 this.GameRejected?.Invoke(this, disconnect.Message);
             }
             else if (e.Packet is ServerKeepAlivePacket)
@@ -300,7 +300,7 @@ namespace MinecraftLibrary
         private void Session_Disconnected(object? sender, Exception e)
         {
             //UnRegisterEvents();
-            Close();
+            Disconnect();
             ConnectionLosted?.Invoke(this, e);
         }
 
@@ -315,7 +315,7 @@ namespace MinecraftLibrary
             }
             catch (Exception e)
             {
-                Close();
+                Disconnect();
                 ConnectionLosted?.Invoke(this, e);
             }
         }
@@ -401,7 +401,7 @@ namespace MinecraftLibrary
 
 
 
-        public void Close()
+        public void Disconnect()
         {
             if (Session != null)
             {

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace MinecraftBotManagerWPF
 {
-    public class CheckStatus : INotifyPropertyChanged
+    public class CheckStatusVM : INotifyPropertyChanged
     {
         private StatusCheck status;
 

@@ -46,6 +46,8 @@ namespace MinecraftLibrary.API.Networking
             await Task.Run(async () =>
             {
                 tcpClient = new TcpClient(Host, Port);
+                tcpClient.ReceiveBufferSize = 1024 * 1024;
+                tcpClient.ReceiveTimeout = 30000;
                 NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
                 this.PacketReaderWriter = new PacketReaderWriter(NetStream);
 

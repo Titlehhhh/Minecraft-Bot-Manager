@@ -10,9 +10,6 @@ namespace MinecraftBotManagerWPF
 {
     public class BotViewModel : ViewModelBase
     {
-
-
-
         internal MinecraftClient Client { get; set; }
 
         public BotInfo BotInfoModel => botInfo;
@@ -29,8 +26,11 @@ namespace MinecraftBotManagerWPF
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
 
-            this.StartCommand = new StartBotCommand(this,null);
+            MinecraftClientInizializer inizializer = new MinecraftClientInizializer(this);
 
+            this.StartCommand = new StartBotCommand(inizializer);
+            this.StopCommand = new StopBotCommand(inizializer);
+            this.RestartCommand = new RestartBotCommand(inizializer);
         }
         #region Свойства авторизации
         private bool authenabled;
@@ -83,17 +83,17 @@ namespace MinecraftBotManagerWPF
                 OnPropertyChanged();
             }
         }
-       
+
         public Guid? UUID
         {
             get
             {
                 return Client?.UUID;
             }
-            
+
         }
-       
-        
+
+
 
         public Point3? Location
         {
@@ -103,7 +103,7 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-        
+
 
         public Point3_Int? ChunkLocation
         {
@@ -111,9 +111,9 @@ namespace MinecraftBotManagerWPF
             {
                 return this.Location?.ChunkPos;
             }
-            
+
         }
-       
+
 
         public Point3_Int? ChunkBlockLocation
         {
@@ -123,7 +123,7 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-       
+
 
         public Rotation? Rotation
         {
@@ -137,10 +137,10 @@ namespace MinecraftBotManagerWPF
 
 
         #region Errors        
-        public CheckStatus AuthStatus { get; set; } = new();
-        public CheckStatus IPStatus { get; set; } = new();
-        public CheckStatus ProxyStatus { get; set; } = new();
-        public CheckStatus VersionStatus { get; set; } = new();
+        public CheckStatusVM AuthStatus { get; set; } = new();
+        public CheckStatusVM IPStatus { get; set; } = new();
+        public CheckStatusVM ProxyStatus { get; set; } = new();
+        public CheckStatusVM VersionStatus { get; set; } = new();
         #endregion
 
         #region Команды
@@ -180,7 +180,7 @@ namespace MinecraftBotManagerWPF
             this.OnPropertyChanged(string.Empty);
         }
 
-       
+
 
         public override void Dispose()
         {

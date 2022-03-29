@@ -18,7 +18,7 @@ namespace ProtocolLib754.Packets.Server
             Username = stream.ReadString();
         }
 
-        
+
 
         public void Write(IMinecraftStreamWriter stream)
         {
