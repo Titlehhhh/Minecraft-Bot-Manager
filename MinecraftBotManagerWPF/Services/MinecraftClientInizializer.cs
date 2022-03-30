@@ -73,10 +73,13 @@ namespace MinecraftBotManagerWPF
             
             client.ConnectionLosted += (s, e) =>
             {
+                System.Windows.MessageBox.Show("Lost: \n"+e.ToString());
+
                 BotViewModel.BotState = State.None;
             };
             client.GameRejected += (s, e) =>
             {
+                System.Windows.MessageBox.Show("Kick: \n" + e.ToString());
                 BotViewModel.BotState = State.None;
             };
             client.PropertyChanged += (s, e) =>

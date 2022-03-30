@@ -28,59 +28,72 @@ namespace MinecraftLibrary.API.Networking
 
         public async Task<(int, MinecraftStream)> ReadNextPacketAsync(CancellationToken token)
         {
-            token.ThrowIfCancellationRequested();
-            int len = await NetStream.ReadVarIntAsync(token);
-            token.ThrowIfCancellationRequested();
-            // Console.WriteLine("len " + len);
-            byte[] receivedata = new byte[len];
-            await NetStream.ReadAsync(receivedata.AsMemory(0, len),token);
-
-
-            var mcs = new MinecraftStream(receivedata);
-            if (CompressionThreshold > 0)
+            try
             {
+                token.ThrowIfCancellationRequested();
+                int len = await NetStream.ReadVarIntAsync(token);
+                token.ThrowIfCancellationRequested();
+                // Console.WriteLine("len " + len);
+                byte[] receivedata = new byte[len];
+                await NetStream.ReadAsync(receivedata.AsMemory(0, len), token);
 
-                int sizeUncompressed = mcs.ReadVarInt();
-                if (sizeUncompressed != 0)
+
+                var mcs = new MinecraftStream(receivedata);
+                if (CompressionThreshold > 0)
                 {
-                    ZlibStream zlibStream = new ZlibStream(mcs.BaseStream, CompressionMode.Decompress);
-                    byte[] uncompressdata = new byte[sizeUncompressed];
-                    zlibStream.Read(uncompressdata);
-                    zlibStream.Close();
-                    mcs.BaseStream = new MemoryStream(uncompressdata);
-                }
 
+                    int sizeUncompressed = mcs.ReadVarInt();
+                    if (sizeUncompressed != 0)
+                    {
+                        ZlibStream zlibStream = new ZlibStream(mcs.BaseStream, CompressionMode.Decompress);
+                        byte[] uncompressdata = new byte[sizeUncompressed];
+                        zlibStream.Read(uncompressdata);
+                        zlibStream.Close();
+                        mcs.BaseStream = new MemoryStream(uncompressdata);
+                    }
+
+                }
+                int id = mcs.ReadVarInt();
+                return (id, mcs);
+            } catch
+            {
+                throw;
             }
-            int id = mcs.ReadVarInt();
-            return (id, mcs);
         }
 
 
         public async Task WritePacketAsync(IPacket packet, int id, CancellationToken token = default)
         {
-            ArgumentNullException.ThrowIfNull(packet, nameof(packet));
-            if (CompressionThreshold > 0)
+            try
             {
-                using (MinecraftStream packetStream = new MinecraftStream())
+                ArgumentNullException.ThrowIfNull(packet, nameof(packet));
+                if (CompressionThreshold > 0)
                 {
-                    packetStream.WriteVarInt(id);
-                    packet.Write(packetStream);
-
-                    int to_Packetlength = (int)packetStream.Length;
-
-                    if (to_Packetlength >= CompressionThreshold)
+                    using (MinecraftStream packetStream = new MinecraftStream())
                     {
-                        await SendLongPacketAsync(packetStream, to_Packetlength,token);
-                    }
-                    else
-                    {
-                        await SendShortPacketAsync(packetStream, token);
+                        packetStream.WriteVarInt(id);
+                        packet.Write(packetStream);
+
+                        int to_Packetlength = (int)packetStream.Length;
+
+                        if (to_Packetlength >= CompressionThreshold)
+                        {
+                            await SendLongPacketAsync(packetStream, to_Packetlength, token);
+                        }
+                        else
+                        {
+                            await SendShortPacketAsync(packetStream, token);
+                        }
                     }
                 }
+                else
+                {
+                    await SendPacketWithoutCompressionAsync(packet, id, token);
+                }
             }
-            else
+            catch
             {
-                await SendPacketWithoutCompressionAsync(packet, id, token);
+                throw;
             }
         }
         private async Task SendPacketWithoutCompressionAsync(IPacket packet, int id,CancellationToken token)

@@ -39,43 +39,58 @@ namespace MinecraftLibrary.API.Networking
 
         public async Task<int> ReadVarIntAsync(CancellationToken token = default)
         {
-            int numRead = 0;
-            int result = 0;
-            byte read;
-            do
+            try
             {
-                
-                read = await this.ReadUnsignedByteAsync(token);
 
-                int value = read & 0b01111111;
-                result |= value << (7 * numRead);
 
-                numRead++;
-                if (numRead > 5)
+                int numRead = 0;
+                int result = 0;
+                byte read;
+                do
                 {
-                    throw new InvalidOperationException("VarInt is too big");
-                }
-            } while ((read & 0b10000000) != 0);
 
-            return result;
+                    read = await this.ReadUnsignedByteAsync(token);
 
+                    int value = read & 0b01111111;
+                    result |= value << (7 * numRead);
+
+                    numRead++;
+                    if (numRead > 5)
+                    {
+                        throw new InvalidOperationException("VarInt is too big");
+                    }
+                } while ((read & 0b10000000) != 0);
+
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public async Task WriteVarIntAsync(int value,CancellationToken token)
+        public async Task WriteVarIntAsync(int value, CancellationToken token)
         {
-            var unsigned = (uint)value;
-            do
+            try
             {
-                var temp = (byte)(unsigned & 127);
+                var unsigned = (uint)value;
+                do
+                {
+                    var temp = (byte)(unsigned & 127);
 
-                unsigned >>= 7;
+                    unsigned >>= 7;
 
-                if (unsigned != 0)
-                    temp |= 128;
+                    if (unsigned != 0)
+                        temp |= 128;
 
-                await WriteUnsignedByteAsync(temp,token);
+                    await WriteUnsignedByteAsync(temp, token);
+                }
+                while (unsigned != 0);
             }
-            while (unsigned != 0);
+            catch
+            {
+                throw;
+            }
         }
 
 
@@ -83,15 +98,29 @@ namespace MinecraftLibrary.API.Networking
         #region Приватные
         private async Task<byte> ReadUnsignedByteAsync(CancellationToken token = default)
         {
-            token.ThrowIfCancellationRequested();
-            var buffer = new byte[1];
-            await this.ReadAsync(buffer,token);
-            return buffer[0];
+            try
+            {
+                token.ThrowIfCancellationRequested();
+                var buffer = new byte[1];
+                await this.ReadAsync(buffer, token);
+                return buffer[0];
+            }
+            catch
+            {
+                throw;
+            }
         }
-        private async Task WriteUnsignedByteAsync(byte value,CancellationToken token)
+        private async Task WriteUnsignedByteAsync(byte value, CancellationToken token)
         {
-            token.ThrowIfCancellationRequested();
-            await WriteAsync(new[] { value },token);
+            try
+            {
+                token.ThrowIfCancellationRequested();
+                await WriteAsync(new[] { value }, token);
+            }
+            catch
+            {
+                throw;
+            }
         }
         private IBufferedCipher EncryptCipher { get; set; }
         private IBufferedCipher DecryptCipher { get; set; }
@@ -124,7 +153,18 @@ namespace MinecraftLibrary.API.Networking
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            return BaseStream.Read(buffer, offset, count);
+            try
+            {
+                return BaseStream.Read(buffer, offset, count);
+            }
+            catch(IOException e)
+            {
+                throw;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public override long Seek(long offset, SeekOrigin origin)
@@ -141,10 +181,10 @@ namespace MinecraftLibrary.API.Networking
         {
             BaseStream.Write(buffer, offset, count);
         }
-        public void Dispose()
+        public new void Dispose()
         {
             NetStream.Dispose();
-            NetStream = null;
+
 
         }
     }

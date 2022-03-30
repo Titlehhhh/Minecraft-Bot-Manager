@@ -19,6 +19,10 @@ namespace MinecraftLibrary
 
     public class MinecraftClient754 : IDisposable, INotifyPropertyChanged
     {
+        public static void Debug(string msg)
+        {
+            
+        }
         private TcpClient tcpClient;
         private NetworkMinecraftStream NetMcStream;
         private PacketReaderWriter packetReaderWriter;
@@ -164,17 +168,20 @@ namespace MinecraftLibrary
 
                 login = await HandleLoginPackets(packet);
 
-            } while (login);
+            } while (!login);
 
             SubProtocol = ProtocolState.Game;
-
+            Debug("Game");
             ReadTask = ReadLoop();
 
         }
+        private bool Stoping = false;
+
         public async Task StopAsync()
         {
-            tcpClient.Close();
+            Stoping = true;
             Cancellation.Cancel();
+            tcpClient.Close();
             await ReadTask;
         }
 
@@ -182,8 +189,9 @@ namespace MinecraftLibrary
         {
             try
             {
-                while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
+                while (tcpClient.Connected)
                 {
+                    Cancellation.Token.ThrowIfCancellationRequested();
                     (int id, MinecraftStream stream) = await this.packetReaderWriter.ReadNextPacketAsync(Cancellation.Token);
                     Lazy<IPacket> packetLazy = null;
                     if (PacketFactory.TryGetInputPacket(id, out packetLazy))
@@ -193,16 +201,26 @@ namespace MinecraftLibrary
                         await HandlePacket(packetLazy.Value);
 
                     }
+                    else
+                    {
+                        Debug("Левый пакет: "+id);
+                    }
 
                 }
             }
+            catch(IOException e)
+            {
+                if (!Stoping)
+                    this.ConnectionLosted?.Invoke(this, e);
+            }
             catch (Exception e)
             {
-
+                if (!Stoping)
+                    this.ConnectionLosted?.Invoke(this, e);
             }
             finally
             {
-
+                tcpClient.Close();
             }
         }
 
@@ -222,13 +240,17 @@ namespace MinecraftLibrary
             if (packet is LoginDisconnectPacket)
             {
                 var disconnect = packet as LoginDisconnectPacket;
-
+                Stoping = true;
+                tcpClient.Close();
+                Cancellation.Cancel();
                 throw new LoginRejectException(disconnect.Message);
             }
             else if (packet is LoginSetCompressionPacket)
             {
                 var compress = packet as LoginSetCompressionPacket;
                 //Session.CompressionThreshold = compress.Threshold;
+
+                this.packetReaderWriter.CompressionThreshold = compress.Threshold;
                 return false;
             }
             else if (packet is EncryptionRequestPacket)
@@ -240,7 +262,7 @@ namespace MinecraftLibrary
 
                 await SendPacketAsync(new EncryptionResponsePacket(RSAService.Encrypt(secretKey, false), RSAService.Encrypt(request.VerifyToken, false)));
 
-                //Session.SwitchEncryption(secretKey);
+                NetMcStream.SwitchEncryption(secretKey);
                 return false;
             }
             else if (packet is LoginSuccessPacket)
@@ -267,18 +289,22 @@ namespace MinecraftLibrary
             }
             catch (Exception e)
             {
-                OnDisconnect(e);
+                tcpClient.Close();
+
+                this.ConnectionLosted?.Invoke(this, e);
             }
         }
 
-        private void OnDisconnect(DisconnectType type, string message)
+        private void OnGameDisconnect(string message)
         {
+            Stoping = true;
+            Cancellation.Cancel();
+            tcpClient.Close();
+            this.GameRejected?.Invoke(this, message);
+
 
         }
-        private void OnDisconnect(Exception e)
-        {
 
-        }
 
         private void CheckProperties()
         {
@@ -315,6 +341,8 @@ namespace MinecraftLibrary
 
         private async Task HandlePacket(IPacket packet)
         {
+            Debug("Пришел пакет: " + packet.GetType().Name);
+
             this.PacketReceived?.Invoke(this, packet);
             //Console.WriteLine(packet.GetType().Name);
 
@@ -327,8 +355,7 @@ namespace MinecraftLibrary
             else if (packet is ServerDisconnectPacket)
             {
                 var disconnect = packet as ServerDisconnectPacket;
-                StopAsync();
-                this.GameRejected?.Invoke(this, disconnect.Message);
+                OnGameDisconnect(disconnect.Message);
             }
             else if (packet is ServerKeepAlivePacket)
             {
@@ -347,7 +374,7 @@ namespace MinecraftLibrary
             }
         }
 
-        
+
 
         #endregion
 
