@@ -1,7 +1,9 @@
 ﻿using MinecraftLibrary.API;
 using MinecraftLibrary.API.Crypto;
+using MinecraftLibrary.API.IO;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Protocol;
+using MinecraftLibrary.Exceptions;
 using MinecraftLibrary.Geometry;
 using MinecraftLibrary.Protocol;
 using ProtocolLib754;
@@ -17,14 +19,13 @@ namespace MinecraftLibrary
 
     public class MinecraftClient754 : IDisposable, INotifyPropertyChanged
     {
-        private readonly TcpClient tcpClient;
-        private readonly NetworkMinecraftStream NetMcStream;
-        private readonly PacketReaderWriter packetReaderWriter;
-        public MinecraftClient754(TcpClient tcpClient)
+        private TcpClient tcpClient;
+        private NetworkMinecraftStream NetMcStream;
+        private PacketReaderWriter packetReaderWriter;
+        public MinecraftClient754()
         {
-            this.tcpClient = tcpClient;
-            this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
-            this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
+
+
         }
 
 
@@ -137,10 +138,17 @@ namespace MinecraftLibrary
 
         private readonly CancellationTokenSource Cancellation = new();
 
+        private Task ReadTask;
 
         #region Общие методы        
         public async Task LoginAsync()
         {
+            PacketManager = new PacketManager();
+
+            this.tcpClient = new TcpClient(Host, Port);
+            this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
+            this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
+
             SubProtocol = ProtocolState.HandShake;
 
             await SendPacketAsync(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
@@ -149,19 +157,103 @@ namespace MinecraftLibrary
 
             await SendPacketAsync(new LoginStartPacket(Nickname));
 
+            bool login;
+            do
+            {
+                IPacket packet = await ReadPacketLoginAsync();
 
+                login = await HandleLoginPackets(packet);
+
+            } while (login);
+
+            SubProtocol = ProtocolState.Game;
+
+            ReadTask = ReadLoop();
 
         }
         public async Task StopAsync()
         {
-
-
+            tcpClient.Close();
+            Cancellation.Cancel();
+            await ReadTask;
         }
 
-        private async Task<IPacket> ReadPacketAsync()
+        private async Task ReadLoop()
         {
+            try
+            {
+                while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
+                {
+                    (int id, MinecraftStream stream) = await this.packetReaderWriter.ReadNextPacketAsync(Cancellation.Token);
+                    Lazy<IPacket> packetLazy = null;
+                    if (PacketFactory.TryGetInputPacket(id, out packetLazy))
+                    {
+                        packetLazy.Value.Read(stream);
+
+                        await HandlePacket(packetLazy.Value);
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
+
+        private async Task<IPacket> ReadPacketLoginAsync()
+        {
+            (int id, MinecraftStream stream) = await this.packetReaderWriter.ReadNextPacketAsync(Cancellation.Token);
+            Lazy<IPacket> packet = null;
+            PacketFactory.TryGetInputPacket(id, out packet);
+            packet.Value.Read(stream);
+            return packet.Value;
 
         }
+
+        private async Task<bool> HandleLoginPackets(IPacket packet)
+        {
+            if (packet is LoginDisconnectPacket)
+            {
+                var disconnect = packet as LoginDisconnectPacket;
+
+                throw new LoginRejectException(disconnect.Message);
+            }
+            else if (packet is LoginSetCompressionPacket)
+            {
+                var compress = packet as LoginSetCompressionPacket;
+                //Session.CompressionThreshold = compress.Threshold;
+                return false;
+            }
+            else if (packet is EncryptionRequestPacket)
+            {
+                //TODO
+                var request = packet as EncryptionRequestPacket;
+                var RSAService = CryptoHandler.DecodeRSAPublicKey(request.PublicKey);
+                byte[] secretKey = CryptoHandler.GenerateAESPrivateKey();
+
+                await SendPacketAsync(new EncryptionResponsePacket(RSAService.Encrypt(secretKey, false), RSAService.Encrypt(request.VerifyToken, false)));
+
+                //Session.SwitchEncryption(secretKey);
+                return false;
+            }
+            else if (packet is LoginSuccessPacket)
+            {
+                var succes = packet as LoginSuccessPacket;
+                SubProtocol = ProtocolState.Game;
+                UUID = succes.UUID;
+                return true;
+            }
+            throw new NotImplementedException("Invalid Packet: " + packet.GetType().Name);
+        }
+
+
 
         private async Task SendPacketAsync(IPacket packet)
         {
@@ -221,43 +313,13 @@ namespace MinecraftLibrary
         #region Работа с пакетами
 
 
-        private async void HandlePacket(IPacket packet)
+        private async Task HandlePacket(IPacket packet)
         {
             this.PacketReceived?.Invoke(this, packet);
             //Console.WriteLine(packet.GetType().Name);
 
-            if (packet is LoginDisconnectPacket)
-            {
-                var disconnect = packet as LoginDisconnectPacket;
 
-                StopAsync();
-
-            }
-            else if (packet is LoginSetCompressionPacket)
-            {
-                var compress = packet as LoginSetCompressionPacket;
-                //Session.CompressionThreshold = compress.Threshold;
-
-            }
-            else if (packet is EncryptionRequestPacket)
-            {
-                //TODO
-                var request = packet as EncryptionRequestPacket;
-                var RSAService = CryptoHandler.DecodeRSAPublicKey(request.PublicKey);
-                byte[] secretKey = CryptoHandler.GenerateAESPrivateKey();
-
-                await SendPacket(new EncryptionResponsePacket(RSAService.Encrypt(secretKey, false), RSAService.Encrypt(request.VerifyToken, false)));
-
-                //Session.SwitchEncryption(secretKey);
-            }
-            else if (packet is LoginSuccessPacket)
-            {
-                var succes = packet as LoginSuccessPacket;
-                SubProtocol = ProtocolState.Game;
-                UUID = succes.UUID;
-                this.LoginSuccesed?.Invoke(this, UUID);
-            }
-            else if (packet is ServerJoinGamePacket)
+            if (packet is ServerJoinGamePacket)
             {
                 var join = packet as ServerJoinGamePacket;
                 this.GameJoined?.Invoke(this);
@@ -271,7 +333,7 @@ namespace MinecraftLibrary
             else if (packet is ServerKeepAlivePacket)
             {
                 var keepalive = packet as ServerKeepAlivePacket;
-                await SendPacket(new ClientKeepAlivePacket(keepalive.PingID));
+                await SendPacketAsync(new ClientKeepAlivePacket(keepalive.PingID));
             }
             else if (packet is ServerRespawnPacket)
             {
@@ -285,12 +347,7 @@ namespace MinecraftLibrary
             }
         }
 
-        private void Session_Disconnected(object? sender, Exception e)
-        {
-            //UnRegisterEvents();
-            StopAsync();
-            ConnectionLosted?.Invoke(this, e);
-        }
+        
 
         #endregion
 
@@ -404,14 +461,8 @@ namespace MinecraftLibrary
 
         public void Dispose()
         {
-            if (Session != null)
-            {
-                UnSubscribeEvents();
-                Session.Dispose();
-                Session = null;
-            }
-
             GC.SuppressFinalize(this);
+            tcpClient?.Dispose();
         }
     }
 }

@@ -23,50 +23,6 @@ namespace ConsoleApp1
 
 
         }
-        private static MinecraftClient754 CreateClient(string nick)
-        {
-            MinecraftClient754 client = new MinecraftClient754()
-            {
-                Nickname = nick,
-                IsAuth = false,
-                Host = "192.168.1.194",
-                Port = 54155
-            };
-            client.LoginSuccesed += (s, e) =>
-            {
-                Console.WriteLine("Login Succes: " + e);
-            };
-            client.LoginRejected += (s, e) =>
-            {
-                Console.WriteLine("Login failed: " + JsonToStr(ChatMessage.Parse(e)));
-
-            };
-            client.GameRejected += (s, e) =>
-            {
-                Console.WriteLine("Вы были кикнуты: " + ChatMessage.Parse(e).Text);
-            };
-            client.ConnectionLosted += (s, e) =>
-            {
-                Console.WriteLine("Подключение прервано: " + e.StackTrace);
-            };
-            client.MessageReceived += (s, e) =>
-            {
-                Console.WriteLine("Chat: " + ChatMessage.Parse(e).Text);
-            };
-            client.Connected += (s) =>
-            {
-                Console.WriteLine("Connected");
-            };
-            client.GameJoined += (s) =>
-            {
-                Console.WriteLine("Game Join!");
-            };
-            client.PacketReceived += (s, p) =>
-            {
-                //Console.WriteLine("Пришел пакет: "+p.GetType().Name);
-            };
-            return client;
-        }
 
         private static string JsonToStr(ChatMessage message)
         {

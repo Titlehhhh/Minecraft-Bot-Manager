@@ -19,22 +19,17 @@ namespace MinecraftBotManagerWPF
         {
             try
             {
-
-                if (_botViewModel.Client == null)
-                    return ;
-                if (_botViewModel.BotState == State.None)
-                    return ;
                 await _botViewModel.Client.StopAsync();
                 _botViewModel.Client.Dispose();
-                //_botViewModel.Client.Dispose();
-                //_botViewModel.Client = null;
-
-                _botViewModel.BotState = State.None;
 
             }
             catch (Exception e)
             {
                 System.Windows.MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                _botViewModel.BotState = State.None;
             }
 
 

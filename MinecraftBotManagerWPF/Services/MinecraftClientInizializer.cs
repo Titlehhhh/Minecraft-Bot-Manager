@@ -20,7 +20,7 @@ namespace MinecraftBotManagerWPF
 
         public MinecraftClient754 CreateBot()
         {
-            BotViewModel.ReturnToOrgignalStateStatuses();
+            
 
             if (botInfo.IsAuth)
             {
@@ -43,8 +43,7 @@ namespace MinecraftBotManagerWPF
             {
 
             }
-            BotViewModel.BotState = State.Initialized;
-            BotViewModel.RefreshPropertis();
+            
 
             ushort port = 25565;
             var host = botInfo.Host;
@@ -71,19 +70,12 @@ namespace MinecraftBotManagerWPF
                 Port = port
             };
 
-            client.LoginSuccesed += (s, e) =>
-            {
-                BotViewModel.BotState = State.Running;
-            };
+            
             client.ConnectionLosted += (s, e) =>
             {
                 BotViewModel.BotState = State.None;
             };
             client.GameRejected += (s, e) =>
-            {
-                BotViewModel.BotState = State.None;
-            };
-            client.LoginRejected += (s, e) =>
             {
                 BotViewModel.BotState = State.None;
             };

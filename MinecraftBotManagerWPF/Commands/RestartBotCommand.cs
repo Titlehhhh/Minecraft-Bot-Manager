@@ -24,13 +24,7 @@ namespace MinecraftBotManagerWPF
                 if (_botViewModel.BotState != State.Running)
                     return;
 
-                _botViewModel.BotState = State.None;
-                await _botViewModel.Client.StopAsync();
-                //_botViewModel.Client.Dispose();
-
-                MinecraftClient754 client = this.inizializer.CreateBot();
-
-                await client.StartAsync();
+                
 
 
             }
