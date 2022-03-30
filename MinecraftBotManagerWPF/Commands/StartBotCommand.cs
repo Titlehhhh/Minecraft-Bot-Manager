@@ -1,6 +1,7 @@
 ﻿using MinecraftLibrary;
 using System;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace MinecraftBotManagerWPF
 {
@@ -19,13 +20,15 @@ namespace MinecraftBotManagerWPF
 
         public async override Task ExecuteAsync(object parameter)
         {
-            MinecraftClient client = this.inizializer.CreateBot();
+            
+            MinecraftClient754 client = this.inizializer.CreateBot();
             try
             {
                 await client.StartAsync();
             }
             catch (Exception e)
             {
+                System.Windows.MessageBox.Show(e.ToString());
                 _botViewModel.BotState = State.None;
             }
 

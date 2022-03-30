@@ -37,14 +37,15 @@ namespace MinecraftLibrary.API.Networking
             this.BaseStream = NetStream;
         }
 
-        public async Task<int> ReadVarIntAsync()
+        public async Task<int> ReadVarIntAsync(CancellationToken token = default)
         {
             int numRead = 0;
             int result = 0;
             byte read;
             do
             {
-                read = await this.ReadUnsignedByteAsync();
+                
+                read = await this.ReadUnsignedByteAsync(token);
 
                 int value = read & 0b01111111;
                 result |= value << (7 * numRead);
@@ -60,7 +61,7 @@ namespace MinecraftLibrary.API.Networking
 
         }
 
-        public async Task WriteVarIntAsync(int value)
+        public async Task WriteVarIntAsync(int value,CancellationToken token)
         {
             var unsigned = (uint)value;
             do
@@ -72,7 +73,7 @@ namespace MinecraftLibrary.API.Networking
                 if (unsigned != 0)
                     temp |= 128;
 
-                await WriteUnsignedByteAsync(temp);
+                await WriteUnsignedByteAsync(temp,token);
             }
             while (unsigned != 0);
         }
@@ -80,15 +81,17 @@ namespace MinecraftLibrary.API.Networking
 
 
         #region Приватные
-        private async Task<byte> ReadUnsignedByteAsync()
+        private async Task<byte> ReadUnsignedByteAsync(CancellationToken token = default)
         {
+            token.ThrowIfCancellationRequested();
             var buffer = new byte[1];
-            await this.ReadAsync(buffer);
+            await this.ReadAsync(buffer,token);
             return buffer[0];
         }
-        private async Task WriteUnsignedByteAsync(byte value)
+        private async Task WriteUnsignedByteAsync(byte value,CancellationToken token)
         {
-            await WriteAsync(new[] { value });
+            token.ThrowIfCancellationRequested();
+            await WriteAsync(new[] { value },token);
         }
         private IBufferedCipher EncryptCipher { get; set; }
         private IBufferedCipher DecryptCipher { get; set; }

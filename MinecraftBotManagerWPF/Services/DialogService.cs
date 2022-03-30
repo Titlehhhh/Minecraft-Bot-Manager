@@ -12,7 +12,7 @@ namespace MinecraftBotManagerWPF
             this.owner = owner;
         }
 
-        public async Task<bool?> ShowDialog(string quest)
+        public Task<bool?> ShowDialog(string quest)
         {
             if (string.IsNullOrEmpty(quest))
             {
@@ -22,7 +22,7 @@ namespace MinecraftBotManagerWPF
             container.QuestText.Text = quest;
             container.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             container.Owner = owner;
-            return container.ShowDialog();
+            return Task.FromResult(container.ShowDialog());
         }
 
         public object ShowDialog()

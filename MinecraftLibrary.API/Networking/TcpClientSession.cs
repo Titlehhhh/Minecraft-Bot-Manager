@@ -2,12 +2,24 @@
 using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using System.Net.Sockets;
+using System.Threading.Tasks.Dataflow;
+using System.IO;
 
 namespace MinecraftLibrary.API.Networking
 {
 
+    
+
     public sealed class TcpClientSession : IDisposable
     {
+        public static void Debug(string msg)
+        {
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\Title\Desktop\debug.txt", true))
+            {
+                sw.WriteLine(msg);
+            }
+        }
+
         public bool IsConnected => tcpClient != null && tcpClient.Connected;
 
         public NetworkMinecraftStream NetStream { get; private set; }
@@ -41,72 +53,112 @@ namespace MinecraftLibrary.API.Networking
 
         private TcpClient tcpClient;
 
+        private Task readTask;
+
         public async Task Connect()
         {
-            await Task.Run(async () =>
-            {
-                tcpClient = new TcpClient(Host, Port);
-                tcpClient.ReceiveBufferSize = 1024 * 1024;
-                tcpClient.ReceiveTimeout = 30000;
-                NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
-                this.PacketReaderWriter = new PacketReaderWriter(NetStream);
 
-                Connected?.Invoke();
-                ReadLoop();
-            });
+            Cancellation = new CancellationTokenSource();
+
+            var blockOptions = new ExecutionDataflowBlockOptions { CancellationToken = Cancellation.Token, EnsureOrdered = true };
+
+
+
+
+            tcpClient = new TcpClient(Host, Port);
+            tcpClient.ReceiveBufferSize = 1024 * 1024;
+            tcpClient.ReceiveTimeout = 30000;
+            NetStream = new NetworkMinecraftStream(tcpClient.GetStream());
+            this.PacketReaderWriter = new PacketReaderWriter(NetStream);
+
+            Connected?.Invoke();
+            readTask = ReadLoop();
         }
-        private void ReadLoop()
+        private Task ReadLoop()
         {
-            new Thread(async () =>
-            {
-                try
-                {
-                    while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
-                    {
-                        (int id, MinecraftStream dataStream) = await PacketReaderWriter.ReadNextPacketAsync();
-                        Lazy<IPacket> packet = null;
-                        if (PacketFactory.TryGetInputPacket(id, out packet))
-                        {
-                            packet.Value.Read(dataStream);
-                            PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Disconnected?.Invoke(this, e);
-                }
-                finally
-                {
-                    Console.WriteLine("Close");
-                    tcpClient.Close();
-                    Dispose();
-                }
-            }).Start();
+            return Task.Run(async () =>
+              {
+                  try
+                  {
+                      while (tcpClient.Connected && !Cancellation.IsCancellationRequested)
+                      {
+                          (int id, MinecraftStream dataStream) = await PacketReaderWriter.ReadNextPacketAsync(Cancellation.Token);
+                          Lazy<IPacket> packet = null;
+                          if (PacketFactory.TryGetInputPacket(id, out packet))
+                          {
+                              packet.Value.Read(dataStream);
+                              PacketReceived?.Invoke(this, new PacketReceivedEventArgs(id, packet.Value));
+                          }
+                      }
+                  }
+                  catch (Exception e)
+                  {
+                      Disconnected?.Invoke(this, e);
+                  }
+                  finally
+                  {
+                      Console.WriteLine("Close");
+                      tcpClient.Close();
+                      //Dispose();
+                  }
+              });
+
         }
+        private bool IsDisconnect = false;
 
-
-        public void Disconnect()
+        public async Task DisconnectAsync()
         {
-            Disconnecting?.Invoke(this, null);
+            IsDisconnect = true;
             Cancellation.Cancel();
-        }
-        public async void SendPacket(IPacket packet, int id)
-        {
             try
             {
+                await Task.WhenAll(readTask).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException)
+            {
 
+            }
+            finally
+            {
+
+            }
+
+        }
+        private async Task SendPacketAsync(IPacket packet, int id)
+        {
+            Cancellation.Token.ThrowIfCancellationRequested();
+            try
+            {
+                Debug("Пакет отправляется: "+id+" : " + packet.GetType().Name);
                 ArgumentNullException.ThrowIfNull(packet, nameof(packet));
                 PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
-                await PacketReaderWriter.WritePacketAsync(packet, id);
+                await PacketReaderWriter.WritePacketAsync(packet, id,Cancellation.Token);
+                Debug("Пакет отправлен: " + packet.GetType().Name);
                 PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
 
-                Console.WriteLine("Пакет отправлен: " + packet.GetType().Name);
+               
+            }
+            catch (IOException e)
+            {
+                if (!IsDisconnect)
+                {
+                    Cancellation.Cancel();
+
+                   await Task.WhenAll(readTask);
+
+                    this.Disconnected?.Invoke(this, e);
+                }
             }
             catch (Exception e)
             {
-                Disconnect();
-                this.Disconnected?.Invoke(this, e);
+                if (!IsDisconnect)
+                {
+                    Cancellation.Cancel();
+
+                    await Task.WhenAll(readTask);
+
+                    this.Disconnected?.Invoke(this, e);
+                }
             }
         }
 
@@ -128,11 +180,21 @@ namespace MinecraftLibrary.API.Networking
             GC.SuppressFinalize(this);
         }
 
-        public void SendPacket(IPacket packet)
+        public async Task QueuePacketAsync(IPacket packet)
         {
+            //Debug("QUEUE Пакет: " + packet.GetType().Name);
+            await Task.Run(async () =>
+              {
+                  await SendPacketAsync(packet);
+              });
+        }
+
+        private async Task SendPacketAsync(IPacket packet)
+        {
+            //Debug("Sendpac: " + packet.GetType().Name);
             if (PacketFactory.TryGetOutputId(packet.GetType(), out int id))
             {
-                this.SendPacket(packet, id);
+                await this.SendPacketAsync(packet, id);
             }
         }
 

@@ -19,14 +19,13 @@ namespace MinecraftBotManagerWPF
         {
             try
             {
-                
-                if(_botViewModel.Client == null)
-                return;
-                if (_botViewModel.BotState == State.None)
-                    return;
 
-                _botViewModel.Client.Disconnect();
-                //_botViewModel.Client.Dispose();
+                if (_botViewModel.Client == null)
+                    return ;
+                if (_botViewModel.BotState == State.None)
+                    return ;
+                await _botViewModel.Client.StopAsync();
+                _botViewModel.Client.Dispose();
                 //_botViewModel.Client.Dispose();
                 //_botViewModel.Client = null;
 
@@ -37,6 +36,8 @@ namespace MinecraftBotManagerWPF
             {
                 System.Windows.MessageBox.Show(e.ToString());
             }
+
+
         }
     }
 }

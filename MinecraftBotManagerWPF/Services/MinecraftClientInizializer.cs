@@ -18,7 +18,7 @@ namespace MinecraftBotManagerWPF
             this.botInfo = botViewModel.BotInfoModel;
         }
 
-        public MinecraftClient CreateBot()
+        public MinecraftClient754 CreateBot()
         {
             BotViewModel.ReturnToOrgignalStateStatuses();
 
@@ -57,14 +57,14 @@ namespace MinecraftBotManagerWPF
                 {
                     port = ushort.Parse(arr[1]);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
                 }
 
             }
 
-            MinecraftClient client = new MinecraftClient()
+            MinecraftClient754 client = new MinecraftClient754()
             {
                 Nickname = botInfo.Nickname,
                 Host = host,
@@ -97,7 +97,7 @@ namespace MinecraftBotManagerWPF
 
         }
 
-        private static MinecraftClient CreateClient(BotInfo botInfo)
+        private static MinecraftClient754 CreateClient(BotInfo botInfo)
         {
             if (botInfo == null)
                 throw new ArgumentNullException(nameof(botInfo));

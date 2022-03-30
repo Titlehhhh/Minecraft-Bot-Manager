@@ -32,7 +32,7 @@ namespace MinecraftBotManagerWPF
                     Bots = new List<BotInfo>(serializer.ReadObject(fs) as IEnumerable<BotInfo>);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //System.Windows.MessageBox.Show(e.ToString());
                 this.Bots = new List<BotInfo>();

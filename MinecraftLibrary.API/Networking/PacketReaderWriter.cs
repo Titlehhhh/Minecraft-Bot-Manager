@@ -5,7 +5,7 @@ namespace MinecraftLibrary.API.Networking
 {
     public sealed class PacketReaderWriter : IPacketReaderWriter
     {
-        private static readonly int ZERO_VARLENGTH = 0.GetVarIntLength();
+        private const int ZERO_VARLENGTH = 1;//default(int).GetVarIntLength();
         private readonly NetworkMinecraftStream netmcStream;
 
 
@@ -26,12 +26,14 @@ namespace MinecraftLibrary.API.Networking
         }
 
 
-        public async Task<(int, MinecraftStream)> ReadNextPacketAsync()
+        public async Task<(int, MinecraftStream)> ReadNextPacketAsync(CancellationToken token)
         {
-            int len = await NetStream.ReadVarIntAsync();
+            token.ThrowIfCancellationRequested();
+            int len = await NetStream.ReadVarIntAsync(token);
+            token.ThrowIfCancellationRequested();
             // Console.WriteLine("len " + len);
             byte[] receivedata = new byte[len];
-            await NetStream.ReadAsync(receivedata.AsMemory(0, len));
+            await NetStream.ReadAsync(receivedata.AsMemory(0, len),token);
 
 
             var mcs = new MinecraftStream(receivedata);
@@ -54,7 +56,7 @@ namespace MinecraftLibrary.API.Networking
         }
 
 
-        public async Task WritePacketAsync(IPacket packet, int id)
+        public async Task WritePacketAsync(IPacket packet, int id, CancellationToken token = default)
         {
             ArgumentNullException.ThrowIfNull(packet, nameof(packet));
             if (CompressionThreshold > 0)
@@ -68,35 +70,36 @@ namespace MinecraftLibrary.API.Networking
 
                     if (to_Packetlength >= CompressionThreshold)
                     {
-                        await SendLongPacket(packetStream, to_Packetlength);
+                        await SendLongPacketAsync(packetStream, to_Packetlength,token);
                     }
                     else
                     {
-                        await SendShortPacket(packetStream);
+                        await SendShortPacketAsync(packetStream, token);
                     }
                 }
             }
             else
             {
-                await SendPacketWithoutCompression(packet, id);
+                await SendPacketWithoutCompressionAsync(packet, id, token);
             }
         }
-        private async Task SendPacketWithoutCompression(IPacket packet, int id)
+        private async Task SendPacketWithoutCompressionAsync(IPacket packet, int id,CancellationToken token)
         {
             using (MinecraftStream packetStream = new MinecraftStream())
             {
                 packet.Write(packetStream);
                 int Packetlength = (int)packetStream.Length;
-                NetStream.Lock.Wait();
-                await NetStream.WriteVarIntAsync(id.GetVarIntLength() + Packetlength);
-                await NetStream.WriteVarIntAsync(id);
+
+                await NetStream.Lock.WaitAsync(token);
+                await NetStream.WriteVarIntAsync(id.GetVarIntLength() + Packetlength, token);
+                await NetStream.WriteVarIntAsync(id, token);
                 packetStream.Position = 0;
                 packetStream.CopyTo(NetStream);
                 NetStream.Lock.Release();
             }
         }
 
-        private async Task SendLongPacket(MinecraftStream packetStream, int to_Packetlength)
+        private async Task SendLongPacketAsync(MinecraftStream packetStream, int to_Packetlength,CancellationToken token)
         {
             using (MemoryStream memstream = new MemoryStream())
             {
@@ -107,18 +110,28 @@ namespace MinecraftLibrary.API.Networking
                 packetStream.BaseStream = memstream;
             }
             int fullSize = (int)packetStream.Length + to_Packetlength.GetVarIntLength();
-            await NetStream.WriteVarIntAsync(fullSize);
-            await NetStream.WriteVarIntAsync(to_Packetlength);
+
+            await NetStream.Lock.WaitAsync(token);
+
+            await NetStream.WriteVarIntAsync(fullSize, token);
+            await NetStream.WriteVarIntAsync(to_Packetlength, token);
             packetStream.Position = 0;
             packetStream.CopyTo(NetStream);
+
+            NetStream.Lock.Release();
         }
-        private async Task SendShortPacket(MinecraftStream packetStream)
+
+
+
+        private async Task SendShortPacketAsync(MinecraftStream packetStream, CancellationToken token)
         {
             int fullSize = (int)packetStream.Length + ZERO_VARLENGTH;
-            await NetStream.WriteVarIntAsync(fullSize);
-            await NetStream.WriteVarIntAsync(0);
+            await NetStream.Lock.WaitAsync(token);
+            await NetStream.WriteVarIntAsync(fullSize, token);
+            await NetStream.WriteVarIntAsync(0, token);
             packetStream.Position = 0;
             packetStream.CopyTo(NetStream);
+            NetStream.Lock.Release();
         }
     }
 

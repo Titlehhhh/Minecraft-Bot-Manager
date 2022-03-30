@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Inventory\" />
-    <Folder Include="Exceptions\" />
   </ItemGroup>
 
   <ItemGroup>

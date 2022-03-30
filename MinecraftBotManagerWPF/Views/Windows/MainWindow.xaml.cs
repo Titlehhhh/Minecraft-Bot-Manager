@@ -53,7 +53,7 @@ namespace MinecraftBotManagerWPF
 
         private void ResizeButton_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
+            Button? button = sender as Button;
             if (WindowState == WindowState.Maximized)
             {
                 WindowState = WindowState.Normal;

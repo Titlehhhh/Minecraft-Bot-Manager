@@ -1,4 +1,5 @@
 ﻿using MinecraftLibrary;
+using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
 
 namespace ConsoleApp1
@@ -11,13 +12,9 @@ namespace ConsoleApp1
 
         public static void Main()
         {
-            Console.WriteLine("StartApp");
+            Console.WriteLine(0.GetVarIntLength());
 
-            for (int i = 0; i <= 2; i++)
-            {
-                CreateClient(("NET_BOT_0" + i)).StartAsync();
-                //Thread.Sleep(10000);
-            }
+            
 
 
 
@@ -26,9 +23,9 @@ namespace ConsoleApp1
 
 
         }
-        private static MinecraftClient CreateClient(string nick)
+        private static MinecraftClient754 CreateClient(string nick)
         {
-            MinecraftClient client = new MinecraftClient()
+            MinecraftClient754 client = new MinecraftClient754()
             {
                 Nickname = nick,
                 IsAuth = false,

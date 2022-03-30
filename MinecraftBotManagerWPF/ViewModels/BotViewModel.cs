@@ -10,7 +10,7 @@ namespace MinecraftBotManagerWPF
 {
     public class BotViewModel : ViewModelBase
     {
-        internal MinecraftClient Client { get; set; }
+        internal MinecraftClient754 Client { get; set; }
 
         public BotInfo BotInfoModel => botInfo;
 

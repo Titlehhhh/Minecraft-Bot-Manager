@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using System.Diagnostics;
 
 namespace MinecraftBotManagerWPF
 {
@@ -46,6 +47,14 @@ namespace MinecraftBotManagerWPF
 
             //    start.Close();
             //});
+
+            System.AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                System.Windows.MessageBox.Show(e.ExceptionObject.ToString());
+            };
+
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new ConsoleTraceListener());
         }
         protected override void OnExit(ExitEventArgs e)
         {

@@ -1,6 +1,6 @@
 ﻿namespace MinecraftLibrary.API
 {
-    public enum DisconnectReason
+    public enum DisconnectType
     {
         InGameKick,
         LoginRejected,

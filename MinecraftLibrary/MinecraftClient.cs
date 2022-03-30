@@ -8,15 +8,27 @@ using ProtocolLib754;
 using ProtocolLib754.Packets.Client;
 using ProtocolLib754.Packets.Server;
 using System.ComponentModel;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 
 namespace MinecraftLibrary
 {
 
 
-    public class MinecraftClient : IDisposable, INotifyPropertyChanged
+    public class MinecraftClient754 : IDisposable, INotifyPropertyChanged
     {
-        public bool IsConnected => Session != null && Session.IsConnected;
+        private readonly TcpClient tcpClient;
+        private readonly NetworkMinecraftStream NetMcStream;
+        private readonly PacketReaderWriter packetReaderWriter;
+        public MinecraftClient754(TcpClient tcpClient)
+        {
+            this.tcpClient = tcpClient;
+            this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
+            this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
+        }
+
+
+        public bool IsConnected => tcpClient != null && tcpClient.Connected;
 
         public bool IsAuth { get; init; }
         public string Nickname { get; init; }
@@ -102,8 +114,7 @@ namespace MinecraftLibrary
         #region События
         public event ConnectedHandler? Connected;
         public event ConnectionLostedHandler? ConnectionLosted;
-        public event LoginRejectedHandler? LoginRejected;
-        public event LoginSucessedHandler? LoginSuccesed;
+
         public event GameRejectedHandler? GameRejected;
         public event GameJoinedHandler? GameJoined;
         public event MessageReceivedHandler? MessageReceived;
@@ -121,41 +132,62 @@ namespace MinecraftLibrary
 
         public PacketManager PacketManager { get; set; }
 
-        public TcpClientSession Session { get; private set; }
+        private IPacketProducer PacketFactory => PacketManager;
 
 
+        private readonly CancellationTokenSource Cancellation = new();
 
 
         #region Общие методы        
-        public async Task StartAsync()
+        public async Task LoginAsync()
+        {
+            SubProtocol = ProtocolState.HandShake;
+
+            await SendPacketAsync(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
+
+            SubProtocol = ProtocolState.Login;
+
+            await SendPacketAsync(new LoginStartPacket(Nickname));
+
+
+
+        }
+        public async Task StopAsync()
         {
 
-            if (this.IsConnected)
-            {
-                throw new InvalidOperationException("Клиент подключен");
-            }
-            CheckProperties();
 
-            Session = new TcpClientSession()
-            {
-                Host = this.Host,
-                Port = this.Port,
-            };
-            if (this.ProxyEnabled)
-            {
-                //TODO
-            }
-
-            SubscribeEvents();
-
-
-            this.PacketManager = new PacketManager();
-
-            SubProtocol = ProtocolState.HandShake;
-            Session.PacketFactory = this.PacketManager;
-
-            await Session.Connect();
         }
+
+        private async Task<IPacket> ReadPacketAsync()
+        {
+
+        }
+
+        private async Task SendPacketAsync(IPacket packet)
+        {
+            try
+            {
+                int id = 0;
+                if (PacketFactory.TryGetOutputId(packet.GetType(), out id))
+                {
+                    await this.packetReaderWriter.WritePacketAsync(packet, id, Cancellation.Token);
+                }
+            }
+            catch (Exception e)
+            {
+                OnDisconnect(e);
+            }
+        }
+
+        private void OnDisconnect(DisconnectType type, string message)
+        {
+
+        }
+        private void OnDisconnect(Exception e)
+        {
+
+        }
+
         private void CheckProperties()
         {
             if (string.IsNullOrWhiteSpace(Nickname))
@@ -181,118 +213,74 @@ namespace MinecraftLibrary
         private Point3 location;
         private Rotation rotation;
 
-        private void SubscribeEvents()
-        {
-            if (!EventsSub)
-            {
 
-                Session.Connected += Session_Connected;
-                Session.Disconnected += Session_Disconnected;
-                Session.PacketReceived += Session_PacketReceived;
-                Session.PacketSend += Session_PacketSend;
-                Session.PacketSent += Session_PacketSent;
-                EventsSub = true;
-            }
-        }
-        private void UnSubscribeEvents()
-        {
-            if (EventsSub)
-            {
-                Session.Connected -= Session_Connected;
-                Session.Disconnected -= Session_Disconnected;
-                Session.PacketReceived -= Session_PacketReceived;
-                Session.PacketSend -= Session_PacketSend;
-                Session.PacketSent -= Session_PacketSent;
-                EventsSub = false;
-            }
-        }
 
 
         #endregion
 
         #region Работа с пакетами
-        private void Session_Connected()
+
+
+        private async void HandlePacket(IPacket packet)
         {
-            Console.WriteLine("gg");
-            this.Connected?.Invoke(this);
-            SendPacket(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
-            this.SubProtocol = ProtocolState.Login;
-            SendPacket(new LoginStartPacket(Nickname));
-        }
+            this.PacketReceived?.Invoke(this, packet);
+            //Console.WriteLine(packet.GetType().Name);
 
-        private void Session_PacketSent(object? sender, PacketSentEventArgs e)
-        {
-            Console.WriteLine("SentPAcket: " + e.Packet.GetType().Name);
-
-        }
-
-        private void Session_PacketSend(object? sender, PacketSendEventArgs e)
-        {
-            Console.WriteLine("SendPAcket: " + e.Packet.GetType().Name);
-        }
-
-        private void Session_PacketReceived(object? sender, PacketReceivedEventArgs e)
-        {
-            this.PacketReceived?.Invoke(this, e.Packet);
-            //Console.WriteLine(e.Packet.GetType().Name);
-
-            if (e.Packet is LoginDisconnectPacket)
+            if (packet is LoginDisconnectPacket)
             {
-                var disconnect = e.Packet as LoginDisconnectPacket;
+                var disconnect = packet as LoginDisconnectPacket;
 
-                Disconnect();
-
-                this.LoginRejected?.Invoke(this, disconnect.Message);
+                StopAsync();
 
             }
-            else if (e.Packet is LoginSetCompressionPacket)
+            else if (packet is LoginSetCompressionPacket)
             {
-                var compress = e.Packet as LoginSetCompressionPacket;
-                Session.CompressionThreshold = compress.Threshold;
+                var compress = packet as LoginSetCompressionPacket;
+                //Session.CompressionThreshold = compress.Threshold;
 
             }
-            else if (e.Packet is EncryptionRequestPacket)
+            else if (packet is EncryptionRequestPacket)
             {
                 //TODO
-                var request = e.Packet as EncryptionRequestPacket;
+                var request = packet as EncryptionRequestPacket;
                 var RSAService = CryptoHandler.DecodeRSAPublicKey(request.PublicKey);
                 byte[] secretKey = CryptoHandler.GenerateAESPrivateKey();
 
-                SendPacket(new EncryptionResponsePacket(RSAService.Encrypt(secretKey, false), RSAService.Encrypt(request.VerifyToken, false)));
+                await SendPacket(new EncryptionResponsePacket(RSAService.Encrypt(secretKey, false), RSAService.Encrypt(request.VerifyToken, false)));
 
-                Session.SwitchEncryption(secretKey);
+                //Session.SwitchEncryption(secretKey);
             }
-            else if (e.Packet is LoginSuccessPacket)
+            else if (packet is LoginSuccessPacket)
             {
-                var succes = e.Packet as LoginSuccessPacket;
+                var succes = packet as LoginSuccessPacket;
                 SubProtocol = ProtocolState.Game;
                 UUID = succes.UUID;
                 this.LoginSuccesed?.Invoke(this, UUID);
             }
-            else if (e.Packet is ServerJoinGamePacket)
+            else if (packet is ServerJoinGamePacket)
             {
-                var join = e.Packet as ServerJoinGamePacket;
+                var join = packet as ServerJoinGamePacket;
                 this.GameJoined?.Invoke(this);
             }
-            else if (e.Packet is ServerDisconnectPacket)
+            else if (packet is ServerDisconnectPacket)
             {
-                var disconnect = e.Packet as ServerDisconnectPacket;
-                Disconnect();
+                var disconnect = packet as ServerDisconnectPacket;
+                StopAsync();
                 this.GameRejected?.Invoke(this, disconnect.Message);
             }
-            else if (e.Packet is ServerKeepAlivePacket)
+            else if (packet is ServerKeepAlivePacket)
             {
-                var keepalive = e.Packet as ServerKeepAlivePacket;
-                SendPacket(new ClientKeepAlivePacket(keepalive.PingID));
+                var keepalive = packet as ServerKeepAlivePacket;
+                await SendPacket(new ClientKeepAlivePacket(keepalive.PingID));
             }
-            else if (e.Packet is ServerRespawnPacket)
+            else if (packet is ServerRespawnPacket)
             {
-                var respawn = e.Packet as ServerRespawnPacket;
+                var respawn = packet as ServerRespawnPacket;
 
             }
-            else if (e.Packet is ServerChatPacket)
+            else if (packet is ServerChatPacket)
             {
-                var message = e.Packet as ServerChatPacket;
+                var message = packet as ServerChatPacket;
                 this.MessageReceived?.Invoke(this, message.Message);
             }
         }
@@ -300,25 +288,10 @@ namespace MinecraftLibrary
         private void Session_Disconnected(object? sender, Exception e)
         {
             //UnRegisterEvents();
-            Disconnect();
+            StopAsync();
             ConnectionLosted?.Invoke(this, e);
         }
 
-        private void SendPacket(IPacket packet)
-        {
-            try
-            {
-                if (this.IsConnected)
-                {
-                    Session.SendPacket(packet);
-                }
-            }
-            catch (Exception e)
-            {
-                Disconnect();
-                ConnectionLosted?.Invoke(this, e);
-            }
-        }
         #endregion
 
 
@@ -401,14 +374,7 @@ namespace MinecraftLibrary
 
 
 
-        public void Disconnect()
-        {
-            if (Session != null)
-            {
-                Session.Disconnect();
-                UnSubscribeEvents();
-            }
-        }
+
 
 
         public void ClickBlock(Point3_Int pos)
