@@ -7,7 +7,7 @@ namespace MinecraftBotManagerWPF
     {
         Task AddBot(BotInfo bot);
         Task RemoveBot(BotInfo bot);
-        Task Save();
+        Task SaveAsync();
 
         IEnumerable<BotInfo> GetAllBots();
 

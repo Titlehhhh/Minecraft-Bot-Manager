@@ -8,34 +8,32 @@ namespace MinecraftBotManagerWPF
 {
     internal class StartBotCommand : AsyncCommandBase
     {
-
-        private readonly MinecraftClientInizializer inizializer;
+        private readonly IBotRepository botRepository;
         private readonly BotViewModel _botViewModel;
 
-
-        public StartBotCommand(MinecraftClientInizializer inizializer)
+        public StartBotCommand(BotViewModel botViewModel,IBotRepository botRepository)
         {
-            this.inizializer = inizializer;
-            this._botViewModel = inizializer.BotViewModel;
+            this._botViewModel = botViewModel;
+            this.botRepository = botRepository;
         }
 
         public async override Task ExecuteAsync(object parameter)
         {
+            await this.botRepository.SaveAsync();
+
             _botViewModel.RefreshPropertis();
             _botViewModel.BotState = State.Initialized;
-
-            MinecraftClient754 client = this.inizializer.CreateBot();
             try
             {
-                await client.LoginAsync();
+                
                 _botViewModel.BotState = State.Running;
             }
             catch (LoginRejectException e)
             {
-                
+
                 _botViewModel.BotState = State.None;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.MessageBox.Show(e.ToString());
                 _botViewModel.BotState = State.None;

@@ -7,21 +7,19 @@ using MinecraftLibrary;
 
 namespace MinecraftBotManagerWPF
 {
-    internal class MinecraftClientInizializer
+    internal class BotVMHelper
     {
         public BotViewModel BotViewModel { get; private set; }
         private readonly BotInfo botInfo;
 
-        public MinecraftClientInizializer(BotViewModel botViewModel)
+        public BotVMHelper(BotViewModel botViewModel)
         {
             BotViewModel = botViewModel;
             this.botInfo = botViewModel.BotInfoModel;
         }
 
-        public MinecraftClient754 CreateBot()
+        public async Task CreateBotAsync()
         {
-            
-
             if (botInfo.IsAuth)
             {
                 //TODO CheckAccount
@@ -88,7 +86,7 @@ namespace MinecraftBotManagerWPF
             };
             BotViewModel.Client = client;
 
-            return client;
+            
 
         }
 

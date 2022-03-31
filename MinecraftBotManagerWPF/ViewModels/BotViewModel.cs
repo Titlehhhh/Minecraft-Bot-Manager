@@ -17,18 +17,20 @@ namespace MinecraftBotManagerWPF
 
 
         private readonly BotInfo botInfo;
+        private readonly IBotRepository _botRepository;
 
-        public BotViewModel(BotInfo botInfo)
+        public BotViewModel(BotInfo botInfo, IBotRepository botRepository)
         {
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
             this.botInfo = botInfo;
+            this._botRepository = botRepository;
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
 
-            MinecraftClientInizializer inizializer = new MinecraftClientInizializer(this);
+            BotVMHelper inizializer = new BotVMHelper(this);
 
-            this.StartCommand = new StartBotCommand(inizializer);
+            this.StartCommand = new StartBotCommand(inizializer, botRepository);
             this.StopCommand = new StopBotCommand(inizializer);
             this.RestartCommand = new RestartBotCommand(inizializer);
         }

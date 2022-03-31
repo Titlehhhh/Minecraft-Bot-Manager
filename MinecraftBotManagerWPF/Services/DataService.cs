@@ -12,7 +12,7 @@
 
         public void Save()
         {
-            BotRepository.Save();
+            BotRepository.SaveAsync();
         }
     }
 }

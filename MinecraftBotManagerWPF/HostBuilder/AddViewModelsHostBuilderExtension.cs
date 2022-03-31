@@ -15,7 +15,7 @@ namespace MinecraftBotManagerWPF
                 {
                     return new BotViewModelsStorage(s.GetRequiredService<IDataService>()
                         .BotRepository.GetAllBots()
-                        .Select(b => new BotViewModel(b)));
+                        .Select(b => new BotViewModel(b,s.GetRequiredService<IDataService>().BotRepository)));
                 });
             });
             return hostBuilder;

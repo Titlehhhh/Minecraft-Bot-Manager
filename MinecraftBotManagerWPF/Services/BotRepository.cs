@@ -43,7 +43,7 @@ namespace MinecraftBotManagerWPF
         {
             Bots.Add(bot);
             AddBotEvent?.Invoke(bot);
-            await Save();
+            await SaveAsync();
         }
 
         public IEnumerable<BotInfo> GetAllBots()
@@ -54,12 +54,12 @@ namespace MinecraftBotManagerWPF
         public async Task RemoveBot(BotInfo bot)
         {
             this.Bots.Remove(bot);
-            await Save();
+            await SaveAsync();
         }
 
         private static readonly object FileLock = new object();
 
-        public async Task Save()
+        public async Task SaveAsync()
         {
             await Task.Run(() =>
             {

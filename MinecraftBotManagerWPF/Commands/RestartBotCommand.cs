@@ -6,10 +6,10 @@ namespace MinecraftBotManagerWPF
 {
     internal class RestartBotCommand : AsyncCommandBase
     {
-        private readonly MinecraftClientInizializer inizializer;
+        private readonly BotVMHelper inizializer;
         private readonly BotViewModel _botViewModel;
 
-        public RestartBotCommand(MinecraftClientInizializer inizializer)
+        public RestartBotCommand(BotVMHelper inizializer)
         {
             this.inizializer = inizializer;
             this._botViewModel = inizializer.BotViewModel;

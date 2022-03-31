@@ -28,25 +28,25 @@ namespace MinecraftLibrary
         private PacketReaderWriter packetReaderWriter;
         public MinecraftClient754()
         {
-
-
         }
+
+       
 
 
         public bool IsConnected => tcpClient != null && tcpClient.Connected;
 
-        public bool IsAuth { get; init; }
-        public string Nickname { get; init; }
-        public string Password { get; init; }
-        public string Host { get; init; }
-        public ushort Port { get; init; } = 25565;
+        public bool IsAuth { get; set; }
+        public string Nickname { get; set; }
+        public string Password { get; set; }
+        public string Host { get; set; }
+        public ushort Port { get; set; } = 25565;
 
 
-        public bool ProxyEnabled { get; init; }
-        public string ProxyHost { get; init; }
-        public ushort ProxyPort { get; init; }
-        public string ProxyLogin { get; init; }
-        public string ProxyPassword { get; init; }
+        public bool ProxyEnabled { get; set; }
+        public string ProxyHost { get; set; }
+        public ushort ProxyPort { get; set; }
+        public string ProxyLogin { get; set; }
+        public string ProxyPassword { get; set; }
 
 
 
@@ -147,9 +147,12 @@ namespace MinecraftLibrary
         #region Общие методы        
         public async Task LoginAsync()
         {
+            CheckProperties();
+
             PacketManager = new PacketManager();
 
-            this.tcpClient = new TcpClient(Host, Port);
+            this.tcpClient = new TcpClient();
+            await this.tcpClient.ConnectAsync(Host, Port,Cancellation.Token);
             this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
             this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
 
@@ -201,11 +204,6 @@ namespace MinecraftLibrary
                         await HandlePacket(packetLazy.Value);
 
                     }
-                    else
-                    {
-                        Debug("Левый пакет: "+id);
-                    }
-
                 }
             }
             catch(IOException e)
