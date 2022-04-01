@@ -10,7 +10,7 @@ namespace MinecraftBotManagerWPF
 {
     public class BotViewModel : ViewModelBase
     {
-        internal MinecraftClient754 Client { get; set; }
+        internal MinecraftClient Client { get; set; }
 
         public BotInfo BotInfoModel => botInfo;
 
@@ -30,7 +30,7 @@ namespace MinecraftBotManagerWPF
 
             BotVMHelper inizializer = new BotVMHelper(this);
 
-            this.StartCommand = new StartBotCommand(inizializer, botRepository);
+            this.StartCommand = new StartBotCommand(this, botRepository);
             this.StopCommand = new StopBotCommand(inizializer);
             this.RestartCommand = new RestartBotCommand(inizializer);
         }

@@ -61,7 +61,7 @@ namespace MinecraftBotManagerWPF
 
             }
 
-            MinecraftClient754 client = new MinecraftClient754()
+            MinecraftClient client = new MinecraftClient()
             {
                 Nickname = botInfo.Nickname,
                 Host = host,
@@ -90,7 +90,7 @@ namespace MinecraftBotManagerWPF
 
         }
 
-        private static MinecraftClient754 CreateClient(BotInfo botInfo)
+        private static MinecraftClient CreateClient(BotInfo botInfo)
         {
             if (botInfo == null)
                 throw new ArgumentNullException(nameof(botInfo));

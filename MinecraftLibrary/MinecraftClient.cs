@@ -17,36 +17,122 @@ namespace MinecraftLibrary
 {
 
 
-    public class MinecraftClient754 : IDisposable, INotifyPropertyChanged
+    public class MinecraftClient : IDisposable, INotifyPropertyChanged
     {
         public static void Debug(string msg)
         {
-            
+
         }
         private TcpClient tcpClient;
         private NetworkMinecraftStream NetMcStream;
         private PacketReaderWriter packetReaderWriter;
-        public MinecraftClient754()
+        public MinecraftClient()
         {
+
         }
-
-       
-
 
         public bool IsConnected => tcpClient != null && tcpClient.Connected;
 
-        public bool IsAuth { get; set; }
-        public string Nickname { get; set; }
-        public string Password { get; set; }
-        public string Host { get; set; }
-        public ushort Port { get; set; } = 25565;
+        public bool IsAuth
+        {
+            get => isAuth;
+            set
+            {
+                if (!IsConnected)
+                    isAuth = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public string Nickname
+        {
+            get => nickname;
+            set
+            {
+                if (!IsConnected)
+                    nickname = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public string Password
+        {
+            get => password;
+            set
+            {
+                if (!IsConnected)
+                    password = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public string Host
+        {
+            get => host;
+            set
+            {
+                host = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public ushort Port
+        {
+            get => port;
+            set
+            {
+                if (!IsConnected)
+                    port = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
 
-
-        public bool ProxyEnabled { get; set; }
-        public string ProxyHost { get; set; }
-        public ushort ProxyPort { get; set; }
-        public string ProxyLogin { get; set; }
-        public string ProxyPassword { get; set; }
+        public bool ProxyEnabled
+        {
+            get => proxyEnabled;
+            set
+            {
+                if (!IsConnected)
+                    proxyEnabled = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public string ProxyHost
+        {
+            get => proxyHost;
+            set
+            {
+                if (!IsConnected)
+                    proxyHost = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public ushort ProxyPort
+        {
+            get => proxyPort;
+            set
+            {
+                if (!IsConnected)
+                    proxyPort = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public string ProxyLogin
+        {
+            get => proxyLogin;
+            set
+            {
+                if (!IsConnected)
+                    proxyLogin = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
+        public string ProxyPassword
+        {
+            get => proxyPassword;
+            set
+            {
+                if (!IsConnected)
+                    proxyPassword = value;
+                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
+            }
+        }
 
 
 
@@ -152,7 +238,7 @@ namespace MinecraftLibrary
             PacketManager = new PacketManager();
 
             this.tcpClient = new TcpClient();
-            await this.tcpClient.ConnectAsync(Host, Port,Cancellation.Token);
+            await this.tcpClient.ConnectAsync(Host, Port, Cancellation.Token);
             this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
             this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
 
@@ -206,7 +292,7 @@ namespace MinecraftLibrary
                     }
                 }
             }
-            catch(IOException e)
+            catch (IOException e)
             {
                 if (!Stoping)
                     this.ConnectionLosted?.Invoke(this, e);
@@ -328,6 +414,16 @@ namespace MinecraftLibrary
         private Guid uUID;
         private Point3 location;
         private Rotation rotation;
+        private bool isAuth;
+        private string nickname;
+        private string password;
+        private string host;
+        private ushort port = 25565;
+        private bool proxyEnabled;
+        private string proxyHost;
+        private ushort proxyPort;
+        private string proxyLogin;
+        private string proxyPassword;
 
 
 
