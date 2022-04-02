@@ -1,4 +1,0 @@
-﻿namespace MinecraftBotManager.PluginContracts
-{
-
-}

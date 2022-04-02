@@ -4,6 +4,8 @@ using MinecraftLibrary.Geometry;
 using System;
 using System.ComponentModel;
 using MinecraftLibrary;
+using MinecraftBotManager.PluginContracts;
+using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF
 {
@@ -11,9 +13,20 @@ namespace MinecraftBotManagerWPF
     {
         public MinecraftClient Client { get; private set; }
 
-        public MinecraftBot(MinecraftClient client)
+        public IEnumerable<IPlugin> Plugins { get; private set; }
+
+        public void LoadPlugin(IPlugin plugin)
         {
 
+        }
+        public void UnLoadPlugin(IPlugin plugin)
+        {
+
+        }
+
+        public MinecraftBot(MinecraftClient client)
+        {
+            Client = client;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

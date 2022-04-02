@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MinecraftBotManager.PluginContracts\MinecraftBotManager.PluginContracts.csproj" />
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
     <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj" />
   </ItemGroup>
