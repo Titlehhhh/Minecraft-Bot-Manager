@@ -6,10 +6,14 @@ using System.ComponentModel.Composition;
 
 namespace MinecraftBotManager.PluginContracts
 {
+    public delegate void PluginHandler(IPluginHost bot, IPlugin plugin);
     public interface IPlugin
     {
         [Import]
-        public MinecraftClient Client { get; set; } 
+        public MinecraftClient Client { get; set; }
+
+        void Inizialize();
+        void UnLoaded();
 
         void OnLoginSucces(Guid uuid);
         void OnConnected();
