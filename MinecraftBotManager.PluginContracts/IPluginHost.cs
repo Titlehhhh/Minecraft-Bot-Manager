@@ -1,5 +1,6 @@
 ﻿namespace MinecraftBotManager.PluginContracts
 {
+    public delegate void PluginHandler(IPluginHost bot, IPlugin plugin);
     public interface IPluginHost
     {
         List<IPlugin> Plugins { get; }

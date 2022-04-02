@@ -6,7 +6,7 @@ using System.ComponentModel.Composition;
 
 namespace MinecraftBotManager.PluginContracts
 {
-    public delegate void PluginHandler(IPluginHost bot, IPlugin plugin);
+    
     public interface IPlugin
     {
         [Import]
@@ -18,12 +18,12 @@ namespace MinecraftBotManager.PluginContracts
         void OnLoginSucces(Guid uuid);
         void OnConnected();
 
-        void OnDisconnected();
+        void OnDisconnected(Exception e = null);
         void OnPositionRotation(Point3 pos, Rotation rot, bool onGround);
 
         void OnLoginReject(ChatMessage reason);
         void OnChat(ChatMessage message);
-        void OnGameKick(ChatMessage reason, Exception e = null);
+        void OnGameKick(ChatMessage reason);
 
 
     }

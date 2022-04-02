@@ -205,6 +205,8 @@ namespace MinecraftLibrary
         #region События
         public event ConnectedHandler? Connected;
         public event ConnectionLostedHandler? ConnectionLosted;
+        public event LoginSucessedHandler? LoginSucessed;
+        public event LoginRejectedHandler? LoginRejected;
 
         public event GameRejectedHandler? GameRejected;
         public event GameJoinedHandler? GameJoined;
@@ -212,7 +214,7 @@ namespace MinecraftLibrary
 
         public event PacketReceivedHandler? PacketReceived;
         public event PropertyChangedEventHandler? PropertyChanged;
-
+        public event PositionRotationChangedHandler? PositionRotationChanged;
 
 
         #endregion
@@ -233,35 +235,50 @@ namespace MinecraftLibrary
         #region Общие методы        
         public async Task LoginAsync()
         {
-            CheckProperties();
-
-            PacketManager = new PacketManager();
-
-            this.tcpClient = new TcpClient();
-            await this.tcpClient.ConnectAsync(Host, Port, Cancellation.Token);
-            this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
-            this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
-
-            SubProtocol = ProtocolState.HandShake;
-
-            await SendPacketAsync(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
-
-            SubProtocol = ProtocolState.Login;
-
-            await SendPacketAsync(new LoginStartPacket(Nickname));
-
-            bool login;
-            do
+            try
             {
-                IPacket packet = await ReadPacketLoginAsync();
 
-                login = await HandleLoginPackets(packet);
+                CheckProperties();
 
-            } while (!login);
+                PacketManager = new PacketManager();
 
-            SubProtocol = ProtocolState.Game;
-            Debug("Game");
-            ReadTask = ReadLoop();
+                this.tcpClient = new TcpClient();
+                await this.tcpClient.ConnectAsync(Host, Port, Cancellation.Token);
+                this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
+                this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
+
+                SubProtocol = ProtocolState.HandShake;
+
+                await SendPacketAsync(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
+
+                SubProtocol = ProtocolState.Login;
+
+                await SendPacketAsync(new LoginStartPacket(Nickname));
+
+                bool login;
+                do
+                {
+                    IPacket packet = await ReadPacketLoginAsync();
+
+                    login = await HandleLoginPackets(packet);
+
+                } while (!login);
+
+                SubProtocol = ProtocolState.Game;
+                
+                ReadTask = ReadLoop();
+                LoginSucessed?.Invoke(this, UUID);                
+            }
+            catch(LoginRejectException e)
+            {
+                LoginRejected?.Invoke(this, e.Message);
+                throw;
+            }
+            catch(Exception e)
+            {
+                ConnectionLosted?.Invoke(this, e);
+                throw;
+            }
 
         }
         private bool Stoping = false;

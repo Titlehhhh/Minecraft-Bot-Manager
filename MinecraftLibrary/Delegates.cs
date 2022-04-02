@@ -11,7 +11,7 @@ namespace MinecraftLibrary
     public delegate void LoginSucessedHandler(MinecraftClient client, Guid uuid);
     public delegate void PacketReceivedHandler(MinecraftClient client, IPacket packet);
     public delegate void MessageReceivedHandler(MinecraftClient client, string message);
-
+   
     public delegate void GameJoinedHandler(MinecraftClient client);
     public delegate void PositionRotationChangedHandler(MinecraftClient client, PositionRotationEventArgs e);
 

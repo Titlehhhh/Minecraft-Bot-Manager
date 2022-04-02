@@ -22,11 +22,9 @@ namespace MinecraftBotManagerWPF
             Client = client;
             PluginHost = new PluginHost(client);
 
-            Client.MessageReceived += (s, m) =>
-            {
-                PluginHost.Invoke(p => p.OnChat(m));
-            };
-            
+
+
+
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
