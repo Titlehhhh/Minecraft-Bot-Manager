@@ -1,9 +1,11 @@
-﻿using MinecraftLibrary;
+﻿using System;
+using MinecraftLibrary;
+using MinecraftBotManager.PluginContracts;
+using System.Collections.Generic;
 
-
-namespace MinecraftBotManager.PluginContracts
+namespace MinecraftBotManagerWPF
 {
-    public class PluginHost : IPluginHost
+    internal class PluginHost : IPluginHost, IPluginInvoker
     {
         private readonly MinecraftClient _client;
         public PluginHost(MinecraftClient client)
@@ -21,12 +23,12 @@ namespace MinecraftBotManager.PluginContracts
             Plugins.Add(plugin);
             plugin.Inizialize();
             plugin.Client = _client;
-            this.PluginLoaded?.Invoke(this,plugin);
+            this.PluginLoaded?.Invoke(this, plugin);
         }
 
         public void Invoke(Action<IPlugin> action)
         {
-            foreach(IPlugin plugin in Plugins)
+            foreach (IPlugin plugin in Plugins)
             {
                 action(plugin);
             }

@@ -18,13 +18,16 @@ namespace MinecraftBotManager.PluginContracts
         void OnLoginSucces(Guid uuid);
         void OnConnected();
 
-        void OnDisconnected(Exception e = null);
+        void OnDisconnect();
+        void OnDisconnect(Exception e);
+        
+
         void OnPositionRotation(Point3 pos, Rotation rot, bool onGround);
 
         void OnLoginReject(ChatMessage reason);
         void OnChat(ChatMessage message);
         void OnGameKick(ChatMessage reason);
-
+        void OnGameJoined();
 
     }
 }

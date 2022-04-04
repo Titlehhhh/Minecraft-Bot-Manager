@@ -26,9 +26,9 @@ namespace MinecraftLibrary
         private TcpClient tcpClient;
         private NetworkMinecraftStream NetMcStream;
         private PacketReaderWriter packetReaderWriter;
-        public MinecraftClient()
+        public MinecraftClient(IMinecraftHandler handler)
         {
-
+            this._handler = handler;
         }
 
         public bool IsConnected => tcpClient != null && tcpClient.Connected;
@@ -202,22 +202,8 @@ namespace MinecraftLibrary
 
         #endregion
 
-        #region События
-        public event ConnectedHandler? Connected;
-        public event ConnectionLostedHandler? ConnectionLosted;
-        public event LoginSucessedHandler? LoginSucessed;
-        public event LoginRejectedHandler? LoginRejected;
 
-        public event GameRejectedHandler? GameRejected;
-        public event GameJoinedHandler? GameJoined;
-        public event MessageReceivedHandler? MessageReceived;
-
-        public event PacketReceivedHandler? PacketReceived;
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public event PositionRotationChangedHandler? PositionRotationChanged;
-
-
-        #endregion
+        private readonly IMinecraftHandler _handler;
 
 
 
@@ -264,19 +250,22 @@ namespace MinecraftLibrary
 
                 } while (!login);
 
+
+
                 SubProtocol = ProtocolState.Game;
-                
+
+                _handler.OnLoginSucces(UUID);
                 ReadTask = ReadLoop();
-                LoginSucessed?.Invoke(this, UUID);                
+
             }
-            catch(LoginRejectException e)
+            catch (LoginRejectException e)
             {
-                LoginRejected?.Invoke(this, e.Message);
+                _handler.OnLoginReject(e.Message);
                 throw;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                ConnectionLosted?.Invoke(this, e);
+                _handler.OnDisconnect(e);
                 throw;
             }
 
@@ -309,15 +298,10 @@ namespace MinecraftLibrary
                     }
                 }
             }
-            catch (IOException e)
-            {
-                if (!Stoping)
-                    this.ConnectionLosted?.Invoke(this, e);
-            }
             catch (Exception e)
             {
                 if (!Stoping)
-                    this.ConnectionLosted?.Invoke(this, e);
+                    _handler.OnDisconnect(e);
             }
             finally
             {
@@ -392,7 +376,7 @@ namespace MinecraftLibrary
             {
                 tcpClient.Close();
 
-                this.ConnectionLosted?.Invoke(this, e);
+                _handler.OnDisconnect(e);
             }
         }
 
@@ -401,7 +385,8 @@ namespace MinecraftLibrary
             Stoping = true;
             Cancellation.Cancel();
             tcpClient.Close();
-            this.GameRejected?.Invoke(this, message);
+
+            _handler.OnDisconnect(message);
 
 
         }
@@ -442,6 +427,8 @@ namespace MinecraftLibrary
         private string proxyLogin;
         private string proxyPassword;
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+
 
 
 
@@ -454,14 +441,14 @@ namespace MinecraftLibrary
         {
             Debug("Пришел пакет: " + packet.GetType().Name);
 
-            this.PacketReceived?.Invoke(this, packet);
+            _handler.OnPacketReceived(packet);
             //Console.WriteLine(packet.GetType().Name);
 
 
             if (packet is ServerJoinGamePacket)
             {
                 var join = packet as ServerJoinGamePacket;
-                this.GameJoined?.Invoke(this);
+                _handler.OnGameJoined();
             }
             else if (packet is ServerDisconnectPacket)
             {
@@ -481,7 +468,7 @@ namespace MinecraftLibrary
             else if (packet is ServerChatPacket)
             {
                 var message = packet as ServerChatPacket;
-                this.MessageReceived?.Invoke(this, message.Message);
+                _handler.OnChat(message.Message);
             }
         }
 

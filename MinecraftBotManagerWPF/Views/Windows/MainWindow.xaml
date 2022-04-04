@@ -548,6 +548,14 @@
                                 </TextBox>
                             </Grid>
                         </TabItem>
+                        <TabItem Header="Плагины">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </TabItem>
                     </TabControl>
                 </Border>
             </Grid>

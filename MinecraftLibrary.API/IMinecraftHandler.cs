@@ -1,19 +1,24 @@
-﻿using MinecraftLibrary.API.Types.Chat;
+﻿using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 
-namespace MinecraftLibrary
+namespace MinecraftLibrary.API
 {
-    public interface IMinecraftObserver
+    public interface IMinecraftHandler
     {
         void OnConnect();
         void OnDisconnect();
         void OnDisconnect(Exception e);
+        void OnDisconnect(string reason);
+
+        void OnPacketReceived(IPacket packet);
 
         void OnLoginSucces(Guid uuid);
         void OnLoginReject(ChatMessage message);
-        void OnGameKick(ChatMessage reason);
 
-        void OnChat(ChatMessage message);
+        void OnGameJoined();
+
+        void OnChat(string message);
         void OnPositionRotation(Point3 pos, Rotation rot, bool onGround);
     }
 }
