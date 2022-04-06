@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Geometry",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Tests", "MinecraftLibrary.Tests\MinecraftLibrary.Tests.csproj", "{1B514406-98B8-4450-AEF1-FBCDDC1D88B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftBotManager.PluginContracts", "MinecraftBotManager.PluginContracts\MinecraftBotManager.PluginContracts.csproj", "{90E0F17C-DBB4-4E60-BABA-946E464F50C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.PluginContracts", "MinecraftBotManager.PluginContracts\MinecraftBotManager.PluginContracts.csproj", "{90E0F17C-DBB4-4E60-BABA-946E464F50C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -28,11 +28,11 @@ namespace MinecraftBotManagerWPF
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
 
-            BotVMHelper inizializer = new BotVMHelper(this);
+            
 
             this.StartCommand = new StartBotCommand(this, botRepository);
-            this.StopCommand = new StopBotCommand(inizializer);
-            this.RestartCommand = new RestartBotCommand(inizializer);
+            this.StopCommand = new StopBotCommand(this);
+            this.RestartCommand = new RestartBotCommand(this);
         }
         #region Свойства авторизации
         private bool authenabled;

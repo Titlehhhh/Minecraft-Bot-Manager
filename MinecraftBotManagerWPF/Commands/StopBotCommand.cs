@@ -6,13 +6,12 @@ namespace MinecraftBotManagerWPF
     internal class StopBotCommand : AsyncCommandBase
     {
 
-        private readonly BotVMHelper inizializer;
+        
         private readonly BotViewModel _botViewModel;
 
-        public StopBotCommand(BotVMHelper inizializer)
+        public StopBotCommand(BotViewModel botViewModel)
         {
-            this.inizializer = inizializer;
-            this._botViewModel = inizializer.BotViewModel;
+            this._botViewModel = botViewModel;
         }
 
         public override async Task ExecuteAsync(object parameter)

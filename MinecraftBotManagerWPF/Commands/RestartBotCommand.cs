@@ -6,13 +6,11 @@ namespace MinecraftBotManagerWPF
 {
     internal class RestartBotCommand : AsyncCommandBase
     {
-        private readonly BotVMHelper inizializer;
         private readonly BotViewModel _botViewModel;
 
-        public RestartBotCommand(BotVMHelper inizializer)
+        public RestartBotCommand(BotViewModel botViewModel)
         {
-            this.inizializer = inizializer;
-            this._botViewModel = inizializer.BotViewModel;
+            this._botViewModel = botViewModel;
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -24,7 +22,7 @@ namespace MinecraftBotManagerWPF
                 if (_botViewModel.BotState != State.Running)
                     return;
 
-                
+
 
 
             }

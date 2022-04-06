@@ -10,30 +10,20 @@ using MinecraftLibrary.API.Networking;
 
 namespace MinecraftBotManagerWPF
 {
-    
 
-    public class MinecraftBot : IDisposable, IMinecraftHandler
+
+    public class MinecraftBot : IMinecraftHandler
     {
-        private readonly MinecraftClient _client;
-
         private readonly IPluginInvoker _invoker;
 
-        internal MinecraftBot(MinecraftClient client, IPluginInvoker pluginHost)
+        internal MinecraftBot(IPluginInvoker pluginHost)
         {
-            if (client is null)
-                throw new ArgumentNullException(nameof(client));
             if (pluginHost is null)
                 throw new ArgumentNullException(nameof(pluginHost));
-
-            _client = client;
             _invoker = pluginHost;
         }
 
 
-        public void Dispose()
-        {
-            _client.Dispose();
-        }
 
         public void OnChat(string message)
         {
@@ -57,7 +47,7 @@ namespace MinecraftBotManagerWPF
 
         public void OnDisconnect(string reason)
         {
-            _invoker.Invoke(p => p.OnDisconnect(ChatMessage.Parse(reason)));
+            _invoker.Invoke(p => p.OnGameKick(ChatMessage.Parse(reason)));
         }
 
         public void OnGameJoined()
