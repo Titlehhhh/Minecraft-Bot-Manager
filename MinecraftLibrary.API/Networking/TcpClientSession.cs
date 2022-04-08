@@ -3,12 +3,11 @@ using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.API.Protocol;
 using System.Net.Sockets;
 using System.Threading.Tasks.Dataflow;
-using System.IO;
 
 namespace MinecraftLibrary.API.Networking
 {
 
-    
+
 
     public sealed class TcpClientSession : IDisposable
     {
@@ -129,14 +128,14 @@ namespace MinecraftLibrary.API.Networking
             Cancellation.Token.ThrowIfCancellationRequested();
             try
             {
-                Debug("Пакет отправляется: "+id+" : " + packet.GetType().Name);
+                Debug("Пакет отправляется: " + id + " : " + packet.GetType().Name);
                 ArgumentNullException.ThrowIfNull(packet, nameof(packet));
                 PacketSend?.Invoke(this, new PacketSendEventArgs(packet));
-                await PacketReaderWriter.WritePacketAsync(packet, id,Cancellation.Token);
+                await PacketReaderWriter.WritePacketAsync(packet, id, Cancellation.Token);
                 Debug("Пакет отправлен: " + packet.GetType().Name);
                 PacketSent?.Invoke(this, new PacketSentEventArgs(packet));
 
-               
+
             }
             catch (IOException e)
             {
@@ -144,7 +143,7 @@ namespace MinecraftLibrary.API.Networking
                 {
                     Cancellation.Cancel();
 
-                   await Task.WhenAll(readTask);
+                    await Task.WhenAll(readTask);
 
                     this.Disconnected?.Invoke(this, e);
                 }

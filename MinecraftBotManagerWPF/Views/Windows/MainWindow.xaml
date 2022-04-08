@@ -489,7 +489,18 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid Margin="0,0,0,10">
-                                    <Border BorderThickness="0.7">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Border Margin="5,10">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox TextBlock.FontSize="15" FontFamily="JetBrains Mono" Content="Авто прокручивание"/>
+                                        </StackPanel>
+                                    </Border>
+                                    
+                                    <Border Grid.Row="1" BorderThickness="0.7">
                                         <Border.Background>
                                             <SolidColorBrush Color="Black" Opacity="0.1"/>
                                         </Border.Background>

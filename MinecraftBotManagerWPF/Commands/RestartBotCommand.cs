@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using System;
-using MinecraftLibrary;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
 {

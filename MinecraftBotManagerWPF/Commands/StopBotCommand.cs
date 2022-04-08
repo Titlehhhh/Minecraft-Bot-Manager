@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using System;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
 {
     internal class StopBotCommand : AsyncCommandBase
     {
 
-        
+
         private readonly BotViewModel _botViewModel;
 
         public StopBotCommand(BotViewModel botViewModel)

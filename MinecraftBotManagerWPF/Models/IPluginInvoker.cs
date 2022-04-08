@@ -1,5 +1,5 @@
-﻿using System;
-using MinecraftBotManager.PluginContracts;
+﻿using MinecraftBotManager.PluginContracts;
+using System;
 
 namespace MinecraftBotManagerWPF
 {

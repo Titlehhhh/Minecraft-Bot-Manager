@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MinecraftBotManager.PluginContracts;
 using MinecraftLibrary;
-using MinecraftBotManager.PluginContracts;
+using System;
 using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF
@@ -18,12 +18,14 @@ namespace MinecraftBotManagerWPF
         public event PluginHandler? PluginLoaded;
         public event PluginHandler? PluginUnLoaded;
 
-        public void Add(IPlugin plugin)
+        public void Add(Type Tplugin)
         {
+            IPlugin plugin = (IPlugin)Activator.CreateInstance(Tplugin);
+
             Plugins.Add(plugin);
             plugin.Inizialize();
             plugin.Client = _client;
-            this.PluginLoaded?.Invoke(this, plugin);
+            this.PluginLoaded?.Invoke(this, Tplugin);
         }
 
         public void Invoke(Action<IPlugin> action)
@@ -34,11 +36,9 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-        public void Remove(IPlugin plugin)
+        public void Remove(Type Tplugin)
         {
-            Plugins.Remove(plugin);
-            plugin.UnLoaded();
-            this.PluginUnLoaded?.Invoke(this, plugin);
+
         }
     }
 }

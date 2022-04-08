@@ -6,7 +6,7 @@ using System.ComponentModel.Composition;
 
 namespace MinecraftBotManager.PluginContracts
 {
-    
+
     public interface IPlugin
     {
         [Import]
@@ -20,7 +20,7 @@ namespace MinecraftBotManager.PluginContracts
 
         void OnDisconnect();
         void OnDisconnect(Exception e);
-        
+
 
         void OnPositionRotation(Point3 pos, Rotation rot, bool onGround);
 

@@ -55,7 +55,8 @@ namespace MinecraftLibrary.API.Networking
                 }
                 int id = mcs.ReadVarInt();
                 return (id, mcs);
-            } catch
+            }
+            catch
             {
                 throw;
             }
@@ -96,7 +97,7 @@ namespace MinecraftLibrary.API.Networking
                 throw;
             }
         }
-        private async Task SendPacketWithoutCompressionAsync(IPacket packet, int id,CancellationToken token)
+        private async Task SendPacketWithoutCompressionAsync(IPacket packet, int id, CancellationToken token)
         {
             using (MinecraftStream packetStream = new MinecraftStream())
             {
@@ -112,7 +113,7 @@ namespace MinecraftLibrary.API.Networking
             }
         }
 
-        private async Task SendLongPacketAsync(MinecraftStream packetStream, int to_Packetlength,CancellationToken token)
+        private async Task SendLongPacketAsync(MinecraftStream packetStream, int to_Packetlength, CancellationToken token)
         {
             using (MemoryStream memstream = new MemoryStream())
             {

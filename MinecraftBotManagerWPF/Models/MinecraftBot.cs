@@ -1,32 +1,31 @@
 ﻿using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking.Proxy;
+using MinecraftLibrary.API.Networking;
+using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 using System;
-using System.ComponentModel;
-using MinecraftLibrary;
-using MinecraftBotManager.PluginContracts;
-using MinecraftLibrary.API.Types.Chat;
-using MinecraftLibrary.API.Networking;
 
 namespace MinecraftBotManagerWPF
 {
-
+    public delegate void MessageReceivedHandler(ChatMessage message);
 
     public class MinecraftBot : IMinecraftHandler
     {
-        private readonly IPluginInvoker _invoker;
+        public event MessageReceivedHandler? MessageReceived;
 
-        internal MinecraftBot(IPluginInvoker pluginHost)
+        private IPluginInvoker _invoker;
+
+        internal IPluginInvoker PluginInvoker
         {
-            if (pluginHost is null)
-                throw new ArgumentNullException(nameof(pluginHost));
-            _invoker = pluginHost;
+            set => _invoker = value;
         }
+
+
 
 
 
         public void OnChat(string message)
         {
+            this.MessageReceived?.Invoke(ChatMessage.Parse(message));
             _invoker.Invoke(p => p.OnChat(message));
         }
 

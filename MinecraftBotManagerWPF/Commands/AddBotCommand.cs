@@ -16,7 +16,7 @@ namespace MinecraftBotManagerWPF
         public override async Task ExecuteAsync(object parameter)
         {
             BotInfo bot = new BotInfo();
-            BotViewModel botViewModel = new BotViewModel(bot,this.botRepository);
+            BotViewModel botViewModel = new BotViewModel(bot, this.botRepository);
             //  new BotViewModel(bot);
 
             await botRepository.AddBot(bot);

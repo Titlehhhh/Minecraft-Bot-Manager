@@ -1,8 +1,8 @@
 ﻿using MinecraftLibrary;
+using MinecraftLibrary.Exceptions;
 using System;
 using System.Threading.Tasks;
-using System.Diagnostics;
-using MinecraftLibrary.Exceptions;
+using System.Windows;
 
 namespace MinecraftBotManagerWPF
 {
@@ -11,7 +11,7 @@ namespace MinecraftBotManagerWPF
         private readonly IBotRepository botRepository;
         private readonly BotViewModel _botViewModel;
 
-        public StartBotCommand(BotViewModel botViewModel,IBotRepository botRepository)
+        public StartBotCommand(BotViewModel botViewModel, IBotRepository botRepository)
         {
             this._botViewModel = botViewModel;
             this.botRepository = botRepository;
@@ -25,12 +25,25 @@ namespace MinecraftBotManagerWPF
             _botViewModel.BotState = State.Initialized;
             try
             {
-                
+
+
+                MinecraftBot bot = new MinecraftBot();
+
+                MinecraftClient client = new MinecraftClient(bot);
+
+                bot.PluginInvoker = new PluginHost(client);
+
+                bot.MessageReceived += (m) =>
+                {
+                    Application.Current.Dispatcher.Invoke(() => _botViewModel.Messages.Add(m));
+                };
+
+                await client.LoginAsync();
+
                 _botViewModel.BotState = State.Running;
             }
             catch (LoginRejectException e)
             {
-
                 _botViewModel.BotState = State.None;
             }
             catch (Exception e)

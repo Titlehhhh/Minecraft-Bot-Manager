@@ -1,10 +1,10 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
+using MinecraftLibrary;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using MinecraftLibrary;
 
 namespace MinecraftBotManagerWPF
 {
@@ -28,7 +28,7 @@ namespace MinecraftBotManagerWPF
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
 
-            
+
 
             this.StartCommand = new StartBotCommand(this, botRepository);
             this.StopCommand = new StopBotCommand(this);
@@ -61,6 +61,7 @@ namespace MinecraftBotManagerWPF
             }
         }
         #endregion
+
 
 
         public string Host
@@ -136,6 +137,17 @@ namespace MinecraftBotManagerWPF
         }
 
 
+        private string _message;
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         #region Errors        
@@ -163,6 +175,22 @@ namespace MinecraftBotManagerWPF
             get => clearchat ??= new RelayCommand(() =>
             {
                 Messages.Clear();
+            });
+        }
+        private ICommand sendmessage;
+        public ICommand SendMessageCommand
+        {
+            get => sendmessage ??= new RelayCommand(() =>
+            {
+                try
+                {
+                    Client?.SendChat(Message);
+                    Message = "";
+                }
+                catch
+                {
+
+                }
             });
         }
 

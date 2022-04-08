@@ -157,7 +157,7 @@ namespace MinecraftLibrary.API.Networking
             {
                 return BaseStream.Read(buffer, offset, count);
             }
-            catch(IOException e)
+            catch (IOException e)
             {
                 throw;
             }
