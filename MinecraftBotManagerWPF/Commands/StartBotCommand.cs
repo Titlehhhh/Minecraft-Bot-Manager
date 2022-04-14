@@ -26,12 +26,11 @@ namespace MinecraftBotManagerWPF
             try
             {
 
-
                 MinecraftBot bot = new MinecraftBot();
 
-                MinecraftClient client = new MinecraftClient(bot);
+                MinecraftClient client = bot.Client;
 
-                bot.PluginInvoker = new PluginHost(client);
+                _botViewModel.Client = client;
 
                 bot.MessageReceived += (m) =>
                 {

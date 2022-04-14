@@ -3,7 +3,7 @@ using System;
 
 namespace MinecraftBotManagerWPF
 {
-    internal interface IPluginInvoker
+    public interface IPluginInvoker
     {
         void Invoke(Action<IPlugin> action);
     }

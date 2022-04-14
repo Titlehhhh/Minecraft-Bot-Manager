@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF
 {
-    internal class PluginHost : IPluginHost, IPluginInvoker
+    internal class PluginHost : IPluginHost
     {
         private readonly MinecraftClient _client;
         public PluginHost(MinecraftClient client)
@@ -27,18 +27,27 @@ namespace MinecraftBotManagerWPF
             plugin.Client = _client;
             this.PluginLoaded?.Invoke(this, Tplugin);
         }
-
-        public void Invoke(Action<IPlugin> action)
-        {
-            foreach (IPlugin plugin in Plugins)
-            {
-                action(plugin);
-            }
-        }
-
         public void Remove(Type Tplugin)
         {
 
         }
     }
+
+    internal class PluginInvoker : IPluginInvoker
+    {
+        private readonly IPluginHost _host;
+        public PluginInvoker(IPluginHost host)
+        {
+            _host = host;
+        }
+
+        public void Invoke(Action<IPlugin> action)
+        {
+            foreach (IPlugin plugin in _host.Plugins.ToArray())
+            {
+                action(plugin);
+            }
+        }
+    }
+
 }

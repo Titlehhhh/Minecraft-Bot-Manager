@@ -1,4 +1,5 @@
-﻿using MinecraftLibrary.API;
+﻿using MinecraftLibrary;
+using MinecraftLibrary.API;
 using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
@@ -12,15 +13,15 @@ namespace MinecraftBotManagerWPF
     {
         public event MessageReceivedHandler? MessageReceived;
 
-        private IPluginInvoker _invoker;
+        private readonly IPluginInvoker _invoker;
 
-        internal IPluginInvoker PluginInvoker
+        public MinecraftClient Client { get; private set; }
+
+        public MinecraftBot()
         {
-            set => _invoker = value;
+            Client = new MinecraftClient(this);
+            _invoker = new PluginInvoker(new PluginHost(Client));
         }
-
-
-
 
 
         public void OnChat(string message)
