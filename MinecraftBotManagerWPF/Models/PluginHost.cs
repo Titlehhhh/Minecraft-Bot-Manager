@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF
 {
-    internal class PluginHost : IPluginHost
+    public class PluginHost : IPluginHost
     {
         private readonly MinecraftClient _client;
         public PluginHost(MinecraftClient client)

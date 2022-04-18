@@ -4,6 +4,7 @@ using MinecraftLibrary.API.Networking;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 using System;
+using System.Net.Sockets;
 
 namespace MinecraftBotManagerWPF
 {
@@ -14,13 +15,16 @@ namespace MinecraftBotManagerWPF
         public event MessageReceivedHandler? MessageReceived;
 
         private readonly IPluginInvoker _invoker;
+        public IPluginHost PluginHost { get; private set; }
 
         public MinecraftClient Client { get; private set; }
 
-        public MinecraftBot()
+
+        public MinecraftBot(GameProfile gameProfile, TcpClient tcpClient)
         {
-            Client = new MinecraftClient(this);
-            _invoker = new PluginInvoker(new PluginHost(Client));
+            Client = new MinecraftClient(gameProfile, this, tcpClient);
+            PluginHost = new PluginHost(Client);
+            _invoker = new PluginInvoker(PluginHost);
         }
 
 
@@ -75,4 +79,5 @@ namespace MinecraftBotManagerWPF
             throw new NotImplementedException();
         }
     }
+
 }

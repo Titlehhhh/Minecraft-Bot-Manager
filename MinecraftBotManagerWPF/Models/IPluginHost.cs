@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF
 {
-    internal delegate void PluginHandler(IPluginHost host, Type t);
-    internal interface IPluginHost
+    public delegate void PluginHandler(IPluginHost host, Type t);
+    public interface IPluginHost
     {
         List<IPlugin> Plugins { get; }
         void Add(Type Tplugin);
