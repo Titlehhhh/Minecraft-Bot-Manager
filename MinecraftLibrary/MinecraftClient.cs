@@ -23,123 +23,30 @@ namespace MinecraftLibrary
         {
 
         }
-        private TcpClient tcpClient;
+        private readonly TcpClient tcpClient;
         private NetworkMinecraftStream NetMcStream;
         private PacketReaderWriter packetReaderWriter;
-        public MinecraftClient(IMinecraftHandler handler)
+
+
+
+        public MinecraftClient(GameProfile gameProfile, IMinecraftHandler handler, TcpClient tcpClient)
         {
+            if (string.IsNullOrEmpty(nickname))
+                throw new InvalidOperationException("nick is null");
+
+            if (handler is null)
+                throw new ArgumentNullException(nameof(handler));
+
+            if (tcpClient is null)
+                throw new ArgumentNullException(nameof(tcpClient));
+
+            this.tcpClient = tcpClient;
             this._handler = handler;
+
+            GameProfile = gameProfile;
         }
 
-        public bool IsConnected => tcpClient != null && tcpClient.Connected;
-
-        public bool IsAuth
-        {
-            get => isAuth;
-            set
-            {
-                if (!IsConnected)
-                    isAuth = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public string Nickname
-        {
-            get => nickname;
-            set
-            {
-                if (!IsConnected)
-                    nickname = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public string Password
-        {
-            get => password;
-            set
-            {
-                if (!IsConnected)
-                    password = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public string Host
-        {
-            get => host;
-            set
-            {
-                host = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public ushort Port
-        {
-            get => port;
-            set
-            {
-                if (!IsConnected)
-                    port = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-
-        public bool ProxyEnabled
-        {
-            get => proxyEnabled;
-            set
-            {
-                if (!IsConnected)
-                    proxyEnabled = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public string ProxyHost
-        {
-            get => proxyHost;
-            set
-            {
-                if (!IsConnected)
-                    proxyHost = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public ushort ProxyPort
-        {
-            get => proxyPort;
-            set
-            {
-                if (!IsConnected)
-                    proxyPort = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public string ProxyLogin
-        {
-            get => proxyLogin;
-            set
-            {
-                if (!IsConnected)
-                    proxyLogin = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-        public string ProxyPassword
-        {
-            get => proxyPassword;
-            set
-            {
-                if (!IsConnected)
-                    proxyPassword = value;
-                throw new NotImplementedException("Нельзя изменять свойсва во время работы");
-            }
-        }
-
-
-
-
-
-
-
+        public GameProfile GameProfile { get; private set; }
 
 
 
@@ -223,23 +130,17 @@ namespace MinecraftLibrary
         {
             try
             {
-
-                CheckProperties();
-
                 PacketManager = new PacketManager();
-
-                this.tcpClient = new TcpClient();
-                await this.tcpClient.ConnectAsync(Host, Port, Cancellation.Token);
                 this.NetMcStream = new NetworkMinecraftStream(tcpClient.GetStream());
                 this.packetReaderWriter = new PacketReaderWriter(NetMcStream);
 
                 SubProtocol = ProtocolState.HandShake;
 
-                await SendPacketAsync(new HandShakePacket(HandShakeIntent.LOGIN, 754, Port, Host));
+                await SendPacketAsync(new HandShakePacket(HandShakeIntent.LOGIN, 754, 0, ""));
 
                 SubProtocol = ProtocolState.Login;
 
-                await SendPacketAsync(new LoginStartPacket(Nickname));
+                await SendPacketAsync(new LoginStartPacket(GameProfile.Nickname));
 
                 bool login;
                 do
@@ -391,27 +292,6 @@ namespace MinecraftLibrary
 
         }
 
-
-        private void CheckProperties()
-        {
-            if (string.IsNullOrWhiteSpace(Nickname))
-            {
-                throw new InvalidOperationException("Введите ник");
-            }
-            if (string.IsNullOrWhiteSpace(Host))
-            {
-                throw new InvalidOperationException("Введите хост");
-            }
-            if (IsAuth)
-            {
-                if (string.IsNullOrWhiteSpace(Password))
-                {
-                    throw new InvalidOperationException("Введите пароль");
-                }
-            }
-
-
-        }
         private bool EventsSub = false;
         private Guid uUID;
         private Point3 location;
