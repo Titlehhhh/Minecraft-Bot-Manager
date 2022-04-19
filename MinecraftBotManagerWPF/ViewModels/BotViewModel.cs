@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using MinecraftLibrary;
+using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 using System;
@@ -43,6 +44,30 @@ namespace MinecraftBotManagerWPF
             set
             {
                 botInfo.IsAuth = value;
+                OnPropertyChanged();
+            }
+        }
+
+       
+
+        public AccountType AccType
+        {
+            get { return botInfo.AccType; }
+            set
+            {
+                botInfo.AccType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
+
+        public string Password
+        {
+            get { return botInfo.Password; }
+            set
+            {
+                botInfo.Password = value;
                 OnPropertyChanged();
             }
         }
@@ -152,7 +177,7 @@ namespace MinecraftBotManagerWPF
 
         #region Errors        
         public CheckStatusVM AuthStatus { get; set; } = new();
-        public CheckStatusVM IPStatus { get; set; } = new();
+        public CheckStatusVM ServerStatus { get; set; } = new();
         public CheckStatusVM ProxyStatus { get; set; } = new();
         public CheckStatusVM VersionStatus { get; set; } = new();
         #endregion
@@ -200,7 +225,7 @@ namespace MinecraftBotManagerWPF
             BotState = State.None;
 
             AuthStatus.IsEnabled = false;
-            IPStatus.IsEnabled = false;
+            ServerStatus.IsEnabled = false;
             ProxyStatus.IsEnabled = false;
             VersionStatus.IsEnabled = false;
         }

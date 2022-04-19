@@ -1,4 +1,5 @@
 ﻿using MinecraftLibrary;
+using MinecraftLibrary.API;
 using MinecraftLibrary.Exceptions;
 using System;
 using System.Threading.Tasks;
@@ -10,23 +11,80 @@ namespace MinecraftBotManagerWPF
     {
         private readonly IBotRepository botRepository;
         private readonly BotViewModel _botViewModel;
+        private readonly IAuthService _authService;
 
-        public StartBotCommand(BotViewModel botViewModel, IBotRepository botRepository)
+        public StartBotCommand(BotViewModel botViewModel, IBotRepository botRepository, IAuthService authService)
         {
             this._botViewModel = botViewModel;
             this.botRepository = botRepository;
+            this._authService = authService;
         }
 
         public async override Task ExecuteAsync(object parameter)
         {
             await this.botRepository.SaveAsync();
-
+            _botViewModel.ReturnToOrgignalStateStatuses();
             _botViewModel.RefreshPropertis();
             _botViewModel.BotState = State.Initialized;
+
+            MinecraftBotBuilder builder = MinecraftBotBuilder.Create();
+
+            BotInfo info = _botViewModel.BotInfoModel;
+
+            if (_botViewModel.AuthEnabled)
+            {
+                _botViewModel.AuthStatus.Status = StatusCheck.Init;
+                _botViewModel.AuthStatus.Message = "Авторизация";
+
+                GameProfile gameProfile = null;
+                AuthInfo authInfo = new AuthInfo(info.AccType, info.Nickname, info.Password);
+                LoginResult result = await _authService.AuthAsync(authInfo, out gameProfile);
+
+                string message = "";
+                StatusCheck status = default;
+                switch (result)
+                {
+                    case LoginResult.Success:
+                        status = StatusCheck.Ok;
+                        message = "Авторизация успешна!";
+                        break;
+                    default:
+                        status = StatusCheck.Error;
+                        message = result.ToString();
+                        return;                        
+                }
+                _botViewModel.AuthStatus.Status = status;
+                _botViewModel.AuthStatus.Message = message;
+
+                builder.SetProfile(gameProfile);
+            }
+
+            if (info.ProxyEnabled)
+            {
+                if (string.IsNullOrEmpty(info.ProxyHost))
+                {
+
+                }
+                _botViewModel.ProxyStatus.Status = StatusCheck.Init;
+                
+                if (info.AutoFindProxyEnabled)
+                {
+                    _botViewModel.ProxyStatus.Message = "Поиск оптимального прокси";
+
+                }
+
+                _botViewModel.ProxyStatus.Message = "Проверка прокси";
+
+            }
+
+            _botViewModel.ServerStatus.Status = StatusCheck.Init;
+            _botViewModel.ServerStatus.Message = "Определение SRV";
+
+
             try
             {
 
-                MinecraftBot bot = new MinecraftBot();
+
 
                 MinecraftClient client = bot.Client;
 
@@ -52,5 +110,6 @@ namespace MinecraftBotManagerWPF
             }
 
         }
+
     }
 }
