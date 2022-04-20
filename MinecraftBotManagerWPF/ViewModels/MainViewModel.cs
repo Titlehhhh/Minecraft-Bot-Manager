@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
+using MinecraftLibrary.API;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -37,7 +38,7 @@ namespace MinecraftBotManagerWPF
 
         private readonly IDataService dataService;
 
-        public MainViewModel(IDialogService dialogService, IDataService dataService, BotViewModelsStorage botViewModelsStorage)
+        public MainViewModel(IDialogService dialogService, IDataService dataService, BotViewModelsStorage botViewModelsStorage, IServerResolver resolver, IAuthService authService)
         {
             this.dataService = dataService;
 
@@ -49,7 +50,7 @@ namespace MinecraftBotManagerWPF
                 OnPropertyChanged(nameof(CurrentBot));
             };
 
-            CreateNewBotCommand = new AddBotCommand(this.BotVMStorage, dataService.BotRepository);
+            CreateNewBotCommand = new AddBotCommand(this.BotVMStorage, dataService.BotRepository, authService, resolver);
             DeleteBotCommand = new RemoveBotCommand(this.BotVMStorage, dialogService, dataService.BotRepository);
 
             CurrentBot = BotsCollection.FirstOrDefault();

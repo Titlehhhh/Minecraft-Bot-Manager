@@ -5,7 +5,7 @@ using MinecraftLibrary.Geometry;
 namespace MinecraftLibrary.API
 {
     public interface IMinecraftHandler
-    {        
+    {
         void OnDisconnect(Exception e);
         void OnDisconnect(string reason);
 

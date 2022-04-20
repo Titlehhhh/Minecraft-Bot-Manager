@@ -20,7 +20,7 @@ namespace MinecraftBotManagerWPF
         private readonly BotInfo botInfo;
         private readonly IBotRepository _botRepository;
 
-        public BotViewModel(BotInfo botInfo, IBotRepository botRepository)
+        public BotViewModel(BotInfo botInfo, IBotRepository botRepository, IServerResolver resolver, IAuthService authService)
         {
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
@@ -31,7 +31,7 @@ namespace MinecraftBotManagerWPF
 
 
 
-            this.StartCommand = new StartBotCommand(this, botRepository);
+            this.StartCommand = new StartBotCommand(this, botRepository, authService, resolver);
             this.StopCommand = new StopBotCommand(this);
             this.RestartCommand = new RestartBotCommand(this);
         }
@@ -48,7 +48,7 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-       
+
 
         public AccountType AccType
         {
@@ -60,7 +60,7 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-        
+
 
         public string Password
         {

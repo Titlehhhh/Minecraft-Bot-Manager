@@ -12,12 +12,14 @@ namespace MinecraftBotManagerWPF
         private readonly IBotRepository botRepository;
         private readonly BotViewModel _botViewModel;
         private readonly IAuthService _authService;
+        private readonly IServerResolver _resolver;
 
-        public StartBotCommand(BotViewModel botViewModel, IBotRepository botRepository, IAuthService authService)
+        public StartBotCommand(BotViewModel botViewModel, IBotRepository botRepository, IAuthService authService, IServerResolver resolver)
         {
             this._botViewModel = botViewModel;
             this.botRepository = botRepository;
             this._authService = authService;
+            _resolver = resolver;
         }
 
         public async override Task ExecuteAsync(object parameter)
@@ -51,7 +53,7 @@ namespace MinecraftBotManagerWPF
                     default:
                         status = StatusCheck.Error;
                         message = result.ToString();
-                        return;                        
+                        return;
                 }
                 _botViewModel.AuthStatus.Status = status;
                 _botViewModel.AuthStatus.Message = message;
@@ -66,7 +68,7 @@ namespace MinecraftBotManagerWPF
 
                 }
                 _botViewModel.ProxyStatus.Status = StatusCheck.Init;
-                
+
                 if (info.AutoFindProxyEnabled)
                 {
                     _botViewModel.ProxyStatus.Message = "Поиск оптимального прокси";
@@ -79,13 +81,35 @@ namespace MinecraftBotManagerWPF
 
             _botViewModel.ServerStatus.Status = StatusCheck.Init;
             _botViewModel.ServerStatus.Message = "Определение SRV";
+            try
+            {
+                var hostport = info.Host.Split(':');
+                ushort port = 25565;
+                string host = info.Host;
+                if (hostport.Length == 2)
+                {
+                    host = hostport[0];
+                    port = ushort.Parse(hostport[1]);
+                }
+                if (await _resolver.ResolveAsync(ref host, ref port))
+                {
+                    _botViewModel.ServerStatus.Message = $"SRV опеределён: \n{host}:{port}";
+
+                }
+                builder.SetEndPoint(host, port);
+                _botViewModel.ServerStatus.Status = StatusCheck.Ok;
+            }
+            catch (Exception e)
+            {
+                _botViewModel.ServerStatus.Status = StatusCheck.Error;
+                _botViewModel.ServerStatus.Message = "Ошибка при проверке сервера";
+                return;
+            }
 
 
             try
             {
-
-
-
+                MinecraftBot bot = builder.Build();
                 MinecraftClient client = bot.Client;
 
                 _botViewModel.Client = client;

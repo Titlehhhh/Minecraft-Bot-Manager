@@ -5,10 +5,10 @@ namespace MinecraftBotManagerWPF
 {
     public interface IServerResolver
     {
-        Task<bool> ResolveAsync(ref string host, ref ushort port);
+        Task<(string, ushort)> ResolveAsync(string host);
     }
     public interface ILoginService
     {
-        Task<LoginResult> LoginAsync(string nick,string pass, AccountType accountType);
+        Task<LoginResult> LoginAsync(string nick, string pass, AccountType accountType);
     }
 }

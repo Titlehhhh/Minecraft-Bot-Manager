@@ -1,6 +1,5 @@
-﻿using MinecraftLibrary.API.Networking.Proxy;
-using MinecraftLibrary;
-using MinecraftLibrary.API;
+﻿using MinecraftLibrary.API;
+using MinecraftLibrary.API.Networking.Proxy;
 using System;
 using System.Net.Sockets;
 
@@ -9,17 +8,17 @@ namespace MinecraftBotManagerWPF
     public class MinecraftBotBuilder
     {
         private GameProfile gameProfile;
-        
+
 
         private string host;
         private ushort port;
-        
+
         private string proxyHost;
         private ushort proxyPort;
         private ProxyType proxyType;
         private string proxyPass;
         private string proxyLogin;
-        
+
 
         private bool proxyAuth = false;
         private bool proxyEnabled = false;
@@ -32,8 +31,8 @@ namespace MinecraftBotManagerWPF
         {
             this.gameProfile = profile;
             return this;
-        }        
-        public MinecraftBotBuilder SetEndPoint(string host,ushort port)
+        }
+        public MinecraftBotBuilder SetEndPoint(string host, ushort port)
         {
             this.host = host;
             this.port = port;
@@ -47,7 +46,7 @@ namespace MinecraftBotManagerWPF
             this.proxyType = type;
             return this;
         }
-        public MinecraftBotBuilder SetProxy(string host, ushort port, ProxyType type,string login,string pass)
+        public MinecraftBotBuilder SetProxy(string host, ushort port, ProxyType type, string login, string pass)
         {
             this.proxyEnabled = true;
             this.proxyHost = host;
@@ -61,8 +60,8 @@ namespace MinecraftBotManagerWPF
 
         public MinecraftBot Build()
         {
-            MinecraftBot bot = new MinecraftBot(gameProfile,CreateTcp());
-            
+            MinecraftBot bot = new MinecraftBot(gameProfile, CreateTcp());
+
             return bot;
         }
 

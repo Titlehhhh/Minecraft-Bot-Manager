@@ -2,7 +2,7 @@
 
 namespace MinecraftLibrary.API
 {
-    
+
     [DataContract]
     public class GameProfile
     {
@@ -12,12 +12,12 @@ namespace MinecraftLibrary.API
         internal string nick;
 
 
-        public string UUID { get;private set; }
+        public string UUID { get; private set; }
 
-        
+
         public string Nickname { get; set; }
 
-        
+
         public GameProfile(string uUID, string nickname)
         {
             UUID = uUID;
