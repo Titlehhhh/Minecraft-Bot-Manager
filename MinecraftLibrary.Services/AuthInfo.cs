@@ -1,4 +1,4 @@
-﻿namespace MinecraftLibrary.API
+﻿namespace MinecraftLibrary.Services
 {
     public struct AuthInfo
     {
@@ -13,5 +13,4 @@
             Password = password;
         }
     }
-
 }

@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftLibrary.Tests", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.PluginContracts", "MinecraftBotManager.PluginContracts\MinecraftBotManager.PluginContracts.csproj", "{90E0F17C-DBB4-4E60-BABA-946E464F50C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftLibrary.Services", "MinecraftLibrary.Services\MinecraftLibrary.Services.csproj", "{F24E5B1F-848F-4779-A747-B85DA7CCB970}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,26 @@ Global
 		{90E0F17C-DBB4-4E60-BABA-946E464F50C9}.Release|x64.Build.0 = Release|Any CPU
 		{90E0F17C-DBB4-4E60-BABA-946E464F50C9}.Release|x86.ActiveCfg = Release|Any CPU
 		{90E0F17C-DBB4-4E60-BABA-946E464F50C9}.Release|x86.Build.0 = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|x64.Build.0 = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Debug|x86.Build.0 = Debug|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|ARM.Build.0 = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|ARM64.Build.0 = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|x64.ActiveCfg = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|x64.Build.0 = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|x86.ActiveCfg = Release|Any CPU
+		{F24E5B1F-848F-4779-A747-B85DA7CCB970}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

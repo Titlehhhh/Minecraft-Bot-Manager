@@ -40,6 +40,24 @@ namespace MinecraftBotManagerWPF
             }
         }
 
+        public void Error(string message)
+        {
+            IsEnabled = true;
+            Message = message;
+            Status = StatusCheck.Error;
+        }
+        public void Succes(string message)
+        {
+            IsEnabled = true;
+            Message = message;
+            Status = StatusCheck.Ok;
+        }
+        public void Load(string message)
+        {
+            IsEnabled = true;
+            Message = message;
+            Status = StatusCheck.Init;
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -9,25 +9,18 @@ namespace MinecraftBotManagerWPF
 {
     internal class StartBotCommand : AsyncCommandBase
     {
-        private readonly IBotRepository botRepository;
-        private readonly BotViewModel _botViewModel;
-        private readonly IAuthService _authService;
-        private readonly IServerResolver _resolver;
+        private readonly IBotVMHelper _helper;
 
-        public StartBotCommand(BotViewModel botViewModel, IBotRepository botRepository, IAuthService authService, IServerResolver resolver)
+        public StartBotCommand(IBotVMHelper helper)
         {
-            this._botViewModel = botViewModel;
-            this.botRepository = botRepository;
-            this._authService = authService;
-            _resolver = resolver;
+            _helper = helper;
         }
 
         public async override Task ExecuteAsync(object parameter)
         {
-            await this.botRepository.SaveAsync();
-            _botViewModel.ReturnToOrgignalStateStatuses();
-            _botViewModel.RefreshPropertis();
-            _botViewModel.BotState = State.Initialized;
+            await _helper.StartBotAsync();
+
+            
 
             MinecraftBotBuilder builder = MinecraftBotBuilder.Create();
 

@@ -7,6 +7,7 @@
     <ProjectGuid>{F0F61389-B74A-4F72-A4BB-8AB2D4917E88}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
     <PackageReference Include="Hawezo.MojangSharp" Version="0.5.1" />
   </ItemGroup>
   <ItemGroup>

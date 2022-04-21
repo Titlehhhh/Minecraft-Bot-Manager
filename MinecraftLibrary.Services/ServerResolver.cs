@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftLibrary.Services
 {
     public class ServerResolver : IServerResolver
     {
