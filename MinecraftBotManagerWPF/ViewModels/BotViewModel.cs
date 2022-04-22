@@ -3,6 +3,7 @@ using MinecraftLibrary;
 using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
+using MinecraftLibrary.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -29,9 +30,9 @@ namespace MinecraftBotManagerWPF
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
 
+            IMinecraftBotRunner runner = new MinecraftBotRunner(this, botRepository, authService, resolver);
 
-
-            this.StartCommand = new StartBotCommand(this, botRepository, authService, resolver);
+            this.StartCommand = new StartBotCommand(runner);
             this.StopCommand = new StopBotCommand(this);
             this.RestartCommand = new RestartBotCommand(this);
         }
