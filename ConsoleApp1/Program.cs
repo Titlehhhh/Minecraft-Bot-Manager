@@ -1,7 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-using System.Net.NetworkInformation;
-using System.Reflection.PortableExecutable;
+﻿using System.Net.NetworkInformation;
 
 namespace ConsoleApp1
 {
@@ -11,10 +8,10 @@ namespace ConsoleApp1
         {
             foreach (NetworkInterface inter in NetworkInterface.GetAllNetworkInterfaces())
             {
-                Console.WriteLine("name: "+inter.Name);
-                foreach(var adrr in inter.GetIPProperties().UnicastAddresses)
+                Console.WriteLine("name: " + inter.Name);
+                foreach (var adrr in inter.GetIPProperties().UnicastAddresses)
                 {
-                    Console.WriteLine(" "+adrr.Address.ToString());
+                    Console.WriteLine(" " + adrr.Address.ToString());
                 }
             }
         }

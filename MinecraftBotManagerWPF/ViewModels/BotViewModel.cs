@@ -1,6 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using MinecraftLibrary;
-using MinecraftLibrary.API;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
 using MinecraftLibrary.Services;

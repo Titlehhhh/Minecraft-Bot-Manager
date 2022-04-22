@@ -10,7 +10,7 @@ namespace MinecraftBotManagerWPF
 {
     public class MinecraftBotRunner : IMinecraftBotRunner
     {
-        
+
 
         private readonly BotViewModel _botViewModel;
         private readonly BotInfo info;
@@ -52,7 +52,7 @@ namespace MinecraftBotManagerWPF
             var hostport = info.Host.Split(':');
             string host = info.Host;
             ushort port = 25565;
-            if(hostport.Length == 2)
+            if (hostport.Length == 2)
             {
                 host = hostport[0];
                 try
@@ -83,7 +83,7 @@ namespace MinecraftBotManagerWPF
 
         public async Task RunBotAsync()
         {
-            
+
             try
             {
                 MinecraftBot bot = builder.Build();
@@ -105,7 +105,7 @@ namespace MinecraftBotManagerWPF
                 _botViewModel.BotState = State.None;
             }
             catch (Exception e)
-            {                
+            {
                 _botViewModel.BotState = State.None;
             }
         }

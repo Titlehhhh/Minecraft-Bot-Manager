@@ -5,7 +5,7 @@ using System.Net.Sockets;
 
 namespace MinecraftBotManagerWPF
 {
-    public class MinecraftBotBuilder : IMinecraftBotBuilder 
+    public class MinecraftBotBuilder : IMinecraftBotBuilder
     {
         private GameProfile gameProfile;
         private string host;

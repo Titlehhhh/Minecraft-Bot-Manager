@@ -1,5 +1,4 @@
-﻿using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking.Proxy;
+﻿using MinecraftLibrary.API.Networking.Proxy;
 using MinecraftLibrary.Services;
 using System.Runtime.Serialization;
 

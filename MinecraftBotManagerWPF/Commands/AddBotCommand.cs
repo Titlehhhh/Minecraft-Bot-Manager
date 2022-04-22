@@ -1,5 +1,4 @@
-﻿using MinecraftLibrary.API;
-using MinecraftLibrary.Services;
+﻿using MinecraftLibrary.Services;
 using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
