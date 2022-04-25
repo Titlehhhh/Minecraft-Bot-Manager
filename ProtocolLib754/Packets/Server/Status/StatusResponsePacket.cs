@@ -10,9 +10,9 @@ namespace ProtocolLib754.Packets.Server
     [PacketInfo(0x00, 754, PacketCategory.Status, PacketSide.Server)]
     public class StatusResponsePacket : IPacket
     {
-        private static readonly DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ServerInfo));
+        
 
-        public ServerInfo ServerStatusInfo { get; set; }
+       
 
         public void Read(IMinecraftStreamReader stream)
         {
@@ -21,9 +21,7 @@ namespace ProtocolLib754.Packets.Server
 
 
 
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(debug));
-
-            ServerStatusInfo = (ServerInfo)serializer.ReadObject(ms);
+            
 
         }
 

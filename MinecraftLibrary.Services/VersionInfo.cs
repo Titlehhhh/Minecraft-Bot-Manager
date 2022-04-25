@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace MinecraftLibrary.API
+namespace MinecraftLibrary.Services
 {
     [DataContract]
     public struct VersionInfo

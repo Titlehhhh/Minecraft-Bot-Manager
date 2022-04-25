@@ -9,9 +9,11 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
     <PackageReference Include="Hawezo.MojangSharp" Version="0.5.1" />
+    <PackageReference Include="System.DirectoryServices" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
+    <ProjectReference Include="..\MinecraftLibrary.Services\MinecraftLibrary.Services.csproj" />
     <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj" />
     <ProjectReference Include="..\ProtocolLib754\ProtocolLib754.csproj" />
   </ItemGroup>

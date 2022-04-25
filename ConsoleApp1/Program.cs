@@ -1,4 +1,7 @@
 ﻿using System.Net.NetworkInformation;
+using System.Net;
+using System.DirectoryServices;
+using MinecraftLibrary.Services;
 
 namespace ConsoleApp1
 {
@@ -6,14 +9,7 @@ namespace ConsoleApp1
     {
         public static void Main()
         {
-            foreach (NetworkInterface inter in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                Console.WriteLine("name: " + inter.Name);
-                foreach (var adrr in inter.GetIPProperties().UnicastAddresses)
-                {
-                    Console.WriteLine(" " + adrr.Address.ToString());
-                }
-            }
+            Console.WriteLine(new ServerInfoService().GetServerInfoAsync("192.168.1.153",53687).Result.Icon.Length);
         }
     }
 

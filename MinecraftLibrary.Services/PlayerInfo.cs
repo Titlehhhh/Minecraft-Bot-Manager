@@ -1,6 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using MinecraftLibrary.API;
+using System.Runtime.Serialization;
 
-namespace MinecraftLibrary.API
+namespace MinecraftLibrary.Services
 {
     [DataContract]
     public class PlayerInfo

@@ -1,7 +1,8 @@
 ﻿using MinecraftLibrary.API.Types.Chat;
 using System.Runtime.Serialization;
+using System.Drawing;
 
-namespace MinecraftLibrary.API
+namespace MinecraftLibrary.Services
 {
     [DataContract]
     public class ServerInfo
@@ -15,8 +16,8 @@ namespace MinecraftLibrary.API
         [DataMember(Name = "description", EmitDefaultValue = true)]
         public ChatMessage Description { get; set; }
 
-        [IgnoreDataMember]
-        public byte[] Icon { get; set; }
+        [DataMember(Name = "favicon")]
+        public string Icon { get; set; }
 
         public override string ToString()
         {
