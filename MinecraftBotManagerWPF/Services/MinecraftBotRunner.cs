@@ -30,7 +30,7 @@ namespace MinecraftBotManagerWPF
         }
 
 
-        public async Task<bool> AuthenticationAsync()
+        private async Task<bool> AuthenticationAsync()
         {
             _botViewModel.AuthStatus.IsEnabled = true;
             _botViewModel.AuthStatus.Message = "Пропущено";
@@ -39,7 +39,7 @@ namespace MinecraftBotManagerWPF
             return true;
         }
 
-        public async Task<bool> ConfigureProxyAsync()
+        private async Task<bool> ConfigureProxyAsync()
         {
             _botViewModel.ProxyStatus.IsEnabled = true;
             _botViewModel.ProxyStatus.Message = "Пропущено";
@@ -47,7 +47,7 @@ namespace MinecraftBotManagerWPF
             return true;
         }
 
-        public async Task<bool> ConfigureServerAsync()
+        private async Task<bool> ConfigureServerAsync()
         {
             var hostport = info.Host.Split(':');
             string host = info.Host;
@@ -83,6 +83,15 @@ namespace MinecraftBotManagerWPF
 
         public async Task RunBotAsync()
         {
+            await PreparingAsync();
+
+            if (!await AuthenticationAsync())
+                return;
+            if (!await ConfigureProxyAsync())
+                return;
+            if (!await ConfigureServerAsync())
+                return;
+
 
             try
             {
@@ -110,7 +119,7 @@ namespace MinecraftBotManagerWPF
             }
         }
 
-        public async Task PreparingAsync()
+        private async Task PreparingAsync()
         {
             builder = new MinecraftBotBuilder();
 

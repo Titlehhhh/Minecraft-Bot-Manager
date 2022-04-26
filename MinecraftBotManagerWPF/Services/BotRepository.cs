@@ -18,25 +18,11 @@ namespace MinecraftBotManagerWPF
 
         public event AddBotHandler? AddBotEvent;
 
-        private readonly List<BotInfo> Bots;
+        private List<BotInfo> Bots;
 
         public BotRepository()
         {
-            try
-            {
-                BinaryFormatter bin = new BinaryFormatter();
-                string path = @"Database\bots.json";
-                Directory.CreateDirectory(Path.GetDirectoryName(path));
-                using (FileStream fs = File.OpenRead(path))
-                {
-                    Bots = new List<BotInfo>(serializer.ReadObject(fs) as IEnumerable<BotInfo>);
-                }
-            }
-            catch (Exception)
-            {
-                //System.Windows.MessageBox.Show(e.ToString());
-                this.Bots = new List<BotInfo>();
-            }
+
         }
 
         public async Task AddBot(BotInfo bot)
@@ -86,6 +72,26 @@ namespace MinecraftBotManagerWPF
                 }
             });
 
+        }
+
+        public Task InizializeAsync()
+        {
+            try
+            {
+                BinaryFormatter bin = new BinaryFormatter();
+                string path = @"Database\bots.json";
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+                using (FileStream fs = File.OpenRead(path))
+                {
+                    Bots = new List<BotInfo>(serializer.ReadObject(fs) as IEnumerable<BotInfo>);
+                }
+            }
+            catch (Exception)
+            {
+                //System.Windows.MessageBox.Show(e.ToString());
+                this.Bots = new List<BotInfo>();
+            }
+            return Task.CompletedTask;
         }
     }
 }

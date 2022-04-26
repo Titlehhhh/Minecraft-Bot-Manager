@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 using MinecraftLibrary;
 using MinecraftLibrary.API.Types.Chat;
 using MinecraftLibrary.Geometry;
@@ -20,7 +21,7 @@ namespace MinecraftBotManagerWPF
         private readonly BotInfo botInfo;
         private readonly IBotRepository _botRepository;
 
-        public BotViewModel(BotInfo botInfo, IBotRepository botRepository, IServerResolver resolver, IAuthService authService)
+        public BotViewModel(BotInfo botInfo, IBotRepository botRepository, IServiceScopeFactory serviceScopeFactory)
         {
             if (botInfo is null)
                 throw new ArgumentNullException(nameof(botInfo));
@@ -29,9 +30,9 @@ namespace MinecraftBotManagerWPF
             //botInfo.Proxy = new MinecraftLibrary.API.Networking.Proxy.ProxyInfo();
             //  botInfo.Auth = new AuthInfo();
 
-            IMinecraftBotRunner runner = new MinecraftBotRunner(this, botRepository, authService, resolver);
 
-            this.StartCommand = new StartBotCommand(runner);
+
+            this.StartCommand = new StartBotCommand(this, serviceScopeFactory);
             this.StopCommand = new StopBotCommand(this);
             this.RestartCommand = new RestartBotCommand(this);
         }

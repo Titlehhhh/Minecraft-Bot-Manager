@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MinecraftLibrary.Services;
 
 namespace MinecraftBotManagerWPF
 {
@@ -9,9 +10,13 @@ namespace MinecraftBotManagerWPF
         {
             hostBuilder.ConfigureServices(services =>
             {
+                services.AddSingleton<IBotRepository, BotRepository>();
                 services.AddSingleton<IDataService, DataService>();
                 services.AddSingleton<IDialogService>((s) => new DialogService(s.GetRequiredService<MainWindow>()));
-                services.
+                services.AddScoped<IAuthService, AuthService>();
+                services.AddTransient<IServerResolver, ServerResolver>();
+                services.AddTransient<IBotVMFactory, BotVMFactory>();
+                // services.AddSingleton<IServiceScopeFactory,scope>
             });
             return hostBuilder;
         }

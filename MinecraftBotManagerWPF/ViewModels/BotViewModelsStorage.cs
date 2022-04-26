@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MinecraftBotManagerWPF
 {
@@ -24,8 +24,9 @@ namespace MinecraftBotManagerWPF
         {
             StateChanged?.Invoke();
         }
-        public BotViewModelsStorage(IEnumerable<BotViewModel> bots)
+        public BotViewModelsStorage(IBotRepository botRepository, IBotVMFactory factory)
         {
+            var bots = botRepository.GetAllBots().Select(factory.Create);
             Bots = new ObservableCollection<BotViewModel>(bots);
         }
     }

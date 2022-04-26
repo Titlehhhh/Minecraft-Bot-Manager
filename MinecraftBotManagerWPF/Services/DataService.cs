@@ -2,11 +2,11 @@
 {
     public class DataService : IDataService
     {
-        private readonly IBotRepository botRepository = new BotRepository();
+        private readonly IBotRepository botRepository;
 
-        public DataService()
+        public DataService(IBotRepository botRepository)
         {
-
+            this.botRepository = botRepository;
         }
         public IBotRepository BotRepository => botRepository;
 

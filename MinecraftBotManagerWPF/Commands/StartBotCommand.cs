@@ -1,27 +1,39 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MinecraftLibrary.Services;
+using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF
 {
     internal class StartBotCommand : AsyncCommandBase
     {
-        private readonly IMinecraftBotRunner _runner;
 
-        public StartBotCommand(IMinecraftBotRunner runner)
+        private readonly BotViewModel _botViewModel;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
+
+        public StartBotCommand(BotViewModel botViewModel, IServiceScopeFactory serviceScopeFactory)
         {
-            _runner = runner;
+            _botViewModel = botViewModel;
+            _serviceScopeFactory = serviceScopeFactory;
         }
 
         public async override Task ExecuteAsync(object parameter)
         {
-            await _runner.PreparingAsync();
+            await Task.Run(async () =>
+             {
+                 using (var scope = _serviceScopeFactory.CreateScope())
+                 {
+                     IMinecraftBotRunner _runner =
+                        new MinecraftBotRunner(_botViewModel,
+                        scope.ServiceProvider.GetRequiredService<IBotRepository>(),
+                        scope.ServiceProvider.GetRequiredService<IAuthService>(),
+                        scope.ServiceProvider.GetRequiredService<IServerResolver>());
 
-            if (!await _runner.AuthenticationAsync())
-                return;
-            if (!await _runner.ConfigureProxyAsync())
-                return;
-            if (!await _runner.ConfigureServerAsync())
-                return;
-            await _runner.RunBotAsync();
+
+                     await _runner.RunBotAsync();
+                 }
+             });
+
+
 
         }
 

@@ -10,7 +10,7 @@ namespace MinecraftBotManagerWPF
     /// </summary>
     public partial class App : Application
     {
-        private readonly IHost host;
+        private IHost host;
 
         //public static  MinecraftBotFactory BotFactory { get; } = new MinecraftBotFactory();
 
@@ -20,15 +20,23 @@ namespace MinecraftBotManagerWPF
         {
             start = new StartupWindow();
             start.Show();
+
+        }
+        protected override async void OnStartup(StartupEventArgs e)
+        {
             host = Host.CreateDefaultBuilder()
                 .AddServices()
                 .AddViewModels()
                 .AddViews()
                 .Build();
-        }
-        protected override async void OnStartup(StartupEventArgs e)
-        {
+
+
+            IBotRepository botRepository = host.Services.GetRequiredService<IBotRepository>();
+            await botRepository.InizializeAsync();
+
             await host.StopAsync();
+
+
 
             Window window = host.Services.GetRequiredService<MainWindow>();
             window.DataContext = host.Services.GetRequiredService<MainViewModel>();
