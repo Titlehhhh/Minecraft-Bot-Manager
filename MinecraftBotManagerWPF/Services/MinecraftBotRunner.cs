@@ -49,6 +49,7 @@ namespace MinecraftBotManagerWPF
 
         private async Task<bool> ConfigureServerAsync()
         {
+            _botViewModel.ServerStatus.Load("Проверка сервера");
             var hostport = info.Host.Split(':');
             string host = info.Host;
             ushort port = 25565;
@@ -68,6 +69,7 @@ namespace MinecraftBotManagerWPF
             try
             {
                 (host, port) = await _resolver.ResolveAsync(host);
+                _botViewModel.ServerStatus.Succes($"Сервер найден:\n{host}:{port}");
             }
             catch
             {

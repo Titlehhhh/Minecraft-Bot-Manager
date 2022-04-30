@@ -6,7 +6,6 @@
         int Read(byte[] buffer, int offset, int count);
         bool ReadBoolean();
         Task<bool> ReadBooleanAsync(CancellationToken cancellationToken = default);
-        byte[] ReadByteArray();
         Task<sbyte> ReadByteAsync(CancellationToken cancellationToken = default);
         double ReadDouble();
         Task<double> ReadDoubleAsync(CancellationToken cancellationToken = default);
