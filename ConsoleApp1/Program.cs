@@ -3,6 +3,8 @@ using System.Net;
 using System.DirectoryServices;
 using MinecraftLibrary.Services;
 using System.IO;
+using MinecraftLibrary.API.Protocol;
+using ProtocolLib754;
 
 namespace ConsoleApp1
 {
@@ -35,6 +37,10 @@ namespace ConsoleApp1
             {
                 source = sr.ReadToEnd().Trim();
             }
+            IPacketProvider packets = new PacketProvider754();
+            var gamepackets = packets.ClientPackets.GamePackets;
+            int i = 0;
+           
         }
     }
 
