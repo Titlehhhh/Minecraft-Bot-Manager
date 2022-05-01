@@ -35,16 +35,12 @@ namespace ConsoleApp1
         public static void Main()
         {
             string path = "codeGenrator.script";
-            List<string> source = null;
+            string source = "";
             using (StreamReader sr = new StreamReader(path))
             {
-                source = new List<string>(sr.ReadToEnd().Trim().Split("\n"));
+                source = sr.ReadToEnd().Trim();
             }
-            foreach (var item in source)
-            {
-                string line = Preparing(item);
-                asdasd
-            }
+            Regex rg = new Regex(@"");
 
         }
 
