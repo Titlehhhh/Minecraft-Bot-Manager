@@ -8,6 +8,7 @@ using ProtocolLib754;
 using System.Collections.Generic;
 using System.Collections;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace ConsoleApp1
 {
@@ -34,13 +35,39 @@ namespace ConsoleApp1
         };
         public static void Main()
         {
-            string path = "codeGenrator.script";
+            string path = "codeGenerator.script";
+            if (!File.Exists(path))
+                File.Create(path);
+
             string source = "";
             using (StreamReader sr = new StreamReader(path))
             {
                 source = sr.ReadToEnd().Trim();
             }
-            Regex rg = new Regex(@"");
+            Regex rg = new Regex(@"(?<name>[a-zA-Z_][0-9\w]+) (?<id>[0-9]+)");
+
+            List<ClassUnit> packets = new List<ClassUnit>();
+
+            bool packet = false;
+
+            foreach (string line in source.Split(Environment.NewLine))
+            {
+                string pline = Preparing(line);
+                if (pline[0] == '\t')
+                {
+                    pline = pline.Trim();
+                    var h = pline.Split(' ');
+                    packets.Last().Fields.Add(new FieldUnit(h[0], h[1]));
+                }
+                else
+                {
+                    Match match = rg.Match(pline);
+
+                    packets.Add(new ClassUnit(match.Groups["name"].Value, match.Groups["id"].Value));
+                }
+            }
+
+
 
         }
 
@@ -55,6 +82,13 @@ namespace ConsoleApp1
     public class ClassUnit
     {
         public string Name { get; set; }
+        public string ID { get; set; }
+
+        public ClassUnit(string name, string iD)
+        {
+            Name = name;
+            ID = iD;
+        }
 
         public List<FieldUnit> Fields { get; set; } = new();
 
@@ -63,6 +97,12 @@ namespace ConsoleApp1
     {
         public string Name { get; set; }
         public string Type { get; set; }
+
+        public FieldUnit(string name, string type)
+        {
+            Name = name;
+            Type = type;
+        }
     }
 
 
