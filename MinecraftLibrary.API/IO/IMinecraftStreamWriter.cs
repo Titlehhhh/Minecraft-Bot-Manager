@@ -19,7 +19,9 @@ namespace MinecraftLibrary.API.IO
         void WriteShort(short value);
         void WriteString(string value, int maxLength = 32767);
         void WriteUnsignedByte(byte value);
+        void WriteUnsignedLong(ulong value);
         void WriteUnsignedShort(ushort value);
+        void WriteULongArray(ulong[] value);
         void WriteUuid(Guid value);
         void WriteVarInt(Enum value);
         void WriteVarInt(int value);

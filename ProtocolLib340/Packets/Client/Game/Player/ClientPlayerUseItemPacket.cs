@@ -9,16 +9,16 @@ namespace ProtocolLib340.Packets.Client.Game
 
     public class ClientPlayerUseItemPacket : IPacket
     {
-        public HAND Hand { get; set; }
-        public int MyProperty { get; set; }
+        public Hand PlayerHand { get; private set; }
+        public int MyProperty { get; private set; }
         public void Write(IMinecraftStreamWriter stream)
         {
-            switch (Hand)
+            switch (PlayerHand)
             {
-                case HAND.MAINHAND:
+                case Hand.MAINHAND:
                     stream.WriteVarInt(0);
                     break;
-                case HAND.OFFHAND:
+                case Hand.OFFHAND:
                     stream.WriteVarInt(1);
                     break;
             }
@@ -29,9 +29,9 @@ namespace ProtocolLib340.Packets.Client.Game
 
         }
 
-        public ClientPlayerUseItemPacket(HAND hand, int myProperty)
+        public ClientPlayerUseItemPacket(Hand hand, int myProperty)
         {
-            Hand = hand;
+            PlayerHand = hand;
             MyProperty = myProperty;
         }
     }

@@ -8,6 +8,8 @@ namespace MinecraftLibrary.API.IO
 
     public sealed partial class MinecraftStream
     {
+
+
         public sbyte ReadSignedByte() => (sbyte)this.ReadUnsignedByte();
 
         public async Task<sbyte> ReadByteAsync(CancellationToken cancellationToken = default) => (sbyte)await this.ReadUnsignedByteAsync(cancellationToken);
@@ -23,7 +25,7 @@ namespace MinecraftLibrary.API.IO
         public byte ReadUnsignedByte()
         {
             Span<byte> buffer = stackalloc byte[1];
-            BaseStream.Read(buffer);
+            this.Read(buffer);
             return buffer[0];
         }
 
@@ -79,6 +81,8 @@ namespace MinecraftLibrary.API.IO
         {
             Span<byte> buffer = stackalloc byte[4];
             this.Read(buffer);
+            
+            
             return BinaryPrimitives.ReadInt32BigEndian(buffer);
         }
 

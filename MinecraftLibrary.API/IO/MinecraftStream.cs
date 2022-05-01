@@ -45,15 +45,36 @@
         {
             BaseStream.SetLength(value);
         }
-
+        /// <summary>
+        /// asd
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public override int Read(byte[] buffer, int offset, int count)
         {
             return BaseStream.Read(buffer, offset, count);
+        }
+        /// <summary>
+        /// asd
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        public override int Read(Span<byte> buffer)
+        {
+            BaseStream.Position -= buffer.Length;
+            return BaseStream.Read(buffer);
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
             BaseStream.Write(buffer, offset, count);
+        }
+
+        public override void Write(ReadOnlySpan<byte> buffer)
+        {
+            BaseStream.Write(buffer);
         }
 
 

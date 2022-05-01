@@ -8,6 +8,15 @@ namespace MinecraftLibrary.API.IO
 
     public sealed partial class MinecraftStream
     {
+        public void WriteUnsignedLong(ulong value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteULongArray(ulong[] value)
+        {
+            throw new NotImplementedException();
+        }
 
         public void WriteByte(sbyte value)
         {
