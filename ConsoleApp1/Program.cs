@@ -5,6 +5,9 @@ using MinecraftLibrary.Services;
 using System.IO;
 using MinecraftLibrary.API.Protocol;
 using ProtocolLib754;
+using System.Collections.Generic;
+using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
@@ -32,15 +35,24 @@ namespace ConsoleApp1
         public static void Main()
         {
             string path = "codeGenrator.script";
-            string source = "";
+            List<string> source = null;
             using (StreamReader sr = new StreamReader(path))
             {
-                source = sr.ReadToEnd().Trim();
+                source = new List<string>(sr.ReadToEnd().Trim().Split("\n"));
             }
-            IPacketProvider packets = new PacketProvider754();
-            var gamepackets = packets.ClientPackets.GamePackets;
-            int i = 0;
-           
+            foreach (var item in source)
+            {
+                string line = Preparing(item);
+
+            }
+
+        }
+
+        static Regex regex = new Regex(@"\s+");
+
+        static string Preparing(string input)
+        {
+            return regex.Replace(input.TrimEnd(), " ");
         }
     }
 
