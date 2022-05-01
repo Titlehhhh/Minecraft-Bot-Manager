@@ -43,7 +43,7 @@ namespace ConsoleApp1
             foreach (var item in source)
             {
                 string line = Preparing(item);
-
+                asdasd
             }
 
         }

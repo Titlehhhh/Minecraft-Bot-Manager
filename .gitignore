@@ -1,10 +1,8 @@
-﻿################################################################################
-# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
-#############################################################################
+
 **/obj
 **/bin
 /MinecraftBotManagerWinUI/MinecraftBotManagerWinUI (Package)
 .vs/
 /packages
-/Shema.vsdx
-/ConsoleApp1/Program.cs
+Shema.vsdx
+ConsoleApp1/Program.cs
