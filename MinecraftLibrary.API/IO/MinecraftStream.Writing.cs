@@ -10,7 +10,9 @@ namespace MinecraftLibrary.API.IO
     {
         public void WriteUnsignedLong(ulong value)
         {
-            throw new NotImplementedException();
+            Span<byte> span = stackalloc byte[8];
+            BinaryPrimitives.WriteUInt64BigEndian(span, value);
+            BaseStream.Write(span);
         }
 
         public void WriteULongArray(ulong[] value)

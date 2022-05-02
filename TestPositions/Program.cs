@@ -8,32 +8,30 @@ namespace Gh
     public static class Program
     {
         private static int POSITION_X_SIZE = 38;
-        private static int POSITION_Y_SIZE = 12;
+        private static int POSITION_Y_SIZE = 26;
         private static int POSITION_Z_SIZE = 38;
         private static int POSITION_Y_SHIFT = 0xFFF;
         private static int POSITION_WRITE_SHIFT = 0x3FFFFFF;
 
+
         public static void Main()
         {
             Console.WriteLine("start");
+
             Test();
         }
         static void Test()
         {
-            for (int x = 0; x < int.MaxValue; x++)
-                for (int y = 0; y < int.MaxValue; y++)
-                    for (int z = 0; z < int.MaxValue; z++)
+            for (int x = -33554432; x <= 33554431; x++)
+                for (int y = 0; y <= 2047; y++)
+                    for (int z = -33554432; z <= 33554431; z++)
                     {
                         MinecraftStream ms = new MinecraftStream();
                         Point3_Int before = new Point3_Int(x, y, z);
+                        Console.WriteLine("Before: "+before);
                         ms.WritePos(before);
                         Point3_Int after = ms.ReadPos();
-                        if (!(after.X == before.X && after.Y == before.Y && after.Z == before.Z))
-                        {
-                            Console.WriteLine($"Не сходиться: {x} {y} {z}");
-                            return;
-
-                        }
+                        Console.WriteLine("After: " + after);
                     }
         }
         static void WritePos(this MinecraftStream stream, Point3_Int pos)
@@ -51,6 +49,7 @@ namespace Gh
             int x = (int)(val >> POSITION_X_SIZE);
             int y = (int)((val >> POSITION_Y_SIZE) & POSITION_Y_SHIFT);
             int z = (int)((val << POSITION_Z_SIZE) >> POSITION_Z_SIZE);
+
 
             return new Point3_Int(x, y, z);
         }
