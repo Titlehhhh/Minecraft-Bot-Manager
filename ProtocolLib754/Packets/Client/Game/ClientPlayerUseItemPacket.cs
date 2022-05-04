@@ -11,6 +11,7 @@ namespace ProtocolLib754.Packets.Client
     public class ClientPlayerUseItemPacket : IPacket
     {
         public Hand PlayerHand { get; private set; }
+
         public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteVarInt(PlayerHand);
@@ -20,6 +21,10 @@ namespace ProtocolLib754.Packets.Client
             PlayerHand = (Hand)stream.ReadVarInt();
         }
         public ClientPlayerUseItemPacket() { }
+
+        public ClientPlayerUseItemPacket(Hand PlayerHand)
+        {
+            this.PlayerHand = PlayerHand;
+        }
     }
 }
-

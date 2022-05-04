@@ -10,6 +10,8 @@ namespace ProtocolLib754.Packets.Client
     [PacketInfo(0x1C, 754, PacketCategory.Game, PacketSide.Client)]
     public class ClientPlayerStatePacket : IPacket
     {
+
+
         public void Write(IMinecraftStreamWriter stream)
         {
 
@@ -19,6 +21,7 @@ namespace ProtocolLib754.Packets.Client
 
         }
         public ClientPlayerStatePacket() { }
+
+
     }
 }
-

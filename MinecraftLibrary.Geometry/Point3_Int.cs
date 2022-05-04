@@ -30,6 +30,7 @@
             X = Y = Z = value;
         }
 
+
         /// <summary>
         /// Creates a new trio of coordinates from the specified values.
         /// </summary>

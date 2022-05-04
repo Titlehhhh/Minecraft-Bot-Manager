@@ -6,11 +6,12 @@ using MinecraftLibrary.API.Protocol;
 
 namespace ProtocolLib754.Packets.Client
 {
-
+    
     [PacketInfo(0x10, 754, PacketCategory.Game, PacketSide.Client)]
     public class ClientKeepAlivePacket : IPacket
     {
-        public long PingId { get; set; }
+        public long PingId {get; private set; }
+
         public void Write(IMinecraftStreamWriter stream)
         {
             stream.WriteLong(PingId);
@@ -19,13 +20,11 @@ namespace ProtocolLib754.Packets.Client
         {
             PingId = stream.ReadLong();
         }
-
-        public ClientKeepAlivePacket(long pingId)
-        {
-            PingId = pingId;
-        }
-
         public ClientKeepAlivePacket() { }
+
+        public ClientKeepAlivePacket(long PingId)
+        {
+            this.PingId = PingId;
+        }
     }
 }
-
