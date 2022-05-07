@@ -1,7 +1,7 @@
-﻿using MinecraftLibrary;
-using MinecraftLibrary.API;
-using MinecraftLibrary.Exceptions;
-using MinecraftLibrary.Services;
+﻿using ProtoLib;
+using ProtoLib.API;
+using ProtoLib.Exceptions;
+using ProtoLib.Services;
 using System;
 using System.Threading.Tasks;
 using System.Windows;

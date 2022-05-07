@@ -1,8 +1,8 @@
-﻿using MinecraftLibrary;
-using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking;
-using MinecraftLibrary.API.Types.Chat;
-using MinecraftLibrary.Geometry;
+﻿using ProtoLib;
+using ProtoLib.API;
+using ProtoLib.API.Networking;
+using ProtoLib.API.Types.Chat;
+using ProtoLib.Geometry;
 using System;
 using System.Net.Sockets;
 

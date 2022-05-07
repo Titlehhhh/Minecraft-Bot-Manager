@@ -1,5 +1,5 @@
-﻿using MinecraftLibrary.API.Networking.Proxy;
-using MinecraftLibrary.Services;
+﻿using ProtoLib.API.Networking.Proxy;
+using ProtoLib.Services;
 using System.Runtime.Serialization;
 
 namespace MinecraftBotManagerWPF

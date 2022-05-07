@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MinecraftLibrary.Services;
+using ProtoLib.Services;
 using System.Threading.Tasks;
 
 namespace MinecraftBotManagerWPF

@@ -1,5 +1,5 @@
-﻿using MinecraftLibrary.API;
-using MinecraftLibrary.API.Networking.Proxy;
+﻿using ProtoLib.API;
+using ProtoLib.API.Networking.Proxy;
 
 namespace MinecraftBotManagerWPF
 {

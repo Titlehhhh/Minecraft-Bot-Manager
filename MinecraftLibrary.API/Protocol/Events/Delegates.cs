@@ -1,4 +1,0 @@
-﻿namespace MinecraftLibrary.API.Protocol
-{
-
-}

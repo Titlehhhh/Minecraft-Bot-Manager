@@ -1,5 +1,5 @@
 ﻿using MinecraftBotManager.PluginContracts;
-using MinecraftLibrary;
+using ProtoLib;
 using System;
 using System.Collections.Generic;
 

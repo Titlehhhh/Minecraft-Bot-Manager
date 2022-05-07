@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using MinecraftLibrary;
-using MinecraftLibrary.API.Types.Chat;
-using MinecraftLibrary.Geometry;
-using MinecraftLibrary.Services;
+using ProtoLib;
+using ProtoLib.API.Types.Chat;
+using ProtoLib.Geometry;
+using ProtoLib.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
