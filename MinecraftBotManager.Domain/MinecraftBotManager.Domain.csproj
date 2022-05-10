@@ -10,10 +10,4 @@
     <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MinecraftLibrary.API\MinecraftLibrary.API.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary.Geometry\MinecraftLibrary.Geometry.csproj" />
-    <ProjectReference Include="..\MinecraftLibrary\MinecraftLibrary.csproj" />
-  </ItemGroup>
-
 </Project>
