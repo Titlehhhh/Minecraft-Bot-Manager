@@ -1,5 +1,5 @@
-﻿using ProtoLib.API.Networking.Proxy;
-using ProtoLib.Services;
+﻿
+using McProtoNet.Utils;
 using System.Runtime.Serialization;
 
 namespace MinecraftBotManagerWPF
@@ -26,8 +26,9 @@ namespace MinecraftBotManagerWPF
         public string ProxyHost { get; set; }
         [DataMember]
         public ushort ProxyPort { get; set; }
-        [DataMember]
-        public ProxyType ProxyType { get; set; }
+
+        //[DataMember]
+        //public ProxyType ProxyType { get; set; }
 
 
 

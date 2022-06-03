@@ -1,4 +1,6 @@
 ﻿
+using McProtoNet.Geometry;
+using McProtoNet.Types.Chat;
 using System.ComponentModel.Composition;
 
 
@@ -8,7 +10,7 @@ namespace MinecraftBotManager.PluginContracts
     public interface IPlugin
     {
         [Import]
-        public MinecraftClient Client { get; set; }
+        public IMinecraftClient Client { get; set; }
 
         void Inizialize();
         void UnLoaded();
