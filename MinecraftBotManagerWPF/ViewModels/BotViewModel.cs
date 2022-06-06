@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using McProtoNet.Geometry;
+using McProtoNet.Types.Chat;
+using McProtoNet.Utils;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using ProtoLib;
-using ProtoLib.API.Types.Chat;
-using ProtoLib.Geometry;
-using ProtoLib.Services;
+using MinecraftBotManager.Domain;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -12,7 +12,7 @@ namespace MinecraftBotManagerWPF
 {
     public class BotViewModel : ViewModelBase
     {
-        internal MinecraftClient Client { get; set; }
+        internal IMinecraftClient Client { get; set; }
 
         public BotInfo BotInfoModel => botInfo;
 

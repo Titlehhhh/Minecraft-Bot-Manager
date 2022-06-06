@@ -1,14 +1,12 @@
-﻿using MinecraftBotManager.PluginContracts;
-using ProtoLib;
-using System;
-using System.Collections.Generic;
+﻿using MinecraftBotManager.Domain;
+using MinecraftBotManager.PluginContracts;
 
 namespace MinecraftBotManagerWPF
 {
     public class PluginHost : IPluginHost
     {
-        private readonly MinecraftClient _client;
-        public PluginHost(MinecraftClient client)
+        private readonly IMinecraftClient _client;
+        public PluginHost(IMinecraftClient client)
         {
             this._client = client;
         }

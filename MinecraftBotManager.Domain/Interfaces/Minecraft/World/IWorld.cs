@@ -1,9 +1,4 @@
 ﻿using McProtoNet.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinecraftBotManager.Domain
 {
@@ -22,8 +17,6 @@ namespace MinecraftBotManager.Domain
 
     public class Chunk
     {
-
-
         public Block[,,] Blocks { get; private set; }
 
         public Chunk(Block[,,] blocks)
@@ -35,7 +28,7 @@ namespace MinecraftBotManager.Domain
 
     public class ChunkColumn
     {
-        public Point2_Int Position{ get; private set; }
+        public Point2_Int Position { get; private set; }
 
         public Chunk[] Chunks { get; private set; }
 
@@ -47,6 +40,8 @@ namespace MinecraftBotManager.Domain
 
     public interface IWorld
     {
-        
+        void DigBlock(Point3_Int point);
+
+        void PlaceBlock(Point3_Int point);
     }
 }

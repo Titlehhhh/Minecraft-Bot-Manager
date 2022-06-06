@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManagerWPF
 {
     public delegate void AddBotHandler(BotInfo newbot);
     public interface IBotRepository

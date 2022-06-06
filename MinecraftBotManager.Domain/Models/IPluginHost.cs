@@ -1,6 +1,4 @@
 ﻿using MinecraftBotManager.PluginContracts;
-using System;
-using System.Collections.Generic;
 
 namespace MinecraftBotManagerWPF
 {

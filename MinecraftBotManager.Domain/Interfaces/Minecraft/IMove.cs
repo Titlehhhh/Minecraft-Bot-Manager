@@ -8,9 +8,18 @@ namespace MinecraftBotManager
         Rotation Rotation { get; }
         bool OnGround { get; }
 
-        void UpdateState(PhysicState physicState);
+        void UpdatePosition(Point3 point, bool onGround);
 
-        void Shift(bool state);
+        void UpdatePosition(Rotation rotation, bool onGround);
+
+        void UpdatePosition(Point3 point, Rotation rotation, bool onGround);
+
+        void UpdatePosition(bool onGround);
+
+
+
+
+        bool Shift { get; set; }
 
     }
 }

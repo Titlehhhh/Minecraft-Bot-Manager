@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManagerWPF
 {
     public interface IDialogService
     {

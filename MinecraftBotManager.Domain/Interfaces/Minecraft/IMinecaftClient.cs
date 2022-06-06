@@ -1,14 +1,10 @@
-﻿using McProtoNet.API;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using McProtoNet.Core;
 
 namespace MinecraftBotManager.Domain
 {
-    
-    public interface IMinecaftClient : IDisposable
+
+    public interface IMinecraftClient : IDisposable
     {
         IPacketReaderWriter Protocol { get; }
 

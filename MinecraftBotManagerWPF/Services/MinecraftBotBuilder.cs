@@ -1,5 +1,5 @@
-﻿using ProtoLib.API;
-using ProtoLib.API.Networking.Proxy;
+﻿using McProtoNet.Core;
+using Starksoft.Aspen.Proxy;
 using System;
 using System.Net.Sockets;
 
@@ -20,7 +20,8 @@ namespace MinecraftBotManagerWPF
 
         public MinecraftBot Build()
         {
-            return new MinecraftBot(gameProfile, new TcpClient(host, port));
+            throw new NotImplementedException();
+            //return new MinecraftBot(gameProfile, new TcpClient(host, port));
         }
 
         public void SetHost(string host, ushort port)

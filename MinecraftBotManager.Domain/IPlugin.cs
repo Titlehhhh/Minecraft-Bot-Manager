@@ -1,6 +1,7 @@
 ﻿
 using McProtoNet.Geometry;
 using McProtoNet.Types.Chat;
+using MinecraftBotManager.Domain;
 using System.ComponentModel.Composition;
 
 

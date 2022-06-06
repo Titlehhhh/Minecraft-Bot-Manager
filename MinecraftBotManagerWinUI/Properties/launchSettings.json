@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MinecraftBotManagerWinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MinecraftBotManagerWinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,5 +1,5 @@
-﻿using ProtoLib.API;
-using ProtoLib.API.Networking.Proxy;
+﻿using McProtoNet.Core;
+using Starksoft.Aspen.Proxy;
 
 namespace MinecraftBotManagerWPF
 {

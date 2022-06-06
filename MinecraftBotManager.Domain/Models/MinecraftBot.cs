@@ -1,8 +1,8 @@
-﻿using System;
-using System.Net.Sockets;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManagerWPF
 {
-        
+    public class MinecraftBot
+    {
+
+    }
 
 }

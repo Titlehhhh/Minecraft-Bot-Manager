@@ -1,7 +1,6 @@
-﻿using ProtoLib;
-using ProtoLib.API;
-using ProtoLib.Exceptions;
-using ProtoLib.Services;
+﻿using McProtoNet.Core;
+using McProtoNet.Utils;
+using MinecraftBotManager.Domain;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -98,14 +97,11 @@ namespace MinecraftBotManagerWPF
             try
             {
                 MinecraftBot bot = builder.Build();
-                MinecraftClient client = bot.Client;
+                IMinecraftClient client = bot.Client;
 
                 _botViewModel.Client = client;
 
-                bot.MessageReceived += (m) =>
-                {
-                    Application.Current.Dispatcher.Invoke(() => _botViewModel.Messages.Add(m));
-                };
+                
 
                 await client.LoginAsync();
 
