@@ -1,6 +1,4 @@
-﻿using MinecraftBotManager.PluginContracts;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManager.Domain
 {
     public interface IPluginInvoker
     {

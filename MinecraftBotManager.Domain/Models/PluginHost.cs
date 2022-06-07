@@ -1,7 +1,4 @@
-﻿using MinecraftBotManager.Domain;
-using MinecraftBotManager.PluginContracts;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManager.Domain
 {
     public class PluginHost : IPluginHost
     {

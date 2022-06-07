@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManager.Domain
 {
     public class MinecraftBot
     {

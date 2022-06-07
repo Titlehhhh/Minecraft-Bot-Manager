@@ -2,7 +2,7 @@
 using McProtoNet.Utils;
 using System.Runtime.Serialization;
 
-namespace MinecraftBotManagerWPF
+namespace MinecraftBotManager.Domain
 {
     [DataContract]
     public class BotInfo

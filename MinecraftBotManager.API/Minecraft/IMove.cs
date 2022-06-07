@@ -1,6 +1,6 @@
 ﻿using McProtoNet.Geometry;
 
-namespace MinecraftBotManager
+namespace MinecraftBotManager.API
 {
     public interface IMove
     {

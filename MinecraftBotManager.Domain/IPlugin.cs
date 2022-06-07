@@ -1,11 +1,10 @@
 ﻿
 using McProtoNet.Geometry;
 using McProtoNet.Types.Chat;
-using MinecraftBotManager.Domain;
 using System.ComponentModel.Composition;
 
 
-namespace MinecraftBotManager.PluginContracts
+namespace MinecraftBotManager.Domain
 {
 
     public interface IPlugin

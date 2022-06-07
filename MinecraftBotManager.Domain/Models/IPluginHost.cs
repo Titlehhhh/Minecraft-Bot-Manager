@@ -1,6 +1,4 @@
-﻿using MinecraftBotManager.PluginContracts;
-
-namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManager.Domain
 {
     public delegate void PluginHandler(IPluginHost host, Type t);
     public interface IPluginHost

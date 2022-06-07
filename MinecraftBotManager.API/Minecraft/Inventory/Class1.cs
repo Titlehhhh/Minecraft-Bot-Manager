@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManager.Domain
+﻿namespace MinecraftBotManager.API
 {
     public interface Class1
     {

@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManagerWPF
+﻿namespace MinecraftBotManager.API
 {
     public delegate void AddBotHandler(BotInfo newbot);
     public interface IBotRepository

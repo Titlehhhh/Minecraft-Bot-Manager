@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManagerWPF", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.Domain", "MinecraftBotManager.Domain\MinecraftBotManager.Domain.csproj", "{90E0F17C-DBB4-4E60-BABA-946E464F50C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftBotManagerWinUI", "MinecraftBotManagerWinUI\MinecraftBotManagerWinUI.csproj", "{FEDDCFAA-6455-428F-813A-78949DF10796}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManagerWinUI", "MinecraftBotManagerWinUI\MinecraftBotManagerWinUI.csproj", "{FEDDCFAA-6455-428F-813A-78949DF10796}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftBotManager.API", "MinecraftBotManager.API\MinecraftBotManager.API.csproj", "{C06F9265-E752-4D51-8488-A6A373C73A81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,26 @@ Global
 		{FEDDCFAA-6455-428F-813A-78949DF10796}.Release|x86.ActiveCfg = Release|x86
 		{FEDDCFAA-6455-428F-813A-78949DF10796}.Release|x86.Build.0 = Release|x86
 		{FEDDCFAA-6455-428F-813A-78949DF10796}.Release|x86.Deploy.0 = Release|x86
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|ARM.Build.0 = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|x64.Build.0 = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Debug|x86.Build.0 = Debug|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|ARM.Build.0 = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|ARM64.Build.0 = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|x64.ActiveCfg = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|x64.Build.0 = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|x86.ActiveCfg = Release|Any CPU
+		{C06F9265-E752-4D51-8488-A6A373C73A81}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
