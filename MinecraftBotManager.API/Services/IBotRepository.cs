@@ -1,18 +1,18 @@
-﻿namespace MinecraftBotManager.API
+﻿namespace MinecraftBotManager.Core
 {
 
 
 
-    public delegate void AddBotHandler(IBot newbot);
+    public delegate void AddBotHandler(Bot newbot);
     public interface IBotRepository
     {
         Task InizializeAsync();
 
-        Task AddBot(IBot bot);
-        Task RemoveBot(IBot bot);
+        Task AddBot(Bot bot);
+        Task RemoveBot(Bot bot);
        Task SaveAsync();
 
-        IEnumerable<IBot> GetAllBots();
+        IEnumerable<Bot> GetAllBots();
 
         event AddBotHandler AddBotEvent;
     }

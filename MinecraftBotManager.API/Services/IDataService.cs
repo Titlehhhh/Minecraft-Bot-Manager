@@ -1,4 +1,4 @@
-﻿namespace MinecraftBotManager.API
+﻿namespace MinecraftBotManager.Core
 {
 
     public interface IDataService

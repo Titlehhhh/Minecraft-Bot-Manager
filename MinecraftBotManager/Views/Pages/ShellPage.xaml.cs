@@ -22,6 +22,7 @@ namespace MinecraftBotManager.Views.Pages;
 /// </summary>
 public sealed partial class ShellPage : Page
 {
+    public Grid Title => TitleBar;
     public ShellPage()
     {
         this.InitializeComponent();

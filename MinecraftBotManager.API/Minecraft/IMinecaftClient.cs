@@ -1,7 +1,7 @@
 ﻿
 using McProtoNet.Core;
 
-namespace MinecraftBotManager.API
+namespace MinecraftBotManager.Core
 {
 
     public interface IMinecraftClient : IDisposable

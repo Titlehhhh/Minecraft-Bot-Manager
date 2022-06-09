@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.API", "MinecraftBotManager.API\MinecraftBotManager.API.csproj", "{C06F9265-E752-4D51-8488-A6A373C73A81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.Core", "MinecraftBotManager.API\MinecraftBotManager.Core.csproj", "{C06F9265-E752-4D51-8488-A6A373C73A81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftBotManager", "MinecraftBotManager\MinecraftBotManager.csproj", "{EEDFC622-6E11-4CD3-8C91-89F05C456E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager", "MinecraftBotManager\MinecraftBotManager.csproj", "{EEDFC622-6E11-4CD3-8C91-89F05C456E27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

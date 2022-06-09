@@ -1,6 +1,6 @@
 ﻿using McProtoNet.Geometry;
 
-namespace MinecraftBotManager.API
+namespace MinecraftBotManager.Core
 {
     public struct Block
     {
