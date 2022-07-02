@@ -7,8 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"   
     xmlns:vms="using:MinecraftBotManager.ViewModels"
+    xmlns:i="using:Microsoft.UI.Composition.Interactions"
+    xmlns:dts="using:MinecraftBotManager.DataTemplateSelectors"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        
+        <DataTemplate x:Key="IpTemplate">
+            <TextBlock Text="{Binding Text}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="LoadingTemplate">
+            <StackPanel Orientation="Horizontal">
+                <ProgressRing IsActive="True"/>
+                <TextBlock Margin="5,0,0,0" Text="Поиск локальных миров"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -120,7 +133,11 @@
                                     <ScrollViewer Padding="10,10,5,5">
                                         <StackPanel>
                                             <StackPanel HorizontalAlignment="Left" x:Name="CompactPanel" MinWidth="250" Spacing="16">
-                                                <TextBox  Header="Хост" x:Name="firstName"/>
+                                                <AutoSuggestBox Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}" ItemsSource="{x:Bind LocalIps, Mode=OneWay}" Header="Хост" x:Name="host">
+                                                    
+                                                </AutoSuggestBox>
+
+                                                <CheckBox Content="Авторизация" x:Name="IsAuthCheckBox"/>
                                                 <ComboBox Header="Тип аккаунта" SelectedIndex="0">
                                                     <ComboBoxItem Content="Mojang"/>
                                                     <ComboBoxItem Content="Microsoft"/>

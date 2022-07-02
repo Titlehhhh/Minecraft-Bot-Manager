@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MinecraftBotManager.Contracts.Services
 {
+
     public delegate void BotAddedHandler(Bot bot);
     public delegate void BotRemovedHandler(Bot bot);
 
-    public interface IBotRepository
+    public interface IBotList
     {
         IEnumerable<Bot> Bots { get; }
 

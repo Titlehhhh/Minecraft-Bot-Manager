@@ -32,5 +32,9 @@ namespace MinecraftBotManager.Views
             this.InitializeComponent();
         }
 
+        private void host_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

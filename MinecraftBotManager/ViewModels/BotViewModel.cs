@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using MinecraftBotManager.Api.Models;
+using MinecraftBotManager.Models;
+using System.Collections.ObjectModel;
 
 namespace MinecraftBotManager.ViewModels
 {
@@ -60,28 +62,31 @@ namespace MinecraftBotManager.ViewModels
             set { bot.Username = value; }
         }
 
-
+        private string host;
 
         public string Host
         {
+            get => host;
             set
             {
+                System.Console.WriteLine("sethst");
+                host = value;
+                SetProperty(ref host, value);
+                
 
             }
-            get
-            {
-                return "asd";
-            }
+
         }
 
-
+        public ObservableCollection<string> LocalIps { get; } = new();
 
         #endregion
 
-        public Bot bot;
+        private Bot bot;
 
         public BotViewModel(Bot bot)
         {
+            LocalIps.Add("asdasd");
             this.bot = bot;
             bot.PropertyChanged += (s, e) =>
             {
@@ -89,4 +94,5 @@ namespace MinecraftBotManager.ViewModels
             };
         }
     }
+    
 }
