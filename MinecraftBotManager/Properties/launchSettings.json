@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MinecraftBotManager (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MinecraftBotManager (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
