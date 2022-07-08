@@ -14,7 +14,7 @@ namespace MinecraftBotManager.Behaviors
             set
             {
                 status = value;
-                if(value == Status.Loading)
+                if (value == Status.Loading)
                 {
                     AssociatedObject.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
                 }

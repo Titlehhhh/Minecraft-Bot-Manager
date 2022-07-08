@@ -10,6 +10,12 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="OkColor" Color="#24c324"/>
+            <SolidColorBrush x:Key="WarnColor" Color="#ebdb26"/>
+            <SolidColorBrush x:Key="ErrorColor" Color="#ff5050"/>
+
+
+
 
             <Style x:Key="DefaultAutoSuggestBoxStyleLoading" TargetType="AutoSuggestBox">
                 <Setter Property="VerticalAlignment" Value="Top" />

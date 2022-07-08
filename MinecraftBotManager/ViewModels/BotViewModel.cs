@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using MinecraftBotManager.Api.Models;
-using MinecraftBotManager.Models;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -76,7 +75,7 @@ namespace MinecraftBotManager.ViewModels
                 System.Console.WriteLine("sethst");
                 host = value;
                 SetProperty(ref host, value);
-                
+
 
             }
 
@@ -102,5 +101,5 @@ namespace MinecraftBotManager.ViewModels
             };
         }
     }
-    
+
 }
