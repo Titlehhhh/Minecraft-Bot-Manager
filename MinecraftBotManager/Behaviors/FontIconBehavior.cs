@@ -21,7 +21,7 @@ namespace MinecraftBotManager.Behaviors
                 {
 
                     case Status.Ok:
-                        AssociatedObject.Glyph = "\uE739";
+                        AssociatedObject.Glyph = "\uE73E";
                         AssociatedObject.Foreground = (SolidColorBrush)App.Current.Resources["OkColor"];
                         break;
                     case Status.Error:

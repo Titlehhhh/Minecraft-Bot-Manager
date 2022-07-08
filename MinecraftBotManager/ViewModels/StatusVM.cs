@@ -62,6 +62,13 @@ namespace MinecraftBotManager.ViewModels
             Status = Status.Loading;
         }
 
+        public void Load()
+        {
+            IsEnabled = true;
+            Text = "";
+            Status = Status.Loading;
+        }
+
     }
     public enum Status
     {

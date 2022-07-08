@@ -7,8 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"   
     xmlns:vms="using:MinecraftBotManager.ViewModels"
+    x:DefaultBindMode="OneWay"
     xmlns:cuscontrols="using:MinecraftBotManager.Controls"
+    xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     mc:Ignorable="d">
+    <Page.Resources>
+        <converters:BoolNegationConverter x:Key="BoolNegativeConverter"/>
+    </Page.Resources>
 
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
@@ -94,7 +99,9 @@
                             <StackPanel>
                                 <TextBox MinWidth="200" Text="{x:Bind Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ник" HorizontalAlignment="Center"/>
                                 <controls:DockPanel LastChildFill="False">
-                                    <Button controls:DockPanel.Dock="Left" Command="{x:Bind StartBotCommand}">
+                                    <Button controls:DockPanel.Dock="Left"
+                                            IsEnabled="{x:Bind StartBotCommand.IsRunning, Converter={StaticResource BoolNegativeConverter}}"
+                                            Command="{x:Bind StartBotCommand}">
                                         <FontIcon Glyph="&#xF5B0;">
                                             <FontIcon.Foreground>
                                                 <SolidColorBrush Color="#B1FF91"/>
@@ -119,7 +126,7 @@
                                 </Pivot.HeaderTemplate>
                                 <PivotItem Header="Основные настройки">
                                     <ScrollViewer Padding="10,10,5,5">
-                                        <Grid>
+                                        <Grid RowSpacing="20" ColumnSpacing="15" Margin="0,20,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="250"/>
                                                 <ColumnDefinition Width="*"/>
@@ -128,41 +135,60 @@
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
+                                                <RowDefinition/>
                                             </Grid.RowDefinitions>
+                                            <ComboBox Header="Версия">
+                                                <ComboBoxItem Content="1.12.2"/>
+                                                <ComboBoxItem Content="1.13"/>
+                                                <ComboBoxItem Content="1.14.4"/>
+                                                <ComboBoxItem Content="1.15.5"/>
+                                                <ComboBoxItem Content="1.16.5"/>
+                                                <ComboBoxItem Content="1.17"/>
+                                            </ComboBox>
+                                            <AutoSuggestBox Grid.Row="1" Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}" ItemsSource="{x:Bind LocalIps, Mode=OneWay}" Header="Сервер" x:Name="host"/>
+                                            <StackPanel Grid.Row="2" Spacing="16">
 
-                                            <AutoSuggestBox Margin="0,20,0,0" Grid.Row="0" Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}" ItemsSource="{x:Bind LocalIps, Mode=OneWay}" Header="Сервер" x:Name="host"/>
-                                            <StackPanel Margin="0,20,0,0" Grid.Row="1" Spacing="16">
 
-
-                                                <CheckBox Content="Авторизация" x:Name="IsAuthCheckBox"/>
+                                                <CheckBox Content="Авторизация" IsChecked="{x:Bind AuthEnabled, Mode=TwoWay}" x:Name="IsAuthCheckBox"/>
                                                 <ComboBox IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}" Header="Тип аккаунта" SelectedIndex="0">
                                                     <ComboBoxItem Content="Mojang"/>
                                                     <ComboBoxItem Content="Microsoft"/>
                                                 </ComboBox>
-                                                <PasswordBox IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}" Header="Пароль"/>
+                                                <PasswordBox Password="{x:Bind Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}" Header="Пароль"/>
 
                                             </StackPanel>
 
-                                            <StackPanel Margin="0,20,0,0" Grid.Row="2" Spacing="16">
-                                                <CheckBox Content="Прокси" x:Name="IsProxyCheckBox"/>
+                                            <StackPanel Grid.Row="3" Spacing="16">
+                                                <CheckBox IsChecked="{x:Bind ProxyEnabled, Mode=TwoWay}" Content="Прокси" x:Name="IsProxyCheckBox"/>
+                                                <CheckBox 
+                                                    IsChecked="{x:Bind OptimaleProxy, Mode=TwoWay}"
+                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox, Path=IsChecked}"
+                                                    Content="Выбрать оптимальный сервер"/>
 
-
-                                                <ComboBox IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}" Header="Тип прокси" SelectedIndex="0">
-                                                    <ComboBoxItem Content="Http"/>
-                                                    <ComboBoxItem Content="Socks4"/>
-                                                    <ComboBoxItem Content="Socks5"/>
+                                                <ComboBox ItemsSource="{x:Bind ProxyTypes}" IsEnabled="{Binding ElementName=IsProxyCheckBox, Path=IsChecked}" Header="Тип прокси" SelectedIndex="0">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
                                                 </ComboBox>
                                                 <TextBox Header="Адрес"
-                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}" />
+                                                         Text="{x:Bind ProxyAdress,Mode=TwoWay}"
+                                                    IsEnabled="{x:Bind IsEnabledProxyControls}" />
                                                 <TextBox Header="Логин(необязательно)"
-                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}" />
+                                                         Text="{x:Bind ProxyLogin, Mode=TwoWay}"
+                                                    IsEnabled="{x:Bind IsEnabledProxyControls}" />
                                                 <PasswordBox  Header="Пароль(необязательно)"
-                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}"/>
+                                                              Password="{x:Bind ProxyPass, Mode=TwoWay}"
+                                                    IsEnabled="{x:Bind IsEnabledProxyControls}"/>
 
                                             </StackPanel>
 
 
-                                            <cuscontrols:StatusControl Grid.Column="1" Margin="10,20" StatusContext="{x:Bind ServerStatus}"/>
+                                            <cuscontrols:StatusControl Grid.Row="0" Grid.Column="1" StatusContext="{x:Bind VersionStatus}"/>
+                                            <cuscontrols:StatusControl Grid.Row="1" Grid.Column="1" StatusContext="{x:Bind ServerStatus}"/>
+                                            <cuscontrols:StatusControl Grid.Row="2" Grid.Column="1" StatusContext="{x:Bind AuthStatus}"/>
+                                            <cuscontrols:StatusControl Grid.Row="3" Grid.Column="1" StatusContext="{x:Bind ProxyStatus}"/>
                                         </Grid>
                                     </ScrollViewer>
                                 </PivotItem>

@@ -8,19 +8,20 @@
     xmlns:bhs="using:MinecraftBotManager.Behaviors"
     xmlns:converts="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    VerticalAlignment="Top"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converts:BoolToVisibilityConverter x:Key="BoolToVisConvert"/>
+        <converts:BoolToVisibilityConverter x:Key="BoolToVisConvert"/>        
     </UserControl.Resources>
     <Grid Visibility="{x:Bind StatusContext.IsEnabled,Mode=OneWay, Converter={StaticResource BoolToVisConvert}}" >        
         <StackPanel Orientation="Horizontal">
-            <Grid>
-                <FontIcon FontSize="25">
+            <Grid VerticalAlignment="Top">
+                <FontIcon FontSize="20">
                     <i:Interaction.Behaviors>
                         <bhs:FontIconBehavior Status="{x:Bind StatusContext.Status, Mode=OneWay}"/>
                     </i:Interaction.Behaviors>
                 </FontIcon>
-                <ProgressRing x:Name="PR" Height="25" Width="25">
+                <ProgressRing x:Name="PR" Height="20" Width="20">
                     <i:Interaction.Behaviors>
                         <bhs:ProgressRingBehavior Status="{x:Bind StatusContext.Status, Mode=OneWay}"/>
                     </i:Interaction.Behaviors>
@@ -28,7 +29,7 @@
             </Grid>
 
 
-            <TextBlock Margin="5,0,0,0" Text="{x:Bind StatusContext.Text,Mode=OneWay}"/>
+            <TextBlock VerticalAlignment="Center" Margin="7,0,0,0" Text="{x:Bind StatusContext.Text,Mode=OneWay}"/>
         </StackPanel>
     </Grid>
 </UserControl>
