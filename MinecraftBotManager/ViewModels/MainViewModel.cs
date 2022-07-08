@@ -57,6 +57,7 @@ namespace MinecraftBotManager.ViewModels
         public MainViewModel()
         {
             Bots.Add(new BotViewModel(new()));
+            SelectedBot = Bots.FirstOrDefault();
         }
     }
 }

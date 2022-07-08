@@ -7,21 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"   
     xmlns:vms="using:MinecraftBotManager.ViewModels"
-    xmlns:i="using:Microsoft.UI.Composition.Interactions"
-    xmlns:dts="using:MinecraftBotManager.DataTemplateSelectors"
+    xmlns:cuscontrols="using:MinecraftBotManager.Controls"
     mc:Ignorable="d">
-    <Page.Resources>
-        
-        <DataTemplate x:Key="IpTemplate">
-            <TextBlock Text="{Binding Text}"/>
-        </DataTemplate>
-        <DataTemplate x:Key="LoadingTemplate">
-            <StackPanel Orientation="Horizontal">
-                <ProgressRing IsActive="True"/>
-                <TextBlock Margin="5,0,0,0" Text="Поиск локальных миров"/>
-            </StackPanel>
-        </DataTemplate>
-    </Page.Resources>
+
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -106,7 +94,7 @@
                             <StackPanel>
                                 <TextBox MinWidth="200" Text="{x:Bind Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ник" HorizontalAlignment="Center"/>
                                 <controls:DockPanel LastChildFill="False">
-                                    <Button controls:DockPanel.Dock="Left">
+                                    <Button controls:DockPanel.Dock="Left" Command="{x:Bind StartBotCommand}">
                                         <FontIcon Glyph="&#xF5B0;">
                                             <FontIcon.Foreground>
                                                 <SolidColorBrush Color="#B1FF91"/>
@@ -131,21 +119,51 @@
                                 </Pivot.HeaderTemplate>
                                 <PivotItem Header="Основные настройки">
                                     <ScrollViewer Padding="10,10,5,5">
-                                        <StackPanel>
-                                            <StackPanel HorizontalAlignment="Left" x:Name="CompactPanel" MinWidth="250" Spacing="16">
-                                                <AutoSuggestBox Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}" ItemsSource="{x:Bind LocalIps, Mode=OneWay}" Header="Хост" x:Name="host">
-                                                    
-                                                </AutoSuggestBox>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="250"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <AutoSuggestBox Margin="0,20,0,0" Grid.Row="0" Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}" ItemsSource="{x:Bind LocalIps, Mode=OneWay}" Header="Сервер" x:Name="host"/>
+                                            <StackPanel Margin="0,20,0,0" Grid.Row="1" Spacing="16">
+
 
                                                 <CheckBox Content="Авторизация" x:Name="IsAuthCheckBox"/>
-                                                <ComboBox Header="Тип аккаунта" SelectedIndex="0">
+                                                <ComboBox IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}" Header="Тип аккаунта" SelectedIndex="0">
                                                     <ComboBoxItem Content="Mojang"/>
                                                     <ComboBoxItem Content="Microsoft"/>
                                                 </ComboBox>
-                                                <PasswordBox Header="Пароль" x:Name="password"/>
+                                                <PasswordBox IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}" Header="Пароль"/>
 
                                             </StackPanel>
-                                        </StackPanel>
+
+                                            <StackPanel Margin="0,20,0,0" Grid.Row="2" Spacing="16">
+                                                <CheckBox Content="Прокси" x:Name="IsProxyCheckBox"/>
+
+
+                                                <ComboBox IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}" Header="Тип прокси" SelectedIndex="0">
+                                                    <ComboBoxItem Content="Http"/>
+                                                    <ComboBoxItem Content="Socks4"/>
+                                                    <ComboBoxItem Content="Socks5"/>
+                                                </ComboBox>
+                                                <TextBox Header="Адрес"
+                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}" />
+                                                <TextBox Header="Логин(необязательно)"
+                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}" />
+                                                <PasswordBox  Header="Пароль(необязательно)"
+                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox,Path=IsChecked}"/>
+
+                                            </StackPanel>
+
+
+                                            <cuscontrols:StatusControl Grid.Column="1" Margin="10,20" StatusContext="{x:Bind ServerStatus}"/>
+                                        </Grid>
                                     </ScrollViewer>
                                 </PivotItem>
                                 <PivotItem Header="Плагины">

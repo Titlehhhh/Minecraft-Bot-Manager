@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using MinecraftBotManager.Api.Models;
 using MinecraftBotManager.Models;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace MinecraftBotManager.ViewModels
 {
@@ -15,9 +16,12 @@ namespace MinecraftBotManager.ViewModels
         private RelayCommand startBotCommand;
         public RelayCommand StartBotCommand
         {
-            get => startBotCommand ?? (startBotCommand = new RelayCommand(() =>
+            get => startBotCommand ?? (startBotCommand = new RelayCommand(async () =>
             {
-
+                ServerStatus.Disabled();
+                ServerStatus.Load("Получение Srv...");
+                await Task.Delay(3000);
+                ServerStatus.Ok("Сервер tcp.Examle.com");
             }));
         }
         private RelayCommand stopBotCommand;
@@ -80,6 +84,10 @@ namespace MinecraftBotManager.ViewModels
 
         public ObservableCollection<string> LocalIps { get; } = new();
 
+        #endregion
+
+        #region Errors
+        public StatusVM ServerStatus { get; private set; } = new();
         #endregion
 
         private Bot bot;

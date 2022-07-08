@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MinecraftBotManager.Views"
+    
     mc:Ignorable="d">
     <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}">
         
@@ -15,9 +16,9 @@
         </Grid.RowDefinitions>
         
         <Grid x:Name="TitleBar"/>
-        <NavigationView x:Name="NavigationView" IsBackButtonVisible="Collapsed" Grid.Row="1">
+        <NavigationView x:Name="NavigationView" IsPaneOpen="False" IsBackButtonVisible="Collapsed" Grid.Row="1">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Главная" Icon="Home"/>
+                <NavigationViewItem Content="Главная" Icon="Home" IsSelected="True"/>
                 <NavigationViewItem Content="Прокси сервера" Icon="MapDrive"/>
                 <NavigationViewItem Content="Скрипты">
                     <NavigationViewItem.Icon>
