@@ -13,7 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\StatusControl.xaml" />
-    <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\HomePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,7 +48,7 @@
     <ProjectReference Include="..\MinecraftBotManager.Api\MinecraftBotManager.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\MainPage.xaml">
+    <Page Update="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

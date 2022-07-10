@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="McProtoNet" Version="1.2.6" />
-    <PackageReference Include="StarkSoftProxy" Version="1.6.0" />
-  </ItemGroup>
-
 </Project>

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="MinecraftBotManager.Views.MainPage"
+    x:Class="MinecraftBotManager.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MinecraftBotManager.Views"
@@ -10,6 +10,7 @@
     x:DefaultBindMode="OneWay"
     xmlns:cuscontrols="using:MinecraftBotManager.Controls"
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
+    x:Name="RootPage"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BoolNegationConverter x:Key="BoolNegativeConverter"/>
@@ -28,7 +29,7 @@
             </Grid.RowDefinitions>
             <Border Padding="7" CornerRadius="7" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}">
                 <StackPanel Orientation="Horizontal">
-                    <Button Height="Auto" Padding="3" Command="{x:Bind ViewModel.AddBotCommand}" Width="Auto" ToolTipService.ToolTip="Создать бота">
+                    <Button Height="Auto" Padding="3" Command="{x:Bind ViewModel.AddCommand}" Width="Auto" ToolTipService.ToolTip="Создать бота">
                         <Button.Content>
                             <FontIcon FontSize="15" Glyph="&#xE710;"/>
                         </Button.Content>
@@ -59,7 +60,7 @@
                 Padding="7"
                 CornerRadius="7"
                 Grid.Row="1">
-                <ListBox x:Name="BotListBox" SelectedItem="{x:Bind ViewModel.SelectedBot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{x:Bind ViewModel.Bots}" Background="Transparent">
+                <ListBox x:Name="BotListBox" ItemsSource="{x:Bind ViewModel.Bots}" SelectedIndex="{x:Bind ViewModel.SelectedIndex,Mode=TwoWay}" Background="Transparent">
                     <ListBox.ItemTemplate>
                         <DataTemplate x:DataType="vms:BotViewModel">
                             <Grid>
@@ -86,7 +87,7 @@
             </controls:GridSplitter.Element>
         </controls:GridSplitter>
         <Border CornerRadius="7" Padding="10" Grid.Column="2" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}">
-            <ContentControl Content="{x:Bind ViewModel.SelectedBot,Mode=OneWay}">
+            <ContentControl Content="{Binding ElementName=BotListBox, Path= SelectedItem}">
 
                 <ContentControl.ContentTemplate>
                     <DataTemplate x:DataType="vms:BotViewModel">
@@ -108,7 +109,7 @@
                                             </FontIcon.Foreground>
                                         </FontIcon>
                                     </Button>
-                                    <Button controls:DockPanel.Dock="Right">
+                                    <Button controls:DockPanel.Dock="Right" Command="{x:Bind DeleteCommand}" CommandParameter="{x:Bind}">
                                         <FontIcon Glyph="&#xE74D;">
                                             <FontIcon.Foreground>
                                                 <SolidColorBrush Color="#ff4f56"/>
@@ -159,13 +160,13 @@
                                             </StackPanel>
 
                                             <StackPanel Grid.Row="3" Spacing="16">
-                                                <CheckBox IsChecked="{x:Bind ProxyEnabled, Mode=TwoWay}" Content="Прокси" x:Name="IsProxyCheckBox"/>
+                                                <CheckBox IsChecked="{x:Bind ProxyEnabled, Mode=TwoWay}" Content="Прокси" x:Name="ProxyEnabledCheckBox"/>
                                                 <CheckBox 
                                                     IsChecked="{x:Bind OptimaleProxy, Mode=TwoWay}"
-                                                    IsEnabled="{Binding ElementName=IsProxyCheckBox, Path=IsChecked}"
+                                                    IsEnabled="{Binding ElementName=ProxyEnabledCheckBox, Path=IsChecked}"
                                                     Content="Выбрать оптимальный сервер"/>
 
-                                                <ComboBox ItemsSource="{x:Bind ProxyTypes}" IsEnabled="{Binding ElementName=IsProxyCheckBox, Path=IsChecked}" Header="Тип прокси" SelectedIndex="0">
+                                                <ComboBox ItemsSource="{x:Bind ProxyTypes}" sele IsEnabled="{x:Bind IsEnabledProxyControls}" Header="Тип прокси" SelectedIndex="0">
                                                     <ComboBox.ItemTemplate>
                                                         <DataTemplate>
                                                             <TextBlock Text="{Binding}"/>
@@ -173,7 +174,7 @@
                                                     </ComboBox.ItemTemplate>
                                                 </ComboBox>
                                                 <TextBox Header="Адрес"
-                                                         Text="{x:Bind ProxyAdress,Mode=TwoWay}"
+                                                         Text="{x:Bind ProxyAddress,Mode=TwoWay}"
                                                     IsEnabled="{x:Bind IsEnabledProxyControls}" />
                                                 <TextBox Header="Логин(необязательно)"
                                                          Text="{x:Bind ProxyLogin, Mode=TwoWay}"

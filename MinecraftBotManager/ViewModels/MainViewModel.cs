@@ -1,56 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
+using MinecraftBotManager.Contracts.Services;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MinecraftBotManager.ViewModels
 {
-
-    public sealed class MainViewModel : ObservableObject
+    public sealed partial class MainViewModel : ObservableObject
     {
-        private BotViewModel selectedBot;
+        public ICommand ClosedCommand { get; private set; }
 
-        public BotViewModel SelectedBot
+        public MainViewModel(IBotRepository botRepository)
         {
-            get { return selectedBot; }
-            set
-            {
-                SetProperty(ref selectedBot, value);
-            }
-        }
-
-        private int selectedindex;
-
-        public int SelectedIndex
-        {
-            get => selectedindex;
-            set => SetProperty(ref selectedindex, value);
-        }
-
-
-        private AsyncRelayCommand addBotCommand;
-
-        public AsyncRelayCommand AddBotCommand
-        {
-            get => addBotCommand ?? (addBotCommand = new AsyncRelayCommand(async () =>
-            {
-                Bots.Add(new BotViewModel(new Api.Models.Bot() { Username = "Bot" }));
-            }));
-
-        }
-
-
-
-
-
-        public ObservableCollection<BotViewModel> Bots { get; private set; } = new();
-
-
-
-        public MainViewModel()
-        {
-            Bots.Add(new BotViewModel(new()));
-            SelectedBot = Bots.FirstOrDefault();
+            ClosedCommand = new RelayCommand(() => botRepository.Save().Wait());
         }
     }
 }

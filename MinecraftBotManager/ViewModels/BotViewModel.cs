@@ -2,199 +2,157 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using MinecraftBotManager.Api.Models;
+using MinecraftBotManager.Data;
+using MinecraftBotManager.Helpers;
+using Starksoft.Net.Proxy;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 
 namespace MinecraftBotManager.ViewModels
 {
-    [ObservableObject]
-    public sealed partial class BotViewModel
+    public sealed partial class BotViewModel : NotificationBase<BotRecord>, IDisposable
     {
+        private readonly BotRunService botRunService;
 
 
 
+
+        public BotViewModel(BotRecord bot, IAsyncRelayCommand deletecommand) : base(bot)
+        {
+            this.DeleteCommand = deletecommand;
+            botRunService = new BotRunService(bot, this);
+        }
 
         #region Commands
         [ICommand]
         private async Task StartBot()
         {
-
-            AllStatusesDisabled();
-
-            if (OptimaleProxy)
-            {
-                ProxyStatus.Load("Поиск оптимального прокси");
-                await Task.Delay(5000);
-                ProxyStatus.Ok("Сервер найден: 123.456.7.8:8080\nТип: Http");
-            }
-
-
-
-            VersionStatus.Load();
-
-            ServerStatus.Load("Получение информации о сервере...");
-            await Task.Delay(5000);
-
-            VersionStatus.Warn("Версия не соотвествует версии сервера");
-
-            ServerStatus.Load("Подключение...");
-            await Task.Delay(1000);
-            ServerStatus.Load("Рукопожатие");
-            await Task.Delay(1000);
-            ServerStatus.Load("Включение сжатия...");
-            await Task.Delay(1000);
-
-            ServerStatus.Ok("Подключено");
+            await botRunService.StartBot();
         }
 
 
 
-        private RelayCommand stopBotCommand;
-        public RelayCommand StopBotCommand
-        {
-            get => stopBotCommand ?? (stopBotCommand = new RelayCommand(() =>
-            {
-
-            }));
-        }
-
-        private RelayCommand deleteCommand;
-        public RelayCommand DeleteCommand
-        {
-            get => deleteCommand ?? (deleteCommand = new RelayCommand(() =>
-            {
-
-            }));
-        }
+        public IAsyncRelayCommand DeleteCommand { get; private set; }
 
         #endregion
 
         #region Properties
 
-        private BitmapImage icon;
+        [ObservableProperty]
+        private bool imgaeLoading;
+
 
         public BitmapImage Icon
         {
-            get { return icon; }
-            private set
-            {
-                icon = value;
-                OnPropertyChanged();
-            }
+            get => This.Icon;
+            set => SetProperty(This.Icon, value, (v) => This.Icon = v);
         }
 
 
 
         public string Username
         {
-            get => bot.Username;
-            set { bot.Username = value; }
-        }
-
-        private string host;
-
-        public string Host
-        {
-            get => host;
-            set
+            get
             {
-
-                SetProperty(ref host, value);
+                if (string.IsNullOrWhiteSpace(This.Username))
+                {
+                    return "Новый бот";
+                }
+                return This.Username;
             }
+            set => SetProperty(This.Username, value, (v) => This.Username = v);
 
         }
 
-        #region Auth
-
-
-
-        private string password;
-
-        public string Password
-        {
-            get => password;
-            set => SetProperty(ref password, value);
-        }
-
-
-        private bool authEnabled;
-
-        public bool AuthEnabled
-        {
-            get => authEnabled;
-            set { SetProperty(ref authEnabled, value); System.Diagnostics.Trace.WriteLine(13); }
-        }
-        #endregion
-
-
-        private string version;
 
         public string Version
         {
-            get => version;
-            set => SetProperty(ref version, value);
+            get => This.Version;
+            set => SetProperty(This.Version, value, (v) => This.Version = v);
         }
 
-        #region Proxy
-        private bool proxyEnabled;
 
         public bool ProxyEnabled
         {
-            get => proxyEnabled;
+            get => This.ProxyEnabled;
             set
             {
-                SetProperty(ref proxyEnabled, value);
+                SetProperty(This.ProxyEnabled, value, (v) => This.ProxyEnabled = v);
                 OnPropertyChanged(nameof(IsEnabledProxyControls));
             }
         }
 
-        private string proxyHost;
-
-        public string ProxyAdress
-        {
-            get => proxyHost;
-            set => SetProperty(ref proxyHost, value);
-        }
-
-        private string proxylogin;
-
-        public string ProxyLogin
-        {
-            get => proxylogin;
-            set => SetProperty(ref proxylogin, value);
-        }
-
-
-        private string proxypass;
-
-        public string ProxyPass
-        {
-            get => proxypass;
-            set => SetProperty(ref proxypass, value);
-        }
-
-        private bool optiproxy;
 
         public bool OptimaleProxy
         {
-            get => optiproxy;
+            get => This.OptimaleProxy;
             set
             {
-                SetProperty(ref optiproxy, value);
+                SetProperty(This.OptimaleProxy, value, (v) => This.OptimaleProxy = v);
                 OnPropertyChanged(nameof(IsEnabledProxyControls));
             }
         }
 
+
+        public string Password
+        {
+            get => This.Password;
+            set => SetProperty(This.Password, value, (v) => This.Password = v);
+        }
+
+
+        public bool AuthEnabled
+        {
+            get => This.AuthEnabled;
+            set => SetProperty(This.AuthEnabled, value, (v) => This.AuthEnabled = v);
+        }
+
+
+        public string ProxyAddress
+        {
+            get => This.ProxyAddress;
+            set => SetProperty(This.ProxyAddress, value, (v) => This.ProxyAddress = v);
+        }
+
+
+        public string ProxyLogin
+        {
+            get => This.ProxyLogin;
+            set => SetProperty(This.ProxyLogin, value, (v) => This.ProxyLogin = v);
+        }
+
+
+        public string ProxyPass
+        {
+            get => This.ProxyPass;
+            set => SetProperty(This.ProxyPass, value, (v) => This.ProxyPass = v);
+        }
+
+
+        public string ProxyType
+        {
+            get => This.ProxyType.ToString();
+            set
+            {
+                try
+                {
+                    ProxyType pt = (ProxyType)Enum.Parse(typeof(ProxyType), value);
+
+                    This.ProxyType = pt;
+                    OnPropertyChanged();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+
+
         public bool IsEnabledProxyControls => ProxyEnabled && !OptimaleProxy;
-        #endregion
-
-
-
-
-
-
-
 
         public ObservableCollection<string> LocalIps { get; } = new();
 
@@ -202,6 +160,7 @@ namespace MinecraftBotManager.ViewModels
         {
             "Http",
             "Socks4",
+            "Socks4a",
             "Socks5"
         };
 
@@ -227,20 +186,16 @@ namespace MinecraftBotManager.ViewModels
             AuthStatus.Disabled();
             ProxyStatus.Disabled();
         }
+
+        public void Dispose()
+        {
+
+        }
+
         // public StatusVM ServerStatus { get; private set; } = new();
         #endregion
 
-        private Bot bot;
 
-        public BotViewModel(Bot bot)
-        {
-            LocalIps.Add("asdasd");
-            this.bot = bot;
-            bot.PropertyChanged += (s, e) =>
-            {
-                OnPropertyChanged(e.PropertyName);
-            };
-        }
 
 
     }

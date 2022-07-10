@@ -5,9 +5,13 @@
     xmlns:local="using:MinecraftBotManager"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:bhs="using:CommunityToolkit.WinUI.UI.Behaviors"
     xmlns:views="using:MinecraftBotManager.Views"
-    
+    Closed="MainWindow_Closed"
     mc:Ignorable="d">
+    
+    
     <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}">
         
         <Grid.RowDefinitions>

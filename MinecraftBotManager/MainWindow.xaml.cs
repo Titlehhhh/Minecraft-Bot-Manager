@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using MinecraftBotManager.ViewModels;
 using MinecraftBotManager.Views;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -11,15 +12,23 @@ namespace MinecraftBotManager
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        public MainViewModel ViewModel { get; private set; }
+
         public MainWindow()
         {
+            ViewModel = App.GetService<MainViewModel>();           
             this.InitializeComponent();
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(TitleBar);
-            NavigationFrame.Navigate(typeof(MainPage));
+            NavigationFrame.Navigate(typeof(HomePage));
+            
         }
 
-
-
+        private void MainWindow_Closed(object sender, WindowEventArgs args)
+        {
+            var command = ViewModel.ClosedCommand;
+            if (command.CanExecute(null))
+                command.Execute(null);
+        }
     }
 }

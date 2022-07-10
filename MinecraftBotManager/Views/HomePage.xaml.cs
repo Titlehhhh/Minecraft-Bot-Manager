@@ -10,14 +10,15 @@ namespace MinecraftBotManager.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class HomePage : Page
     {
-        public MainViewModel ViewModel { get; private set; }
+        public HomeViewModel ViewModel { get; private set; }
 
-        public MainPage()
+        public HomePage()
         {
-            ViewModel = App.GetService<MainViewModel>();
+            ViewModel = App.GetService<HomeViewModel>();
             this.InitializeComponent();
+            
         }
 
         private void host_Loaded(object sender, RoutedEventArgs e)

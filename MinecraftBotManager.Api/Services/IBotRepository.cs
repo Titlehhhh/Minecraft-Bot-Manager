@@ -1,6 +1,0 @@
-﻿namespace MinecraftBotManager.Api.Services
-{
-
-
-
-}
