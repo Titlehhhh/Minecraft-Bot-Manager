@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using MinecraftBotManager.Api.Models;
 using MinecraftBotManager.Data;
 using MinecraftBotManager.Helpers;
-using Starksoft.Net.Proxy;
+
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -12,17 +12,18 @@ using System.Threading.Tasks;
 
 namespace MinecraftBotManager.ViewModels
 {
-    public sealed partial class BotViewModel : NotificationBase<BotRecord>, IDisposable
+    public sealed partial class BotViewModel : NotificationBase<BotInfo>, IDisposable
     {
         private readonly BotRunService botRunService;
 
 
 
 
-        public BotViewModel(BotRecord bot, IAsyncRelayCommand deletecommand) : base(bot)
+        public BotViewModel(BotInfo bot, IAsyncRelayCommand deletecommand) : base(bot)
         {
             this.DeleteCommand = deletecommand;
-            botRunService = new BotRunService(bot, this);
+            botRunService = new BotRunService(this, bot);
+
         }
 
         #region Commands
@@ -30,6 +31,12 @@ namespace MinecraftBotManager.ViewModels
         private async Task StartBot()
         {
             await botRunService.StartBot();
+        }
+
+        [ICommand]
+        private async Task StopBot()
+        {
+
         }
 
 
@@ -44,11 +51,14 @@ namespace MinecraftBotManager.ViewModels
         private bool imgaeLoading;
 
 
+        private BitmapImage icon;
+
         public BitmapImage Icon
         {
-            get => This.Icon;
-            set => SetProperty(This.Icon, value, (v) => This.Icon = v);
+            get => icon;
+            set => SetProperty(ref icon, value);
         }
+
 
 
 
@@ -56,21 +66,23 @@ namespace MinecraftBotManager.ViewModels
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(This.Username))
-                {
-                    return "Новый бот";
-                }
                 return This.Username;
             }
             set => SetProperty(This.Username, value, (v) => This.Username = v);
 
         }
 
-
-        public string Version
+        public string Server
         {
-            get => This.Version;
-            set => SetProperty(This.Version, value, (v) => This.Version = v);
+            get => This.Server;
+            set => SetProperty(This.Server, value, (v) => This.Server = v);
+        }
+
+
+        public int Version
+        {
+            get => This.ProtocolVersion;
+            set => SetProperty(This.ProtocolVersion, value, (v) => This.ProtocolVersion = v);
         }
 
 
@@ -131,38 +143,16 @@ namespace MinecraftBotManager.ViewModels
         }
 
 
-        public string ProxyType
+
+        public TypeProxy ProxyType
         {
-            get => This.ProxyType.ToString();
-            set
-            {
-                try
-                {
-                    ProxyType pt = (ProxyType)Enum.Parse(typeof(ProxyType), value);
-
-                    This.ProxyType = pt;
-                    OnPropertyChanged();
-                }
-                catch
-                {
-
-                }
-            }
+            get => This.ProxyType;
+            set => SetProperty(This.ProxyType, value, (v) => This.ProxyType = v);
         }
-
-
-
         public bool IsEnabledProxyControls => ProxyEnabled && !OptimaleProxy;
 
         public ObservableCollection<string> LocalIps { get; } = new();
 
-        public ObservableCollection<string> ProxyTypes { get; } = new()
-        {
-            "Http",
-            "Socks4",
-            "Socks4a",
-            "Socks5"
-        };
 
         #endregion
 
@@ -171,6 +161,29 @@ namespace MinecraftBotManager.ViewModels
         public StatusVM ServerStatus { get; private set; } = new();
         public StatusVM AuthStatus { get; private set; } = new();
         public StatusVM ProxyStatus { get; private set; } = new();
+
+        [ObservableProperty]
+        private string nickError;
+        [ObservableProperty]
+        private string serverError;
+        [ObservableProperty]
+        private string passwordError;
+        [ObservableProperty]
+        private string proxyAddressError;
+        [ObservableProperty]
+        private string proxyLoginError;
+        [ObservableProperty]
+        private string proxyPasswordError;
+
+        public void AllErrorsClear()
+        {
+            NickError = "";
+            ServerError = "";
+            PasswordError = "";
+            ProxyAddressError = "";
+            ProxyLoginError = "";
+            proxyPasswordError = "";
+        }
 
         public void AllStatusesLoad()
         {
@@ -187,6 +200,8 @@ namespace MinecraftBotManager.ViewModels
             ProxyStatus.Disabled();
         }
 
+        
+
         public void Dispose()
         {
 
@@ -199,5 +214,8 @@ namespace MinecraftBotManager.ViewModels
 
 
     }
+
+
+
 
 }

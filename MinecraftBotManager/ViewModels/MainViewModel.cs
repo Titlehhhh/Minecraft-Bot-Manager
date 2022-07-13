@@ -12,11 +12,17 @@ namespace MinecraftBotManager.ViewModels
 {
     public sealed partial class MainViewModel : ObservableObject
     {
-        public ICommand ClosedCommand { get; private set; }
+        private readonly IBotRepository botRepository;
+
+        [ICommand]
+        private async Task Closed()
+        {
+            await botRepository.Save();
+        }
 
         public MainViewModel(IBotRepository botRepository)
         {
-            ClosedCommand = new RelayCommand(() => botRepository.Save().Wait());
+            this.botRepository = botRepository;
         }
     }
 }

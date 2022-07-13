@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="McProtoNet" Version="1.2.6" />
     <PackageReference Include="starksoft.aspen" Version="1.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MinecraftBotManager.Api\MinecraftBotManager.Api.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,10 +11,11 @@ namespace MinecraftBotManager.Api.Models
     {
         Guid Id { get; }
         BotStatus Status { get; }
+        
+        string Address { get; }
+        string Username { get; }
 
-
-
-        void Run();
+        void Start();
         void Stop();
 
         IMinecraftClient Client { get; }

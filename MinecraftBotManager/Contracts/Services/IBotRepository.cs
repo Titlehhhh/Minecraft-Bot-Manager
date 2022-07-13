@@ -9,10 +9,10 @@ namespace MinecraftBotManager.Contracts.Services
 {
     public interface IBotRepository
     {
-        void Add(BotRecord bot);
-        IEnumerable<BotRecord> GetAllBots();
+        void Add(BotInfo bot);
+        IEnumerable<BotInfo> GetAllBots();
         Task InizializeAsync();
-        bool Remove(BotRecord bot);
+        bool Remove(BotInfo bot);
         bool Remove(Guid id);
         Task Save();
     }

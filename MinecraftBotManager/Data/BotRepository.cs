@@ -13,20 +13,20 @@ namespace MinecraftBotManager.Data
 {
     public sealed class BotRepository : IBotRepository
     {
-        private List<BotRecord> bots = new();
+        private List<BotInfo> bots = new();
 
         private static readonly string LocalPath = ApplicationData.Current.LocalFolder.Path;
 
         private static readonly string CachedIconPath = Path.Combine(LocalPath, "CachedIcons");
         private static readonly string PathBots = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Bots.json");
 
-        public IEnumerable<BotRecord> GetAllBots() => bots;
+        public IEnumerable<BotInfo> GetAllBots() => bots;
 
-        public void Add(BotRecord bot)
+        public void Add(BotInfo bot)
         {
             bots.Add(bot);
         }
-        public bool Remove(BotRecord bot)
+        public bool Remove(BotInfo bot)
         {
             return bots.Remove(bot);
         }
@@ -35,36 +35,42 @@ namespace MinecraftBotManager.Data
             return bots.Remove(bots.FirstOrDefault(b => b.Id == id));
         }
 
-        
+
         private bool inizialized = false;
 
         private static readonly object fileLock = new();
 
-        public Task Save()
+        public async Task Save()
         {
             if (inizialized)
             {
-                lock (fileLock)
+                await Task.Run(() =>
                 {
-                    serializationService.Serialize(bots, PathBots);
-                }
+                    lock (fileLock)
+                    {
+                        serializationService.Serialize(bots, PathBots);
+                    }
+                });
             }
-            return Task.CompletedTask;
+
         }
-        public Task InizializeAsync()
+        public async Task InizializeAsync()
         {
+
             if (!inizialized)
             {
-                lock (fileLock)
+                await Task.Run(() =>
                 {
-                    bots = serializationService.Deserialize<List<BotRecord>>(PathBots);
-                }
+                    lock (fileLock)
+                    {
+                        bots = serializationService.Deserialize<List<BotInfo>>(PathBots);
+                    }
+                });
 
-                
 
                 inizialized = true;
             }
-            return Task.CompletedTask;
+
         }
         private readonly ISerializationService serializationService;
 

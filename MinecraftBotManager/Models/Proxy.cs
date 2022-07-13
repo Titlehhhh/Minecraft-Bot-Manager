@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Starksoft.Net.Proxy;
+using Starksoft.Aspen.Proxy;
 
 namespace MinecraftBotManager.Models
 {
@@ -21,7 +21,6 @@ namespace MinecraftBotManager.Models
         private ProxyType type;
 
         public ProxyType Type
-
         {
             get => type;
             set => SetProperty(ref type, value);

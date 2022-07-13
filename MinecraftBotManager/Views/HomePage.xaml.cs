@@ -1,6 +1,8 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
 using MinecraftBotManager.ViewModels;
+using System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -18,12 +20,30 @@ namespace MinecraftBotManager.Views
         {
             ViewModel = App.GetService<HomeViewModel>();
             this.InitializeComponent();
-            
         }
 
         private void host_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
+
+    [MarkupExtensionReturnType(ReturnType = typeof(Array))]
+    public sealed class EnumValuesExtension : MarkupExtension
+    {
+        private Type enumType;
+
+        public Type EnumType
+        {
+            get { return enumType; }
+            set { enumType = value; }
+        }
+
+        protected override object ProvideValue()
+        {
+            return Enum.GetNames(EnumType);
+        }
+    }
+
+    
 }

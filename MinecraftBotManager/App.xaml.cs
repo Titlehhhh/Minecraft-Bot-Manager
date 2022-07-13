@@ -3,10 +3,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using MinecraftBotManager.ViewModels;
 using MinecraftBotManager.Data;
-using MinecraftBotManager.Contracts.Services;
 using MinecraftBotManager.Services;
 using System.Reflection;
 using System;
+using MinecraftBotManager.Contracts.Services;
 
 namespace MinecraftBotManager
 {

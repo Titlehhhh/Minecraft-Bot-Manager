@@ -30,6 +30,8 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Behaviors" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+    <PackageReference Include="McProtoNet" Version="1.2.7" />
+    <PackageReference Include="McProtoNet.Utils" Version="1.2.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
@@ -46,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MinecraftBotManager.Api\MinecraftBotManager.Api.csproj" />
+    <ProjectReference Include="..\MinecraftBotManager.Core\MinecraftBotManager.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\HomePage.xaml">

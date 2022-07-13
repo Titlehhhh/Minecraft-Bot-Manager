@@ -2,8 +2,10 @@
 using CommunityToolkit.Mvvm.Input;
 using MinecraftBotManager.Contracts.Services;
 using MinecraftBotManager.Data;
+
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +16,9 @@ namespace MinecraftBotManager.ViewModels
 
     public sealed partial class HomeViewModel : ObservableObject
     {
+
+
+
         private BotViewModel selectedBot;
 
         public BotViewModel SelectedBot
@@ -21,7 +26,7 @@ namespace MinecraftBotManager.ViewModels
             get { return selectedBot; }
             set
             {
-                SetProperty(selectedBot, value,Call);
+                SetProperty(selectedBot, value, Call);
                 Trace.WriteLine("setprop: " + value?.Username);
             }
         }
@@ -53,12 +58,19 @@ namespace MinecraftBotManager.ViewModels
         [ICommand]
         public async Task Delete(BotViewModel viewModel)
         {
+
+
             Bots.Remove(viewModel);
             botRepository.Remove(viewModel);
 
             await botRepository.Save();
             viewModel.Dispose();
+
+            SelectedBot = Bots.FirstOrDefault();
+
         }
+
+
         private readonly IBotRepository botRepository;
 
         public HomeViewModel(IBotRepository botRepository)
@@ -72,8 +84,8 @@ namespace MinecraftBotManager.ViewModels
                 BotViewModel viewModel = new BotViewModel(bot, this.DeleteCommand);
                 Bots.Add(viewModel);
             }
-
-
+            SelectedBot = Bots.FirstOrDefault();
+            
         }
 
         public ObservableCollection<BotViewModel> Bots { get; private set; } = new();

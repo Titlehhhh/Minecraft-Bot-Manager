@@ -35,6 +35,8 @@ namespace MinecraftBotManager.ViewModels
         public void Disabled()
         {
             IsEnabled = false;
+            Text = "";
+
         }
 
         public void Error(string text)
