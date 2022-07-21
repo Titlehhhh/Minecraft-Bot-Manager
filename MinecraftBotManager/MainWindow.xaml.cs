@@ -16,12 +16,14 @@ namespace MinecraftBotManager
 
         public MainWindow()
         {
-            ViewModel = App.GetService<MainViewModel>();           
+            ViewModel = App.GetService<MainViewModel>();
+            //ViewModel = null;
             this.InitializeComponent();
+
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(TitleBar);
             NavigationFrame.Navigate(typeof(HomePage));
-            
+
         }
 
         private void MainWindow_Closed(object sender, WindowEventArgs args)

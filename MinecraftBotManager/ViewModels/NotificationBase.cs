@@ -1,8 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 
 namespace MinecraftBotManager.ViewModels
@@ -19,6 +16,6 @@ namespace MinecraftBotManager.ViewModels
             This = thing;
         }
     }
-    
+
 
 }

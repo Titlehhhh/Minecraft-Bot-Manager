@@ -18,13 +18,20 @@ namespace MinecraftBotManager.Views
 
         public HomePage()
         {
-            ViewModel = App.GetService<HomeViewModel>();
-            this.InitializeComponent();
+            try
+            {
+                ViewModel = App.GetService<HomeViewModel>();
+                this.InitializeComponent();
+            }
+            catch (Exception gg)
+            {
+                System.Diagnostics.Trace.WriteLine(gg);
+            }
         }
 
         private void host_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 
@@ -45,5 +52,5 @@ namespace MinecraftBotManager.Views
         }
     }
 
-    
+
 }

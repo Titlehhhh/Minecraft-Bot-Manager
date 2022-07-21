@@ -1,6 +1,5 @@
-﻿using MinecraftBotManager.Api.Minecraft;
-
-namespace MinecraftBotManager.Core.Minecraft
+﻿
+namespace MinecraftBotManager.Core
 {
     public sealed class MinecraftClientFactory
     {

@@ -11,7 +11,7 @@
     xmlns:cuscontrols="using:MinecraftBotManager.Controls"
     xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
     xmlns:cusconveters="using:MinecraftBotManager.Converters"
-    xmlns:data ="using:MinecraftBotManager.Data"
+    xmlns:data ="using:MinecraftBotManager.Core.Data"
     x:Name="RootPage"
     xmlns:toolkit="using:CommunityToolkit.WinUI.UI"
     mc:Ignorable="d">
@@ -19,6 +19,12 @@
         <converters:BoolNegationConverter x:Key="BoolNegativeConverter"/>
         <cusconveters:StringDefaultValueConverter x:Key="EmptyStringConverter" DefaultValue="Новый бот"/>
         <cusconveters:NullToOpacityConverter x:Key="NullToOpacityConverter"/>
+
+        <Style x:Key="TBError" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="#ff4a4a"/>
+            <Setter Property="FontSize" Value="11"/>
+
+        </Style>
     </Page.Resources>
 
     <Grid Margin="20">
@@ -112,8 +118,11 @@
 
                             <StackPanel>
                                 <StackPanel  HorizontalAlignment="Center">
-                                    <TextBox MinWidth="200" Text="{x:Bind Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ник"/>
-                                    <TextBlock FontSize="11" Text="{x:Bind NickError}" Foreground="#ff4a4a" HorizontalAlignment="Left"/>
+                                    <TextBox
+                                        MinWidth="200"
+                                        Text="{x:Bind Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                        PlaceholderText="Ник" />
+                                    <TextBlock Text="{x:Bind NickError}" Style="{StaticResource TBError}" HorizontalAlignment="Left"/>
                                 </StackPanel>
                                 <controls:DockPanel LastChildFill="False">
                                     <Button controls:DockPanel.Dock="Left"
@@ -157,7 +166,14 @@
                                             <ComboBox Header="Версия">
 
                                             </ComboBox>
-                                            <AutoSuggestBox Grid.Row="1" Text="{x:Bind Server,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}" ItemsSource="{x:Bind LocalIps, Mode=OneWay}" Header="Сервер"/>
+                                            <StackPanel Grid.Row="1" >
+                                                <AutoSuggestBox                                                 
+                                                    Text="{x:Bind Server,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Style="{StaticResource DefaultAutoSuggestBoxStyleLoading}"
+                                                    ItemsSource="{x:Bind LocalIps, Mode=OneWay}"
+                                                    Header="Сервер"/>
+                                                <TextBlock Text="{x:Bind ServerError}" Style="{StaticResource TBError}"/>
+                                            </StackPanel>
                                             <StackPanel Grid.Row="2" Spacing="16">
 
 
@@ -166,8 +182,13 @@
                                                     <ComboBoxItem Content="Mojang"/>
                                                     <ComboBoxItem Content="Microsoft"/>
                                                 </ComboBox>
-                                                <PasswordBox Password="{x:Bind Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}" Header="Пароль"/>
-
+                                                <StackPanel>
+                                                    <PasswordBox 
+                                                        Password="{x:Bind Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                        IsEnabled="{Binding ElementName=IsAuthCheckBox,Path=IsChecked}"
+                                                        Header="Пароль"/>
+                                                    <TextBlock Text="{x:Bind PasswordError}" Style="{StaticResource TBError}"/>
+                                                </StackPanel>
                                             </StackPanel>
 
                                             <StackPanel Grid.Row="3" Spacing="16">
@@ -188,15 +209,23 @@
                                                         </DataTemplate>
                                                     </ComboBox.ItemTemplate>
                                                 </ComboBox>
-                                                <TextBox Header="Адрес"
+
+                                                <StackPanel>
+
+
+                                                    <TextBox Header="Адрес"
                                                          Text="{x:Bind ProxyAddress,Mode=TwoWay}"
-                                                    IsEnabled="{x:Bind IsEnabledProxyControls}" />
-                                                <TextBox Header="Логин(необязательно)"
+                                                         IsEnabled="{x:Bind IsEnabledProxyControls}" />
+                                                    <TextBlock Text="{x:Bind ProxyAddressError}" Style="{StaticResource TBError}"/>
+                                                    <TextBox Header="Логин(необязательно)"
                                                          Text="{x:Bind ProxyLogin, Mode=TwoWay}"
-                                                    IsEnabled="{x:Bind IsEnabledProxyControls}" />
-                                                <PasswordBox  Header="Пароль(необязательно)"
+                                                         IsEnabled="{x:Bind IsEnabledProxyControls}" />
+                                                    <TextBlock Text="{x:Bind ProxyLoginError}" Style="{StaticResource TBError}"/>
+                                                    <PasswordBox  Header="Пароль(необязательно)"
                                                               Password="{x:Bind ProxyPass, Mode=TwoWay}"
                                                     IsEnabled="{x:Bind IsEnabledProxyControls}"/>
+                                                    <TextBlock Text="{x:Bind ProxyPasswordError}" Style="{StaticResource TBError}"/>
+                                                </StackPanel>
 
                                             </StackPanel>
 

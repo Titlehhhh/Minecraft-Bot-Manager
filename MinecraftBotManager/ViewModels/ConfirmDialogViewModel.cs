@@ -3,12 +3,12 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace MinecraftBotManager.ViewModels
 {
-    public sealed partial class ConfirmDialogViewModel :ObservableObject
+    public sealed partial class ConfirmDialogViewModel : ObservableObject
     {
         [ICommand]
         private void Ok()
         {
-            DialogResult = true;            
+            DialogResult = true;
         }
         [ICommand]
         private void Cancel()

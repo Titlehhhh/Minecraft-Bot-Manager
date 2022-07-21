@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using MinecraftBotManager.ViewModels;
-using MinecraftBotManager.Data;
-using MinecraftBotManager.Services;
-using System.Reflection;
-using System;
 using MinecraftBotManager.Contracts.Services;
+using MinecraftBotManager.Services;
+using MinecraftBotManager.ViewModels;
+using System;
 
 namespace MinecraftBotManager
 {
@@ -19,7 +17,7 @@ namespace MinecraftBotManager
 
             AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
             {
-                System.Diagnostics.Trace.WriteLine("domainEx: "+e.Exception.ToString());
+                System.Diagnostics.Trace.WriteLine("domainEx: " + e.Exception.ToString());
             };
             UnhandledException += App_UnhandledException;
 
@@ -28,7 +26,7 @@ namespace MinecraftBotManager
 
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            System.Diagnostics.Trace.WriteLine("appEx:"+e.Exception.ToString());
+            System.Diagnostics.Trace.WriteLine("appEx:" + e.Exception.ToString());
         }
 
         private static readonly IHost host = Host.CreateDefaultBuilder()
@@ -50,14 +48,20 @@ namespace MinecraftBotManager
 
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            try
+            {
+                IBotRepository botRepository = App.GetService<IBotRepository>();
+                await botRepository.InizializeAsync();
+                host.Start();
 
-            IBotRepository botRepository = App.GetService<IBotRepository>();
-            await botRepository.InizializeAsync();
-            host.Start();
+                m_window = new MainWindow();
 
-            m_window = new MainWindow();
-
-            m_window.Activate();
+                m_window.Activate();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Trace.WriteLine("sdfgdfg:" + e);
+            }
         }
 
 

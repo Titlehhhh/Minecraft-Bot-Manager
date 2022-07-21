@@ -1,21 +1,48 @@
-﻿using MinecraftBotManager.Core.Minecraft;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MinecraftBotManager.Core.Models;
 
 namespace MinecraftBotManager.Core
 {
-    public interface IBot
+    public sealed class Bot : IBot
     {
+        private readonly List<IBotObserver> observers = new();
 
-    }
+        private readonly ILogger _logger;
+        public Bot(ILogger logger)
+        {
+            _logger = logger;
+        }
 
-    public sealed class Bot: IBot
-    {
-        private static readonly MinecraftClientFactory factory = new();
-        public Bot(BotOptions options)
+        private void Notify(Action<IBotObserver> action)
+        {
+            lock (observers)
+            {
+                foreach (var obs in observers)
+                {
+                    action(obs);
+                }
+            }
+        }
+
+        public void AddObserver(IBotObserver observer)
+        {
+            lock (observers)
+            {
+                observers.Add(observer);
+            }
+        }
+
+        public void Dispose()
+        {
+            observers.Clear();
+
+        }
+
+        public void Start(BotInfo info)
+        {
+            _logger.Info("");
+        }
+
+        public void Stop()
         {
 
         }

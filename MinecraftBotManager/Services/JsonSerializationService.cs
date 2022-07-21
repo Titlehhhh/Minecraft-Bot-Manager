@@ -1,15 +1,12 @@
 ﻿
 using MinecraftBotManager.Contracts.Services;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MinecraftBotManager.Services
 {
@@ -20,6 +17,8 @@ namespace MinecraftBotManager.Services
             { UseSimpleDictionaryFormat = true };
         public TValue Deserialize<TValue>(string path, params object[] constructorArgs)
         {
+            if (!File.Exists(path))
+                return (TValue)Activator.CreateInstance(typeof(TValue), constructorArgs);
             try
             {
                 using (var stream = File.OpenRead(path))
@@ -45,8 +44,9 @@ namespace MinecraftBotManager.Services
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Trace.WriteLine("gg:" + e);
                 return (TValue)Activator.CreateInstance(typeof(TValue), constructorArgs);
             }
         }

@@ -4,6 +4,6 @@
     {
         public int ProtocolVersion { get; set; }
         public ConnectionInfo ConnectInfo { get; set; }
-        
+
     }
 }

@@ -1,36 +1,74 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
-using MinecraftBotManager.Api.Models;
-using MinecraftBotManager.Data;
-using MinecraftBotManager.Helpers;
-
+using MinecraftBotManager.Core;
+using MinecraftBotManager.Core.Data;
+using MinecraftBotManager.Core.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-
 
 namespace MinecraftBotManager.ViewModels
 {
-    public sealed partial class BotViewModel : NotificationBase<BotInfo>, IDisposable
+    public sealed class Logger : ILogger
     {
-        private readonly BotRunService botRunService;
+        public void Error(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Info(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Warn(string message)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public sealed class NotEmpty : ValidationAttribute
+    {
+        private readonly string propName;
+        public NotEmpty(string propName = "")
+        {
+            this.propName = propName;
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            string v = (string)value;
+
+            if (string.IsNullOrEmpty(v))
+                return new("Введите ник");
+            return ValidationResult.Success;
+        }
+    }
+
+    public sealed partial class BotViewModel : NotificationBase<BotInfo>, IDisposable, IBotObserver
+    {
 
 
+        private readonly IBot _bot = new Bot(new Logger());
 
 
         public BotViewModel(BotInfo bot, IAsyncRelayCommand deletecommand) : base(bot)
         {
+
+            _bot.AddObserver(this);
             this.DeleteCommand = deletecommand;
-            botRunService = new BotRunService(this, bot);
+
 
         }
+
+
 
         #region Commands
         [ICommand]
         private async Task StartBot()
         {
-            await botRunService.StartBot();
+            //  _bot.Start((BotInfo)This.Clone());
         }
 
         [ICommand]
@@ -61,7 +99,7 @@ namespace MinecraftBotManager.ViewModels
 
 
 
-
+        [NotEmpty]
         public string Username
         {
             get
@@ -182,7 +220,7 @@ namespace MinecraftBotManager.ViewModels
             PasswordError = "";
             ProxyAddressError = "";
             ProxyLoginError = "";
-            proxyPasswordError = "";
+            ProxyPasswordError = "";
         }
 
         public void AllStatusesLoad()
@@ -199,18 +237,122 @@ namespace MinecraftBotManager.ViewModels
             AuthStatus.Disabled();
             ProxyStatus.Disabled();
         }
+        public bool Validate()
+        {
+            AllErrorsClear();
 
-        
+            bool ok = true;
+            if (string.IsNullOrEmpty(Username))
+            {
+                NickError = "Введите ник";
+                ok = false;
+            }
+            if (string.IsNullOrEmpty(Server))
+            {
+                ServerError = "Введите адрес";
+                ok = false;
+            }
+            if (AuthEnabled)
+            {
+                if (string.IsNullOrEmpty(Password))
+                {
+                    PasswordError = "Введите пароль";
+                    ok = false;
+                }
+            }
+            if (ProxyEnabled && IsEnabledProxyControls)
+            {
+                if (string.IsNullOrEmpty(ProxyAddress))
+                {
+                    ProxyAddressError = "Введите адрес";
+                    ok = false;
+                }
+                bool a, b = true;
+                if (!((a = string.IsNullOrEmpty(ProxyLogin)) && (b = string.IsNullOrEmpty(ProxyPass))))
+                {
+                    if (a)
+                    {
+                        ProxyLoginError = "Введите значение";
+                    }
+                    if (b)
+                    {
+                        ProxyPasswordError = "Введите пароль";
+                    }
+                    ok = false;
+                }
+            }
+            return ok;
+        }
+
 
         public void Dispose()
         {
 
         }
 
+
+
         // public StatusVM ServerStatus { get; private set; } = new();
         #endregion
 
+        #region Observer
+        public void OnError(Exception e)
+        {
 
+        }
+
+        public void OnCompleted()
+        {
+
+        }
+
+        public void OnConnecting()
+        {
+            ServerStatus.Load("Подключено");
+        }
+
+        public void OnConnected()
+        {
+            ServerStatus.Load("Подключение...");
+        }
+
+        public void OnDisconnected()
+        {
+
+        }
+
+        public void OnFindQuickProxy()
+        {
+            ProxyStatus.Load("Подбор оптимального сервера...");
+        }
+
+        public void OnProxyConnecting()
+        {
+            ProxyStatus.Load("Подключение...");
+        }
+
+        public void OnProxyConnected()
+        {
+            ProxyStatus.Ok("Подключено");
+        }
+
+        public void OnAuthentification()
+        {
+            ServerStatus.Load("Аутентификатция");
+        }
+
+        public void SrvFinding()
+        {
+            ServerStatus.Load("Получение SRV...");
+        }
+
+        public void SrvFinded(string address)
+        {
+
+        }
+
+
+        #endregion
 
 
     }

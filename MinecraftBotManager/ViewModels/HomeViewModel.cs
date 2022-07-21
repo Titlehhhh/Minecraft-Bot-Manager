@@ -1,15 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MinecraftBotManager.Contracts.Services;
-using MinecraftBotManager.Data;
-
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
 
 namespace MinecraftBotManager.ViewModels
 {
@@ -84,8 +80,8 @@ namespace MinecraftBotManager.ViewModels
                 BotViewModel viewModel = new BotViewModel(bot, this.DeleteCommand);
                 Bots.Add(viewModel);
             }
-            SelectedBot = Bots.FirstOrDefault();
-            
+            //  SelectedBot = Bots.FirstOrDefault();
+
         }
 
         public ObservableCollection<BotViewModel> Bots { get; private set; } = new();

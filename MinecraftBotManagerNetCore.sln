@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager", "Mine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.Api", "MinecraftBotManager.Api\MinecraftBotManager.Api.csproj", "{3F598E94-9A7E-42B1-9064-4F1DFABE97A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftBotManager.Core", "MinecraftBotManager.Core\MinecraftBotManager.Core.csproj", "{6643FBB8-0482-4949-8BDC-7C8F4B72DD89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.Core", "MinecraftBotManager.Core\MinecraftBotManager.Core.csproj", "{6643FBB8-0482-4949-8BDC-7C8F4B72DD89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftBotManager.SDK", "MinecraftBotManager.SDK\MinecraftBotManager.SDK.csproj", "{BE14987B-77C5-4105-A626-BB611F6DC190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.SDK", "MinecraftBotManager.SDK\MinecraftBotManager.SDK.csproj", "{BE14987B-77C5-4105-A626-BB611F6DC190}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

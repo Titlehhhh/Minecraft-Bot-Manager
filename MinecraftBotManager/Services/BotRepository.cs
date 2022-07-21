@@ -1,15 +1,14 @@
 ﻿
 using MinecraftBotManager.Contracts.Services;
+using MinecraftBotManager.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace MinecraftBotManager.Data
+namespace MinecraftBotManager.Services
 {
     public sealed class BotRepository : IBotRepository
     {

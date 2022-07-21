@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="McProtoNet" Version="1.2.6" />
-    <PackageReference Include="starksoft.aspen" Version="1.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Minecraft\" />
   </ItemGroup>
 
 </Project>
