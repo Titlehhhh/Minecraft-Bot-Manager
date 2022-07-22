@@ -15,17 +15,17 @@ namespace MinecraftBotManager.ViewModels
     {
         public void Error(string message)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Info(string message)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public void Warn(string message)
         {
-            throw new NotImplementedException();
+          //  throw new NotImplementedException();
         }
     }
     public sealed class NotEmpty : ValidationAttribute
@@ -46,14 +46,14 @@ namespace MinecraftBotManager.ViewModels
         }
     }
 
-    public sealed partial class BotViewModel : NotificationBase<BotInfo>, IDisposable, IBotObserver
+    public sealed partial class BotViewModel : NotificationBase<ConnectionSettings>, IDisposable, IBotObserver
     {
 
 
         private readonly IBot _bot = new Bot(new Logger());
 
 
-        public BotViewModel(BotInfo bot, IAsyncRelayCommand deletecommand) : base(bot)
+        public BotViewModel(ConnectionSettings bot, IAsyncRelayCommand deletecommand) : base(bot)
         {
 
             _bot.AddObserver(this);
@@ -68,7 +68,7 @@ namespace MinecraftBotManager.ViewModels
         [ICommand]
         private async Task StartBot()
         {
-            //  _bot.Start((BotInfo)This.Clone());
+             _bot.Start((ConnectionSettings)This.Clone());
         }
 
         [ICommand]

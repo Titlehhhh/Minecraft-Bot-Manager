@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.Core", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinecraftBotManager.SDK", "MinecraftBotManager.SDK\MinecraftBotManager.SDK.csproj", "{BE14987B-77C5-4105-A626-BB611F6DC190}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{E22D0C65-86D5-4602-BDAC-8408E0D589C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,22 @@ Global
 		{BE14987B-77C5-4105-A626-BB611F6DC190}.Release|x64.Build.0 = Release|Any CPU
 		{BE14987B-77C5-4105-A626-BB611F6DC190}.Release|x86.ActiveCfg = Release|Any CPU
 		{BE14987B-77C5-4105-A626-BB611F6DC190}.Release|x86.Build.0 = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|arm64.Build.0 = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|x64.Build.0 = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Debug|x86.Build.0 = Debug|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|arm64.ActiveCfg = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|arm64.Build.0 = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|x64.ActiveCfg = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|x64.Build.0 = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|x86.ActiveCfg = Release|Any CPU
+		{E22D0C65-86D5-4602-BDAC-8408E0D589C6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

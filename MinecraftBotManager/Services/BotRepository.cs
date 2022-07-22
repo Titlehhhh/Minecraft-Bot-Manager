@@ -12,20 +12,20 @@ namespace MinecraftBotManager.Services
 {
     public sealed class BotRepository : IBotRepository
     {
-        private List<BotInfo> bots = new();
+        private List<ConnectionSettings> bots = new();
 
         private static readonly string LocalPath = ApplicationData.Current.LocalFolder.Path;
 
         private static readonly string CachedIconPath = Path.Combine(LocalPath, "CachedIcons");
         private static readonly string PathBots = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Bots.json");
 
-        public IEnumerable<BotInfo> GetAllBots() => bots;
+        public IEnumerable<ConnectionSettings> GetAllBots() => bots;
 
-        public void Add(BotInfo bot)
+        public void Add(ConnectionSettings bot)
         {
             bots.Add(bot);
         }
-        public bool Remove(BotInfo bot)
+        public bool Remove(ConnectionSettings bot)
         {
             return bots.Remove(bot);
         }
@@ -62,7 +62,7 @@ namespace MinecraftBotManager.Services
                 {
                     lock (fileLock)
                     {
-                        bots = serializationService.Deserialize<List<BotInfo>>(PathBots);
+                        bots = serializationService.Deserialize<List<ConnectionSettings>>(PathBots);
                     }
                 });
 

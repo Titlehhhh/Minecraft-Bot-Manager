@@ -1,5 +1,6 @@
 ﻿using MinecraftBotManager.Core.Data;
 using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace MinecraftBotManager.Core.Models
 {
@@ -10,11 +11,11 @@ namespace MinecraftBotManager.Core.Models
         public IReadOnlyDictionary<string, string> Errors { get; private set; }
     }
     [DataContract]
-    public sealed class BotInfo : ICloneable
+    public sealed class ConnectionSettings : ICloneable
     {
         [IgnoreDataMember]
         public Guid Id { get; }
-        public BotInfo()
+        public ConnectionSettings()
         {
             Id = Guid.NewGuid();
         }
@@ -32,7 +33,6 @@ namespace MinecraftBotManager.Core.Models
 
         [DataMember]
         public AccountType AccType { get; set; }
-
         public string Password { get; set; }
         [DataMember]
         public bool ProxyEnabled { get; set; }

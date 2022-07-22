@@ -80,7 +80,7 @@ namespace MinecraftBotManager.ViewModels
                 BotViewModel viewModel = new BotViewModel(bot, this.DeleteCommand);
                 Bots.Add(viewModel);
             }
-            //  SelectedBot = Bots.FirstOrDefault();
+            SelectedBot = Bots.FirstOrDefault();
 
         }
 

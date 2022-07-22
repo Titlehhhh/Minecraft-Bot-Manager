@@ -8,7 +8,7 @@
 
         void OnConnecting();
         void OnConnected();
-
+        void OnStarting();
         void OnDisconnected();
         void OnFindQuickProxy();
         void OnProxyConnecting();
